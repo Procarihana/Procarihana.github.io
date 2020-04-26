@@ -1,0 +1,4 @@
+baseURL = "http://example.org/"
+languageCode = "zh-Hans"
+title = "FAFA Bolg"
+theme = "ananke"
