@@ -1,4 +1,51 @@
-baseURL = "http://example.org/"
+baseURL = "https://procarihana.github.io/"
 languageCode = "zh-Hans"
-title = "FAFA Bolg"
-theme = "ananke"
+title = "FAFA Blog"
+theme = "hello-friend-ng"
+
+archetypeDir = "archetypes"
+contentDir   = "content"
+dataDir      = "data"
+layoutDir    = "layouts"
+publishDir   = "public"
+
+[params]
+# Metadata mostly used in document's head
+  description = "My new homepage or blog"
+  keywords = "homepage, blog"
+  images = [""]
+
+
+# 每页显示的文章数量用于分页
+paginate = 10
+
+# 取消默认的代码高亮，我们使用prism代码高亮
+ pygmentsUseClasses = false
+ pygmentCodeFences = true
+
+[languages]
+  [languages.en]
+    title = "FAFA Blog"
+    subtitle = "Just for fun"
+    keywords = ""
+    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+    readOtherPosts = "Read other posts"
+
+    [languages.en.params.logo]
+      logoText = "cd/Home"
+      logoHomeLink = "/"
+   
+# 板块化分
+# 权重对应在页面上显示的次序
+[[menu.main]]
+    identifier = "blog"
+    name       = "Blogs"
+    url        = "/posts"
+    weight     = "1"
+[[menu.main]]
+   identifier = "tags"
+   name       = "Tags"
+   url        = "/tags/"
+   weight     = "2"
+
+
