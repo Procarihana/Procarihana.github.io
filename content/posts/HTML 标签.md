@@ -37,10 +37,10 @@ tags: ["HTML"]
 - 在哪个窗口打开超级链接
 - - 在空白页打开
 ```html
-<a href="//goole.com" target=_blank">top</a>
+<a href="//goole.com" target=_blank>top</a>
 ```
 - - 在顶层打开链接（正常打开链接）--
-<a href="//goole.com" target=_top">top</a>
+<a href="//goole.com" target=_top>top</a>
 
 - - 在本层打开（Google 不允许用iframe指向，所以打不开，如果可以打开，则可以再其他页面直接打开） 
 
