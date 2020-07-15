@@ -1,7 +1,7 @@
 baseURL = "https://procarihana.github.io/"
 languageCode = "zh-Hans"
 title = "FAFA Blog"
-theme = "hello-friend-ng1"
+theme = "hello-friend-ng"
 
 archetypeDir = "archetypes"
 contentDir   = "content"
