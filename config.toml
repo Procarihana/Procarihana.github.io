@@ -49,3 +49,4 @@ paginate = 10
    weight     = "2"
 
 
+publishDir = "docs"
