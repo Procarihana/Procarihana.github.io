@@ -65,3 +65,4 @@ paginate = 10
 
 
 publishDir = "docs"
+theme = "hello-friend-ng1"
