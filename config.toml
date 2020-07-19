@@ -13,8 +13,8 @@ canonifyurls =  true
 
 [original]
   name = "hello-friend"
-  homepage = "https://procarihana.github.io/public"
-  repo = "https://procarihana.github.io.public"
+  homepage = "https://procarihana.github.io"
+  repo = "https://procarihana.github.io"
 
 
 archetypeDir = "archetypes"
@@ -54,12 +54,12 @@ paginate = 10
 [[menu.main]]
     identifier = "blog"
     name       = "Blogs"
-    url        = "/posts"
+    url        = "posts"
     weight     = "1"
 [[menu.main]]
    identifier = "tags"
    name       = "Tags"
-   url        = "/tags/"
+   url        = "tags"
    weight     = "2"
 
 
