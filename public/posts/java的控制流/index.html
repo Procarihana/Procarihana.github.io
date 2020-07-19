@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="控制流 控制流：方法调用 方法调用就是一个方法栈，每当开始一个新的方法调用的时候就会开启一个方法栈的栈针，方法调用之后方法针会被销毁。当有新的方法调用的时候就会开始新一轮的方法栈，循环往复。
+while与 do while 循环   while（返回boolean语句)
+{
+……
+}
+  do {无论真假就先执行一遍}
+while{(返回 boolean语句）;}
+  控制流：for 循环   fori
+ for（int i = 0;//任何语句，包括空语句 1️⃣ i &amp;lt; 100;//返回boolean的语句，包括空语句 2️⃣ i&#43;&#43;){//任何语句，包括空语句） 4️⃣ System.out.println(i); //3️⃣ }    for each
+for（String s :Iterable）{ …… }
+  对象能够实现Iterabie接口（可迭代）
+List&amp;lt;String&amp;gt; list = Arrays.asList(&amp;quot;1&amp;quot;,&amp;quot;2&amp;quot;); //遍历列表，把元素拿出来 for (int i = ;i&amp;lt;list.size(); i&#43;&#43;){ System.out.println(list.get(i)); } == for(String element : list){ System." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/posts/java%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/" />
+
+
+    <title>
+        
+            Java的控制流 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Java的控制流">
+<meta itemprop="description" content="控制流 控制流：方法调用 方法调用就是一个方法栈，每当开始一个新的方法调用的时候就会开启一个方法栈的栈针，方法调用之后方法针会被销毁。当有新的方法调用的时候就会开始新一轮的方法栈，循环往复。
+while与 do while 循环   while（返回boolean语句)
+{
+……
+}
+  do {无论真假就先执行一遍}
+while{(返回 boolean语句）;}
+  控制流：for 循环   fori
+ for（int i = 0;//任何语句，包括空语句 1️⃣ i &lt; 100;//返回boolean的语句，包括空语句 2️⃣ i&#43;&#43;){//任何语句，包括空语句） 4️⃣ System.out.println(i); //3️⃣ }    for each
+for（String s :Iterable）{ …… }
+  对象能够实现Iterabie接口（可迭代）
+List&lt;String&gt; list = Arrays.asList(&quot;1&quot;,&quot;2&quot;); //遍历列表，把元素拿出来 for (int i = ;i&lt;list.size(); i&#43;&#43;){ System.out.println(list.get(i)); } == for(String element : list){ System.">
+<meta itemprop="datePublished" content="2020-05-06T21:05:25&#43;08:00" />
+<meta itemprop="dateModified" content="2020-05-06T21:05:25&#43;08:00" />
+<meta itemprop="wordCount" content="654">
+<meta itemprop="image" content="https://procarihana.github.io/"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/"/>
+
+<meta name="twitter:title" content="Java的控制流"/>
+<meta name="twitter:description" content="控制流 控制流：方法调用 方法调用就是一个方法栈，每当开始一个新的方法调用的时候就会开启一个方法栈的栈针，方法调用之后方法针会被销毁。当有新的方法调用的时候就会开始新一轮的方法栈，循环往复。
+while与 do while 循环   while（返回boolean语句)
+{
+……
+}
+  do {无论真假就先执行一遍}
+while{(返回 boolean语句）;}
+  控制流：for 循环   fori
+ for（int i = 0;//任何语句，包括空语句 1️⃣ i &lt; 100;//返回boolean的语句，包括空语句 2️⃣ i&#43;&#43;){//任何语句，包括空语句） 4️⃣ System.out.println(i); //3️⃣ }    for each
+for（String s :Iterable）{ …… }
+  对象能够实现Iterabie接口（可迭代）
+List&lt;String&gt; list = Arrays.asList(&quot;1&quot;,&quot;2&quot;); //遍历列表，把元素拿出来 for (int i = ;i&lt;list.size(); i&#43;&#43;){ System.out.println(list.get(i)); } == for(String element : list){ System."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-06 21:05:25 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd/Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/posts">Blogs</a></li><li><a href="https://procarihana.github.io/tags/">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        4 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/posts/java%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/">Java的控制流</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="控制流">控制流</h2>
+<h2 id="控制流方法调用">控制流：方法调用</h2>
+<p>方法调用就是一个方法栈，每当开始一个新的方法调用的时候就会开启一个方法栈的栈针，方法调用之后方法针会被销毁。当有新的方法调用的时候就会开始新一轮的方法栈，循环往复。</p>
+<h2 id="while与-do-while-循环">while与 do while 循环</h2>
+<ul>
+<li>
+<p>while（返回boolean语句)<br>
+{</p>
+<p>……</p>
+<p>}</p>
+</li>
+<li>
+<p>do {<strong>无论真假就先执行一遍</strong>}<br>
+while{(返回 boolean语句）;}</p>
+</li>
+</ul>
+<h2 id="控制流for-循环">控制流：for 循环</h2>
+<ul>
+<li>
+<p>fori</p>
+<pre><code>  for（int i = 0;//任何语句，包括空语句 1️⃣
+       i &lt; 100;//返回boolean的语句，包括空语句  2️⃣
+       i++){//任何语句，包括空语句） 4️⃣
+         System.out.println(i);  //3️⃣
+       }
+</code></pre>
+</li>
+<li>
+<p>for each</p>
+<p>for（String s :Iterable<!-- raw HTML omitted -->）{
+……
+}</p>
+</li>
+</ul>
+<p>对象能够实现Iterabie接口（可迭代）</p>
+<pre><code>List&lt;String&gt; list = Arrays.asList(&quot;1&quot;,&quot;2&quot;);
+//遍历列表，把元素拿出来
+     for (int i = ;i&lt;list.size(); i++){
+         System.out.println(list.get(i));
+    }
+    
+    ==
+    
+     for(String element : list){
+    System.out.println(element);
+    } 
+
+ 
+ for ( int i = 0 ; i&lt; list.size; i++){
+     System.out.println(element);
+ }
+</code></pre>
+<p>统计一个给定的字符串中，大写英文字母（A,B,C,&hellip;,Z）出现的次数。</p>
+<pre><code>    public static int  countUpperCaseLetters(String str) {
+    int a = 0;
+    for(char ch : str.toCharArray()){
+        if(ch &gt;='A' &amp;&amp; ch&lt;='Z'){
+            ++a;
+        }
+    }
+    return a;
+}
+public static void main(String[] args) {
+    countUpperCaseLetters(&quot;AaBbCc1234ABC&quot;);
+}
+</code></pre>
+<p>}</p>
+<h2 id="改变循环的流程breakcontinue">改变循环的流程：break/continue</h2>
+<ul>
+<li>
+<p>braek;立即结束包裹当前braek的第一层循环</p>
+</li>
+<li>
+<p>找到结果后，打破当前循环，结束循环。</p>
+<pre><code>  public static boolean find(List&lt;Integer&gt; list,int value){
+  boolean exist = false;
+  for (Integer element :list){
+      if(element == value){
+          exist = true;
+          break;     //break 包裹这 for 的循环 --&gt; 结束的是for循环
+      }
+  }
+  return exist;
+  }
+    
+  public static void main(String[] args) throws IOException {
+  List&lt;Integer&gt; list1 = Arrays.asList(1,2,3);
+  find(list1,2);
+  find(list1,2);
+
+ }
+</code></pre>
+</li>
+<li>
+<p>continue;跳过包裹当前continue的第一层循环中的其余语句，继续下一次循环</p>
+</li>
+<li>
+<p>如果if里面的语句满足，则跳过for剩下的未执行的语句，直接调回for的循环条件执行循环</p>
+<pre><code>//只打印list重的奇数元素
+public static void printOdd(List&lt;Integer&gt; list){
+  for (int i= 0; i&lt; list.size();i++){
+       if (list.get(i) % 2 ==0 ){
+           continue;//continue包裹的第一层循环是for --&gt; 执行完第一次循环之后，就进入if
+       } System.out.println(list.get(i));
+  }
+   }
+  public static void main(String[] args) throws IOException {
+  printOdd(Arrays.asList(1,4,2,56,-1,3,12));
+    
+    
+   public static void printOddNumbersBetween(int start, int end) {
+
+
+    for (int i = start; i &lt;= end; i++) {
+      if (i % 2 != 0) {
+          System.out.print(i + &quot;,&quot;);
+     }
+ 
+  List&lt;Integer&gt; list = new  ArrayList&lt;&gt;();
+  List&lt;Integer&gt; list1 = new  ArrayList&lt;&gt;();
+  for (int i = start; i &lt;= end; i++) {
+      list.add(i);
+  }
+  for (int i = 0; i &lt;list.size();i++) {
+      if (list.get(i) % 2 != 0) {
+          list1.add(list.get(i));
+          continue;
+      }
+
+  }System.out.println(list1);
+}
+  public static void main(String[] args) {
+  printOddNumbersBetween(1, 5);
+  printOddNumbersBetween(-2, 2);
+  }
+ }
+</code></pre>
+</li>
+<li>
+<p>break label</p>
+</li>
+</ul>
+<p>label：标签，在程序的某得地方设置标签，然后跳转到标签处，实现程序控制流程转移</p>
+<ul>
+<li>
+<p>lable 要和任意语句进行搭配</p>
+<pre><code>   //不报错：任意字符（&quot;http&quot;） + &quot;：&quot; ———&gt;lable ； &quot;//&quot;表示开始注释
+  http://google.com
+    
+   public static void main(String[] args)  {
+      int i = 100;
+      while (i --&gt; 0){//(i--)&gt;0
+          System.out.println(i);
+  }
+    
+    
+  public static void main(String[] args)throws IOException{
+  最外层的循环:
+     for (int i=0;i &lt;2;i++){
+         for (int j = 0; j&lt; 1;j++){
+             break 最外层的循环;//通过label，break多层循环
+         }
+
+     }
+     for (int i=0;i &lt;2;i++){
+         for (int j = 0; j&lt; 1;j++){
+             break;//--&gt;只能够解决当前的for，不能够解决所有的for
+         }
+      }
+</code></pre>
+</li>
+</ul>
+<h2 id="控制流switch">控制流：switch</h2>
+<h3 id="可以switch的东西">可以switch的东西</h3>
+<ul>
+<li>
+<p>int / long / char / byte / short(所有的<strong>整形</strong>数，而不是<em>整数</em>，不是<em>浮点数</em>)</p>
+</li>
+<li>
+<p>enum 枚举
+只能选取固定的值，例如:Weekday、colour</p>
+<p>private enum WeekDay{
+MONDAY,TUESDAY,//……，SUNDAY
+}</p>
+<pre><code>  enum Signal{    
+  GREEN, YELLOW, RED  
+  }  
+   public class TrafficLight {         
+   Signal color = Signal.RED;
+   public void change() {  
+   switch (color) {  
+   color = Signal.GREEN;  
+   break;  
+   color = Signal.RED;  
+  case GREEN:
+  color = Signal.YELLOW;  
+  break;  
+      
+      }  
+  }  
+}
+</code></pre>
+</li>
+<li>
+<p>String （JDK7+）</p>
+<pre><code>int i = new Random().nextInt(5);
+   switch (i){
+       case 0:
+           System.out.println(i);break;
+       case 1:
+           System.out.println(i);break;
+       case 2:
+           System.out.println(i);break;
+       case 3:
+           System.out.println(i);break;
+       case 4:
+           System.out.println(i);break;
+           default:
+               System.out.println(i);break;
+               //没有添加break的情况下执行完一个语句之后，会紧接着执行下一个case（穿透）
+</code></pre>
+</li>
+<li>
+<p>声明的作用域在一个{}，不同的{}可以声明相同的变量而互不相冲</p>
+<pre><code>//如果i是A/B/C, 打印ABC
+     //否则打印DE
+     int i = (char)('A' + new Random().nextInt(5));
+     switch (i){
+         case 'A':
+         case 'B':
+         case 'C':{
+             String s = &quot;ABC&quot;;
+             System.out.println(s);}
+             break;
+             default:
+                 String s = &quot;DE&quot; ;
+                 System.out.println(s);
+                 break;
+</code></pre>
+</li>
+</ul>
+<h2 id="控制流嵌套">控制流：嵌套</h2>
+<ul>
+<li>
+<p>所有调用都可以嵌套，但是方法声明不能够嵌套</p>
+<pre><code>                 while (true){
+                     for (int j = 0; j &lt; 100 ; j++) {
+                         List&lt;String&gt; l = null;
+                         for (String e : l){
+                             switch (i){
+
+                             }
+
+                         }
+
+                     }
+</code></pre>
+</li>
+</ul>
+<p>穿透</p>
+<pre><code>   public static boolean isLeapYear(int year) {
+     if (year % 100 == 0) {
+         if (year % 400 == 0) {
+             return true;
+         } else {
+             return false;
+         }
+     } else if (year % 4 == 0) {
+             return true;
+     } else {
+         return false;
+     }
+     
+    // or
+     return year % 100 == 0 ? ( year % 400 == 0 ? true : false ) : (year % 4 == 0 ? true :false );
+</code></pre>
+<p>计算质数</p>
+<pre><code>     public static int howManyPrimeNumbers(int n) {
+    int num = 0;
+    for (int n1 = 2; n1 &lt; n; n1 ++){
+            if (isPrimeNumber(n1)){
+                num++;
+        }
+    }
+    return num;
+    }
+public static boolean isPrimeNumber(int n1) {
+    for (int i = 2; i &lt;= Math.sqrt(n1) + 1; i++) {
+        if (n1 % i == 0 &amp;&amp; n1 !=i ) {
+           return false;
+        }
+    }
+  return true;
+}
+</code></pre>
+<p>给定一个二维数组，返回其主对角线（从左上到右下）元素之和。</p>
+<p><a href="https://blog.csdn.net/hester_hester/article/details/77925927">https://blog.csdn.net/hester_hester/article/details/77925927</a></p>
+<pre><code>public static int diagonalSum(int[][] matrix) {
+    int N = matrix.length;
+    int result = 0;
+    for (int i = 0;i &lt; N;i++){
+        result += matrix[i][i];
+    }return result;
+
+}</code></pre>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        654 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-05-06 21:05 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/posts/java%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Java面向对象系统基础</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/posts/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/">
+                <span class="button__text">爬虫项目</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

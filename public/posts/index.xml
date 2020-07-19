@@ -1,0 +1,2846 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on FAFA Blog</title>
+        <link>https://procarihana.github.io/posts/</link>
+        <description>Recent content in Posts on FAFA Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-Hans</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Mon, 06 Jul 2020 15:29:45 +0800</lastBuildDate>
+        <atom:link href="https://procarihana.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Spring Web</title>
+            <link>https://procarihana.github.io/posts/spring-web/</link>
+            <pubDate>Mon, 06 Jul 2020 15:29:45 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/spring-web/</guid>
+            <description>Spring Web 和 HTTP进行沟通
+从零开始⼀个Spring应⽤ • pom.xml • src/main/java/hello/Application.java • src/main/java/hello/HelloController.java
+Query String 最简单的HTTP请求（查询字符串），就是</description>
+            <content type="html"><![CDATA[<p>Spring Web 和 HTTP进行沟通</p>
+<p>从零开始⼀个Spring应⽤
+• pom.xml
+• src/main/java/hello/Application.java
+• src/main/java/hello/HelloController.java</p>
+<p>Query String 最简单的HTTP请求（查询字符串），就是</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>HTML 标签</title>
+            <link>https://procarihana.github.io/posts/html-%E6%A0%87%E7%AD%BE/</link>
+            <pubDate>Sat, 04 Jul 2020 17:11:23 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/html-%E6%A0%87%E7%AD%BE/</guid>
+            <description>A标签  作用   跳转外部页面     跳转内部锚点     跳转到邮箱或电话等    href  超级链接  &amp;lt;body&amp;gt; &amp;lt;a herf = &amp;#34;https://google.com&amp;#34; target=&amp;#34;_blank&amp;#34; download&amp;gt;超链&amp;lt;/a&amp;gt; &amp;lt;/body&amp;gt; target  在哪个窗口打开超级链接   在空白页打开超级链接     在    download rel=noopener target  在哪个窗口打开超级链接   在空白页打开    &amp;lt;a href=&amp;#34;//goole.com&amp;#34; target=_blank&amp;gt;top&amp;lt;/a&amp;gt;    在顶层打开链接（正常打开链接）&amp;ndash; top     在本层打开（Google 不允许用iframe指向，所以打不开，如果可以打开，则可以再其他页面直接打开）    如何在编辑过程中正确打开html  http-server   安装    $ yarn global add http-server   启动并点击任一网址，要编写路径</description>
+            <content type="html"><![CDATA[<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="a标签">A标签</h2>
+<ul>
+<li>作用</li>
+<li>
+<ul>
+<li>跳转外部页面</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>跳转内部锚点</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>跳转到邮箱或电话等</li>
+</ul>
+</li>
+</ul>
+<h5 id="href">href</h5>
+<ul>
+<li>超级链接</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">   &lt;<span style="color:#f92672">body</span>&gt;
+   &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">herf </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://google.com&#34;</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> <span style="color:#a6e22e">download</span>&gt;超链&lt;/<span style="color:#f92672">a</span>&gt;
+   &lt;/<span style="color:#f92672">body</span>&gt;
+</code></pre></div><p><img src="/href.jpg" alt=""></p>
+<h5 id="target">target</h5>
+<ul>
+<li>在哪个窗口打开超级链接</li>
+<li>
+<ul>
+<li>在空白页打开超级链接</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>在</li>
+</ul>
+</li>
+</ul>
+<h5 id="download">download</h5>
+<h5 id="relnoopener">rel=noopener</h5>
+<h2 id="target-1">target</h2>
+<ul>
+<li>在哪个窗口打开超级链接</li>
+<li>
+<ul>
+<li>在空白页打开</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;//goole.com&#34;</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">_blank</span>&gt;top&lt;/<span style="color:#f92672">a</span>&gt;
+</code></pre></div><ul>
+<li>
+<ul>
+<li>在顶层打开链接（正常打开链接）&ndash;
+<!-- raw HTML omitted -->top<!-- raw HTML omitted --></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>在本层打开（Google 不允许用iframe指向，所以打不开，如果可以打开，则可以再其他页面直接打开）</li>
+</ul>
+</li>
+</ul>
+<h2 id="如何在编辑过程中正确打开html">如何在编辑过程中正确打开html</h2>
+<ul>
+<li>http-server</li>
+<li>
+<ul>
+<li>安装</li>
+</ul>
+</li>
+</ul>
+<pre><code>$ yarn global add http-server  
+</code></pre><ul>
+<li>
+<p>启动并点击任一网址，要编写路径</p>
+</li>
+<li>
+<ul>
+<li>
+<p>. (空格点空格【可省略】)-c（缓存 ）-1</p>
+<p><img src="/http-server.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>点击其中一个网址</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>打开并添加路径（所在文件名）</p>
+<p><img src="/http-server2.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>parcel</p>
+</li>
+<li>
+<ul>
+<li>安装</li>
+</ul>
+</li>
+</ul>
+<pre><code>$ yarn global add parcel
+</code></pre><ul>
+<li>
+<ul>
+<li>启动
+<img src="/parcel2.png" alt=""></li>
+</ul>
+</li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Java面向对象————多态</title>
+            <link>https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81/</link>
+            <pubDate>Mon, 11 May 2020 17:20:16 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81/</guid>
+            <description>面向对象的三大特征 封装 继承 多态 多态：不同类的不同的实现方法
+ 方法名字变量都一样，但是子类继承后的实现不一样  重载：两个类同一个方法的不同实现,根据最接近的类型进行匹配
+ 方法名相同，参数表不一样  多态 实例方法本身是多态的 实例：一个方法不是静态的就是实例方法
+通过区分有无Statci
+ 在运行时根据this（当前对象的实际类型）来决定调用哪个方法 []方法接收者  obj.method(1)
+消息接受者.消息（参数）//接受者会根据消息的不同自行决定如何响应消息
+ 静态方法没有多态 参数静态绑定，接受者动态绑定 覆盖：重写父类中的方法，方法名、参数不能改变，但是返回值可以改变   多态只对方法的接受者生效     多态只选择接受者的类型，不选择参数的类型    public class Base { public void print(ParamBase param) { System.out.println(&amp;#34;I am Base,the param is ParamBase&amp;#34;); } public void print(ParamSub param){ System.out.println(&amp;#34;I am Base,the param is ParamSub&amp;#34;); } } public class Sub extends Base { @Override public void print(ParamBase param){ System.</description>
+            <content type="html"><![CDATA[<h2 id="面向对象的三大特征">面向对象的三大特征</h2>
+<h5 id="封装">封装</h5>
+<h5 id="继承">继承</h5>
+<h5 id="多态">多态</h5>
+<p>多态：不同类的不同的实现方法</p>
+<pre><code>  方法名字变量都一样，但是子类继承后的实现不一样
+</code></pre>
+<p>重载：两个类同一个方法的不同实现,根据最接近的类型进行匹配</p>
+<pre><code>  方法名相同，参数表不一样
+</code></pre>
+<h2 id="多态-1">多态</h2>
+<h5 id="实例方法本身是多态的">实例方法本身是多态的</h5>
+<p>实例：一个方法不是静态的就是实例方法<br>
+通过区分有无Statci</p>
+<ul>
+<li>在运行时根据this（当前对象的实际类型）来决定调用哪个方法
+[]方法接收者</li>
+</ul>
+<p>obj.method(1)</p>
+<p>消息接受者.消息（参数）//接受者会根据消息的不同自行决定如何响应消息</p>
+<ul>
+<li>静态方法没有多态</li>
+<li>参数静态绑定，接受者动态绑定
+覆盖：重写父类中的方法，方法名、参数不能改变，但是返回值可以改变</li>
+<li>
+<ul>
+<li>多态只对方法的接受者生效</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>多态只选择接受者的类型，不选择参数的类型</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>ParamBase param<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am Base,the param is ParamBase&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span>  <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>ParamSub param<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am Base,the param is ParamSub&#34;</span><span style="color:#f92672">);</span>
+         <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sub</span> <span style="color:#66d9ef">extends</span> Base <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>ParamBase param<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am Sub,the param is ParamBase&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>ParamSub param<span style="color:#f92672">){</span>
+    <span style="color:#75715e">//方法名一样，参数不一样（重载），但是两个又互为父子类，有继承关系
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am Sub,the param is ParamSub&#34;</span><span style="color:#f92672">);</span>
+       <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+   
+<span style="color:#960050;background-color:#1e0010">```</span>java 
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+       <span style="color:#75715e">//声明一个父类的对象，但是建立一个子类的对像，因为任何的子类都是父类的成员
+</span><span style="color:#75715e"></span>        Base object <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Sub<span style="color:#f92672">();</span>
+        
+        <span style="color:#75715e">//声明一个父类的参数，但是创建一个子类的产数给他
+</span><span style="color:#75715e"></span>        ParamBase param <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ParamSub<span style="color:#f92672">();</span>
+      
+        object<span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>param<span style="color:#f92672">);</span>
+        <span style="color:#75715e">/*消息的接受者是多态类型的，有继承类，参数也同样有父子关系
+</span><span style="color:#75715e">        消息的接受者通过动态绑定为子类object，
+</span><span style="color:#75715e">        所以调用的是子类的方法。
+</span><span style="color:#75715e">        而子类的方法是多态，又因为方法是在编译时期由参数的类型静态绑定的
+</span><span style="color:#75715e">        在ParamBase param = new ParamSub();虽然用的是子类的变量，但是设定的是父类的变量类型，所以父类的最接近的类，根据重载选择最适合的原则选择执行父类，
+</span><span style="color:#75715e">        所以调用的是子类中的public void print(ParamSub param)
+</span><span style="color:#75715e">        */</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">-</span> 例子
+<span style="color:#f92672">-</span> <span style="color:#f92672">-</span> Shape的多态
+<span style="color:#f92672">-</span> <span style="color:#f92672">-</span> HashSet<span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">()</span>  
+
+
+<span style="color:#960050;background-color:#1e0010">##</span> 设计模式实战<span style="color:#960050;background-color:#1e0010">：</span>策略模式
+让代码更加简洁
+
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PriceCalculator</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// 使用策略模式重构这个方法，实现三个策略：
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// NoDiscountStrategy 不打折
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Discount95Strategy 全场95折
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// OnlyVipDiscountStrategy 只有VIP打95折，其他人保持原价
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 重构后的方法签名：
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">calculatePrice</span><span style="color:#f92672">(</span>DiscountStrategy strategy<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> price<span style="color:#f92672">,</span> User user<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> strategy<span style="color:#f92672">.</span><span style="color:#a6e22e">discount</span><span style="color:#f92672">(</span>price<span style="color:#f92672">,</span>user<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">---</span> 
+         <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">calculatePrice</span><span style="color:#f92672">(</span>String discountStrategy<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> price<span style="color:#f92672">,</span> User user<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>discountStrategy<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;NoDiscount&#34;</span><span style="color:#f92672">:</span>
+                    <span style="color:#66d9ef">return</span> price<span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Discount95&#34;</span><span style="color:#f92672">:</span>
+                    <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>price <span style="color:#f92672">*</span> 0<span style="color:#f92672">.</span><span style="color:#a6e22e">95</span><span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;OnlyVip&#34;</span><span style="color:#f92672">:</span>
+                    <span style="color:#f92672">{</span>
+                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>user<span style="color:#f92672">.</span><span style="color:#a6e22e">isVip</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+                            <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>price <span style="color:#f92672">*</span> 0<span style="color:#f92672">.</span><span style="color:#a6e22e">95</span><span style="color:#f92672">);</span>
+                        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+                            <span style="color:#66d9ef">return</span> price<span style="color:#f92672">;</span>
+                        <span style="color:#f92672">}</span>
+                   <span style="color:#f92672">}</span>
+               <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+                   <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Should not be here!&#34;</span><span style="color:#f92672">);</span>
+                   
+
+<span style="color:#f92672">-</span> 策略和业务分离
+
+
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> vip<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> <span style="color:#66d9ef">boolean</span> vip<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">vip</span> <span style="color:#f92672">=</span> vip<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> User <span style="color:#a6e22e">vip</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> User <span style="color:#a6e22e">dios</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> name<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isVip</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> vip<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>线程池策略：（解耦合）</li>
+</ul>
+<ol>
+<li>放弃</li>
+<li>让线程者执行</li>
+<li>把最久的策略丢弃</li>
+<li>把新的策略丢弃</li>
+</ol>
+<h5 id="策略模式例子打折策略">策略模式例子：打折策略</h5>
+<ul>
+<li>涉及金钱的时候不能够用Double；</li>
+<li>Price * 100 当成分，用int处理</li>
+<li>BigDecim 大的十进制（十进制精确的表述，小数的计算）</li>
+</ul>
+<h5 id="jdk线程池中的策略threadpoolexecutor">JDK线程池中的策略THreadPoolExecutor</h5>
+<h2 id="多态实战">多态实战</h2>
+<ul>
+<li>Files.walkFileTree</li>
+</ul>
+<p>不想把接口的所有方法都实现，都要查找他的默认实现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FileFilter</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        Path projectDir <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user.dir&#34;</span><span style="color:#f92672">));</span>
+        Path testRootDir <span style="color:#f92672">=</span> projectDir<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test-root&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>testRootDir<span style="color:#f92672">.</span><span style="color:#a6e22e">toFile</span><span style="color:#f92672">().</span><span style="color:#a6e22e">isDirectory</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span>testRootDir<span style="color:#f92672">.</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;不存在！&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+
+        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> filteredFileNames <span style="color:#f92672">=</span> filter<span style="color:#f92672">(</span>testRootDir<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;.csv&#34;</span><span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>filteredFileNames<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 实现一个按照扩展名过滤文件的功能
+</span><span style="color:#75715e">     *
+</span><span style="color:#75715e">     * @param rootDirectory 要过滤的文件夹
+</span><span style="color:#75715e">     * @param extension     要过滤的文件扩展名，例如 .txt
+</span><span style="color:#75715e">     * @return 所有该文件夹（及其后代子文件夹中）匹配指定扩展名的文件的名字
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>Path rootDirectory<span style="color:#f92672">,</span> String extension<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> names <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+        Files<span style="color:#f92672">.</span><span style="color:#a6e22e">walkFileTree</span><span style="color:#f92672">(</span>rootDirectory<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> SimpleFileVisitor<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> FileVisitResult <span style="color:#a6e22e">visitFile</span><span style="color:#f92672">(</span>Path file<span style="color:#f92672">,</span> BasicFileAttributes attrs<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>file<span style="color:#f92672">.</span><span style="color:#a6e22e">getFileName</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">().</span><span style="color:#a6e22e">endsWith</span><span style="color:#f92672">(</span>extension<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+                    names<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>file<span style="color:#f92672">.</span><span style="color:#a6e22e">getFileName</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">());</span>
+                <span style="color:#f92672">}</span>
+                <span style="color:#66d9ef">return</span> FileVisitResult<span style="color:#f92672">.</span><span style="color:#a6e22e">CONTINUE</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+        <span style="color:#66d9ef">return</span> names<span style="color:#f92672">;</span>
+               <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+    <span style="color:#75715e">//匿名内部类，把相近的两块逻辑组合到一起，直接把访问方法，使用结果。
+</span><span style="color:#75715e"></span>   
+            <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FileFilterVisitor</span> <span style="color:#66d9ef">extends</span> SimpleFileVisitor<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">private</span> String extension<span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> filteredNames <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+    
+                <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">FileFilterVisitor</span><span style="color:#f92672">(</span>String extension<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">extension</span> <span style="color:#f92672">=</span> extension<span style="color:#f92672">;</span>
+                <span style="color:#f92672">}</span>
+    
+                <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getFilteredNames</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">return</span> filteredNames<span style="color:#f92672">;</span>
+             <span style="color:#f92672">}</span>
+</code></pre></div>]]></content>
+        </item>
+        
+        <item>
+            <title>Java面向对象——组合与继承</title>
+            <link>https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/</link>
+            <pubDate>Mon, 11 May 2020 17:19:33 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/</guid>
+            <description>三大特征 封装 继承 public class Animal { protected String name;
+public Animal(String name) { this.name = name; } public void sayMyName() { System.out.println(&amp;quot;我的名字是&amp;quot; + name); } public class Cat extends Animal{ public Cat(String name) { super(name); } public void meow() { System.out.println(&amp;quot;喵&amp;quot; + name); } } public class Main { public static void main(String[] args) { Cat cat = new Cat(&amp;quot;ABC&amp;quot;); cat.meow(); cat.sayMyName(); }  多态 继承 DRY（Donot Repeat Yourself）  事不过三，三则重构  继承的本质是提炼出公用代码，避免重复 继承一个类就会自动继承类的行为</description>
+            <content type="html"><![CDATA[<h2 id="三大特征">三大特征</h2>
+<h5 id="封装">封装</h5>
+<h5 id="继承">继承</h5>
+<p>public class Animal {
+protected String name;</p>
+<pre><code>public Animal(String name) {
+    this.name = name;
+}
+
+public void sayMyName() {
+    System.out.println(&quot;我的名字是&quot; + name);
+}
+public class Cat extends Animal{
+
+public Cat(String name) {
+    super(name);
+}
+
+public void meow() {
+    System.out.println(&quot;喵&quot; + name);
+}
+}
+public class Main {
+public static void main(String[] args) {
+    Cat cat = new Cat(&quot;ABC&quot;);
+    cat.meow();
+    cat.sayMyName();
+    }
+</code></pre>
+<h5 id="多态">多态</h5>
+<h2 id="继承-1">继承</h2>
+<h3 id="drydonot-repeat-yourself">DRY（Donot Repeat Yourself）</h3>
+<ul>
+<li>事不过三，三则重构</li>
+</ul>
+<h3 id="继承的本质是提炼出公用代码避免重复">继承的本质是提炼出公用代码，避免重复</h3>
+<p>继承一个类就会自动继承类的行为</p>
+<h2 id="java的继承体系">Java的继承体系</h2>
+<h3 id="单根继承单一继承声明一个class的时候不声明任何东西都会继承object">单根继承（单一继承）：声明一个Class的时候，不声明任何东西都会继承Object</h3>
+<h4 id="优点">优点</h4>
+<ul>
+<li>
+<p>保证所有对象都拥有同一种行为，方便处理</p>
+</li>
+<li>
+<p>对比C++的多重继承</p>
+</li>
+</ul>
+<h3 id="object类有那些需要了解的方法">Object类有那些需要了解的方法？</h3>
+<ul>
+<li>equals（）</li>
+</ul>
+<p>判断两个对象是不是同一个对象（地址、内存）</p>
+<pre><code>Object a = new Object();
+Object b = new Object();
+a.equals(b);
+//虽然不是两个相同的对象，但是包含的内容相同，所以认为是相等的
+</code></pre>
+<p>==equals()andhashcoad()==</p>
+<pre><code>public class Order {
+Integer id;
+String name;
+//id一样，即使地址不一样，就认为是同一个订单
+
+@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Order order = (Order) o;
+    return id.equals(order.id);
+}
+
+@Override
+public int hashCode() {
+    return Objects.hash(id);
+}
+</code></pre>
+<p>当你覆盖Equals方法的时候，要同时覆盖Hashcode
+“==”判断地址是否相同；/原生数据类型则是比较的是值否向同</p>
+<ul>
+<li>
+<p>toString（）</p>
+</li>
+<li>
+<p>对一个对象提供字符串表示</p>
+</li>
+<li>
+<p>所有的对象都有toString方法（所有对象都继承Object类）</p>
+<p>public static void main(String[] args) {
+Cat a = new Cat();
+System.out.println(a);
+public class Cat {
+String name = &ldquo;hey&rdquo;;</p>
+<p>@Override
+public String toString() {
+return &ldquo;Cat{&rdquo; +
+&ldquo;name=&rsquo;&rdquo; + name + &lsquo;'&rsquo; +
+&lsquo;}';
+}</p>
+</li>
+</ul>
+<h2 id="类的结构与初始化顺序">类的结构与初始化顺序</h2>
+<ul>
+<li>子类拥有父类的一切数据和行为<br>
+（即使继承的子类一行代码也没有，也可以调用父类的方法）</li>
+<li>子类可以继承父类的父类</li>
+<li>父类先于子类生成构造器，因为只有调用父类的方法后才能够完成子类的构造器的</li>
+<li>必须拥有匹配的构造器</li>
+<li>
+<ul>
+<li>super关键字</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>需要自行生成一个子类的构造器的时候，就必须要声明一个和父类构造器参数相同的构造器。构造器第一句一定是超类构造器super（父类参数）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>初始化顺序
+构造器（不声明任何构造器的化，编译器会自动生成）
+不在父类声明构造器时，父类和子类会有自动构造器生成
+如果在父类声明构造器，则需要在子类声明super构造器</p>
+<ol>
+<li>父类初始化语句</li>
+<li>父类初始化块</li>
+<li>父类的constructor</li>
+<li>子类的……
+A继承B继承C<br>
+C先被创造出来，接着到B，最后到A</li>
+</ol>
+<h2 id="实例方法的override">实例方法的Override</h2>
+<ul>
+<li>
+<p>又称为覆盖/重写</p>
+</li>
+<li>
+<p>永远使用@Override注解来防手残</p>
+<pre><code>      public static main(String[]args){
+          String 1 = &quot;ABC&quot;;
+          String 2 = &quot;ABC&quot;;
+          1.equals(2);
+      }
+      在执行的过程中可以看到判断相等的时候会看到当前的Integer.equals方法会覆盖object.equal方法(判断value是否相同)
+</code></pre>
+</li>
+</ul>
+<h2 id="模版方法">模版方法</h2>
+<ul>
+<li>提供一个“模版”，实现可以覆盖模版的全部或者部分
+子类可以调用父类的方法，在调用的过程中通过覆盖达到完成需求的目的，其他不改动的沿用父类的模版执行
+！！！ 图*2</li>
+<li>通过@Override可以模板中的一个流程，实现自定义的功能</li>
+<li>在Override里面通过super.父类的方法，从而实现先执行父类的模板再实现自定义</li>
+</ul>
+<h2 id="向上向下转型">向上/向下转型</h2>
+<h4 id="一个子类类型的对象永远是一个父类类型的对象">一个子类类型的对象永远是一个父类类型的对象</h4>
+<ul>
+<li>正如一只猫同时也是一只动物，同时也是一个对象</li>
+<li>instanceof 判断类型</li>
+<li>null instanceof？ == false</li>
+</ul>
+<p>Eg：
+object &lt;&ndash; Number &lt;&ndash; Integer</p>
+<p>a instanceod Integer/Number/Object (a是不是Integer/Number/Object的一个实例)</p>
+<h3 id="null不是任何东西的对象"><strong>Null不是任何东西的对象</strong></h3>
+<p>null instanceof a(必须是一个类，所以不能是null) ==&gt;false</p>
+<h5 id="因此需要一个父类型时总可以传递一个子类型">因此，需要一个父类型时，总可以传递一个子类型</h5>
+<p>因为所有的子类都是父类的实例
+null可以被赋值给任何引用类型的对象，因此null也可以传递给父类<br>
+AnimalName（new Cat（name:&ldquo;喵&rdquo;））</p>
+<h5 id="转型">转型</h5>
+<p>子类转换为父类是安全的，但是父类转为子类是危险的（小的放进大的里面是安全的，大放小则有可能溢出）</p>
+<pre><code> Animal a = new Animal();
+ //类似于int a = 1；
+ //long i = a；
+ //int b = （int）i；
+ sayAnimalName((Dog)a);//通过强制传换 
+ 
+ public static void sayAnimalName(Dog animal){
+
+ }
+
+
+
+
+    public class Classifier {
+    public static void main(String[] args) {
+    List&lt;Object&gt; list = Arrays.asList(&quot;0&quot;, 1, 2L, &quot;3&quot;, new Object());
+    List&lt;Number&gt; numbers = new ArrayList&lt;&gt;();
+    List&lt;String&gt; strings = new ArrayList&lt;&gt;();
+    List&lt;Object&gt; others = new ArrayList&lt;&gt;();
+
+    classify(list, numbers, strings, others);
+
+    System.out.println(&quot;numbers = &quot; + numbers);
+    System.out.println(&quot;strings = &quot; + strings);
+    System.out.println(&quot;others = &quot; + others);
+}
+
+/**
+ * 给定一个包含任意对象的列表，将其按照以下方式分类： 如果对象是Number类型，将其放入numberList； 如果对象是String类型，将其放入stringList；
+ * 否则，将其放入otherList。
+ *
+ * @param list 给定的包含任意对象的列表
+ * @param numberList 用于接收所有Number对象的列表
+ * @param stringList 用于接收所有String对象的列表
+ * @param otherList 用于接收其余所有类型对象的列表
+ */
+public static void classify(
+        List&lt;Object&gt; list,
+        List&lt;Number&gt; numberList,
+        List&lt;String&gt; stringList,
+        List&lt;Object&gt; otherList) {
+    for (Object element : list ){//先游历数据一遍
+        if (element instanceof Number){
+            numberList.add((Number) element);
+        }else if (element instanceof String){
+            stringList.add((String)element);
+            }else otherList.add(element);
+        }
+    }
+
+    }
+</code></pre>
+<h2 id="super关键字">Super关键字</h2>
+<p>调用父类的方法（包括构造函数）</p>
+<h2 id="final关键字">final关键字</h2>
+<h5 id="final声明变量变量成为不可变的必须初始化保证线程安全">final声明变量，变量成为不可变的（必须初始化），保证线程安全</h5>
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> final int i;</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> -</p>
+<pre><code>public Main(int i){
+this.i = 1;
+//this.i = 2;不行，因为final之后只能够赋值一次，之后就不能够被改写了
+}
+</code></pre>
+<p>final int i;</p>
+</li>
+<li>
+<p>局部变量/方法参数</p>
+</li>
+<li>
+<p>成员变量</p>
+</li>
+</ul>
+<h5 id="final-声明对象">final 声明对象</h5>
+<pre><code>Date date = new Date();
+f(date)
+
+ private void f(final Date date){
+     //对象只是一个地址，final对象指向的地址改变不可以
+     //但是指向的内容可以改变
+     date = new Date();//不行
+     date.setTime();//数据可变
+ }
+</code></pre>
+<ul>
+<li>
+<p>常量与单例<br>
+通过final 声明常量，使用对象的时候不需要在此new一个新的对象，可以直接使用这个常量。引用常量的时候可以通过名字引用，能够快速知道常量的意义。</p>
+<pre><code>      public static final int MAX_VALUE = 100;
+      public void maxValue(){
+      for(int i = 0 ; i &lt; MAX_VALUE ; i++){
+    
+      }  
+</code></pre>
+</li>
+</ul>
+<h6 id="单例">单例</h6>
+<ul>
+<li>不能被继承，因为是final</li>
+<li>
+<ul>
+<li>方法命名：驼峰形式 maxValue</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>常量命名：全部大写 MAX_VALUE</p>
+<pre><code>private static final World SINGLEON_INSTANCE = new World();//改变成public就可以被大家所引用
+private World(){//构造器私有化，保证没有人能够通过public的方法调用
+    
+}
+/*但是还是能调用创建新的对象
+1. 通过反射调用private的构造器
+2. 使用序列化和反序列化
+*/
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>Boolean Integer ……</p>
+<pre><code>    private static final World SINGLEON_INSTANCE = new World();
+    public static void World getInstance(){
+    return SINGLETON_INSTANCE;//通过工厂方法动态决定是否调用单例，也可作为与外界接触的接口
+}
+</code></pre>
+<p>final优点：</p>
+<ol>
+<li>保证变量被使用的时候是最开始的值</li>
+<li>线程是安全的，不用担心多线程带来的问题</li>
+<li>类不会被继承，覆盖，重写，不会被改变，保证约定不会被打破，不用担心多态</li>
+</ol>
+<h5 id="final在方法上的声明禁止继承覆盖重写此方法">final在方法上的声明：禁止继承/覆盖/重写此方法</h5>
+<h5 id="final在类声明上的使用禁止继承此类">final在类声明上的使用：禁止继承此类</h5>
+<ul>
+<li>继承提供了灵活性，也埋下了隐患</li>
+<li>为什么String/Integer等类是final的？<br>
+避免一些特殊的常量被恶意继承，例如Integer 的MAX_VALUE、MIX_VALUE 破坏约定</li>
+</ul>
+<h2 id="组合">组合</h2>
+<h5 id="继承is---a">继承：is - a</h5>
+<ul>
+<li>使用继承是为了复用方法</li>
+</ul>
+<h5 id="组合has---a">组合：has - a</h5>
+<ul>
+<li>
+<p>可以复用多份代码</p>
+<pre><code>  class Cat {
+      Bell bell;
+  }
+  private class Bell{
+        
+  }
+  class Home{
+      Cat cat;
+  }
+</code></pre>
+</li>
+<li>
+<p>但是实际中，二者的界限有时候很难区分</p>
+</li>
+<li>
+<p>CountingSet</p>
+</li>
+<li>
+<p>完全不实用继承
+git clone <a href="https://github.com/victoriadrake/hugo-theme-sam.git">https://github.com/victoriadrake/hugo-theme-sam.git</a> themes/sam</p>
+</li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Java 面向对象初步——封装与隐藏</title>
+            <link>https://procarihana.github.io/posts/java-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%88%9D%E6%AD%A5%E5%B0%81%E8%A3%85%E4%B8%8E%E9%9A%90%E8%97%8F/</link>
+            <pubDate>Mon, 11 May 2020 17:18:58 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/java-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%88%9D%E6%AD%A5%E5%B0%81%E8%A3%85%E4%B8%8E%E9%9A%90%E8%97%8F/</guid>
+            <description>面向对象的三大特征 封装 优点：实现细节可以发生变化，只要接口不变，就不会对使用产生影响 理念：对外暴露尽可能少的细节
+继承 多态 封装 封装隐藏了内部实现细节，只暴露出接口 电灯对象 高、低耦合
+  你只访问他的“开关”接口，不关心内部的“电路”细节
+ public static void main(String[] args) { Light light = new Light(); light.turnOn();//低耦合 Light light2 = new Light(); light2.打开电路1(); light2.打开电路2(); light2.打开电路3(); //高耦合,比低耦合更难扩展 //Home类和Light类之间建立联系——&amp;gt;耦合（让改变变得困难） //一方进行改变时，另一方也需要进行改变 public class Light {  public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节
+} public void 打开电路1(){
+} public void 打开电路2(){
+} public void 打开电路3(){
+}
+  废弃后使用自动停止，不影响其他代码的运行
+public class Light { @Deprecated public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节 } public static void main(String[] args) { Light light = new Light();  light.</description>
+            <content type="html"><![CDATA[<h2 id="面向对象的三大特征">面向对象的三大特征</h2>
+<h3 id="封装">封装</h3>
+<p>优点：实现细节可以发生变化，只要接口不变，就不会对使用产生影响
+理念：对外暴露尽可能少的细节</p>
+<h3 id="继承">继承</h3>
+<h3 id="多态">多态</h3>
+<h2 id="封装-1">封装</h2>
+<h3 id="封装隐藏了内部实现细节只暴露出接口">封装隐藏了内部实现细节，只暴露出接口</h3>
+<h4 id="电灯对象">电灯对象</h4>
+<p>高、低耦合</p>
+<ul>
+<li>
+<p>你只访问他的“开关”接口，不关心内部的“电路”细节</p>
+<pre><code> public static void main(String[] args) {
+  Light light = new Light();
+  light.turnOn();//低耦合
+
+  Light light2 = new Light();
+  light2.打开电路1();
+  light2.打开电路2();
+  light2.打开电路3();
+  //高耦合,比低耦合更难扩展
+
+  //Home类和Light类之间建立联系——&gt;耦合（让改变变得困难）
+  //一方进行改变时，另一方也需要进行改变
+    
+  public class Light {
+</code></pre>
+<p>public void turnOn(){//接口
+打开电路1();
+打开电路2();
+打开电路3();//细节</p>
+<p>}
+public void 打开电路1(){</p>
+<p>}
+public void 打开电路2(){</p>
+<p>}
+public void 打开电路3(){</p>
+<p>}</p>
+</li>
+</ul>
+<p>废弃后使用自动停止，不影响其他代码的运行</p>
+<pre><code>public class Light {
+@Deprecated
+public void turnOn(){//接口
+    打开电路1();
+    打开电路2();
+    打开电路3();//细节
+    
+}
+public static void main(String[] args) {
+    Light light = new Light();
+</code></pre>
+<p>light.<del>turnOn()</del>;//低耦合</p>
+<h4 id="汽车">汽车</h4>
+<ul>
+<li>你只访问他的“方向盘”接口，不关心内部的细节</li>
+<li>可以通过@Deprecated告知方法废弃，但不会有任何错误</li>
+</ul>
+<hr>
+<pre><code>return gender.equals(&quot;M&quot;);
+return Object.equals.(gender,&quot;M&quot;);
+return &quot;M&quot;.equals(grnder);//保证gender是空指针，也不会抛出空指针异常，因为M永远不会是空指针
+</code></pre>
+<h3 id="不封装">不封装</h3>
+<ul>
+<li>暴露细节的结果就是无法变化</li>
+<li>软件的演进例子：为原先的属性增加限制</li>
+<li>软件的演进例子： 修改某些属性</li>
+</ul>
+<h2 id="封装的实现">封装的实现</h2>
+<ul>
+<li>外界只通过一个接口和里面进行交互，里面的实现细节用private 进行 构造器用private，保证外界不能够用new 直接进行对象的创建</li>
+</ul>
+<h3 id="访问控制符">访问控制符</h3>
+<h6 id="包如同一个文件夹每个类在包里面只能在包中被看到包外是无法被看到的有一个接口和外界交互外界不能访问包里面的内容">包：如同一个文件夹，每个类在包里面，只能在包中被看到，包外是无法被看到的。有一个接口和外界交互，外界不能访问包里面的内容</h6>
+<p><strong>包是没有嵌套包含关系的</strong></p>
+<ul>
+<li>public 任何人都能访问</li>
+<li>protected 只有子类和同一个包的类可以访问（子类访问通过extend继承）<br>
+同一个包的类可以访问是因为封装的边界是把包内和接口外相分离</li>
+<li>package private <em>包级私有</em> 只有同一个包的类可以访问</li>
+<li>private 只有自己可以访问</li>
+<li>包级私有<br>
+不加任何的访问限定符</li>
+</ul>
+<p><strong>只有在同一个包中的类才能看到，包外的类看不到里面</strong></p>
+<h3 id="javabean约定">JavaBean约定</h3>
+<ul>
+<li>
+<p>getter</p>
+</li>
+<li>
+<p>setter</p>
+</li>
+<li>
+<p>首字母大写</p>
+<p>//非boolean属性 firstName
+public String getFristName
+public void setFristName</p>
+<p>//boolean属性male
+public boolean isMale()
+pubilc void setMale(boolean male)</p>
+</li>
+</ul>
+<h4 id="json">JSON</h4>
+<ul>
+<li>
+<p>互联网前后段交换的一种格式，是序列化和反序列化的实现</p>
+</li>
+<li>
+<p>将对象用字符串表示出来的一种方法</p>
+</li>
+<li>
+<p>序列化serialization<br>
+把一个对象变成一段字符串、一个字节流（序列化的对象）
+【序列化Picture】</p>
+</li>
+<li>
+<p>反序列化deserialize<br>
+把字符串或字节流转换成一个的对象</p>
+</li>
+<li>
+<p>FastJson API</p>
+<p>public static void main(String[] args) {
+Cat cat = new Cat(&ldquo;miao&rdquo;,true);
+System.out.println(JSON.toJSONString(cat));//序列化
+String s = &ldquo;{&quot;cute&quot;:true,&quot;name&quot;:&quot;miao&quot;}&quot;;
+cat = JSON.parseObject(s,Cat.class);//反序列化
+}</p>
+</li>
+<li>
+<p>Json的读写关键在javaBean的getter和setter、is，并非是内部的属性（成员变量）</p>
+</li>
+<li>
+<p>如果属性是null的话，就会自动忽略掉</p>
+</li>
+</ul>
+<h2 id="设计模式实战工厂方法">设计模式实战：工厂方法</h2>
+<p>注释有可能过时，通过方法名、变量名等方式让编译器能够读懂，使得代码更容易被阅读。</p>
+<p>静态工厂：statci 返回要生产的对象 方法名<br>
+<strong>（可以任意取，通过阅读可以得知信息）</strong></p>
+<ul>
+<li>使用静态工厂方法代替构造器</li>
+<li>将构造器私有化</li>
+<li>实际上就是封装</li>
+</ul>
+<h5 id="优点">优点：</h5>
+<ol>
+<li>
+<p>方法有名字，可以让人从中得知方法的信息，且可以被编译器处理。注释是不会被编译器编译的，还存在过时的情况</p>
+</li>
+<li>
+<p>不同于构造器，静态工厂方法不一定要创造一个新的对象，可以返回null或者之前创造的对象，使得</p>
+<pre><code> Cat cat = new Cat();//构造器，创造实例对象。
+
+
+ public static Cat newCuteCat(String name) {
+ if (name == null){
+     return new Cat（name,cute:true）;
+ }//不需要创造一个对象，可以返回之前创造的构造器
+</code></pre>
+</li>
+<li>
+<p>可以返回返回类型的子类型，提高静态方法的因果性；而构造器并不可以</p>
+<p>public class WhileCat extends Cat {</p>
+<p>public WhileCat(String name, boolean cute) {
+super(name, cute);
+}
+}
+public static Cat newCuteCat(String name) {
+if (name.contains(&ldquo;while&rdquo;)) {
+return new WhileCat(name, true);
+}</p>
+</li>
+<li>
+<p>返回的对象可以变化，根据输入的参数动态决定选择返回的预先定义好的对象，节省时间且避免每次都要重新创建新的对象的内存占用。</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>可以返回一些动态的类，通过动态加载一些未来的类</p>
+</li>
+<li>
+<p>并没有用new创造任何对象，而是返回true和flase这两个预先定义好的对象。不需要每次都创造对象</p>
+<p>public class Cat {
+private static final Cat INVALID_CAT = new Cat(&ldquo;Invalid cat&rdquo;,false);
+//对象创建用来应对非法对象
+}
+public static Cat newCuteCat(String name) {</p>
+<pre><code>  if (name == null || name.isEmpty()){
+  //传进的参数不合法的时候，就能够返回预先定义好的对象，避免重新创建新的对象应对
+      return INVALID_CAT;
+  }
+  return new Class.forName(&quot;FutureCat&quot;).newInstance();
+</code></pre>
+<p>}</p>
+</li>
+<li>
+<p>静态工厂方法EG：<br>
+Boolean.valueof
+Integer.parseInt</p>
+</li>
+</ul>
+<ol start="5">
+<li>
+<p>静态工厂返回的对象可以不存在（Java动态加载）</p>
+<p>return new Class.forName(&ldquo;futureCat&rdquo;).newInstance();</p>
+</li>
+</ol>
+<h5 id="缺点">缺点：</h5>
+<ol>
+<li>没有办法被子类化，不能被覆盖**（非构造器）**；但是构造器可以被子类调用</li>
+<li>很难让开发者找到（名字）</li>
+</ol>
+<ul>
+<li>使用静态工厂方法代替构造器</li>
+</ul>
+<p>表现出对外接口的状态</p>
+<ul>
+<li>将构造器私有化</li>
+</ul>
+<h2 id="类的访问限定符">类的访问限定符</h2>
+<ul>
+<li>public 所有人都可以访问</li>
+<li>不加public，什么都不添加的话，就是包级私有（包提供的封装边界）</li>
+<li>package private 同一个包的类可以访问</li>
+<li>
+<ul>
+<li><strong>包之间是没有父子关系的</strong>（包之间没有任何关系）</li>
+</ul>
+</li>
+<li>private static class InnerClass只能在同一个类中访问（也是封装的一种形式）</li>
+<li>包级私有限定的是通过包名判断的，但是JVM有包名设置的限定，对于自定义的包含java在运行时是不被允许的</li>
+<li>了解Java Platform Module System
+模块化接口，使得包可以私有化，让内部包</li>
+</ul>
+<h5 id="包级私有破坏">包级私有破坏</h5>
+<p><strong>创建一个名字一样的包在包里面创造一个类作为桥梁，然后return new出要访问的私有包的类。最后在Main调用就可以了</strong></p>
+<pre><code>   Eg：https://github.com/hcsp/bypass-package-private/pull/29
+</code></pre>
+<h5 id="用中间类绕过包级私有的限制">用中间类绕过包级私有的限制</h5>
+<h2 id="java模块系统简介">Java模块系统简介</h2>
+<ul>
+<li>JDK9的新功能，把包对外封装成模块module，提供更大范围的封装，包级私有的包就不会被破坏</li>
+</ul>
+<h2 id="封装的必要性">封装的必要性</h2>
+<ul>
+<li>软件的演进 —— 向外界暴露内部实现类的风险</li>
+</ul>
+<h2 id="扩展阅读">扩展阅读</h2>
+<ul>
+<li>
+<p>JSON序列化/反序列化与JavaBean约定</p>
+</li>
+<li>
+<p>setter的链式调用</p>
+</li>
+<li>
+<p>builder 模式 Vs构造器</p>
+</li>
+<li>
+<p>解决变量（参数）太多的问题</p>
+</li>
+<li>
+<ul>
+<li>构造器 :
+Person person = new Person(firstName:&quot;&quot;,lastname:&quot;&quot;,address:&quot;&quot;,phone:123)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Builder：<br>
+person = PersonBulider.aPerson()<br>
+.withFirstName(&quot;&quot;)<br>
+.withLastName(&quot;&quot;)<br>
+.withAddress(&quot;&quot;);</p>
+<p>public class UserBuilder {
+// 请在这里使用builder模式建造User对象
+// 所需的接口请参阅UserBuilderTest测试类
+private String firstName;
+private String lastName;
+private String phoneNumber;
+private String address;</p>
+<p>//    private UserBuilder() {
+//
+//    }
+//把private 改成public 以及 直接删除掉，都可以让UserBuilderTest实现，那么是否这个方法不需要存在？</p>
+<p>public static UserBuilder anUser() {
+return new UserBuilder();//提供静态空转的方法
+}</p>
+<p>public UserBuilder firstName(String firstName) {
+this.firstName = firstName;
+return this;
+}</p>
+<p>public UserBuilder lastName(String lastName) {
+this.lastName = lastName;
+return this;
+}</p>
+<p>public UserBuilder phoneNumber(String phoneNumber) {
+this.phoneNumber = phoneNumber;
+return this;
+}</p>
+<p>public UserBuilder address(String address) {
+this.address = address;
+return this;
+}</p>
+<pre><code>public User build() {
+    return new User(firstName, lastName, phoneNumber, address);
+    }
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>builder 同样也可以设置默认值</p>
+</li>
+</ul>
+<h2 id="书">书</h2>
+<p>Effictive Java</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Java 面向对象初步</title>
+            <link>https://procarihana.github.io/posts/java-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%88%9D%E6%AD%A5/</link>
+            <pubDate>Mon, 11 May 2020 17:18:01 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/java-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%88%9D%E6%AD%A5/</guid>
+            <description>面向对象的三大特征 封装 优点：实现细节可以发生变化，只要接口不变，就不会对使用产生影响
+继承 多态 封装 封装隐藏了内部实现细节，只暴露出接口 电灯对象   你只访问他的“开关”接口，不关心内部的“电路”细节
+ public static void main(String[] args) { Light light = new Light(); light.turnOn();//低耦合 Light light2 = new Light(); light2.打开电路1(); light2.打开电路2(); light2.打开电路3(); //高耦合,比低耦合更难扩展 //Home类和Light类之间建立联系——&amp;gt;耦合（让改变变得困难） //一方进行改变时，另一方也需要进行改变 public class Light {  public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节
+} public void 打开电路1(){
+} public void 打开电路2(){
+} public void 打开电路3(){
+}
+  废弃后使用自动停止，不影响其他代码的运行
+public class Light { @Deprecated public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节 } public static void main(String[] args) { Light light = new Light();  light.</description>
+            <content type="html"><![CDATA[<h2 id="面向对象的三大特征">面向对象的三大特征</h2>
+<h3 id="封装">封装</h3>
+<p>优点：实现细节可以发生变化，只要接口不变，就不会对使用产生影响</p>
+<h3 id="继承">继承</h3>
+<h3 id="多态">多态</h3>
+<h2 id="封装-1">封装</h2>
+<h3 id="封装隐藏了内部实现细节只暴露出接口">封装隐藏了内部实现细节，只暴露出接口</h3>
+<h4 id="电灯对象">电灯对象</h4>
+<ul>
+<li>
+<p>你只访问他的“开关”接口，不关心内部的“电路”细节</p>
+<pre><code> public static void main(String[] args) {
+  Light light = new Light();
+  light.turnOn();//低耦合
+
+  Light light2 = new Light();
+  light2.打开电路1();
+  light2.打开电路2();
+  light2.打开电路3();
+  //高耦合,比低耦合更难扩展
+
+  //Home类和Light类之间建立联系——&gt;耦合（让改变变得困难）
+  //一方进行改变时，另一方也需要进行改变
+    
+  public class Light {
+</code></pre>
+<p>public void turnOn(){//接口
+打开电路1();
+打开电路2();
+打开电路3();//细节</p>
+<p>}
+public void 打开电路1(){</p>
+<p>}
+public void 打开电路2(){</p>
+<p>}
+public void 打开电路3(){</p>
+<p>}</p>
+</li>
+</ul>
+<p>废弃后使用自动停止，不影响其他代码的运行</p>
+<pre><code>public class Light {
+@Deprecated
+public void turnOn(){//接口
+    打开电路1();
+    打开电路2();
+    打开电路3();//细节
+    
+}
+public static void main(String[] args) {
+    Light light = new Light();
+</code></pre>
+<p>light.<del>turnOn()</del>;//低耦合</p>
+<h4 id="汽车">汽车</h4>
+<ul>
+<li>
+<p>你只访问他的“方向盘”接口，不关心内部的细节</p>
+<p>return gender.equals(&ldquo;M&rdquo;);
+return Object.equals.(gender,&ldquo;M&rdquo;);//保证gender是空指针，也不会抛出空指针异常
+return &ldquo;M&rdquo;.equals(grnder);</p>
+</li>
+</ul>
+<h3 id="不封装">不封装</h3>
+<ul>
+<li>暴露细节的结果就是无法变化</li>
+<li>软件的演进例子：为原先的属性增加限制</li>
+<li>软件的演进例子： 修改某些属性</li>
+</ul>
+<h2 id="封装的实现">封装的实现</h2>
+<h3 id="访问控制符">访问控制符</h3>
+<h6 id="包如同一个文件夹每个类在包里面只能在包中被看到包外是无法被看到的有一个接口和外界交互外界不能访问包里面的内容">包：如同一个文件夹，每个类在包里面，只能在包中被看到，包外是无法被看到的。有一个接口和外界交互，外界不能访问包里面的内容</h6>
+<ul>
+<li>public 任何人都能访问</li>
+<li>protected 只有子类可以访问和同一个包的可以访问（子类访问通过extend）</li>
+<li>package private 只有同一个包的类可以访问</li>
+<li>private 只有自己可以访问</li>
+</ul>
+<h3 id="javabean约定">JavaBean约定</h3>
+<ul>
+<li>getter</li>
+<li>setter</li>
+</ul>
+<h2 id="设计模式实战工厂方法">设计模式实战：工厂方法</h2>
+<ul>
+<li>使用静态工厂方法代替构造器</li>
+<li>将构造器私有化</li>
+</ul>
+<h2 id="类的访问限定符">类的访问限定符</h2>
+<ul>
+<li>public 任何访问</li>
+<li>package private 同一个包的类可以访问</li>
+<li>
+<ul>
+<li>包之间是没有父子关系的</li>
+</ul>
+</li>
+<li>（包之间没有任何关系）</li>
+<li>private inner class 只能在同一个类中访问</li>
+<li>了解Java Platform Module System</li>
+</ul>
+<h3 id="用中间类绕过包级私有的限制">用中间类绕过包级私有的限制</h3>
+<h2 id="封装的必要性">封装的必要性</h2>
+<ul>
+<li>软件的演进 —— 向外界暴露内部实现类的风险</li>
+</ul>
+<h2 id="扩展阅读">扩展阅读</h2>
+<ul>
+<li>JSON序列化/反序列化与JavaBean约定</li>
+<li>setter的链式调用</li>
+<li>builder 模式</li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Java面向对象系统基础</title>
+            <link>https://procarihana.github.io/posts/java%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/</link>
+            <pubDate>Thu, 07 May 2020 16:40:59 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/java%E5%AF%B9%E8%B1%A1%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/</guid>
+            <description>对象（引用类型）  对象是数据和行为的集合（主观能动性） 一切使用new运算符创建出来的都是对象   new Object（）     特例： Integer i=2/String s= &amp;ldquo;2&amp;rdquo; 自动装拆箱的时候后会自动new 出一个新的对象     特例：new Object[]    对象组成？  所有的对象都在堆上分配 每个对象都包含⾃⼰的数据（成员变量）   初始化
+声明int age = 0; 和int age;是相同的，因为默认初始化的值为0 【整数类型】
+String 等引用类型的为null   原⽣类型的成员 引⽤类型的成员  栈、堆 栈：方法栈，main执行后需要用到的方法都会放到方法栈里面执行 堆：存放对象
+对象的构造函数  新建对象的唯⼀途径 在堆上分配空间 执⾏必要的初始化⼯作 执⾏构造器函数 如果没有任何构造器，编译器会偷偷摸摸帮你⽣成⼀个  对象的方法  数据：有什么 方法：做什么  方法的重载(overload)  重载（overload）与重写/覆盖（override）    重载</description>
+            <content type="html"><![CDATA[<h4 id="对象引用类型">对象（引用类型）</h4>
+<ul>
+<li>对象是数据和行为的集合（主观能动性）</li>
+<li>一切使用new运算符创建出来的都是对象</li>
+<li>
+<ul>
+<li>new Object（）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>特例： Integer  i=2/String s= &ldquo;2&rdquo; 自动装拆箱的时候后会自动new 出一个新的对象</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>特例：new Object[]</li>
+</ul>
+</li>
+</ul>
+<h4 id="对象组成">对象组成？</h4>
+<ul>
+<li>所有的对象都在堆上分配</li>
+<li>每个对象都包含⾃⼰的数据（成员变量）</li>
+</ul>
+<ol>
+<li>初始化<br>
+声明int age = 0; 和int age;是相同的，因为默认初始化的值为0 <em>【整数类型】</em><br>
+String 等引用类型的为null</li>
+</ol>
+<ul>
+<li>原⽣类型的成员</li>
+<li>引⽤类型的成员</li>
+</ul>
+<h5 id="栈堆">栈、堆</h5>
+<p>栈：方法栈，main执行后需要用到的方法都会放到方法栈里面执行
+堆：存放对象</p>
+<h4 id="对象的构造函数">对象的构造函数</h4>
+<ul>
+<li>新建对象的唯⼀途径</li>
+<li>在堆上分配空间</li>
+<li>执⾏必要的初始化⼯作</li>
+<li>执⾏构造器函数</li>
+<li>如果没有任何构造器，编译器会偷偷摸摸帮你⽣成⼀个</li>
+</ul>
+<h4 id="对象的方法">对象的方法</h4>
+<ul>
+<li>数据：有什么</li>
+<li>方法：做什么</li>
+</ul>
+<h4 id="方法的重载overload">方法的重载(overload)</h4>
+<ul>
+<li>重载（overload）与重写/覆盖（override）</li>
+</ul>
+<ol>
+<li>
+<p>重载<br>
+方法名字相同但是参数不相同</p>
+<pre><code> public class Cat{
+  void printName(S){
+          
+   }
+       
+    void printName(tring s){
+    }
+}
+</code></pre>
+</li>
+</ol>
+<ul>
+<li>
+<p>如何区分同名的不同重载⽅法？</p>
+</li>
+<li>
+<p>根据类型<br>
+调用时通过不同的参数区分</p>
+<pre><code>  cat.printName();
+  cat.printName(&quot;null&quot;);
+</code></pre>
+</li>
+<li>
+<p>隐式转换
+自动匹配最合适的，按照转换的优先顺序</p>
+<pre><code>  public static void main(String agrs[]){
+   Cat cat = new Cat();
+      cat.s(1);
+  }
+  void s(int i){
+       
+  }//最优先
+  void s(Integer i){
+    
+  }//其次
+  void s(Number i){
+    
+  }
+  void s(Object i){
+    
+  }
+</code></pre>
+</li>
+<li>
+<p>类型最优先匹配（如果匹配多个，如null 的话，可以为null进行强制类型转换，选择最优先的）</p>
+</li>
+<li>
+<p>不能仅仅重载返回值<br>
+因为方法的区别是通过方法名和变量区分的，且方法调用的时候是忽略返回值的，所以即使两个方法的名字和变量相同但返回值不一样，调用的时候会产生冲突，在编译的时候无法通过。但是运行字节码的时候是允许的。</p>
+</li>
+<li>
+<p>不能为⽅法提供默认值<br>
+但是可以通过重载的方法实现</p>
+<pre><code>      public static void main(String[] agrs){
+      Cat cat = new Cat();
+      cat.meow();
+      cat.meow(&quot;mimi&quot;);
+      }
+
+      public void meow(){
+      meow(&quot;喵&quot;)；
+  }
+  public void meow(String value){
+      System.out.print(value);
+  }
+</code></pre>
+</li>
+</ul>
+<h4 id="构造器的重载">构造器的重载</h4>
+<ul>
+<li>
+<p>this()<br>
+没有参数构造器可以通过重载，从而能够获得默认值</p>
+</li>
+<li>
+<p>实例：HashMap的构造器重载</p>
+<pre><code>//创建一只默认的猫，1岁，名叫张三
+  Cat(){
+      this(&quot;张三&quot;)；
+  }
+  //创建一支默认的猫，1岁，名叫name指定的名字
+  Cat(String name){
+   this(1,name);
+  }
+  //创建age和name指定的猫
+  Cat (int age,String name){
+      this.age = age;
+      this.name = name;
+  }
+  public static void main(String[] agrs){
+      new Cat();
+  }
+</code></pre>
+</li>
+</ul>
+<h4 id="对象的初始化">对象的初始化</h4>
+<ul>
+<li>必要的初始化⼯作</li>
+<li>静态成员的初始化</li>
+<li>静态初始化块</li>
+<li>成员的初始化</li>
+<li>初始化块 {}</li>
+<li>继续断点调试⼤法检查初始化顺序</li>
+</ul>
+<h4 id="对象的命周期">对象的⽣命周期</h4>
+<ul>
+<li>如果⼀直新建对象，内存会不会爆？<br>
+可能不会</li>
+<li>那对象的内存什么时候被回收？<br>
+谁也不知道</li>
+<li>对象的内存如何被回收？<br>
+不⽤管，GC垃圾回收器帮你⼲</li>
+<li>JVM怎么知道哪个对象没有被⽤到？</li>
+<li>通过引⽤链（GC Roots）
+沿着GC Roots 可达的数据都是活对象，除此以外的都是垃圾
+但是没有被引用得不一定会被回收，取决于当前空间</li>
+</ul>
+<h4 id="数组特殊的对象">数组——特殊的对象</h4>
+<ul>
+<li>数组类是什么？为什么我从来没有⻅过？</li>
+<li>JVM为数组提供了特殊的处理⽅法</li>
+<li>数组只有两个操作：[]与length的⻓度不可变</li>
+</ul>
+<h4 id="tip">Tip</h4>
+<ol>
+<li>如果在实行初始化的过程中调用方法的话，方法就会先于构造器执行，一个残缺的对象执行方法是一个不安全的行为</li>
+</ol>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Java的控制流</title>
+            <link>https://procarihana.github.io/posts/java%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/</link>
+            <pubDate>Wed, 06 May 2020 21:05:25 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/java%E7%9A%84%E6%8E%A7%E5%88%B6%E6%B5%81/</guid>
+            <description>控制流 控制流：方法调用 方法调用就是一个方法栈，每当开始一个新的方法调用的时候就会开启一个方法栈的栈针，方法调用之后方法针会被销毁。当有新的方法调用的时候就会开始新一轮的方法栈，循环往复。
+while与 do while 循环   while（返回boolean语句)
+{
+……
+}
+  do {无论真假就先执行一遍}
+while{(返回 boolean语句）;}
+  控制流：for 循环   fori
+ for（int i = 0;//任何语句，包括空语句 1️⃣ i &amp;lt; 100;//返回boolean的语句，包括空语句 2️⃣ i++){//任何语句，包括空语句） 4️⃣ System.out.println(i); //3️⃣ }    for each
+for（String s :Iterable）{ …… }
+  对象能够实现Iterabie接口（可迭代）
+List&amp;lt;String&amp;gt; list = Arrays.asList(&amp;quot;1&amp;quot;,&amp;quot;2&amp;quot;); //遍历列表，把元素拿出来 for (int i = ;i&amp;lt;list.size(); i++){ System.out.println(list.get(i)); } == for(String element : list){ System.</description>
+            <content type="html"><![CDATA[<h2 id="控制流">控制流</h2>
+<h2 id="控制流方法调用">控制流：方法调用</h2>
+<p>方法调用就是一个方法栈，每当开始一个新的方法调用的时候就会开启一个方法栈的栈针，方法调用之后方法针会被销毁。当有新的方法调用的时候就会开始新一轮的方法栈，循环往复。</p>
+<h2 id="while与-do-while-循环">while与 do while 循环</h2>
+<ul>
+<li>
+<p>while（返回boolean语句)<br>
+{</p>
+<p>……</p>
+<p>}</p>
+</li>
+<li>
+<p>do {<strong>无论真假就先执行一遍</strong>}<br>
+while{(返回 boolean语句）;}</p>
+</li>
+</ul>
+<h2 id="控制流for-循环">控制流：for 循环</h2>
+<ul>
+<li>
+<p>fori</p>
+<pre><code>  for（int i = 0;//任何语句，包括空语句 1️⃣
+       i &lt; 100;//返回boolean的语句，包括空语句  2️⃣
+       i++){//任何语句，包括空语句） 4️⃣
+         System.out.println(i);  //3️⃣
+       }
+</code></pre>
+</li>
+<li>
+<p>for each</p>
+<p>for（String s :Iterable<!-- raw HTML omitted -->）{
+……
+}</p>
+</li>
+</ul>
+<p>对象能够实现Iterabie接口（可迭代）</p>
+<pre><code>List&lt;String&gt; list = Arrays.asList(&quot;1&quot;,&quot;2&quot;);
+//遍历列表，把元素拿出来
+     for (int i = ;i&lt;list.size(); i++){
+         System.out.println(list.get(i));
+    }
+    
+    ==
+    
+     for(String element : list){
+    System.out.println(element);
+    } 
+
+ 
+ for ( int i = 0 ; i&lt; list.size; i++){
+     System.out.println(element);
+ }
+</code></pre>
+<p>统计一个给定的字符串中，大写英文字母（A,B,C,&hellip;,Z）出现的次数。</p>
+<pre><code>    public static int  countUpperCaseLetters(String str) {
+    int a = 0;
+    for(char ch : str.toCharArray()){
+        if(ch &gt;='A' &amp;&amp; ch&lt;='Z'){
+            ++a;
+        }
+    }
+    return a;
+}
+public static void main(String[] args) {
+    countUpperCaseLetters(&quot;AaBbCc1234ABC&quot;);
+}
+</code></pre>
+<p>}</p>
+<h2 id="改变循环的流程breakcontinue">改变循环的流程：break/continue</h2>
+<ul>
+<li>
+<p>braek;立即结束包裹当前braek的第一层循环</p>
+</li>
+<li>
+<p>找到结果后，打破当前循环，结束循环。</p>
+<pre><code>  public static boolean find(List&lt;Integer&gt; list,int value){
+  boolean exist = false;
+  for (Integer element :list){
+      if(element == value){
+          exist = true;
+          break;     //break 包裹这 for 的循环 --&gt; 结束的是for循环
+      }
+  }
+  return exist;
+  }
+    
+  public static void main(String[] args) throws IOException {
+  List&lt;Integer&gt; list1 = Arrays.asList(1,2,3);
+  find(list1,2);
+  find(list1,2);
+
+ }
+</code></pre>
+</li>
+<li>
+<p>continue;跳过包裹当前continue的第一层循环中的其余语句，继续下一次循环</p>
+</li>
+<li>
+<p>如果if里面的语句满足，则跳过for剩下的未执行的语句，直接调回for的循环条件执行循环</p>
+<pre><code>//只打印list重的奇数元素
+public static void printOdd(List&lt;Integer&gt; list){
+  for (int i= 0; i&lt; list.size();i++){
+       if (list.get(i) % 2 ==0 ){
+           continue;//continue包裹的第一层循环是for --&gt; 执行完第一次循环之后，就进入if
+       } System.out.println(list.get(i));
+  }
+   }
+  public static void main(String[] args) throws IOException {
+  printOdd(Arrays.asList(1,4,2,56,-1,3,12));
+    
+    
+   public static void printOddNumbersBetween(int start, int end) {
+
+
+    for (int i = start; i &lt;= end; i++) {
+      if (i % 2 != 0) {
+          System.out.print(i + &quot;,&quot;);
+     }
+ 
+  List&lt;Integer&gt; list = new  ArrayList&lt;&gt;();
+  List&lt;Integer&gt; list1 = new  ArrayList&lt;&gt;();
+  for (int i = start; i &lt;= end; i++) {
+      list.add(i);
+  }
+  for (int i = 0; i &lt;list.size();i++) {
+      if (list.get(i) % 2 != 0) {
+          list1.add(list.get(i));
+          continue;
+      }
+
+  }System.out.println(list1);
+}
+  public static void main(String[] args) {
+  printOddNumbersBetween(1, 5);
+  printOddNumbersBetween(-2, 2);
+  }
+ }
+</code></pre>
+</li>
+<li>
+<p>break label</p>
+</li>
+</ul>
+<p>label：标签，在程序的某得地方设置标签，然后跳转到标签处，实现程序控制流程转移</p>
+<ul>
+<li>
+<p>lable 要和任意语句进行搭配</p>
+<pre><code>   //不报错：任意字符（&quot;http&quot;） + &quot;：&quot; ———&gt;lable ； &quot;//&quot;表示开始注释
+  http://google.com
+    
+   public static void main(String[] args)  {
+      int i = 100;
+      while (i --&gt; 0){//(i--)&gt;0
+          System.out.println(i);
+  }
+    
+    
+  public static void main(String[] args)throws IOException{
+  最外层的循环:
+     for (int i=0;i &lt;2;i++){
+         for (int j = 0; j&lt; 1;j++){
+             break 最外层的循环;//通过label，break多层循环
+         }
+
+     }
+     for (int i=0;i &lt;2;i++){
+         for (int j = 0; j&lt; 1;j++){
+             break;//--&gt;只能够解决当前的for，不能够解决所有的for
+         }
+      }
+</code></pre>
+</li>
+</ul>
+<h2 id="控制流switch">控制流：switch</h2>
+<h3 id="可以switch的东西">可以switch的东西</h3>
+<ul>
+<li>
+<p>int / long / char / byte / short(所有的<strong>整形</strong>数，而不是<em>整数</em>，不是<em>浮点数</em>)</p>
+</li>
+<li>
+<p>enum 枚举
+只能选取固定的值，例如:Weekday、colour</p>
+<p>private enum WeekDay{
+MONDAY,TUESDAY,//……，SUNDAY
+}</p>
+<pre><code>  enum Signal{    
+  GREEN, YELLOW, RED  
+  }  
+   public class TrafficLight {         
+   Signal color = Signal.RED;
+   public void change() {  
+   switch (color) {  
+   color = Signal.GREEN;  
+   break;  
+   color = Signal.RED;  
+  case GREEN:
+  color = Signal.YELLOW;  
+  break;  
+      
+      }  
+  }  
+}
+</code></pre>
+</li>
+<li>
+<p>String （JDK7+）</p>
+<pre><code>int i = new Random().nextInt(5);
+   switch (i){
+       case 0:
+           System.out.println(i);break;
+       case 1:
+           System.out.println(i);break;
+       case 2:
+           System.out.println(i);break;
+       case 3:
+           System.out.println(i);break;
+       case 4:
+           System.out.println(i);break;
+           default:
+               System.out.println(i);break;
+               //没有添加break的情况下执行完一个语句之后，会紧接着执行下一个case（穿透）
+</code></pre>
+</li>
+<li>
+<p>声明的作用域在一个{}，不同的{}可以声明相同的变量而互不相冲</p>
+<pre><code>//如果i是A/B/C, 打印ABC
+     //否则打印DE
+     int i = (char)('A' + new Random().nextInt(5));
+     switch (i){
+         case 'A':
+         case 'B':
+         case 'C':{
+             String s = &quot;ABC&quot;;
+             System.out.println(s);}
+             break;
+             default:
+                 String s = &quot;DE&quot; ;
+                 System.out.println(s);
+                 break;
+</code></pre>
+</li>
+</ul>
+<h2 id="控制流嵌套">控制流：嵌套</h2>
+<ul>
+<li>
+<p>所有调用都可以嵌套，但是方法声明不能够嵌套</p>
+<pre><code>                 while (true){
+                     for (int j = 0; j &lt; 100 ; j++) {
+                         List&lt;String&gt; l = null;
+                         for (String e : l){
+                             switch (i){
+
+                             }
+
+                         }
+
+                     }
+</code></pre>
+</li>
+</ul>
+<p>穿透</p>
+<pre><code>   public static boolean isLeapYear(int year) {
+     if (year % 100 == 0) {
+         if (year % 400 == 0) {
+             return true;
+         } else {
+             return false;
+         }
+     } else if (year % 4 == 0) {
+             return true;
+     } else {
+         return false;
+     }
+     
+    // or
+     return year % 100 == 0 ? ( year % 400 == 0 ? true : false ) : (year % 4 == 0 ? true :false );
+</code></pre>
+<p>计算质数</p>
+<pre><code>     public static int howManyPrimeNumbers(int n) {
+    int num = 0;
+    for (int n1 = 2; n1 &lt; n; n1 ++){
+            if (isPrimeNumber(n1)){
+                num++;
+        }
+    }
+    return num;
+    }
+public static boolean isPrimeNumber(int n1) {
+    for (int i = 2; i &lt;= Math.sqrt(n1) + 1; i++) {
+        if (n1 % i == 0 &amp;&amp; n1 !=i ) {
+           return false;
+        }
+    }
+  return true;
+}
+</code></pre>
+<p>给定一个二维数组，返回其主对角线（从左上到右下）元素之和。</p>
+<p><a href="https://blog.csdn.net/hester_hester/article/details/77925927">https://blog.csdn.net/hester_hester/article/details/77925927</a></p>
+<pre><code>public static int diagonalSum(int[][] matrix) {
+    int N = matrix.length;
+    int result = 0;
+    for (int i = 0;i &lt; N;i++){
+        result += matrix[i][i];
+    }return result;
+
+}</code></pre>
+]]></content>
+        </item>
+        
+        <item>
+            <title>爬虫项目</title>
+            <link>https://procarihana.github.io/posts/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</link>
+            <pubDate>Wed, 06 May 2020 17:07:22 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</guid>
+            <description>原则  使用GitHub+主干/分支模型进行开发 禁止直接push master 所有的变更通过PR进行 自动化代码质量检查+测试 Checkstyle/SpotBugs 最基本的自动化测试覆盖 一切工作自动化 规范化提交流程   创建仓库流程   Github -new
+  建立新项目 newBranch 的时候选Apache License 2.0
+   Mvn archetype     IDEA - new     copy （cp -r ～/* .）    .gitigonre
+  git commit &amp;ndash;amend 就可以把这一次的commit和上一次的合并起来
+   记得要把.iml 放进（vi .gitignore）： *.iml和target/(放在最后一行就好) 更改pom 里面的groundId，artifactId cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到.</description>
+            <content type="html"><![CDATA[<h4 id="原则">原则</h4>
+<ul>
+<li>使用GitHub+主干/分支模型进行开发</li>
+<li>禁止直接push master</li>
+<li>所有的变更通过PR进行</li>
+<li>自动化代码质量检查+测试</li>
+<li>Checkstyle/SpotBugs</li>
+<li>最基本的自动化测试覆盖</li>
+<li>一切工作自动化</li>
+<li>规范化提交流程</li>
+</ul>
+<hr>
+<h4 id="创建仓库流程">创建仓库流程</h4>
+<ul>
+<li>
+<p>Github -new</p>
+</li>
+<li>
+<p>建立新项目
+newBranch 的时候选Apache License 2.0</p>
+</li>
+<li>
+<ul>
+<li>Mvn archetype</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>IDEA - new</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>copy （cp -r ～/* .）</li>
+</ul>
+</li>
+<li>
+<p>.gitigonre</p>
+</li>
+<li>
+<p>git commit &ndash;amend 就可以把这一次的commit和上一次的合并起来</p>
+</li>
+</ul>
+<ol>
+<li><strong>记得要把<code>.iml</code> 放进（vi .gitignore）： <code>*.iml</code>和<code>target/</code>(放在最后一行就好)</strong></li>
+<li>更改pom 里面的groundId，artifactId</li>
+<li>cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到<code>.~</code>的文件)，保留checkstyle.xml以及congif.yml[自动化测试]</li>
+<li><code>.idea/</code> 不能够提交（在最后完成项目提交时）</li>
+</ol>
+<ul>
+<li>README</li>
+</ul>
+<hr>
+<h4 id="项目的设计流程-自顶向下">项目的设计流程-自顶向下</h4>
+<ul>
+<li>多人协作<br>
+使用分支可以同时进行不同的功能，且互不影响</li>
+<li>模块化</li>
+<li>
+<ul>
+<li>各模块间职责明确，界限清晰</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>基本的文档</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>基本的接口</li>
+</ul>
+</li>
+<li>小步提交</li>
+<li>
+<ul>
+<li>大的变更更难以review</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>大的变更冲突更加棘手</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="项目的演进可扩展行">项目的演进：可扩展行</h4>
+<ul>
+<li>单线程-&gt;多线程</li>
+<li>console -&gt; H2 database</li>
+<li>H2 database -&gt;Elasticsearch</li>
+</ul>
+<h4 id="爬虫">爬虫</h4>
+<ul>
+<li>新闻网站反爬比较少</li>
+<li>手机网页更容易爬</li>
+</ul>
+<h4 id="git-push-错误的文件">git push 错误的文件</h4>
+<ul>
+<li>在分支上操作</li>
+</ul>
+<ol>
+<li>git reset HEAD~1  把提交回滚到前1/2……各</li>
+<li>把不想提交的放进 vi .gitignore 里（.idea/）</li>
+<li>git add .</li>
+<li>git commit 后就会出现分支</li>
+</ol>
+<ul>
+<li>以master的身份提交</li>
+</ul>
+<ol>
+<li>通过git log 查看刚才提交的提交的ID</li>
+<li>git revert 撤销刚才的提交（但是刚才的提交就会消除）</li>
+</ol>
+<ul>
+<li>在主干上直接把多余的文件删掉</li>
+<li>只要没有push，所有行为都只有自己能够看到</li>
+</ul>
+<h4 id="commit-massage">commit massage</h4>
+<ul>
+<li>先写一行简短的总结</li>
+<li>详细总结每行不要超过72word</li>
+</ul>
+<hr>
+<h3 id="项目">项目</h3>
+<ul>
+<li>爬去新浪新闻页，做一个真正的爬虫</li>
+<li>使用数据库储存进行数据分析</li>
+<li>随着数据量的增长，前一到ES</li>
+<li>做一个简单的“新闻搜索引擎”</li>
+</ul>
+<h5 id="算法">算法</h5>
+<ul>
+<li>从一个节点遍历所有节点</li>
+<li>广度优先 BFS 从上到下，从左到右，1层-&gt;2层-&gt;3……<br>
+队列数据结构、JDK的队列实现</li>
+<li>深度优先 1-&gt;2-&gt;4…… 从左到右</li>
+</ul>
+<h4 id="流程">流程</h4>
+<ol>
+<li>从链接池里拿一个链接</li>
+<li>判断链接是否处理</li>
+<li>判断链接是否需要</li>
+<li>处理</li>
+</ol>
+<ul>
+<li>通过Jsoup获得HTML里面的内容</li>
+<li>从池子里删除处理过的链接</li>
+</ul>
+<ol start="5">
+<li>把新得到的链接放入链接池</li>
+<li>如果是新闻页面的话储存</li>
+<li>进入下一个循环</li>
+<li>建立H2数据库</li>
+</ol>
+<ul>
+<li>
+<p>LINKS_TO_BE_PROCESSED</p>
+</li>
+<li>
+<p>LINKS_ALREADY_PROCESSED</p>
+</li>
+<li>
+<p>NEWS</p>
+</li>
+<li>
+<p>ID</p>
+</li>
+<li>
+<p>TITLE</p>
+</li>
+<li>
+<p>CONTENT</p>
+</li>
+<li>
+<p>URL</p>
+</li>
+<li>
+<p>CREATED_AT</p>
+</li>
+<li>
+<p>MODIFIED_AT</p>
+</li>
+</ul>
+<h4 id="建立h2数据库">建立H2数据库</h4>
+<ol>
+<li>添加H2依赖</li>
+<li>URL “”+/文件路径/数据库的文件名</li>
+<li>creat table LINKS_TO_BE_PROCESSED{link varchar (100);}</li>
+<li>creat table nws(id bigint primary_key auto_increment,title text,content text,url varchar(100),creat_at timestamp,modified_at timestamp)</li>
+<li>insert into links_to_be_processed(link)values(&lsquo;LINK&rsquo;) //设置起始的Link</li>
+</ol>
+<h4 id="sql数据类型">sql数据类型</h4>
+<ul>
+<li>varchar（n）可变长度字符串，最多为8,000字符</li>
+<li>varchar（max）可变长度字符串，最多为1,073,741,824</li>
+<li>text 可变长度的字符串，最多2GB文本数据(适合储存新闻)</li>
+<li>nchar 固定长度的Unicode字符串。最多4，000个字符</li>
+</ul>
+<h4 id="flyaway">flyaway</h4>
+<ul>
+<li>数据库在使用的时候会不断变更，有不同的版本，flyaway可以储存数据库不同的版本，从而可以变更不同版本的<strong>结构</strong></li>
+<li>flyaway需要在插件的地方修改URL，添加Username和password</li>
+<li>即使数据库删掉也可以快速回复结构</li>
+</ul>
+<h4 id="orm-object-relation-mapping-对象关系数据库">ORM Object Relation Mapping 对象关系数据库</h4>
+<ul>
+<li>通过select 语句把表格里面的项目变成对象，</li>
+<li></li>
+</ul>
+<h4 id="tips">Tips</h4>
+<ol>
+<li>Arraylist 从尾部删除更有效率（sive-1）。因为删除第一个元素之后，后面所有的元素都要向前移动一位。</li>
+<li>linkPool.remove 删除指定位置的链接后返回被删除的链接</li>
+<li>线程卡住的时候可以通过<code>jps</code>查看当前正在运行的线程</li>
+<li>链接显示为&rdquo;//……&rdquo; 的话，为当前的链接，需要手动添加&quot;https&quot;+link 进行识别</li>
+<li>数据库的用户名和密码最好是使用final常量去声明</li>
+<li>想要关闭代码检查findbugs的错误可以通过引入包解决。在相应的地方通过注释SuppressFBWarnings（&ldquo;DMI_CONSTANT_DB_PASSWORD&rdquo;）</li>
+<li>如果存在无法关闭的情况，可以通过final强行关闭</li>
+<li>try with resoure会自动设置关闭。try（需要声明能close的变量）</li>
+<li>HTML是没有换行符的，所以爬虫的时候是爬每一各P元素，加一个换行来分隔</li>
+<li>static 方法是不能够访问非static 成员的，static main 才可以运行， 非static 的main 只是一个普通的方法，不能够被运行</li>
+</ol>
+]]></content>
+        </item>
+        
+        <item>
+            <title>IDEAMaven调试器的基本使用</title>
+            <link>https://procarihana.github.io/posts/ideamaven%E8%B0%83%E8%AF%95%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+            <pubDate>Wed, 06 May 2020 17:06:17 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/ideamaven%E8%B0%83%E8%AF%95%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+            <description>SpotBugs  Maven 生命周期
+设置生命周期后的Maven会在相应的阶段执行 Picture 设置 生命周期对应执行的工作需要绑定插件进行设置   complie —— goal ——&amp;gt; maven-compilen-plugin test —— goal ——&amp;gt; surefire 测试插件 verlfy —— goal ——&amp;gt; checkstyle（非核心插件可以绑定到任何阶段  </description>
+            <content type="html"><![CDATA[<h4 id="spotbugs">SpotBugs</h4>
+<ul>
+<li>Maven 生命周期<br>
+设置生命周期后的Maven会在相应的阶段执行
+Picture 设置</li>
+<li>生命周期对应执行的工作需要绑定插件进行设置</li>
+</ul>
+<ol>
+<li>complie —— goal ——&gt; maven-compilen-plugin</li>
+<li>test —— goal ——&gt; surefire 测试插件</li>
+<li>verlfy —— goal ——&gt; checkstyle（非核心插件可以绑定到任何阶段</li>
+</ol>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Java的运算系统</title>
+            <link>https://procarihana.github.io/posts/java%E7%9A%84%E8%BF%90%E7%AE%97%E7%B3%BB%E7%BB%9F/</link>
+            <pubDate>Fri, 01 May 2020 16:42:24 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/java%E7%9A%84%E8%BF%90%E7%AE%97%E7%B3%BB%E7%BB%9F/</guid>
+            <description>基本运算   /
+int b = 5/2; &amp;ndash;&amp;gt;结果为 &amp;lsquo;2&amp;rsquo;（地板除）
+  取余运算
+5/2=2……1
+System.out.println(9 % 5);——&amp;gt;2 System.out.println(-9 % 5);——&amp;gt;-2(余数)      判断奇偶
+通过取余是否为零完成
+//判断一个整数是不是奇数 public static boolean isOdd(int number){ return number % 2 != 0; }    运算符
+    += ，-= ，*=，/=
+Eg：a+=2 | a = a+2
+  += a +=3 ==&amp;gt; a = a + 3
+  -= a -=3 ==&amp;gt;a - e</description>
+            <content type="html"><![CDATA[<h4 id="基本运算">基本运算</h4>
+<ul>
+<li>
+<p>/</p>
+<p>int b = 5/2;
+&ndash;&gt;结果为 &lsquo;2&rsquo;（地板除）</p>
+</li>
+<li>
+<p>取余运算</p>
+<p>5/2=2……1</p>
+<pre><code>System.out.println(9 % 5);——&gt;2
+System.out.println(-9 % 5);——&gt;-2(余数)
+</code></pre>
+</li>
+</ul>
+<ol>
+<li>
+<p>判断奇偶<br>
+通过取余是否为零完成</p>
+<pre><code>//判断一个整数是不是奇数
+  public static boolean isOdd(int number){
+      return number % 2 != 0;
+}
+</code></pre>
+</li>
+<li>
+<p>运算符</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>+= ，-= ，*=，/=<br>
+<strong>Eg：a+=2 | a = a+2</strong></p>
+</li>
+<li>
+<p>+= <br>
+a +=3  ==&gt; a = a + 3</p>
+</li>
+<li>
+<p>-= <br>
+a -=3  ==&gt;a - e</p>
+</li>
+<li>
+<p>%=    a
+a %=3  ==&gt;a % 3</p>
+</li>
+<li>
+<p>二元一次开根Eg</p>
+<pre><code>   public static double[] calculate(int a, int b, int c) {
+     double d = b * b - 4 * a * c;
+     if (d &gt; 0){
+         double root1 = ((-b + Math.sqrt(d)) / 2 * a);
+         double root2 = ((-b - Math.sqrt(d)) / 2 * a);
+         return new double[]{root1,root2};
+        }else if(d == 0) {
+        double root = ((-b + Math.sqrt(d)) / 2 * a);
+          return new double[]{root};
+   }else if (d &lt; 0){
+       return new double[]{};
+   }
+  return null;
+</code></pre>
+</li>
+</ul>
+<ol start="3">
+<li>自增自减 i++，i&ndash;,++i,&ndash;i</li>
+</ol>
+<ul>
+<li>
+<p>i++ | i=i+1 | i+= 1</p>
+<pre><code>    i++;  ==&gt; i=i+1/ i+=1
+          1、i作为表达式的值 ==&gt;System.out.println(i++);==&gt;0
+          
+          2、i = i + 1（a+=）
+            i = 1
+</code></pre>
+<p>++i; ==&gt; 1、b = b + 1</p>
+<pre><code>        2、把结果作为表达式的值 ==&gt;System.out.println(i++);==&gt;1
+</code></pre>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>i++ vs ++i</p>
+<pre><code>public static void printNumberTo10(int number) {
+   while (true) {
+       System.out.println(number++);
+       if (number &gt; 10) {
+              return;
+       }
+   }
+ } // ——&gt; 包括number本身             
+</code></pre>
+</li>
+</ul>
+<hr>
+<pre><code>    i = 0；
+    x = 0;
+    System.out.print(i++);
+    System.out.print(++x);
+        result: i++ = 0,i = 1;
+                ++x = 1,x = 1;
+</code></pre>
+<ol start="4">
+<li>比较运算符</li>
+</ol>
+<ul>
+<li>
+<p>结果是一个布尔值</p>
+<pre><code>   Eg：
+   System.out.println(2 == 1);  ==&gt; true
+   System.out.println(2 &gt; 1);  ==&gt; false
+</code></pre>
+</li>
+</ul>
+<ol start="5">
+<li>逻辑运算</li>
+</ol>
+<ul>
+<li>&amp;&amp; <strong>与：只要有一个是假的就都是假的</strong></li>
+<li>|| <strong>或：只要有一个是真的就都是真的</strong></li>
+<li>！非（相反）</li>
+<li>短路</li>
+</ul>
+<p>或：左侧结果是真的，后面的结果就会自动忽略掉（不会影响结果）
+与：左侧结果是假的……</p>
+<pre><code>  Boolean config = getconfig()
+    if (config != null &amp;&amp; config) {
+        /*config 的三种可能
+          1: true -&gt; true
+          2: false -&gt; false
+        */3: null -&gt; false
+    }
+   public static Boolean getconfig(){
+    //可能返回ture/false/null
+    }
+</code></pre>
+<p><strong>Eg：装拆箱的时候，对象为null的时候拆箱就会出现空指针异常，可以通过先判断是否为null来避免，用&amp;&amp;进行逻辑运算，当为null的时候直接结束运算。</strong></p>
+<ol start="6">
+<li>三元运算符 ?:</li>
+</ol>
+<ul>
+<li>
+<p>一元：int a = 1;  a++</p>
+</li>
+<li>
+<p>二元：a = a + 1; 9 % 5</p>
+</li>
+<li>
+<p>三元运算嵌套</p>
+<pre><code>   //当 a &gt; 0时，得到&quot;&gt;&quot;，否则，得到&quot;&lt;=&quot;
+  String sign;
+
+  if (a &gt; 0){
+      sign = &quot;&gt;&quot;;
+  }else {
+      sign = &quot;&lt;=&quot;;
+  }
+
+  //三元运算符重写这个过程：
+
+  sign = a &gt; 0 ? &quot;&gt;&quot; : &quot;&lt;=&quot;;
+
+  //若 a &gt; b 返回 1
+  //若 a &lt; b 返回 -1
+  //若 a = b 返回 0
+   int result = a &gt; b ? 1 : (a &lt; b ? -1 :0);
+     
+   return 100 &gt;= score &amp;&amp; score &gt;= 90 ? &quot;学生&quot;+student+&quot;的分数是&quot;+score+&quot;,评级是A&quot; : (89 &gt;= score &amp;&amp; score &gt;= 60 ? &quot;学生&quot;+student+&quot;的分数是&quot;+score+&quot;,评级是B&quot; : (59 &gt;= score &amp;&amp; score &gt;= 0 ? &quot;学生&quot;+student+&quot;的分数是&quot;+score+&quot;,评级是C&quot; :&quot;非法输入&quot; ));
+</code></pre>
+</li>
+</ul>
+<ol start="7">
+<li>位运算</li>
+</ol>
+<ul>
+<li>~ 按位取反 把字符的字节里面0变成1，1变成0</li>
+<li>补码：+1</li>
+<li>负数是通过补码表示的</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">4</th>
+<th align="center">0000</th>
+<th align="center">0100</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">取反</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center">~</th>
+<th align="center">1111</th>
+<th align="center">1011</th>
+</tr>
+</thead>
+</table>
+<p>+1</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">-4</th>
+<th align="center">0000</th>
+<th align="center">1100</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li>补码可以完成加法和减法（不进位加法）
+<strong>Eg：5-3</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">5</th>
+<th align="center">0000</th>
+<th align="center">0101</th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center">3</th>
+<th align="center">0000</th>
+<th align="center">0011</th>
+</tr>
+</thead>
+</table>
+<p>取反补位</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">-3</th>
+<th align="center">1111</th>
+<th align="center">1101</th>
+</tr>
+</thead>
+</table>
+<hr>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">5+（-3）</th>
+<th align="center">10000</th>
+<th align="center">0100</th>
+</tr>
+</thead>
+</table>
+<p>去掉第一位</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">2</th>
+<th align="center">0000</th>
+<th align="center">0010</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li>&amp; &amp;= 按位与  ：每个位进行一次与操作（有一个是0，则都是0）【And】</li>
+</ul>
+<p>0000 0011   3</p>
+<p>0000 0101   5</p>
+<hr>
+<p>0000 0001   1</p>
+<ul>
+<li>| |= 按位或 ：有一个是1，则就是1【or】</li>
+</ul>
+<p>0000 0110   6</p>
+<p>0000 1000   8</p>
+<hr>
+<p>0000 1110   14</p>
+<pre><code>Y ^ Y = 0 
+Y ^ 0 = Y 
+Eg:
+[1,2,3,4,5,6]
+[1,2,3,4,2,1]
+//找重复出现的数则用异或
+</code></pre>
+<p>判断字符串里是否有某个字符</p>
+<pre><code>public static boolean isValidHexCharacter(char ch) {
+    byte bch = (byte) ch;
+    String str = &quot;0123456789AaBbCcDdEeFf&quot;;
+    for (int i = 0; i &lt; str.length(); i++) {
+        int b = (int) str.charAt(i);
+        int d = b ^ bch;
+        if (d == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+</code></pre>
+<p>位运算代替boolean</p>
+<pre><code>public class Cat {
+   private static int CUTE = 0x1;
+   private int properties = 0;
+
+/**
+ * 使用位运算设置猫咪萌的属性
+ *
+ * @param cute true为萌，false为不萌
+ */
+public void setCute(boolean cute) {
+    properties = cute? (properties | CUTE) : (properties &amp;(~CUTE));//true为1 ，false为0
+    
+}
+
+/**
+ * 这只猫萌吗？请在此处使用位运算读取properties，得到猫是否萌的结果
+ *
+ * @return 萌则返回true，否则返回false
+ */
+public boolean isCute() {
+    return (properties &amp; CUTE) != 0;
+}
+</code></pre>
+<ul>
+<li>&laquo;=左移【&laquo;】</li>
+</ul>
+<p>0000 0101     |5[左移一位]</p>
+<p><del>0</del> 0000 101++0++    |  5 * 2 ^ 1 = 10（去掉最前一位，后面补一个0）</p>
+<p>0000 0101   |5[左移2位]</p>
+<p><del>00</del>  0001 01++00++  5* 2 ^ 2= 20</p>
+<p>对任何进制进行左移操作，就是乘以这个进制的基数
+左移n为，相当于乘以2的n次方</p>
+<ul>
+<li><code>&gt;&gt;</code> &raquo;=带符号右移：该数对应的二进制码整体右移，左边的用原有标志位（原本是1就用1，是0就用0）补充，右边超出的部分舍弃。</li>
+</ul>
+<p>1(表示符号'+&rsquo;) 111 1110</p>
+<p>0(表示符号&rsquo;-') 111 1110</p>
+<ul>
+<li><code>&gt;&gt;&gt;</code> &raquo;&gt;=无符号右移：不管正负标志位为0还是1，将该数的二进制码整体右移，左边部分总是以0填充，右边部分舍弃。</li>
+</ul>
+<p>-5用二进制表示1111 1011 <em>标志</em>位</p>
+<p>-5&raquo;2: <em>1</em>111 1011&mdash;&mdash;&mdash;&mdash;&ndash;&gt;<strong>11</strong> <em>1</em>1 1110。</p>
+<p><strong>11</strong>为标志位</p>
+<p>-5&raquo;&gt;2:  <em>1</em>111 1011&mdash;&mdash;&mdash;&mdash;&ndash;&gt;<strong>00</strong> <em>1</em>1 1110。</p>
+<p><strong>00</strong>为补充的0</p>
+<p>位运算：</p>
+<ol>
+<li>设置属性某一位上面是1，其他都是0。</li>
+<li>然后进行按位与（与过有1的都是1），从而把属性都放进int里面，只需要4个字节
+boolean： 存放需要32个字节</li>
+</ol>
+<ul>
+<li>
+<p>设置<code>|</code>  无论原先是0还是1 ，进行按位或1操作最后都是1</p>
+</li>
+<li>
+<p>读取<code>&amp;</code>  无论原先是0还是1 ，进行按位与1操作最后都是1</p>
+</li>
+<li>
+<p>不用乘除号进行运算</p>
+<pre><code>  // 返回number乘以16的结果
+  // 请不要使用乘号
+  public static int multiply16(int number) {
+      return number &lt;&lt; 4;
+  }
+  // 返回number除以16的结果
+  // 请不要使用除号
+  public static int divide16(int number) {
+       return number &gt;&gt; 4;
+   }
+</code></pre>
+</li>
+</ul>
+<ol start="8">
+<li>运算符的优先级</li>
+</ol>
+<ul>
+<li>乘除高于加减</li>
+<li>其他全部加括号</li>
+</ul>
+<ol start="9">
+<li>字符串加法</li>
+</ol>
+<ul>
+<li>对象进行字符串加法的时候，就会把相应的toString方法或者原生类型的相应表示</li>
+<li>字符串加法会自动调用StringBuilder，减轻内存压力。因为对象是不可改变的，进行运算的时候会残生很多新的对象，造成储存空间的浪费。</li>
+</ul>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Java的数据类型</title>
+            <link>https://procarihana.github.io/posts/java%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link>
+            <pubDate>Wed, 29 Apr 2020 15:16:54 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/java%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid>
+            <description>数据类型  两种数据类型   原生数据 赋值的是值本身     原生数据 字节 最小值 最大值     byte 1     short 2  0*7fffffff(21亿)   int 4     long 8  2^63-1   float 4     double 8     char 2       boolean true/false void     存储数据超过最大值会溢出</description>
+            <content type="html"><![CDATA[<h4 id="数据类型">数据类型</h4>
+<ul>
+<li>两种数据类型</li>
+</ul>
+<ol>
+<li>原生数据 赋值的是值本身</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">原生数据</th>
+<th align="center">字节</th>
+<th align="center">最小值</th>
+<th align="center">最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">byte</td>
+<td align="center">1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">2</td>
+<td align="center"></td>
+<td align="center">0*7fffffff(21亿)</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">8</td>
+<td align="center"></td>
+<td align="center">2^63-1</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">char</td>
+<td align="center">2</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>boolean true/false</li>
+<li>void</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>存储数据超过最大值会溢出<br>
+<em>Eg：（byte）127+1=-128</em></p>
+</li>
+<li>
+<p>float 浮点数 是小数，在计算机中<strong>近似表示</strong><br>
+<em>Eg：0.1+0.2=0.300000000004</em></p>
+</li>
+<li>
+<p>double 双精浮点数</p>
+</li>
+<li>
+<p>浮点数判断大小，不可以比较相等<br>
+<code>==</code>可能可以工作，但是不安全</p>
+<pre><code>  Math.abc(d-0.0)&lt;0.0000001
+  //通过绝对值判断浮点数d是否为0
+</code></pre>
+</li>
+<li>
+<p>long、float、double 声明值</p>
+<pre><code>  long l = 0L;
+  float f = 0.0f;
+  double d = 0.0d;
+  double e = 2e-3;//科学计算法可以在浮点数里使用
+</code></pre>
+</li>
+</ul>
+<ol start="2">
+<li>引用数据类型 对象 本质上就都是地址 赋值的是地址</li>
+</ol>
+<h4 id="二进制">二进制</h4>
+<ol>
+<li>字节：计算机内存能够寻址的最小单位</li>
+<li>int 32 位 31个1 二进制</li>
+<li>ASCII 码 最常用的字符的对照表</li>
+</ol>
+<ul>
+<li>可以通过int的强制转换看到字符的对应数字表</li>
+</ul>
+<ol start="4">
+<li>强类型:即使数据一样，但是类型不一样，解释也不一样</li>
+<li>16进制 0-9 a-f 不区分大小写</li>
+</ol>
+<h4 id="类型转换与类型提升">类型转换与类型提升</h4>
+<ul>
+<li>
+<p>高精度的 转化为低精度的不会出现问题，但是反过来就可能会损失数据</p>
+</li>
+<li>
+<p>整数除法是地板除：除的结果如果不能整出，就会向下取值<br>
+<strong>Eg：3/2=1</strong><br>
+<em>解决：把所有值（或者其中一个，另一个就会激动提高精度）都提高到最高的精度进行计算</em></p>
+</li>
+<li>
+<p>丢失精度的时候需要进行强制转换<br>
+<strong>Eg：int i；double d =（double）i</strong></p>
+</li>
+<li>
+<p>ASKII码表：前128个最常用的字符</p>
+<pre><code> //在ASKII中数据49为字符‘1’，数据50为字符‘2’
+ char c = '1';//完全等价于char c = 49
+ c = (char)(c+1);//完全等价于char c = 50
+</code></pre>
+</li>
+</ul>
+<h4 id="基本数据类型的装箱类型">基本数据类型的装箱类型</h4>
+<ol>
+<li>区分是不是对象，通过判断有没有对应的类<br>
+<strong>Eg：int i = 0是原生数据；Integer integer = 0 是对象</strong></li>
+</ol>
+<ul>
+<li>因为Integer是integer对应的类，而integer只是一个地址，指向存储‘100’的数据，这个过程通过自动装拆箱完成</li>
+</ul>
+<ol start="2">
+<li>自动装拆箱<br>
+<strong>Eg:当你声明int i，而需要用到Integer的时候，ide就会自动进行装箱<br>
+Integer integer = i 这个过程</strong></li>
+</ol>
+<h4 id="引用类型装箱意义">引用类型，装箱意义</h4>
+<ol>
+<li>容器类不接受原生数据类型（List/Set</li>
+<li>可以赋值null</li>
+</ol>
+<ul>
+<li>null意义：Boolean可以有true/false和null三种状态，而boolean只有两种</li>
+<li>null会在自动装拆箱中出现问题，因为原生数据没有null，当引用为null的时候，拆箱过程中就会出现空指针异常</li>
+</ul>
+<ol start="3">
+<li>提供额外的方法<br>
+<strong>Eg:可以通过Integer.parseInt把字符转换成数字</strong></li>
+<li>自动装箱与拆箱</li>
+</ol>
+<h4 id="null与equals约定在数据类型中的应用">null与equals约定在数据类型中的应用</h4>
+<ol>
+<li>== 比较原生数据的时候，比较的是值是否相同；而比较对象的时候，实质比较的是地址是否相同</li>
+<li>equals 是object的子类，比较两个对象的数据value是否相同</li>
+<li>Integer 常用的数字（-128～127）有缓存，所以使用==判断这个范围的数据的时候，地址会相等</li>
+<li>Integer 对象不可变，只能去读取里面的内容，不能去修改里面的数据</li>
+</ol>
+<h4 id="数组类型">数组类型</h4>
+<ul>
+<li>有JDK负责创建</li>
+</ul>
+<ol>
+<li>X[] x = new X[10] 创造一个数组x，里面有10个元素</li>
+<li>X[] x =new [] {2，1，3，4}</li>
+<li>X[][] x = new int [] []<code>{``{``}</code>,<code>{``}``}</code> 嵌套数组</li>
+<li>其中X可以也是数组类型</li>
+</ol>
+<ul>
+<li>数组的主要特性</li>
+</ul>
+<ol>
+<li>⻓度不可变</li>
+<li>类型安全</li>
+<li>只有⼀个length属性</li>
+<li>可以使⽤for循环迭代</li>
+</ol>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Java程序的基本结构</title>
+            <link>https://procarihana.github.io/posts/java%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/</link>
+            <pubDate>Tue, 28 Apr 2020 16:58:28 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/java%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/</guid>
+            <description>Java程序的基本结构 Java 简述  强类型：在内存的每一个数据都需要和一个类型相绑定   即使数据相同，但是类型不一样，解释的方式也不一样  静态   Java code &amp;ndash;&amp;gt; 字节码 （编译）  跨平台性能   操作系统  Linux、windows、mac…… 不同的操作系统有不同的语言 （API 【Application Programming Interface】 应用编程接口）&amp;ndash;&amp;gt;实现跨平台就要通过JVM实现   JVM 【Java Vitual Mach】（Java虚拟机） 字节码   最小单位为字节，八个字节为一个字节码   Java 成句基本结构 类和包的关系  基本结构&amp;ndash;类，Java 程序的最小的结构单元，按照约定放在自己同名的&amp;rsquo;.java&amp;rsquo; 文件中 每个 Class 都处于一个package中 Package 的名字是相对于src决定的，也就是由目录结构确定的，名字通常用域名的倒叙 如果class 直接放在java文件夹下面，就不会显示package 因为处于默认包里面  包的意义  类的名字是一个简单的字符串，通过包更容易区分 Eg：通过运用全限定类名，可以用于区分不同的同名类   全限定类名 ：包含包名的类&amp;ndash;&amp;gt;package.class  可以通过import引入包，可以让引用类的编写更加便捷  第三方包的引用  Maven 当方法属于Java.</description>
+            <content type="html"><![CDATA[<h1 id="java程序的基本结构">Java程序的基本结构</h1>
+<h3 id="java-简述">Java 简述</h3>
+<ol>
+<li>强类型：在内存的每一个数据都需要和一个类型相绑定</li>
+</ol>
+<ul>
+<li>即使数据相同，但是类型不一样，解释的方式也不一样</li>
+</ul>
+<ol start="2">
+<li>静态</li>
+</ol>
+<ul>
+<li>Java code &ndash;&gt; 字节码 （编译）</li>
+</ul>
+<ol start="3">
+<li>跨平台性能</li>
+</ol>
+<hr>
+<h3 id="操作系统">操作系统</h3>
+<ol>
+<li>Linux、windows、mac……</li>
+<li>不同的操作系统有不同的语言 （API 【Application Programming Interface】 应用编程接口）&ndash;&gt;实现跨平台就要通过JVM实现</li>
+</ol>
+<ul>
+<li>JVM 【Java Vitual Mach】（Java虚拟机）</li>
+<li>字节码</li>
+</ul>
+<ol>
+<li>最小单位为字节，八个字节为一个字节码</li>
+</ol>
+<hr>
+<h3 id="java-成句基本结构">Java 成句基本结构</h3>
+<h4 id="类和包的关系">类和包的关系</h4>
+<ol>
+<li>基本结构&ndash;类，Java 程序的最小的结构单元，按照约定放在自己同名的&rsquo;.java&rsquo; 文件中</li>
+<li>每个 Class 都处于一个package中</li>
+<li>Package 的名字是相对于src决定的，也就是由目录结构确定的，名字通常用域名的倒叙</li>
+<li>如果class 直接放在java文件夹下面，就不会显示package 因为处于默认包里面</li>
+</ol>
+<h4 id="包的意义">包的意义</h4>
+<ol>
+<li>类的名字是一个简单的字符串，通过包更容易区分
+Eg：通过运用全限定类名，可以用于区分不同的同名类</li>
+</ol>
+<ul>
+<li>全限定类名 ：包含包名的类&ndash;&gt;package.class</li>
+</ul>
+<ol start="2">
+<li>可以通过import引入包，可以让引用类的编写更加便捷</li>
+</ol>
+<h4 id="第三方包的引用">第三方包的引用</h4>
+<ol>
+<li>Maven</li>
+<li>当方法属于Java.lang的时候后，不需要特地去引用</li>
+</ol>
+<h4 id="方法静态方法与静态成员变量">方法、静态方法与静态成员变量</h4>
+<ol>
+<li>方法</li>
+</ol>
+<ul>
+<li>静态方法:就是一个函数，一个不依附于任何对象的方法，不用去创造任何对象</li>
+</ul>
+<ol start="2">
+<li>函数调用</li>
+</ol>
+<ul>
+<li>每次函数调用的时候会产生新的独立的环境</li>
+<li>函数调动可以多次调用，调用完成后，局部变量就会被销毁</li>
+</ul>
+<ol start="3">
+<li>
+<p>局部变量的作用域在第一对花括号里面</p>
+<pre><code>     public static int result(int a,int b)
+</code></pre>
+</li>
+<li>
+<p>成员变量 ：和一个对象绑定的变量</p>
+<pre><code> public class Cat{
+     private String name;
+     }
+</code></pre>
+</li>
+<li>
+<p>静态成员变量：是一个类的成员，方法调用后的结果会持续存在，独立于任何的函数调用，函数调用结束后都不会被销毁
+<code>public static int i</code></p>
+</li>
+<li>
+<p><code>static</code>不和任何对象绑定</p>
+</li>
+</ol>
+<h4 id="对象结构与成员变量">对象、结构与成员变量</h4>
+<ol>
+<li>类 说明书，说明方法如何调用，调用后会得到什么机结果</li>
+<li>对象（实例） 通过new一个构造函数，从而创造出一个对象<br>
+<code>Cat cat = new Cat();</code></li>
+<li>构造器</li>
+</ol>
+<ul>
+<li>
+<p>没有生命任何的constructor构造器，编译器会自动构造一个</p>
+</li>
+<li>
+<p>一个特殊的实例方法</p>
+<pre><code>Cat(){}//编译器自动生成
+</code></pre>
+</li>
+</ul>
+<hr>
+<pre><code>public Cat(String name){
+    this.name = name;
+}
+</code></pre>
+<ul>
+<li>构造器里面可以声明参数</li>
+<li>可以写public</li>
+<li>没有返回值（返回的是构造函数的一个实例）</li>
+<li>可以声明多个构造器</li>
+</ul>
+<ol start="4">
+<li><code>this</code> 的使用：在不构成歧义的情况下可以不使用</li>
+</ol>
+<h4 id="实例方法与空指针异常">实例方法与空指针异常</h4>
+<ol>
+<li>实例方法 和对象相绑定的方法，只有实例才能够调用</li>
+<li>空指针异常 会在对对象取属性或者调用实例方法的时候后发生</li>
+</ol>
+<ul>
+<li>解决：可以通过if else 为null 进行判断</li>
+</ul>
+<h4 id="sum">sum</h4>
+<ol>
+<li>静态变量 不和任何对象绑定，一个全局的存储单元，被所有对象所共享。在所有的对方都可以对这个变量进行读写。</li>
+<li>静态方法 不和任何实例对象相绑定</li>
+<li>成员变量，没有static 限定，和一个对象紧密绑定的</li>
+<li>实例方法 不能仅通过一个类名去引用，需要先创造出一个实例对象，这个对象才可以去调用这个方法。</li>
+</ol>
+<ul>
+<li>在构造器里面可以直接调用实例方法</li>
+</ul>
+<hr>
+<h4 id="对象与引用">对象与引用</h4>
+<ol>
+<li>引用 == 地址</li>
+<li>所有的对象都是地址，一个实例被创造出来，实际上就是创造出一个地址，指向自己类的内存空间。对象被进行赋值的时候，只是地址被进行复制，而对象本身并没有改变。</li>
+<li>深拷贝deepCopy 浅拷贝</li>
+</ol>
+<ul>
+<li>浅拷贝只是复制了地址，并没有复制对象的所数据
+<img src="/%E6%B5%85%E6%8B%B7%E8%B4%9D.png" alt="浅拷贝"></li>
+<li>深拷贝需要创造所有的对应的对象进行拷贝,把对象的所有值都进行赋值。地址虽然不一样，但是通过赋值可以的到一样的数据
+<img src="/%E6%B7%B1%E6%8B%B7%E8%B4%9D.png" alt="深拷贝"></li>
+</ul>
+<hr>
+<h4 id="对象与引用-1">对象与引用</h4>
+<ol>
+<li>引用 == 地址</li>
+<li>所有的对象都是地址，一个实例被创造出来，实际上就是创造出一个地址，指向自己类的内存空间。对象被进行赋值的时候，只是地址被进行复制，而对象本身并没有改变。</li>
+<li>深拷贝deepCopy 浅拷贝</li>
+</ol>
+<ul>
+<li>浅拷贝只是复制了地址，并没有复制对象的所数据</li>
+<li>深拷贝需要创造所有的对应的对象进行拷贝</li>
+</ul>
+<h4 id="方法的传值-vs-传引用">方法的传值 vs 传引用</h4>
+<ol>
+<li>
+<p>传值 通过引用的方法传值，只是把数据赋值一遍,修改是不会生效的。因为执行方法的时候后会创建一个全新的环境，结束后数据就会销毁。</p>
+<p>public static void main (String [] args){
+int i = 0;
+addOne(i);
+}
+static void int addOne(int i){
+i = i+1
+}</p>
+</li>
+<li>
+<p>传引用 本质为传递地址</p>
+<pre><code> public static void main (String [] args){
+     Cat cat = new Cat();
+     cat.name = &quot;111&quot;;
+     renameCat(cat);
+ }
+
+ stativ void renameCat(Cat cat){ 
+  //在Cat这个类的储存空间里面赋值，把结果的地址传递给main里面的cat
+  cat.name = &quot;mewo&quot;
+ }
+</code></pre>
+</li>
+</ol>
+]]></content>
+        </item>
+        
+        <item>
+            <title>The Second Test</title>
+            <link>https://procarihana.github.io/posts/the-second-test/</link>
+            <pubDate>Sun, 26 Apr 2020 18:49:13 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/the-second-test/</guid>
+            <description>Test Second </description>
+            <content type="html"><![CDATA[<h3 id="test">Test</h3>
+<h1 id="second">Second</h1>
+<p><img src="/1.jpg" alt=""></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>TEST</title>
+            <link>https://procarihana.github.io/posts/test/</link>
+            <pubDate>Sat, 25 Apr 2020 23:50:04 +0800</pubDate>
+            
+            <guid>https://procarihana.github.io/posts/test/</guid>
+            <description>TEST &amp;ndash; OK? ???
+I am fine</description>
+            <content type="html"><![CDATA[<h1 id="test">TEST</h1>
+<h2 id="--">&ndash;</h2>
+<h2 id="ok">OK?</h2>
+<p>???</p>
+<p>I am fine</p>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>

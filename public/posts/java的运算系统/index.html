@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="基本运算   /
+int b = 5/2; &amp;ndash;&amp;gt;结果为 &amp;lsquo;2&amp;rsquo;（地板除）
+  取余运算
+5/2=2……1
+System.out.println(9 % 5);——&amp;gt;2 System.out.println(-9 % 5);——&amp;gt;-2(余数)      判断奇偶
+通过取余是否为零完成
+//判断一个整数是不是奇数 public static boolean isOdd(int number){ return number % 2 != 0; }    运算符
+    &#43;= ，-= ，*=，/=
+Eg：a&#43;=2 | a = a&#43;2
+  &#43;= a &#43;=3 ==&amp;gt; a = a &#43; 3
+  -= a -=3 ==&amp;gt;a - e" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/posts/java%E7%9A%84%E8%BF%90%E7%AE%97%E7%B3%BB%E7%BB%9F/" />
+
+
+    <title>
+        
+            Java的运算系统 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Java的运算系统">
+<meta itemprop="description" content="基本运算   /
+int b = 5/2; &ndash;&gt;结果为 &lsquo;2&rsquo;（地板除）
+  取余运算
+5/2=2……1
+System.out.println(9 % 5);——&gt;2 System.out.println(-9 % 5);——&gt;-2(余数)      判断奇偶
+通过取余是否为零完成
+//判断一个整数是不是奇数 public static boolean isOdd(int number){ return number % 2 != 0; }    运算符
+    &#43;= ，-= ，*=，/=
+Eg：a&#43;=2 | a = a&#43;2
+  &#43;= a &#43;=3 ==&gt; a = a &#43; 3
+  -= a -=3 ==&gt;a - e">
+<meta itemprop="datePublished" content="2020-05-01T16:42:24&#43;08:00" />
+<meta itemprop="dateModified" content="2020-05-01T16:42:24&#43;08:00" />
+<meta itemprop="wordCount" content="667">
+<meta itemprop="image" content="https://procarihana.github.io/"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/"/>
+
+<meta name="twitter:title" content="Java的运算系统"/>
+<meta name="twitter:description" content="基本运算   /
+int b = 5/2; &ndash;&gt;结果为 &lsquo;2&rsquo;（地板除）
+  取余运算
+5/2=2……1
+System.out.println(9 % 5);——&gt;2 System.out.println(-9 % 5);——&gt;-2(余数)      判断奇偶
+通过取余是否为零完成
+//判断一个整数是不是奇数 public static boolean isOdd(int number){ return number % 2 != 0; }    运算符
+    &#43;= ，-= ，*=，/=
+Eg：a&#43;=2 | a = a&#43;2
+  &#43;= a &#43;=3 ==&gt; a = a &#43; 3
+  -= a -=3 ==&gt;a - e"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-01 16:42:24 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd/Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/posts">Blogs</a></li><li><a href="https://procarihana.github.io/tags/">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        4 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/posts/java%E7%9A%84%E8%BF%90%E7%AE%97%E7%B3%BB%E7%BB%9F/">Java的运算系统</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h4 id="基本运算">基本运算</h4>
+<ul>
+<li>
+<p>/</p>
+<p>int b = 5/2;
+&ndash;&gt;结果为 &lsquo;2&rsquo;（地板除）</p>
+</li>
+<li>
+<p>取余运算</p>
+<p>5/2=2……1</p>
+<pre><code>System.out.println(9 % 5);——&gt;2
+System.out.println(-9 % 5);——&gt;-2(余数)
+</code></pre>
+</li>
+</ul>
+<ol>
+<li>
+<p>判断奇偶<br>
+通过取余是否为零完成</p>
+<pre><code>//判断一个整数是不是奇数
+  public static boolean isOdd(int number){
+      return number % 2 != 0;
+}
+</code></pre>
+</li>
+<li>
+<p>运算符</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>+= ，-= ，*=，/=<br>
+<strong>Eg：a+=2 | a = a+2</strong></p>
+</li>
+<li>
+<p>+= <br>
+a +=3  ==&gt; a = a + 3</p>
+</li>
+<li>
+<p>-= <br>
+a -=3  ==&gt;a - e</p>
+</li>
+<li>
+<p>%=    a
+a %=3  ==&gt;a % 3</p>
+</li>
+<li>
+<p>二元一次开根Eg</p>
+<pre><code>   public static double[] calculate(int a, int b, int c) {
+     double d = b * b - 4 * a * c;
+     if (d &gt; 0){
+         double root1 = ((-b + Math.sqrt(d)) / 2 * a);
+         double root2 = ((-b - Math.sqrt(d)) / 2 * a);
+         return new double[]{root1,root2};
+        }else if(d == 0) {
+        double root = ((-b + Math.sqrt(d)) / 2 * a);
+          return new double[]{root};
+   }else if (d &lt; 0){
+       return new double[]{};
+   }
+  return null;
+</code></pre>
+</li>
+</ul>
+<ol start="3">
+<li>自增自减 i++，i&ndash;,++i,&ndash;i</li>
+</ol>
+<ul>
+<li>
+<p>i++ | i=i+1 | i+= 1</p>
+<pre><code>    i++;  ==&gt; i=i+1/ i+=1
+          1、i作为表达式的值 ==&gt;System.out.println(i++);==&gt;0
+          
+          2、i = i + 1（a+=）
+            i = 1
+</code></pre>
+<p>++i; ==&gt; 1、b = b + 1</p>
+<pre><code>        2、把结果作为表达式的值 ==&gt;System.out.println(i++);==&gt;1
+</code></pre>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>i++ vs ++i</p>
+<pre><code>public static void printNumberTo10(int number) {
+   while (true) {
+       System.out.println(number++);
+       if (number &gt; 10) {
+              return;
+       }
+   }
+ } // ——&gt; 包括number本身             
+</code></pre>
+</li>
+</ul>
+<hr>
+<pre><code>    i = 0；
+    x = 0;
+    System.out.print(i++);
+    System.out.print(++x);
+        result: i++ = 0,i = 1;
+                ++x = 1,x = 1;
+</code></pre>
+<ol start="4">
+<li>比较运算符</li>
+</ol>
+<ul>
+<li>
+<p>结果是一个布尔值</p>
+<pre><code>   Eg：
+   System.out.println(2 == 1);  ==&gt; true
+   System.out.println(2 &gt; 1);  ==&gt; false
+</code></pre>
+</li>
+</ul>
+<ol start="5">
+<li>逻辑运算</li>
+</ol>
+<ul>
+<li>&amp;&amp; <strong>与：只要有一个是假的就都是假的</strong></li>
+<li>|| <strong>或：只要有一个是真的就都是真的</strong></li>
+<li>！非（相反）</li>
+<li>短路</li>
+</ul>
+<p>或：左侧结果是真的，后面的结果就会自动忽略掉（不会影响结果）
+与：左侧结果是假的……</p>
+<pre><code>  Boolean config = getconfig()
+    if (config != null &amp;&amp; config) {
+        /*config 的三种可能
+          1: true -&gt; true
+          2: false -&gt; false
+        */3: null -&gt; false
+    }
+   public static Boolean getconfig(){
+    //可能返回ture/false/null
+    }
+</code></pre>
+<p><strong>Eg：装拆箱的时候，对象为null的时候拆箱就会出现空指针异常，可以通过先判断是否为null来避免，用&amp;&amp;进行逻辑运算，当为null的时候直接结束运算。</strong></p>
+<ol start="6">
+<li>三元运算符 ?:</li>
+</ol>
+<ul>
+<li>
+<p>一元：int a = 1;  a++</p>
+</li>
+<li>
+<p>二元：a = a + 1; 9 % 5</p>
+</li>
+<li>
+<p>三元运算嵌套</p>
+<pre><code>   //当 a &gt; 0时，得到&quot;&gt;&quot;，否则，得到&quot;&lt;=&quot;
+  String sign;
+
+  if (a &gt; 0){
+      sign = &quot;&gt;&quot;;
+  }else {
+      sign = &quot;&lt;=&quot;;
+  }
+
+  //三元运算符重写这个过程：
+
+  sign = a &gt; 0 ? &quot;&gt;&quot; : &quot;&lt;=&quot;;
+
+  //若 a &gt; b 返回 1
+  //若 a &lt; b 返回 -1
+  //若 a = b 返回 0
+   int result = a &gt; b ? 1 : (a &lt; b ? -1 :0);
+     
+   return 100 &gt;= score &amp;&amp; score &gt;= 90 ? &quot;学生&quot;+student+&quot;的分数是&quot;+score+&quot;,评级是A&quot; : (89 &gt;= score &amp;&amp; score &gt;= 60 ? &quot;学生&quot;+student+&quot;的分数是&quot;+score+&quot;,评级是B&quot; : (59 &gt;= score &amp;&amp; score &gt;= 0 ? &quot;学生&quot;+student+&quot;的分数是&quot;+score+&quot;,评级是C&quot; :&quot;非法输入&quot; ));
+</code></pre>
+</li>
+</ul>
+<ol start="7">
+<li>位运算</li>
+</ol>
+<ul>
+<li>~ 按位取反 把字符的字节里面0变成1，1变成0</li>
+<li>补码：+1</li>
+<li>负数是通过补码表示的</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">4</th>
+<th align="center">0000</th>
+<th align="center">0100</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">取反</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center">~</th>
+<th align="center">1111</th>
+<th align="center">1011</th>
+</tr>
+</thead>
+</table>
+<p>+1</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">-4</th>
+<th align="center">0000</th>
+<th align="center">1100</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li>补码可以完成加法和减法（不进位加法）
+<strong>Eg：5-3</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">5</th>
+<th align="center">0000</th>
+<th align="center">0101</th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th align="center">3</th>
+<th align="center">0000</th>
+<th align="center">0011</th>
+</tr>
+</thead>
+</table>
+<p>取反补位</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">-3</th>
+<th align="center">1111</th>
+<th align="center">1101</th>
+</tr>
+</thead>
+</table>
+<hr>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">5+（-3）</th>
+<th align="center">10000</th>
+<th align="center">0100</th>
+</tr>
+</thead>
+</table>
+<p>去掉第一位</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">2</th>
+<th align="center">0000</th>
+<th align="center">0010</th>
+</tr>
+</thead>
+</table>
+<ul>
+<li>&amp; &amp;= 按位与  ：每个位进行一次与操作（有一个是0，则都是0）【And】</li>
+</ul>
+<p>0000 0011   3</p>
+<p>0000 0101   5</p>
+<hr>
+<p>0000 0001   1</p>
+<ul>
+<li>| |= 按位或 ：有一个是1，则就是1【or】</li>
+</ul>
+<p>0000 0110   6</p>
+<p>0000 1000   8</p>
+<hr>
+<p>0000 1110   14</p>
+<pre><code>Y ^ Y = 0 
+Y ^ 0 = Y 
+Eg:
+[1,2,3,4,5,6]
+[1,2,3,4,2,1]
+//找重复出现的数则用异或
+</code></pre>
+<p>判断字符串里是否有某个字符</p>
+<pre><code>public static boolean isValidHexCharacter(char ch) {
+    byte bch = (byte) ch;
+    String str = &quot;0123456789AaBbCcDdEeFf&quot;;
+    for (int i = 0; i &lt; str.length(); i++) {
+        int b = (int) str.charAt(i);
+        int d = b ^ bch;
+        if (d == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+</code></pre>
+<p>位运算代替boolean</p>
+<pre><code>public class Cat {
+   private static int CUTE = 0x1;
+   private int properties = 0;
+
+/**
+ * 使用位运算设置猫咪萌的属性
+ *
+ * @param cute true为萌，false为不萌
+ */
+public void setCute(boolean cute) {
+    properties = cute? (properties | CUTE) : (properties &amp;(~CUTE));//true为1 ，false为0
+    
+}
+
+/**
+ * 这只猫萌吗？请在此处使用位运算读取properties，得到猫是否萌的结果
+ *
+ * @return 萌则返回true，否则返回false
+ */
+public boolean isCute() {
+    return (properties &amp; CUTE) != 0;
+}
+</code></pre>
+<ul>
+<li>&laquo;=左移【&laquo;】</li>
+</ul>
+<p>0000 0101     |5[左移一位]</p>
+<p><del>0</del> 0000 101++0++    |  5 * 2 ^ 1 = 10（去掉最前一位，后面补一个0）</p>
+<p>0000 0101   |5[左移2位]</p>
+<p><del>00</del>  0001 01++00++  5* 2 ^ 2= 20</p>
+<p>对任何进制进行左移操作，就是乘以这个进制的基数
+左移n为，相当于乘以2的n次方</p>
+<ul>
+<li><code>&gt;&gt;</code> &raquo;=带符号右移：该数对应的二进制码整体右移，左边的用原有标志位（原本是1就用1，是0就用0）补充，右边超出的部分舍弃。</li>
+</ul>
+<p>1(表示符号'+&rsquo;) 111 1110</p>
+<p>0(表示符号&rsquo;-') 111 1110</p>
+<ul>
+<li><code>&gt;&gt;&gt;</code> &raquo;&gt;=无符号右移：不管正负标志位为0还是1，将该数的二进制码整体右移，左边部分总是以0填充，右边部分舍弃。</li>
+</ul>
+<p>-5用二进制表示1111 1011 <em>标志</em>位</p>
+<p>-5&raquo;2: <em>1</em>111 1011&mdash;&mdash;&mdash;&mdash;&ndash;&gt;<strong>11</strong> <em>1</em>1 1110。</p>
+<p><strong>11</strong>为标志位</p>
+<p>-5&raquo;&gt;2:  <em>1</em>111 1011&mdash;&mdash;&mdash;&mdash;&ndash;&gt;<strong>00</strong> <em>1</em>1 1110。</p>
+<p><strong>00</strong>为补充的0</p>
+<p>位运算：</p>
+<ol>
+<li>设置属性某一位上面是1，其他都是0。</li>
+<li>然后进行按位与（与过有1的都是1），从而把属性都放进int里面，只需要4个字节
+boolean： 存放需要32个字节</li>
+</ol>
+<ul>
+<li>
+<p>设置<code>|</code>  无论原先是0还是1 ，进行按位或1操作最后都是1</p>
+</li>
+<li>
+<p>读取<code>&amp;</code>  无论原先是0还是1 ，进行按位与1操作最后都是1</p>
+</li>
+<li>
+<p>不用乘除号进行运算</p>
+<pre><code>  // 返回number乘以16的结果
+  // 请不要使用乘号
+  public static int multiply16(int number) {
+      return number &lt;&lt; 4;
+  }
+  // 返回number除以16的结果
+  // 请不要使用除号
+  public static int divide16(int number) {
+       return number &gt;&gt; 4;
+   }
+</code></pre>
+</li>
+</ul>
+<ol start="8">
+<li>运算符的优先级</li>
+</ol>
+<ul>
+<li>乘除高于加减</li>
+<li>其他全部加括号</li>
+</ul>
+<ol start="9">
+<li>字符串加法</li>
+</ol>
+<ul>
+<li>对象进行字符串加法的时候，就会把相应的toString方法或者原生类型的相应表示</li>
+<li>字符串加法会自动调用StringBuilder，减轻内存压力。因为对象是不可改变的，进行运算的时候会残生很多新的对象，造成储存空间的浪费。</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        667 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-05-01 16:42 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/posts/ideamaven%E8%B0%83%E8%AF%95%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+                <span class="button__icon">←</span>
+                <span class="button__text">IDEAMaven调试器的基本使用</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/posts/java%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+                <span class="button__text">Java的数据类型</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="面向对象的三大特征 封装 优点：实现细节可以发生变化，只要接口不变，就不会对使用产生影响 理念：对外暴露尽可能少的细节
+继承 多态 封装 封装隐藏了内部实现细节，只暴露出接口 电灯对象 高、低耦合
+  你只访问他的“开关”接口，不关心内部的“电路”细节
+ public static void main(String[] args) { Light light = new Light(); light.turnOn();//低耦合 Light light2 = new Light(); light2.打开电路1(); light2.打开电路2(); light2.打开电路3(); //高耦合,比低耦合更难扩展 //Home类和Light类之间建立联系——&amp;gt;耦合（让改变变得困难） //一方进行改变时，另一方也需要进行改变 public class Light {  public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节
+} public void 打开电路1(){
+} public void 打开电路2(){
+} public void 打开电路3(){
+}
+  废弃后使用自动停止，不影响其他代码的运行
+public class Light { @Deprecated public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节 } public static void main(String[] args) { Light light = new Light();  light." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/posts/java-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%88%9D%E6%AD%A5%E5%B0%81%E8%A3%85%E4%B8%8E%E9%9A%90%E8%97%8F/" />
+
+
+    <title>
+        
+            Java 面向对象初步——封装与隐藏 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Java 面向对象初步——封装与隐藏">
+<meta itemprop="description" content="面向对象的三大特征 封装 优点：实现细节可以发生变化，只要接口不变，就不会对使用产生影响 理念：对外暴露尽可能少的细节
+继承 多态 封装 封装隐藏了内部实现细节，只暴露出接口 电灯对象 高、低耦合
+  你只访问他的“开关”接口，不关心内部的“电路”细节
+ public static void main(String[] args) { Light light = new Light(); light.turnOn();//低耦合 Light light2 = new Light(); light2.打开电路1(); light2.打开电路2(); light2.打开电路3(); //高耦合,比低耦合更难扩展 //Home类和Light类之间建立联系——&gt;耦合（让改变变得困难） //一方进行改变时，另一方也需要进行改变 public class Light {  public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节
+} public void 打开电路1(){
+} public void 打开电路2(){
+} public void 打开电路3(){
+}
+  废弃后使用自动停止，不影响其他代码的运行
+public class Light { @Deprecated public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节 } public static void main(String[] args) { Light light = new Light();  light.">
+<meta itemprop="datePublished" content="2020-05-11T17:18:58&#43;08:00" />
+<meta itemprop="dateModified" content="2020-05-11T17:18:58&#43;08:00" />
+<meta itemprop="wordCount" content="434">
+<meta itemprop="image" content="https://procarihana.github.io/"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/"/>
+
+<meta name="twitter:title" content="Java 面向对象初步——封装与隐藏"/>
+<meta name="twitter:description" content="面向对象的三大特征 封装 优点：实现细节可以发生变化，只要接口不变，就不会对使用产生影响 理念：对外暴露尽可能少的细节
+继承 多态 封装 封装隐藏了内部实现细节，只暴露出接口 电灯对象 高、低耦合
+  你只访问他的“开关”接口，不关心内部的“电路”细节
+ public static void main(String[] args) { Light light = new Light(); light.turnOn();//低耦合 Light light2 = new Light(); light2.打开电路1(); light2.打开电路2(); light2.打开电路3(); //高耦合,比低耦合更难扩展 //Home类和Light类之间建立联系——&gt;耦合（让改变变得困难） //一方进行改变时，另一方也需要进行改变 public class Light {  public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节
+} public void 打开电路1(){
+} public void 打开电路2(){
+} public void 打开电路3(){
+}
+  废弃后使用自动停止，不影响其他代码的运行
+public class Light { @Deprecated public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节 } public static void main(String[] args) { Light light = new Light();  light."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-11 17:18:58 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd/Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/posts">Blogs</a></li><li><a href="https://procarihana.github.io/tags/">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        3 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/posts/java-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%88%9D%E6%AD%A5%E5%B0%81%E8%A3%85%E4%B8%8E%E9%9A%90%E8%97%8F/">Java 面向对象初步——封装与隐藏</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="面向对象的三大特征">面向对象的三大特征</h2>
+<h3 id="封装">封装</h3>
+<p>优点：实现细节可以发生变化，只要接口不变，就不会对使用产生影响
+理念：对外暴露尽可能少的细节</p>
+<h3 id="继承">继承</h3>
+<h3 id="多态">多态</h3>
+<h2 id="封装-1">封装</h2>
+<h3 id="封装隐藏了内部实现细节只暴露出接口">封装隐藏了内部实现细节，只暴露出接口</h3>
+<h4 id="电灯对象">电灯对象</h4>
+<p>高、低耦合</p>
+<ul>
+<li>
+<p>你只访问他的“开关”接口，不关心内部的“电路”细节</p>
+<pre><code> public static void main(String[] args) {
+  Light light = new Light();
+  light.turnOn();//低耦合
+
+  Light light2 = new Light();
+  light2.打开电路1();
+  light2.打开电路2();
+  light2.打开电路3();
+  //高耦合,比低耦合更难扩展
+
+  //Home类和Light类之间建立联系——&gt;耦合（让改变变得困难）
+  //一方进行改变时，另一方也需要进行改变
+    
+  public class Light {
+</code></pre>
+<p>public void turnOn(){//接口
+打开电路1();
+打开电路2();
+打开电路3();//细节</p>
+<p>}
+public void 打开电路1(){</p>
+<p>}
+public void 打开电路2(){</p>
+<p>}
+public void 打开电路3(){</p>
+<p>}</p>
+</li>
+</ul>
+<p>废弃后使用自动停止，不影响其他代码的运行</p>
+<pre><code>public class Light {
+@Deprecated
+public void turnOn(){//接口
+    打开电路1();
+    打开电路2();
+    打开电路3();//细节
+    
+}
+public static void main(String[] args) {
+    Light light = new Light();
+</code></pre>
+<p>light.<del>turnOn()</del>;//低耦合</p>
+<h4 id="汽车">汽车</h4>
+<ul>
+<li>你只访问他的“方向盘”接口，不关心内部的细节</li>
+<li>可以通过@Deprecated告知方法废弃，但不会有任何错误</li>
+</ul>
+<hr>
+<pre><code>return gender.equals(&quot;M&quot;);
+return Object.equals.(gender,&quot;M&quot;);
+return &quot;M&quot;.equals(grnder);//保证gender是空指针，也不会抛出空指针异常，因为M永远不会是空指针
+</code></pre>
+<h3 id="不封装">不封装</h3>
+<ul>
+<li>暴露细节的结果就是无法变化</li>
+<li>软件的演进例子：为原先的属性增加限制</li>
+<li>软件的演进例子： 修改某些属性</li>
+</ul>
+<h2 id="封装的实现">封装的实现</h2>
+<ul>
+<li>外界只通过一个接口和里面进行交互，里面的实现细节用private 进行 构造器用private，保证外界不能够用new 直接进行对象的创建</li>
+</ul>
+<h3 id="访问控制符">访问控制符</h3>
+<h6 id="包如同一个文件夹每个类在包里面只能在包中被看到包外是无法被看到的有一个接口和外界交互外界不能访问包里面的内容">包：如同一个文件夹，每个类在包里面，只能在包中被看到，包外是无法被看到的。有一个接口和外界交互，外界不能访问包里面的内容</h6>
+<p><strong>包是没有嵌套包含关系的</strong></p>
+<ul>
+<li>public 任何人都能访问</li>
+<li>protected 只有子类和同一个包的类可以访问（子类访问通过extend继承）<br>
+同一个包的类可以访问是因为封装的边界是把包内和接口外相分离</li>
+<li>package private <em>包级私有</em> 只有同一个包的类可以访问</li>
+<li>private 只有自己可以访问</li>
+<li>包级私有<br>
+不加任何的访问限定符</li>
+</ul>
+<p><strong>只有在同一个包中的类才能看到，包外的类看不到里面</strong></p>
+<h3 id="javabean约定">JavaBean约定</h3>
+<ul>
+<li>
+<p>getter</p>
+</li>
+<li>
+<p>setter</p>
+</li>
+<li>
+<p>首字母大写</p>
+<p>//非boolean属性 firstName
+public String getFristName
+public void setFristName</p>
+<p>//boolean属性male
+public boolean isMale()
+pubilc void setMale(boolean male)</p>
+</li>
+</ul>
+<h4 id="json">JSON</h4>
+<ul>
+<li>
+<p>互联网前后段交换的一种格式，是序列化和反序列化的实现</p>
+</li>
+<li>
+<p>将对象用字符串表示出来的一种方法</p>
+</li>
+<li>
+<p>序列化serialization<br>
+把一个对象变成一段字符串、一个字节流（序列化的对象）
+【序列化Picture】</p>
+</li>
+<li>
+<p>反序列化deserialize<br>
+把字符串或字节流转换成一个的对象</p>
+</li>
+<li>
+<p>FastJson API</p>
+<p>public static void main(String[] args) {
+Cat cat = new Cat(&ldquo;miao&rdquo;,true);
+System.out.println(JSON.toJSONString(cat));//序列化
+String s = &ldquo;{&quot;cute&quot;:true,&quot;name&quot;:&quot;miao&quot;}&quot;;
+cat = JSON.parseObject(s,Cat.class);//反序列化
+}</p>
+</li>
+<li>
+<p>Json的读写关键在javaBean的getter和setter、is，并非是内部的属性（成员变量）</p>
+</li>
+<li>
+<p>如果属性是null的话，就会自动忽略掉</p>
+</li>
+</ul>
+<h2 id="设计模式实战工厂方法">设计模式实战：工厂方法</h2>
+<p>注释有可能过时，通过方法名、变量名等方式让编译器能够读懂，使得代码更容易被阅读。</p>
+<p>静态工厂：statci 返回要生产的对象 方法名<br>
+<strong>（可以任意取，通过阅读可以得知信息）</strong></p>
+<ul>
+<li>使用静态工厂方法代替构造器</li>
+<li>将构造器私有化</li>
+<li>实际上就是封装</li>
+</ul>
+<h5 id="优点">优点：</h5>
+<ol>
+<li>
+<p>方法有名字，可以让人从中得知方法的信息，且可以被编译器处理。注释是不会被编译器编译的，还存在过时的情况</p>
+</li>
+<li>
+<p>不同于构造器，静态工厂方法不一定要创造一个新的对象，可以返回null或者之前创造的对象，使得</p>
+<pre><code> Cat cat = new Cat();//构造器，创造实例对象。
+
+
+ public static Cat newCuteCat(String name) {
+ if (name == null){
+     return new Cat（name,cute:true）;
+ }//不需要创造一个对象，可以返回之前创造的构造器
+</code></pre>
+</li>
+<li>
+<p>可以返回返回类型的子类型，提高静态方法的因果性；而构造器并不可以</p>
+<p>public class WhileCat extends Cat {</p>
+<p>public WhileCat(String name, boolean cute) {
+super(name, cute);
+}
+}
+public static Cat newCuteCat(String name) {
+if (name.contains(&ldquo;while&rdquo;)) {
+return new WhileCat(name, true);
+}</p>
+</li>
+<li>
+<p>返回的对象可以变化，根据输入的参数动态决定选择返回的预先定义好的对象，节省时间且避免每次都要重新创建新的对象的内存占用。</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>可以返回一些动态的类，通过动态加载一些未来的类</p>
+</li>
+<li>
+<p>并没有用new创造任何对象，而是返回true和flase这两个预先定义好的对象。不需要每次都创造对象</p>
+<p>public class Cat {
+private static final Cat INVALID_CAT = new Cat(&ldquo;Invalid cat&rdquo;,false);
+//对象创建用来应对非法对象
+}
+public static Cat newCuteCat(String name) {</p>
+<pre><code>  if (name == null || name.isEmpty()){
+  //传进的参数不合法的时候，就能够返回预先定义好的对象，避免重新创建新的对象应对
+      return INVALID_CAT;
+  }
+  return new Class.forName(&quot;FutureCat&quot;).newInstance();
+</code></pre>
+<p>}</p>
+</li>
+<li>
+<p>静态工厂方法EG：<br>
+Boolean.valueof
+Integer.parseInt</p>
+</li>
+</ul>
+<ol start="5">
+<li>
+<p>静态工厂返回的对象可以不存在（Java动态加载）</p>
+<p>return new Class.forName(&ldquo;futureCat&rdquo;).newInstance();</p>
+</li>
+</ol>
+<h5 id="缺点">缺点：</h5>
+<ol>
+<li>没有办法被子类化，不能被覆盖**（非构造器）**；但是构造器可以被子类调用</li>
+<li>很难让开发者找到（名字）</li>
+</ol>
+<ul>
+<li>使用静态工厂方法代替构造器</li>
+</ul>
+<p>表现出对外接口的状态</p>
+<ul>
+<li>将构造器私有化</li>
+</ul>
+<h2 id="类的访问限定符">类的访问限定符</h2>
+<ul>
+<li>public 所有人都可以访问</li>
+<li>不加public，什么都不添加的话，就是包级私有（包提供的封装边界）</li>
+<li>package private 同一个包的类可以访问</li>
+<li>
+<ul>
+<li><strong>包之间是没有父子关系的</strong>（包之间没有任何关系）</li>
+</ul>
+</li>
+<li>private static class InnerClass只能在同一个类中访问（也是封装的一种形式）</li>
+<li>包级私有限定的是通过包名判断的，但是JVM有包名设置的限定，对于自定义的包含java在运行时是不被允许的</li>
+<li>了解Java Platform Module System
+模块化接口，使得包可以私有化，让内部包</li>
+</ul>
+<h5 id="包级私有破坏">包级私有破坏</h5>
+<p><strong>创建一个名字一样的包在包里面创造一个类作为桥梁，然后return new出要访问的私有包的类。最后在Main调用就可以了</strong></p>
+<pre><code>   Eg：https://github.com/hcsp/bypass-package-private/pull/29
+</code></pre>
+<h5 id="用中间类绕过包级私有的限制">用中间类绕过包级私有的限制</h5>
+<h2 id="java模块系统简介">Java模块系统简介</h2>
+<ul>
+<li>JDK9的新功能，把包对外封装成模块module，提供更大范围的封装，包级私有的包就不会被破坏</li>
+</ul>
+<h2 id="封装的必要性">封装的必要性</h2>
+<ul>
+<li>软件的演进 —— 向外界暴露内部实现类的风险</li>
+</ul>
+<h2 id="扩展阅读">扩展阅读</h2>
+<ul>
+<li>
+<p>JSON序列化/反序列化与JavaBean约定</p>
+</li>
+<li>
+<p>setter的链式调用</p>
+</li>
+<li>
+<p>builder 模式 Vs构造器</p>
+</li>
+<li>
+<p>解决变量（参数）太多的问题</p>
+</li>
+<li>
+<ul>
+<li>构造器 :
+Person person = new Person(firstName:&quot;&quot;,lastname:&quot;&quot;,address:&quot;&quot;,phone:123)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Builder：<br>
+person = PersonBulider.aPerson()<br>
+.withFirstName(&quot;&quot;)<br>
+.withLastName(&quot;&quot;)<br>
+.withAddress(&quot;&quot;);</p>
+<p>public class UserBuilder {
+// 请在这里使用builder模式建造User对象
+// 所需的接口请参阅UserBuilderTest测试类
+private String firstName;
+private String lastName;
+private String phoneNumber;
+private String address;</p>
+<p>//    private UserBuilder() {
+//
+//    }
+//把private 改成public 以及 直接删除掉，都可以让UserBuilderTest实现，那么是否这个方法不需要存在？</p>
+<p>public static UserBuilder anUser() {
+return new UserBuilder();//提供静态空转的方法
+}</p>
+<p>public UserBuilder firstName(String firstName) {
+this.firstName = firstName;
+return this;
+}</p>
+<p>public UserBuilder lastName(String lastName) {
+this.lastName = lastName;
+return this;
+}</p>
+<p>public UserBuilder phoneNumber(String phoneNumber) {
+this.phoneNumber = phoneNumber;
+return this;
+}</p>
+<p>public UserBuilder address(String address) {
+this.address = address;
+return this;
+}</p>
+<pre><code>public User build() {
+    return new User(firstName, lastName, phoneNumber, address);
+    }
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>builder 同样也可以设置默认值</p>
+</li>
+</ul>
+<h2 id="书">书</h2>
+<p>Effictive Java</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        434 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-05-11 17:18 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Java面向对象——组合与继承</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/posts/java-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%88%9D%E6%AD%A5/">
+                <span class="button__text">Java 面向对象初步</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

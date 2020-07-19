@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="三大特征 封装 继承 public class Animal { protected String name;
+public Animal(String name) { this.name = name; } public void sayMyName() { System.out.println(&amp;quot;我的名字是&amp;quot; &#43; name); } public class Cat extends Animal{ public Cat(String name) { super(name); } public void meow() { System.out.println(&amp;quot;喵&amp;quot; &#43; name); } } public class Main { public static void main(String[] args) { Cat cat = new Cat(&amp;quot;ABC&amp;quot;); cat.meow(); cat.sayMyName(); }  多态 继承 DRY（Donot Repeat Yourself）  事不过三，三则重构  继承的本质是提炼出公用代码，避免重复 继承一个类就会自动继承类的行为" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/" />
+
+
+    <title>
+        
+            Java面向对象——组合与继承 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Java面向对象——组合与继承">
+<meta itemprop="description" content="三大特征 封装 继承 public class Animal { protected String name;
+public Animal(String name) { this.name = name; } public void sayMyName() { System.out.println(&quot;我的名字是&quot; &#43; name); } public class Cat extends Animal{ public Cat(String name) { super(name); } public void meow() { System.out.println(&quot;喵&quot; &#43; name); } } public class Main { public static void main(String[] args) { Cat cat = new Cat(&quot;ABC&quot;); cat.meow(); cat.sayMyName(); }  多态 继承 DRY（Donot Repeat Yourself）  事不过三，三则重构  继承的本质是提炼出公用代码，避免重复 继承一个类就会自动继承类的行为">
+<meta itemprop="datePublished" content="2020-05-11T17:19:33&#43;08:00" />
+<meta itemprop="dateModified" content="2020-05-11T17:19:33&#43;08:00" />
+<meta itemprop="wordCount" content="545">
+<meta itemprop="image" content="https://procarihana.github.io/"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/"/>
+
+<meta name="twitter:title" content="Java面向对象——组合与继承"/>
+<meta name="twitter:description" content="三大特征 封装 继承 public class Animal { protected String name;
+public Animal(String name) { this.name = name; } public void sayMyName() { System.out.println(&quot;我的名字是&quot; &#43; name); } public class Cat extends Animal{ public Cat(String name) { super(name); } public void meow() { System.out.println(&quot;喵&quot; &#43; name); } } public class Main { public static void main(String[] args) { Cat cat = new Cat(&quot;ABC&quot;); cat.meow(); cat.sayMyName(); }  多态 继承 DRY（Donot Repeat Yourself）  事不过三，三则重构  继承的本质是提炼出公用代码，避免重复 继承一个类就会自动继承类的行为"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-11 17:19:33 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd/Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/posts">Blogs</a></li><li><a href="https://procarihana.github.io/tags/">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        3 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/">Java面向对象——组合与继承</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="三大特征">三大特征</h2>
+<h5 id="封装">封装</h5>
+<h5 id="继承">继承</h5>
+<p>public class Animal {
+protected String name;</p>
+<pre><code>public Animal(String name) {
+    this.name = name;
+}
+
+public void sayMyName() {
+    System.out.println(&quot;我的名字是&quot; + name);
+}
+public class Cat extends Animal{
+
+public Cat(String name) {
+    super(name);
+}
+
+public void meow() {
+    System.out.println(&quot;喵&quot; + name);
+}
+}
+public class Main {
+public static void main(String[] args) {
+    Cat cat = new Cat(&quot;ABC&quot;);
+    cat.meow();
+    cat.sayMyName();
+    }
+</code></pre>
+<h5 id="多态">多态</h5>
+<h2 id="继承-1">继承</h2>
+<h3 id="drydonot-repeat-yourself">DRY（Donot Repeat Yourself）</h3>
+<ul>
+<li>事不过三，三则重构</li>
+</ul>
+<h3 id="继承的本质是提炼出公用代码避免重复">继承的本质是提炼出公用代码，避免重复</h3>
+<p>继承一个类就会自动继承类的行为</p>
+<h2 id="java的继承体系">Java的继承体系</h2>
+<h3 id="单根继承单一继承声明一个class的时候不声明任何东西都会继承object">单根继承（单一继承）：声明一个Class的时候，不声明任何东西都会继承Object</h3>
+<h4 id="优点">优点</h4>
+<ul>
+<li>
+<p>保证所有对象都拥有同一种行为，方便处理</p>
+</li>
+<li>
+<p>对比C++的多重继承</p>
+</li>
+</ul>
+<h3 id="object类有那些需要了解的方法">Object类有那些需要了解的方法？</h3>
+<ul>
+<li>equals（）</li>
+</ul>
+<p>判断两个对象是不是同一个对象（地址、内存）</p>
+<pre><code>Object a = new Object();
+Object b = new Object();
+a.equals(b);
+//虽然不是两个相同的对象，但是包含的内容相同，所以认为是相等的
+</code></pre>
+<p>==equals()andhashcoad()==</p>
+<pre><code>public class Order {
+Integer id;
+String name;
+//id一样，即使地址不一样，就认为是同一个订单
+
+@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Order order = (Order) o;
+    return id.equals(order.id);
+}
+
+@Override
+public int hashCode() {
+    return Objects.hash(id);
+}
+</code></pre>
+<p>当你覆盖Equals方法的时候，要同时覆盖Hashcode
+“==”判断地址是否相同；/原生数据类型则是比较的是值否向同</p>
+<ul>
+<li>
+<p>toString（）</p>
+</li>
+<li>
+<p>对一个对象提供字符串表示</p>
+</li>
+<li>
+<p>所有的对象都有toString方法（所有对象都继承Object类）</p>
+<p>public static void main(String[] args) {
+Cat a = new Cat();
+System.out.println(a);
+public class Cat {
+String name = &ldquo;hey&rdquo;;</p>
+<p>@Override
+public String toString() {
+return &ldquo;Cat{&rdquo; +
+&ldquo;name=&rsquo;&rdquo; + name + &lsquo;'&rsquo; +
+&lsquo;}';
+}</p>
+</li>
+</ul>
+<h2 id="类的结构与初始化顺序">类的结构与初始化顺序</h2>
+<ul>
+<li>子类拥有父类的一切数据和行为<br>
+（即使继承的子类一行代码也没有，也可以调用父类的方法）</li>
+<li>子类可以继承父类的父类</li>
+<li>父类先于子类生成构造器，因为只有调用父类的方法后才能够完成子类的构造器的</li>
+<li>必须拥有匹配的构造器</li>
+<li>
+<ul>
+<li>super关键字</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>需要自行生成一个子类的构造器的时候，就必须要声明一个和父类构造器参数相同的构造器。构造器第一句一定是超类构造器super（父类参数）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>初始化顺序
+构造器（不声明任何构造器的化，编译器会自动生成）
+不在父类声明构造器时，父类和子类会有自动构造器生成
+如果在父类声明构造器，则需要在子类声明super构造器</p>
+<ol>
+<li>父类初始化语句</li>
+<li>父类初始化块</li>
+<li>父类的constructor</li>
+<li>子类的……
+A继承B继承C<br>
+C先被创造出来，接着到B，最后到A</li>
+</ol>
+<h2 id="实例方法的override">实例方法的Override</h2>
+<ul>
+<li>
+<p>又称为覆盖/重写</p>
+</li>
+<li>
+<p>永远使用@Override注解来防手残</p>
+<pre><code>      public static main(String[]args){
+          String 1 = &quot;ABC&quot;;
+          String 2 = &quot;ABC&quot;;
+          1.equals(2);
+      }
+      在执行的过程中可以看到判断相等的时候会看到当前的Integer.equals方法会覆盖object.equal方法(判断value是否相同)
+</code></pre>
+</li>
+</ul>
+<h2 id="模版方法">模版方法</h2>
+<ul>
+<li>提供一个“模版”，实现可以覆盖模版的全部或者部分
+子类可以调用父类的方法，在调用的过程中通过覆盖达到完成需求的目的，其他不改动的沿用父类的模版执行
+！！！ 图*2</li>
+<li>通过@Override可以模板中的一个流程，实现自定义的功能</li>
+<li>在Override里面通过super.父类的方法，从而实现先执行父类的模板再实现自定义</li>
+</ul>
+<h2 id="向上向下转型">向上/向下转型</h2>
+<h4 id="一个子类类型的对象永远是一个父类类型的对象">一个子类类型的对象永远是一个父类类型的对象</h4>
+<ul>
+<li>正如一只猫同时也是一只动物，同时也是一个对象</li>
+<li>instanceof 判断类型</li>
+<li>null instanceof？ == false</li>
+</ul>
+<p>Eg：
+object &lt;&ndash; Number &lt;&ndash; Integer</p>
+<p>a instanceod Integer/Number/Object (a是不是Integer/Number/Object的一个实例)</p>
+<h3 id="null不是任何东西的对象"><strong>Null不是任何东西的对象</strong></h3>
+<p>null instanceof a(必须是一个类，所以不能是null) ==&gt;false</p>
+<h5 id="因此需要一个父类型时总可以传递一个子类型">因此，需要一个父类型时，总可以传递一个子类型</h5>
+<p>因为所有的子类都是父类的实例
+null可以被赋值给任何引用类型的对象，因此null也可以传递给父类<br>
+AnimalName（new Cat（name:&ldquo;喵&rdquo;））</p>
+<h5 id="转型">转型</h5>
+<p>子类转换为父类是安全的，但是父类转为子类是危险的（小的放进大的里面是安全的，大放小则有可能溢出）</p>
+<pre><code> Animal a = new Animal();
+ //类似于int a = 1；
+ //long i = a；
+ //int b = （int）i；
+ sayAnimalName((Dog)a);//通过强制传换 
+ 
+ public static void sayAnimalName(Dog animal){
+
+ }
+
+
+
+
+    public class Classifier {
+    public static void main(String[] args) {
+    List&lt;Object&gt; list = Arrays.asList(&quot;0&quot;, 1, 2L, &quot;3&quot;, new Object());
+    List&lt;Number&gt; numbers = new ArrayList&lt;&gt;();
+    List&lt;String&gt; strings = new ArrayList&lt;&gt;();
+    List&lt;Object&gt; others = new ArrayList&lt;&gt;();
+
+    classify(list, numbers, strings, others);
+
+    System.out.println(&quot;numbers = &quot; + numbers);
+    System.out.println(&quot;strings = &quot; + strings);
+    System.out.println(&quot;others = &quot; + others);
+}
+
+/**
+ * 给定一个包含任意对象的列表，将其按照以下方式分类： 如果对象是Number类型，将其放入numberList； 如果对象是String类型，将其放入stringList；
+ * 否则，将其放入otherList。
+ *
+ * @param list 给定的包含任意对象的列表
+ * @param numberList 用于接收所有Number对象的列表
+ * @param stringList 用于接收所有String对象的列表
+ * @param otherList 用于接收其余所有类型对象的列表
+ */
+public static void classify(
+        List&lt;Object&gt; list,
+        List&lt;Number&gt; numberList,
+        List&lt;String&gt; stringList,
+        List&lt;Object&gt; otherList) {
+    for (Object element : list ){//先游历数据一遍
+        if (element instanceof Number){
+            numberList.add((Number) element);
+        }else if (element instanceof String){
+            stringList.add((String)element);
+            }else otherList.add(element);
+        }
+    }
+
+    }
+</code></pre>
+<h2 id="super关键字">Super关键字</h2>
+<p>调用父类的方法（包括构造函数）</p>
+<h2 id="final关键字">final关键字</h2>
+<h5 id="final声明变量变量成为不可变的必须初始化保证线程安全">final声明变量，变量成为不可变的（必须初始化），保证线程安全</h5>
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> final int i;</p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> -</p>
+<pre><code>public Main(int i){
+this.i = 1;
+//this.i = 2;不行，因为final之后只能够赋值一次，之后就不能够被改写了
+}
+</code></pre>
+<p>final int i;</p>
+</li>
+<li>
+<p>局部变量/方法参数</p>
+</li>
+<li>
+<p>成员变量</p>
+</li>
+</ul>
+<h5 id="final-声明对象">final 声明对象</h5>
+<pre><code>Date date = new Date();
+f(date)
+
+ private void f(final Date date){
+     //对象只是一个地址，final对象指向的地址改变不可以
+     //但是指向的内容可以改变
+     date = new Date();//不行
+     date.setTime();//数据可变
+ }
+</code></pre>
+<ul>
+<li>
+<p>常量与单例<br>
+通过final 声明常量，使用对象的时候不需要在此new一个新的对象，可以直接使用这个常量。引用常量的时候可以通过名字引用，能够快速知道常量的意义。</p>
+<pre><code>      public static final int MAX_VALUE = 100;
+      public void maxValue(){
+      for(int i = 0 ; i &lt; MAX_VALUE ; i++){
+    
+      }  
+</code></pre>
+</li>
+</ul>
+<h6 id="单例">单例</h6>
+<ul>
+<li>不能被继承，因为是final</li>
+<li>
+<ul>
+<li>方法命名：驼峰形式 maxValue</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>常量命名：全部大写 MAX_VALUE</p>
+<pre><code>private static final World SINGLEON_INSTANCE = new World();//改变成public就可以被大家所引用
+private World(){//构造器私有化，保证没有人能够通过public的方法调用
+    
+}
+/*但是还是能调用创建新的对象
+1. 通过反射调用private的构造器
+2. 使用序列化和反序列化
+*/
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>Boolean Integer ……</p>
+<pre><code>    private static final World SINGLEON_INSTANCE = new World();
+    public static void World getInstance(){
+    return SINGLETON_INSTANCE;//通过工厂方法动态决定是否调用单例，也可作为与外界接触的接口
+}
+</code></pre>
+<p>final优点：</p>
+<ol>
+<li>保证变量被使用的时候是最开始的值</li>
+<li>线程是安全的，不用担心多线程带来的问题</li>
+<li>类不会被继承，覆盖，重写，不会被改变，保证约定不会被打破，不用担心多态</li>
+</ol>
+<h5 id="final在方法上的声明禁止继承覆盖重写此方法">final在方法上的声明：禁止继承/覆盖/重写此方法</h5>
+<h5 id="final在类声明上的使用禁止继承此类">final在类声明上的使用：禁止继承此类</h5>
+<ul>
+<li>继承提供了灵活性，也埋下了隐患</li>
+<li>为什么String/Integer等类是final的？<br>
+避免一些特殊的常量被恶意继承，例如Integer 的MAX_VALUE、MIX_VALUE 破坏约定</li>
+</ul>
+<h2 id="组合">组合</h2>
+<h5 id="继承is---a">继承：is - a</h5>
+<ul>
+<li>使用继承是为了复用方法</li>
+</ul>
+<h5 id="组合has---a">组合：has - a</h5>
+<ul>
+<li>
+<p>可以复用多份代码</p>
+<pre><code>  class Cat {
+      Bell bell;
+  }
+  private class Bell{
+        
+  }
+  class Home{
+      Cat cat;
+  }
+</code></pre>
+</li>
+<li>
+<p>但是实际中，二者的界限有时候很难区分</p>
+</li>
+<li>
+<p>CountingSet</p>
+</li>
+<li>
+<p>完全不实用继承
+git clone <a href="https://github.com/victoriadrake/hugo-theme-sam.git">https://github.com/victoriadrake/hugo-theme-sam.git</a> themes/sam</p>
+</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        545 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-05-11 17:19 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Java面向对象————多态</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/posts/java-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%88%9D%E6%AD%A5%E5%B0%81%E8%A3%85%E4%B8%8E%E9%9A%90%E8%97%8F/">
+                <span class="button__text">Java 面向对象初步——封装与隐藏</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

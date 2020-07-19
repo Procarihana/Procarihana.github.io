@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="面向对象的三大特征 封装 继承 多态 多态：不同类的不同的实现方法
+ 方法名字变量都一样，但是子类继承后的实现不一样  重载：两个类同一个方法的不同实现,根据最接近的类型进行匹配
+ 方法名相同，参数表不一样  多态 实例方法本身是多态的 实例：一个方法不是静态的就是实例方法
+通过区分有无Statci
+ 在运行时根据this（当前对象的实际类型）来决定调用哪个方法 []方法接收者  obj.method(1)
+消息接受者.消息（参数）//接受者会根据消息的不同自行决定如何响应消息
+ 静态方法没有多态 参数静态绑定，接受者动态绑定 覆盖：重写父类中的方法，方法名、参数不能改变，但是返回值可以改变   多态只对方法的接受者生效     多态只选择接受者的类型，不选择参数的类型    public class Base { public void print(ParamBase param) { System.out.println(&amp;#34;I am Base,the param is ParamBase&amp;#34;); } public void print(ParamSub param){ System.out.println(&amp;#34;I am Base,the param is ParamSub&amp;#34;); } } public class Sub extends Base { @Override public void print(ParamBase param){ System." />
+<meta name="keywords" content=", 多态, 面向对象" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81/" />
+
+
+    <title>
+        
+            Java面向对象————多态 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Java面向对象————多态">
+<meta itemprop="description" content="面向对象的三大特征 封装 继承 多态 多态：不同类的不同的实现方法
+ 方法名字变量都一样，但是子类继承后的实现不一样  重载：两个类同一个方法的不同实现,根据最接近的类型进行匹配
+ 方法名相同，参数表不一样  多态 实例方法本身是多态的 实例：一个方法不是静态的就是实例方法
+通过区分有无Statci
+ 在运行时根据this（当前对象的实际类型）来决定调用哪个方法 []方法接收者  obj.method(1)
+消息接受者.消息（参数）//接受者会根据消息的不同自行决定如何响应消息
+ 静态方法没有多态 参数静态绑定，接受者动态绑定 覆盖：重写父类中的方法，方法名、参数不能改变，但是返回值可以改变   多态只对方法的接受者生效     多态只选择接受者的类型，不选择参数的类型    public class Base { public void print(ParamBase param) { System.out.println(&#34;I am Base,the param is ParamBase&#34;); } public void print(ParamSub param){ System.out.println(&#34;I am Base,the param is ParamSub&#34;); } } public class Sub extends Base { @Override public void print(ParamBase param){ System.">
+<meta itemprop="datePublished" content="2020-05-11T17:20:16&#43;08:00" />
+<meta itemprop="dateModified" content="2020-05-11T17:20:16&#43;08:00" />
+<meta itemprop="wordCount" content="413">
+<meta itemprop="image" content="https://procarihana.github.io/"/>
+
+
+
+<meta itemprop="keywords" content="多态,面向对象," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/"/>
+
+<meta name="twitter:title" content="Java面向对象————多态"/>
+<meta name="twitter:description" content="面向对象的三大特征 封装 继承 多态 多态：不同类的不同的实现方法
+ 方法名字变量都一样，但是子类继承后的实现不一样  重载：两个类同一个方法的不同实现,根据最接近的类型进行匹配
+ 方法名相同，参数表不一样  多态 实例方法本身是多态的 实例：一个方法不是静态的就是实例方法
+通过区分有无Statci
+ 在运行时根据this（当前对象的实际类型）来决定调用哪个方法 []方法接收者  obj.method(1)
+消息接受者.消息（参数）//接受者会根据消息的不同自行决定如何响应消息
+ 静态方法没有多态 参数静态绑定，接受者动态绑定 覆盖：重写父类中的方法，方法名、参数不能改变，但是返回值可以改变   多态只对方法的接受者生效     多态只选择接受者的类型，不选择参数的类型    public class Base { public void print(ParamBase param) { System.out.println(&#34;I am Base,the param is ParamBase&#34;); } public void print(ParamSub param){ System.out.println(&#34;I am Base,the param is ParamSub&#34;); } } public class Sub extends Base { @Override public void print(ParamBase param){ System."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-11 17:20:16 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd/Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/posts">Blogs</a></li><li><a href="https://procarihana.github.io/tags/">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        2 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81/">Java面向对象————多态</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="面向对象的三大特征">面向对象的三大特征</h2>
+<h5 id="封装">封装</h5>
+<h5 id="继承">继承</h5>
+<h5 id="多态">多态</h5>
+<p>多态：不同类的不同的实现方法</p>
+<pre><code>  方法名字变量都一样，但是子类继承后的实现不一样
+</code></pre>
+<p>重载：两个类同一个方法的不同实现,根据最接近的类型进行匹配</p>
+<pre><code>  方法名相同，参数表不一样
+</code></pre>
+<h2 id="多态-1">多态</h2>
+<h5 id="实例方法本身是多态的">实例方法本身是多态的</h5>
+<p>实例：一个方法不是静态的就是实例方法<br>
+通过区分有无Statci</p>
+<ul>
+<li>在运行时根据this（当前对象的实际类型）来决定调用哪个方法
+[]方法接收者</li>
+</ul>
+<p>obj.method(1)</p>
+<p>消息接受者.消息（参数）//接受者会根据消息的不同自行决定如何响应消息</p>
+<ul>
+<li>静态方法没有多态</li>
+<li>参数静态绑定，接受者动态绑定
+覆盖：重写父类中的方法，方法名、参数不能改变，但是返回值可以改变</li>
+<li>
+<ul>
+<li>多态只对方法的接受者生效</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>多态只选择接受者的类型，不选择参数的类型</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>ParamBase param<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am Base,the param is ParamBase&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span>  <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>ParamSub param<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am Base,the param is ParamSub&#34;</span><span style="color:#f92672">);</span>
+         <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sub</span> <span style="color:#66d9ef">extends</span> Base <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>ParamBase param<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am Sub,the param is ParamBase&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>ParamSub param<span style="color:#f92672">){</span>
+    <span style="color:#75715e">//方法名一样，参数不一样（重载），但是两个又互为父子类，有继承关系
+</span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am Sub,the param is ParamSub&#34;</span><span style="color:#f92672">);</span>
+       <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+   
+<span style="color:#960050;background-color:#1e0010">```</span>java 
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+       <span style="color:#75715e">//声明一个父类的对象，但是建立一个子类的对像，因为任何的子类都是父类的成员
+</span><span style="color:#75715e"></span>        Base object <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Sub<span style="color:#f92672">();</span>
+        
+        <span style="color:#75715e">//声明一个父类的参数，但是创建一个子类的产数给他
+</span><span style="color:#75715e"></span>        ParamBase param <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ParamSub<span style="color:#f92672">();</span>
+      
+        object<span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>param<span style="color:#f92672">);</span>
+        <span style="color:#75715e">/*消息的接受者是多态类型的，有继承类，参数也同样有父子关系
+</span><span style="color:#75715e">        消息的接受者通过动态绑定为子类object，
+</span><span style="color:#75715e">        所以调用的是子类的方法。
+</span><span style="color:#75715e">        而子类的方法是多态，又因为方法是在编译时期由参数的类型静态绑定的
+</span><span style="color:#75715e">        在ParamBase param = new ParamSub();虽然用的是子类的变量，但是设定的是父类的变量类型，所以父类的最接近的类，根据重载选择最适合的原则选择执行父类，
+</span><span style="color:#75715e">        所以调用的是子类中的public void print(ParamSub param)
+</span><span style="color:#75715e">        */</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">-</span> 例子
+<span style="color:#f92672">-</span> <span style="color:#f92672">-</span> Shape的多态
+<span style="color:#f92672">-</span> <span style="color:#f92672">-</span> HashSet<span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">()</span>  
+
+
+<span style="color:#960050;background-color:#1e0010">##</span> 设计模式实战<span style="color:#960050;background-color:#1e0010">：</span>策略模式
+让代码更加简洁
+
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PriceCalculator</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// 使用策略模式重构这个方法，实现三个策略：
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// NoDiscountStrategy 不打折
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Discount95Strategy 全场95折
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// OnlyVipDiscountStrategy 只有VIP打95折，其他人保持原价
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 重构后的方法签名：
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">calculatePrice</span><span style="color:#f92672">(</span>DiscountStrategy strategy<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> price<span style="color:#f92672">,</span> User user<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> strategy<span style="color:#f92672">.</span><span style="color:#a6e22e">discount</span><span style="color:#f92672">(</span>price<span style="color:#f92672">,</span>user<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">---</span> 
+         <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">calculatePrice</span><span style="color:#f92672">(</span>String discountStrategy<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> price<span style="color:#f92672">,</span> User user<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>discountStrategy<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;NoDiscount&#34;</span><span style="color:#f92672">:</span>
+                    <span style="color:#66d9ef">return</span> price<span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Discount95&#34;</span><span style="color:#f92672">:</span>
+                    <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>price <span style="color:#f92672">*</span> 0<span style="color:#f92672">.</span><span style="color:#a6e22e">95</span><span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;OnlyVip&#34;</span><span style="color:#f92672">:</span>
+                    <span style="color:#f92672">{</span>
+                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>user<span style="color:#f92672">.</span><span style="color:#a6e22e">isVip</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+                            <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>price <span style="color:#f92672">*</span> 0<span style="color:#f92672">.</span><span style="color:#a6e22e">95</span><span style="color:#f92672">);</span>
+                        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+                            <span style="color:#66d9ef">return</span> price<span style="color:#f92672">;</span>
+                        <span style="color:#f92672">}</span>
+                   <span style="color:#f92672">}</span>
+               <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+                   <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Should not be here!&#34;</span><span style="color:#f92672">);</span>
+                   
+
+<span style="color:#f92672">-</span> 策略和业务分离
+
+
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> vip<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> <span style="color:#66d9ef">boolean</span> vip<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">vip</span> <span style="color:#f92672">=</span> vip<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> User <span style="color:#a6e22e">vip</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> User <span style="color:#a6e22e">dios</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> name<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isVip</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> vip<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>线程池策略：（解耦合）</li>
+</ul>
+<ol>
+<li>放弃</li>
+<li>让线程者执行</li>
+<li>把最久的策略丢弃</li>
+<li>把新的策略丢弃</li>
+</ol>
+<h5 id="策略模式例子打折策略">策略模式例子：打折策略</h5>
+<ul>
+<li>涉及金钱的时候不能够用Double；</li>
+<li>Price * 100 当成分，用int处理</li>
+<li>BigDecim 大的十进制（十进制精确的表述，小数的计算）</li>
+</ul>
+<h5 id="jdk线程池中的策略threadpoolexecutor">JDK线程池中的策略THreadPoolExecutor</h5>
+<h2 id="多态实战">多态实战</h2>
+<ul>
+<li>Files.walkFileTree</li>
+</ul>
+<p>不想把接口的所有方法都实现，都要查找他的默认实现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FileFilter</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        Path projectDir <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user.dir&#34;</span><span style="color:#f92672">));</span>
+        Path testRootDir <span style="color:#f92672">=</span> projectDir<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test-root&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>testRootDir<span style="color:#f92672">.</span><span style="color:#a6e22e">toFile</span><span style="color:#f92672">().</span><span style="color:#a6e22e">isDirectory</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span>testRootDir<span style="color:#f92672">.</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;不存在！&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+
+        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> filteredFileNames <span style="color:#f92672">=</span> filter<span style="color:#f92672">(</span>testRootDir<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;.csv&#34;</span><span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>filteredFileNames<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 实现一个按照扩展名过滤文件的功能
+</span><span style="color:#75715e">     *
+</span><span style="color:#75715e">     * @param rootDirectory 要过滤的文件夹
+</span><span style="color:#75715e">     * @param extension     要过滤的文件扩展名，例如 .txt
+</span><span style="color:#75715e">     * @return 所有该文件夹（及其后代子文件夹中）匹配指定扩展名的文件的名字
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>Path rootDirectory<span style="color:#f92672">,</span> String extension<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> names <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+        Files<span style="color:#f92672">.</span><span style="color:#a6e22e">walkFileTree</span><span style="color:#f92672">(</span>rootDirectory<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> SimpleFileVisitor<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> FileVisitResult <span style="color:#a6e22e">visitFile</span><span style="color:#f92672">(</span>Path file<span style="color:#f92672">,</span> BasicFileAttributes attrs<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>file<span style="color:#f92672">.</span><span style="color:#a6e22e">getFileName</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">().</span><span style="color:#a6e22e">endsWith</span><span style="color:#f92672">(</span>extension<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+                    names<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>file<span style="color:#f92672">.</span><span style="color:#a6e22e">getFileName</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">());</span>
+                <span style="color:#f92672">}</span>
+                <span style="color:#66d9ef">return</span> FileVisitResult<span style="color:#f92672">.</span><span style="color:#a6e22e">CONTINUE</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+        <span style="color:#66d9ef">return</span> names<span style="color:#f92672">;</span>
+               <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+    <span style="color:#75715e">//匿名内部类，把相近的两块逻辑组合到一起，直接把访问方法，使用结果。
+</span><span style="color:#75715e"></span>   
+            <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FileFilterVisitor</span> <span style="color:#66d9ef">extends</span> SimpleFileVisitor<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">private</span> String extension<span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> filteredNames <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+    
+                <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">FileFilterVisitor</span><span style="color:#f92672">(</span>String extension<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">extension</span> <span style="color:#f92672">=</span> extension<span style="color:#f92672">;</span>
+                <span style="color:#f92672">}</span>
+    
+                <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getFilteredNames</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">return</span> filteredNames<span style="color:#f92672">;</span>
+             <span style="color:#f92672">}</span>
+</code></pre></div>
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/tags/%E5%A4%9A%E6%80%81/">多态</a></span><span class="tag"><a href="https://procarihana.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        413 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-05-11 17:20 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/posts/html-%E6%A0%87%E7%AD%BE/">
+                <span class="button__icon">←</span>
+                <span class="button__text">HTML 标签</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/">
+                <span class="button__text">Java面向对象——组合与继承</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>
