@@ -13,8 +13,8 @@ canonifyurls =  true
 
 [original]
   name = "hello-friend"
-  homepage = "https://procarihana.github.io"
-  repo = "https://procarihana.github.io"
+  homepage = "https://procarihana.github.io/public"
+  repo = "https://procarihana.github.io.public"
 
 
 archetypeDir = "archetypes"
