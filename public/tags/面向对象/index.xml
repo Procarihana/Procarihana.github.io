@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>面向对象 on FAFA Blog</title>
-    <link>http://procarihana.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+    <link>https://procarihana.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
     <description>Recent content in 面向对象 on FAFA Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 11 May 2020 17:20:16 +0800</lastBuildDate>
     
-	<atom:link href="http://procarihana.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://procarihana.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Java面向对象————多态</title>
-      <link>http://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81/</link>
+      <link>https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81/</link>
       <pubDate>Mon, 11 May 2020 17:20:16 +0800</pubDate>
       
-      <guid>http://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81/</guid>
+      <guid>https://procarihana.github.io/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%A4%9A%E6%80%81/</guid>
       <description>面向对象的三大特征 封装 继承 多态 多态：不同类的不同的实现方法
  方法名字变量都一样，但是子类继承后的实现不一样  重载：两个类同一个方法的不同实现,根据最接近的类型进行匹配
  方法名相同，参数表不一样  多态 实例方法本身是多态的 实例：一个方法不是静态的就是实例方法
