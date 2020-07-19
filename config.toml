@@ -1,4 +1,4 @@
-baseURL = "https://procarihana.github.io/"
+baseURL = "https://procarihana.github.io/public/"
 languageCode = "zh-Hans"
 title = "FAFA Blog"
 theme = "hello-friend-ng" 

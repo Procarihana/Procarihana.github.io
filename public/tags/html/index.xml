@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HTML on FAFA Blog</title>
-    <link>http://procarihana.github.io/tags/html/</link>
+    <link>https://procarihana.github.io/public/tags/html/</link>
     <description>Recent content in HTML on FAFA Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Sat, 04 Jul 2020 17:11:23 +0800</lastBuildDate>
     
-	<atom:link href="http://procarihana.github.io/tags/html/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://procarihana.github.io/public/tags/html/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>HTML 标签</title>
-      <link>http://procarihana.github.io/posts/html-%E6%A0%87%E7%AD%BE/</link>
+      <link>https://procarihana.github.io/public/posts/html-%E6%A0%87%E7%AD%BE/</link>
       <pubDate>Sat, 04 Jul 2020 17:11:23 +0800</pubDate>
       
-      <guid>http://procarihana.github.io/posts/html-%E6%A0%87%E7%AD%BE/</guid>
+      <guid>https://procarihana.github.io/public/posts/html-%E6%A0%87%E7%AD%BE/</guid>
       <description>A标签  作用   跳转外部页面     跳转内部锚点     跳转到邮箱或电话等    href  超级链接  &amp;lt;body&amp;gt; &amp;lt;a herf = &amp;#34;https://google.com&amp;#34; target=&amp;#34;_blank&amp;#34; download&amp;gt;超链&amp;lt;/a&amp;gt; &amp;lt;/body&amp;gt; target  在哪个窗口打开超级链接   在空白页打开超级链接     在    download rel=noopener target  在哪个窗口打开超级链接   在空白页打开    &amp;lt;a href=&amp;#34;//goole.com&amp;#34; target=_blank&amp;gt;top&amp;lt;/a&amp;gt;    在顶层打开链接（正常打开链接）&amp;ndash; top     在本层打开（Google 不允许用iframe指向，所以打不开，如果可以打开，则可以再其他页面直接打开）    如何在编辑过程中正确打开html  http-server   安装    $ yarn global add http-server   启动并点击任一网址，要编写路径</description>
     </item>
     

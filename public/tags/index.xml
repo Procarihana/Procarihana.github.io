@@ -2,49 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on FAFA Blog</title>
-    <link>http://procarihana.github.io/tags/</link>
+    <link>https://procarihana.github.io/public/tags/</link>
     <description>Recent content in Tags on FAFA Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 04 Jul 2020 17:11:23 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jul 2020 15:29:45 +0800</lastBuildDate>
     
-	<atom:link href="http://procarihana.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://procarihana.github.io/public/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Spring</title>
+      <link>https://procarihana.github.io/public/tags/spring/</link>
+      <pubDate>Mon, 06 Jul 2020 15:29:45 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/tags/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>HTML</title>
-      <link>http://procarihana.github.io/tags/html/</link>
+      <link>https://procarihana.github.io/public/tags/html/</link>
       <pubDate>Sat, 04 Jul 2020 17:11:23 +0800</pubDate>
       
-      <guid>http://procarihana.github.io/tags/html/</guid>
+      <guid>https://procarihana.github.io/public/tags/html/</guid>
       <description></description>
     </item>
     
     <item>
       <title>多态</title>
-      <link>http://procarihana.github.io/tags/%E5%A4%9A%E6%80%81/</link>
+      <link>https://procarihana.github.io/public/tags/%E5%A4%9A%E6%80%81/</link>
       <pubDate>Mon, 11 May 2020 17:20:16 +0800</pubDate>
       
-      <guid>http://procarihana.github.io/tags/%E5%A4%9A%E6%80%81/</guid>
+      <guid>https://procarihana.github.io/public/tags/%E5%A4%9A%E6%80%81/</guid>
       <description></description>
     </item>
     
     <item>
       <title>面向对象</title>
-      <link>http://procarihana.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+      <link>https://procarihana.github.io/public/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Mon, 11 May 2020 17:20:16 +0800</pubDate>
       
-      <guid>http://procarihana.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>https://procarihana.github.io/public/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>爬虫</title>
-      <link>http://procarihana.github.io/tags/%E7%88%AC%E8%99%AB/</link>
+      <link>https://procarihana.github.io/public/tags/%E7%88%AC%E8%99%AB/</link>
       <pubDate>Wed, 06 May 2020 17:07:22 +0800</pubDate>
       
-      <guid>http://procarihana.github.io/tags/%E7%88%AC%E8%99%AB/</guid>
+      <guid>https://procarihana.github.io/public/tags/%E7%88%AC%E8%99%AB/</guid>
       <description></description>
     </item>
     

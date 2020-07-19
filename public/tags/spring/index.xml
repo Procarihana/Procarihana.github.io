@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Spring on FAFA Blog</title>
-    <link>https://procarihana.github.io/tags/spring/</link>
+    <link>https://procarihana.github.io/public/tags/spring/</link>
     <description>Recent content in Spring on FAFA Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 06 Jul 2020 15:29:45 +0800</lastBuildDate>
     
-	<atom:link href="https://procarihana.github.io/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://procarihana.github.io/public/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Spring Web</title>
-      <link>https://procarihana.github.io/posts/spring-web/</link>
+      <link>https://procarihana.github.io/public/posts/spring-web/</link>
       <pubDate>Mon, 06 Jul 2020 15:29:45 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/posts/spring-web/</guid>
+      <guid>https://procarihana.github.io/public/posts/spring-web/</guid>
       <description>Spring Web 和 HTTP进行沟通
 从零开始⼀个Spring应⽤ • pom.xml • src/main/java/hello/Application.java • src/main/java/hello/HelloController.java
 Query String 最简单的HTTP请求（查询字符串），就是</description>
