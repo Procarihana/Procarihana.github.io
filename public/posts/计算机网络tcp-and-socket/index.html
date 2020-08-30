@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&amp;gt; 获得SYN seq=y,ACK x&#43;1 （同意建立请求） ACK =y&#43;1 表明收到同意建立连接 ==&amp;gt; 连接建立，        四次挥手断开连接        FIN seq = x&#43;2 ACK = y&#43;1发送断链接的请求 -&amp;gt; 获得ACK x&#43;3 表示收到，又获得 FIN seq= y&#43;1 表示断开链接 ACK = y&#43;2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Socket    " />
+<meta name="keywords" content=", Socket, Tcp" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/" />
+
+
+    <title>
+        
+            计算机网络TCP and SOCket :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="计算机网络TCP and SOCket">
+<meta itemprop="description" content="没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&gt; 获得SYN seq=y,ACK x&#43;1 （同意建立请求） ACK =y&#43;1 表明收到同意建立连接 ==&gt; 连接建立，        四次挥手断开连接        FIN seq = x&#43;2 ACK = y&#43;1发送断链接的请求 -&gt; 获得ACK x&#43;3 表示收到，又获得 FIN seq= y&#43;1 表示断开链接 ACK = y&#43;2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Socket    ">
+<meta itemprop="datePublished" content="2020-08-30T11:39:13&#43;08:00" />
+<meta itemprop="dateModified" content="2020-08-30T11:39:13&#43;08:00" />
+<meta itemprop="wordCount" content="76">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="Socket,Tcp," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="计算机网络TCP and SOCket"/>
+<meta name="twitter:description" content="没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&gt; 获得SYN seq=y,ACK x&#43;1 （同意建立请求） ACK =y&#43;1 表明收到同意建立连接 ==&gt; 连接建立，        四次挥手断开连接        FIN seq = x&#43;2 ACK = y&#43;1发送断链接的请求 -&gt; 获得ACK x&#43;3 表示收到，又获得 FIN seq= y&#43;1 表示断开链接 ACK = y&#43;2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Socket    "/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-08-30 11:39:13 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd/Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">Blogs</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/">计算机网络TCP and SOCket</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="没有100可靠的通信协议">没有100%可靠的通信协议</h2>
+<ul>
+<li>红军/蓝军</li>
+<li>计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）</li>
+<li></li>
+</ul>
+<h2 id="网络分层模型">网络分层模型</h2>
+<ul>
+<li>TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】）</li>
+<li>TCP Transmisson Control ProTocal 传输控制协议</li>
+<li>
+<ul>
+<li>TCP的握手与断开</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>三次握手建立连接</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>SYN SENT seq = x</code> 发送请求建立连接的请求 -&gt; 获得<code>SYN seq=y,ACK x+1</code> （同意建立请求）</li>
+<li><code>ACK =y+1</code> 表明收到同意建立连接 ==&gt; 连接建立，</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>四次挥手断开连接</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>FIN seq = x+2 ACK = y+1</code>发送断链接的请求 -&gt; 获得<code>ACK x+3</code> 表示收到，又获得 <code>FIN seq= y+1</code> 表示断开链接</li>
+<li><code>ACK = y+2</code> 表示收到同意断开链接</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TCP 协议无法传递数据包，只能把所有数据包拆、黏包</li>
+<li>
+<ul>
+<li>TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界</li>
+</ul>
+</li>
+<li>TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部</li>
+<li>TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制</li>
+<li>
+<ul>
+<li>TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求
+的</li>
+</ul>
+</li>
+<li>以太网则在IP数据的基础杀昂添加以太网包首部</li>
+<li>TCP特点</li>
+<li>
+<ul>
+<li>面向连接</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>点对点 需要有目标端口</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>可靠交付 校验和、序列号码、确认号码 保证数据正确</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>面向字节流</li>
+</ul>
+</li>
+<li>UDP 协议（用于视频）</li>
+<li>
+<ul>
+<li>无连接的 无法保证数据是否到达</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>尽最大可能交付</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>面向报文的</li>
+</ul>
+</li>
+</ul>
+<h2 id="socket">Socket</h2>
+<ul>
+<li></li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/socket/">Socket</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/tcp/">Tcp</a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        76 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-08-30 11:39 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/io/">
+                <span class="button__icon">←</span>
+                <span class="button__text">JAVA IO</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/accountingservice/">
+                <span class="button__text">AccountingService</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mybatis on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/mybatis/</link>
+    <description>Recent content in Mybatis on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 10 Aug 2020 20:48:22 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/mybatis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AccountingService</title>
+      <link>https://procarihana.github.io/public/posts/accountingservice/</link>
+      <pubDate>Mon, 10 Aug 2020 20:48:22 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/accountingservice/</guid>
+      <description>.ignore放什么 1 *.iml 是 intellij idea的工程配置文件，里面是当前project的一些配置信息。.Idea存放项目的配置信息，包括历史记录，版本控制信息等。 2. .idea/ 3. target/
+项目结构和模型转换  external 用于存放外部团队的接口和服务，然后再Manager里面放。在接口处写注析。 exception 异常处理 config 存放MybatisBean等等的Bean Controller 存放SpringBoot对外接口（API接口）   不要有过多的处理逻辑 参数校验越早做越好  manager 组合各个业务的逻辑 先写接口后写实现 Dao Converter 用于转换 Moudle的common向service等等的转换但是不能够用于Http、数据库、IO等操作 Service 部分是给前段展示的内容，不能直接返回密码（加密后的还是可以的）等内容  添加Maven  通过Maven getting start  SpringBoot Spring boot 开发四大步  添加相应依赖   SpringBoot 引入       基础Maven引入：、spring-boot-starter-web、plugin     添加相应注解   添加Appliation类作为SpringBoot入口，并添加注解@SpringBootApplication     添加Controller类，并添加注解@RestController      @RestController == @Controller + @ResponseBodymapping    编写代码 添加相应配置   在resources里添加application.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="cpu 负责所有运算
+  3GHz 每秒运行30亿条指令，做一件事情只需要0.38纳秒
+   SSD（固态硬盘）：寻址时间太慢了，和CPU形成矛盾     内存：存数据，断电丢失     硬盘（硬盘驱动器） 存数据容量大，断电不丢失    一个文件本质上是一段字节流，由一个执行程序决定怎么执行一段字节流（16进制）
+  字节范围 0～255
+一切文件的本质  一段字节流：   文本文件（txt/代码/HTML等）     二进制文件   每个程序负责解释文件中的字节流  输入输出是站在程序的角度
+InputStream/PutputStream  抽象的输入/输出操作   从文件读取字节流 【实战】    value ==-1 的时候，循环结束
+ -从网络读取字节流【实战】 -从其他
+最好使用绝对路径
+抽象类不能直接实例化，因为抽象类里面包含还没有实现的方法 InputStream…… 这种只是抽象方法，不能够直接实现 用ProcessBuilder建立新的进程  Java中的File   file 代表的是文件路径" />
+<meta name="keywords" content=", JavaIO" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/io/" />
+
+
+    <title>
+        
+            JAVA IO :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="JAVA IO">
+<meta itemprop="description" content="cpu 负责所有运算
+  3GHz 每秒运行30亿条指令，做一件事情只需要0.38纳秒
+   SSD（固态硬盘）：寻址时间太慢了，和CPU形成矛盾     内存：存数据，断电丢失     硬盘（硬盘驱动器） 存数据容量大，断电不丢失    一个文件本质上是一段字节流，由一个执行程序决定怎么执行一段字节流（16进制）
+  字节范围 0～255
+一切文件的本质  一段字节流：   文本文件（txt/代码/HTML等）     二进制文件   每个程序负责解释文件中的字节流  输入输出是站在程序的角度
+InputStream/PutputStream  抽象的输入/输出操作   从文件读取字节流 【实战】    value ==-1 的时候，循环结束
+ -从网络读取字节流【实战】 -从其他
+最好使用绝对路径
+抽象类不能直接实例化，因为抽象类里面包含还没有实现的方法 InputStream…… 这种只是抽象方法，不能够直接实现 用ProcessBuilder建立新的进程  Java中的File   file 代表的是文件路径">
+<meta itemprop="datePublished" content="2020-08-30T15:29:44&#43;08:00" />
+<meta itemprop="dateModified" content="2020-08-30T15:29:44&#43;08:00" />
+<meta itemprop="wordCount" content="500">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="JavaIO," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="JAVA IO"/>
+<meta name="twitter:description" content="cpu 负责所有运算
+  3GHz 每秒运行30亿条指令，做一件事情只需要0.38纳秒
+   SSD（固态硬盘）：寻址时间太慢了，和CPU形成矛盾     内存：存数据，断电丢失     硬盘（硬盘驱动器） 存数据容量大，断电不丢失    一个文件本质上是一段字节流，由一个执行程序决定怎么执行一段字节流（16进制）
+  字节范围 0～255
+一切文件的本质  一段字节流：   文本文件（txt/代码/HTML等）     二进制文件   每个程序负责解释文件中的字节流  输入输出是站在程序的角度
+InputStream/PutputStream  抽象的输入/输出操作   从文件读取字节流 【实战】    value ==-1 的时候，循环结束
+ -从网络读取字节流【实战】 -从其他
+最好使用绝对路径
+抽象类不能直接实例化，因为抽象类里面包含还没有实现的方法 InputStream…… 这种只是抽象方法，不能够直接实现 用ProcessBuilder建立新的进程  Java中的File   file 代表的是文件路径"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-08-30 15:29:44 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd/Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">Blogs</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        3 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/io/">JAVA IO</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <ul>
+<li>
+<p>cpu 负责所有运算</p>
+</li>
+<li>
+<p>3GHz 每秒运行30亿条指令，做一件事情只需要0.38纳秒</p>
+</li>
+<li>
+<ul>
+<li>SSD（固态硬盘）：寻址时间太慢了，和CPU形成矛盾</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>内存：存数据，断电丢失</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>硬盘（硬盘驱动器） 存数据容量大，断电不丢失</li>
+</ul>
+</li>
+<li>
+<p>一个文件本质上是一段字节流，由一个执行程序决定怎么执行一段字节流（16进制）</p>
+</li>
+</ul>
+<p>字节范围 0～255</p>
+<h2 id="一切文件的本质">一切文件的本质</h2>
+<ul>
+<li>一段字节流：</li>
+<li>
+<ul>
+<li>文本文件（txt/代码/HTML等）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>二进制文件</li>
+</ul>
+</li>
+<li>每个程序负责解释文件中的字节流</li>
+</ul>
+<p>输入输出是站在程序的角度</p>
+<h2 id="inputstreamputputstream">InputStream/PutputStream</h2>
+<ul>
+<li>抽象的输入/输出操作</li>
+<li>
+<ul>
+<li>从文件读取字节流 【实战】</li>
+</ul>
+</li>
+</ul>
+<p>value ==-1 的时候，循环结束</p>
+<ul>
+<li>-从网络读取字节流【实战】</li>
+<li>-从其他<br>
+<strong>最好使用绝对路径</strong><br>
+抽象类不能直接实例化，因为抽象类里面包含还没有实现的方法</li>
+<li>InputStream…… 这种只是抽象方法，不能够直接实现</li>
+<li>用ProcessBuilder建立新的进程</li>
+</ul>
+<h2 id="java中的file">Java中的File</h2>
+<ul>
+<li>
+<p>file 代表的是文件路径</p>
+</li>
+<li>
+<p>抽象的“文件”：文件或者文件夹</p>
+</li>
+<li>
+<p>File 的常见方法</p>
+</li>
+<li>
+<ul>
+<li>
+<p>file.exists 判断文件是否存在</p>
+<pre><code> .listfile 当前文件下有什么文件
+ .isAbsolute 是否是绝对路径
+ .getname
+ .isDirectory 是否是文件夹
+ .getAbsolutePath
+ .listFile
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>file.isfile 判断是不是文件</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>file.isDirectory 判断路径是不是分拣家</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>getAbsolutePath 获得绝对路径</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>listfiles 查看当前文件夹下面有什么文件</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>new File（目录名字，子目录的名字）快速构建一个新的子目录</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>file.walkFileTree 遍历</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>readAllLine（不用依赖第三方库）</li>
+</ul>
+</li>
+<li>
+<p>绝对路径与相对路径</p>
+</li>
+<li>
+<ul>
+<li>相对路径只有在相对一个路径时候才有效</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>相对的就是JVM进程的当前工作目录</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>绝对路径只会对应一个文件</li>
+</ul>
+</li>
+<li>
+<p>读/写文件</p>
+</li>
+<li>
+<ul>
+<li>解决IO速度慢</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>BufferReader/Writer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>换行符</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>BufferReader - 一次性读好多东西到缓冲区里面</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>BufferWriter - 一次性写好多东西</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>NIO的Path（Java 7+）
+LInxu 硬连接和软连接</p>
+</li>
+<li>
+<p>New IO 新的IO</p>
+</li>
+<li>
+<p>Non -blocking IO 非阻塞IO</p>
+</li>
+<li>
+<p>NIO的Path - 就是旧版本的File</p>
+</li>
+<li>
+<ul>
+<li>经典的IO模型基于流</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>优点：容易理解，方便抽象</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>缺点：慢（流：一个字节一个字节按顺序）</li>
+</ul>
+</li>
+</ul>
+<h2 id="解决io太慢">解决IO太慢</h2>
+<ul>
+<li>BufferedReader/Writer</li>
+<li>
+<ul>
+<li>BufferedReader - ⼀次性读取好多东⻄到缓冲区⾥</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>BufferedWriter - ⼀次性写好多东⻄到缓冲区⾥</li>
+</ul>
+</li>
+<li>在内存中创建好，⼀次写⼊</li>
+</ul>
+<p>path.tofile &ndash;
+file.topath
+两个东西相互转换</p>
+<p>Buffer是一个缓冲区，是内存的一块</p>
+<p>块和块之间是没有顺序的，所以可以同时写</p>
+<p>写入：</p>
+<ol>
+<li>一个一个字节地写</li>
+<li>存一些后一次性写入（并发；多线程）//CPU在等待IO的时候做其他事情</li>
+</ol>
+<h2 id="homework">HomeWork</h2>
+<h4 id="多种方法写入读出">多种方法写入读出</h4>
+<ul>
+<li>Apache Commons IO</li>
+<li>
+<ul>
+<li>通过·FilesUtils.readFileToString<code>读取</code>writeStringToFile`写入</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readFile2</span><span style="color:#f92672">(</span>File file<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>FileUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">readFileToString</span><span style="color:#f92672">(</span>file<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;utf8&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeLinesToFile2</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> lines<span style="color:#f92672">,</span> File file<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        String result <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String s <span style="color:#f92672">:</span> lines<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            result <span style="color:#f92672">+=</span> s<span style="color:#f92672">;</span>
+            result <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        FileUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">writeStringToFile</span><span style="color:#f92672">(</span>file<span style="color:#f92672">,</span> result<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;utf8&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>FileInputStream 和FileOutPutStream</li>
+<li>
+<ul>
+<li>注意getByte 得到的是字节流</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>读取迭代的过程中，要记得readInt 需要不断地从fileInputStream里面读入，否则就会一直只读第一个字节，变成死循环</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>InputStream 结束的标志就是<code>-1</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readFile1</span><span style="color:#f92672">(</span>File file<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        FileInputStream fileInputStream <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span>file<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">int</span> readInt <span style="color:#f92672">=</span> fileInputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+        String s <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>readInt <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            s <span style="color:#f92672">+=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">)</span> readInt<span style="color:#f92672">;</span>
+            readInt <span style="color:#f92672">=</span> fileInputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+        fileInputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">return</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeLinesToFile1</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> lines<span style="color:#f92672">,</span> File file<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        FileOutputStream fileOutputStream <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span>file<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String s <span style="color:#f92672">:</span> lines<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytes <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">();</span>
+            fileOutputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>bytes<span style="color:#f92672">);</span>
+            fileOutputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;\n&#39;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        fileOutputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>BufferReader和BufferWriter</li>
+<li>
+<ul>
+<li>BufferReader 继承 Reader ，而Reader 实现closeable 接口，所以BufferReader 需要关闭</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>BufferReader 是有锁的，所以是线程安全的方法</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>BufferReader.readLine()只是read一行，所以要记得用循环</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>BufferReader.readLine()到达末尾的时候会返回null，如果直接用是否为null判断是否结束的话，会造成死循环（readline不断地返回null），要用一个变量来接受方法的返回值来间接判断。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readFile1</span><span style="color:#f92672">(</span>File file<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> result <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedList<span style="color:#f92672">&lt;&gt;();</span>
+        String readLines<span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">();</span>
+        String checkReadLine <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>BufferedReader bufferedReader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileReader<span style="color:#f92672">(</span>file<span style="color:#f92672">)))</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>checkReadLine <span style="color:#f92672">=</span> bufferedReader<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">())</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+               readLines <span style="color:#f92672">+=</span> checkReadLine<span style="color:#f92672">;</span>
+               readLines <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+            result <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>readLines<span style="color:#f92672">.</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">));</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> result<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeLinesToFile1</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> lines<span style="color:#f92672">,</span> File file<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        BufferedWriter bufferedWriter <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedWriter<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> FileWriter<span style="color:#f92672">(</span>file<span style="color:#f92672">));</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String s <span style="color:#f92672">:</span> lines<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            bufferedWriter<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>       
+</code></pre></div><ul>
+<li>使用Java 7+的NIO引入的<code>Files.readAllBytes()</code>/<code>Files.readAllLines()</code>/<code>Files.write()</code>方法</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readFile3</span><span style="color:#f92672">(</span>File file<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">readAllLines</span><span style="color:#f92672">(</span>file<span style="color:#f92672">.</span><span style="color:#a6e22e">toPath</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span> 
+       <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeLinesToFile3</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> lines<span style="color:#f92672">,</span> File file<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        Files<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>file<span style="color:#f92672">.</span><span style="color:#a6e22e">toPath</span><span style="color:#f92672">(),</span> lines<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>实现</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+       File projectDir <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;basedir&#34;</span><span style="color:#f92672">,</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user.dir&#34;</span><span style="color:#f92672">)));</span>
+       File testFile <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span>projectDir<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;target/test.txt&#34;</span><span style="color:#f92672">);</span>
+       List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> lines <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;AAA&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;BBB&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;CCC&#34;</span><span style="color:#f92672">);</span>
+       writeLinesToFile1<span style="color:#f92672">(</span>lines<span style="color:#f92672">,</span> testFile<span style="color:#f92672">);</span>
+       writeLinesToFile2<span style="color:#f92672">(</span>lines<span style="color:#f92672">,</span> testFile<span style="color:#f92672">);</span>
+       writeLinesToFile3<span style="color:#f92672">(</span>lines<span style="color:#f92672">,</span> testFile<span style="color:#f92672">);</span>
+
+       System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>readFile1<span style="color:#f92672">(</span>testFile<span style="color:#f92672">));</span>
+       System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>readFile2<span style="color:#f92672">(</span>testFile<span style="color:#f92672">));</span>
+       System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>readFile3<span style="color:#f92672">(</span>testFile<span style="color:#f92672">));</span>
+       <span style="color:#f92672">}</span>
+   <span style="color:#f92672">}</span>
+</code></pre></div><h4 id="读取网络内容csvfile">读取网络内容———&gt;csvFile</h4>
+<ul>
+<li>csvFile：逗号分隔值（Comma-Separated Values，CSV，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。 纯文本意味着该文件是一个字符序列，不含必须像二进制数字那样被解读的数据。</li>
+<li>爬取github 信息可以用 GitHub 库的 connectAnonumously匿名链接去爬取</li>
+<li>用GHRespository 来获得github仓库的名字</li>
+<li>通过GHPullRequest 来发出pull请求，获得仓库的内容,用GHPullRequest里面get的方法来过滤内容</li>
+<li>
+<ul>
+<li>getUser（）获得的是GitHub User 的内容，需要getLogin（）才能够过滤出用户名字</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>在过滤的过程中要手动添加&rdquo;,&ldquo;来分隔内容，达到csvFile 的要求</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#75715e">// 给定一个仓库名，例如&#34;golang/go&#34;，或者&#34;gradle/gradle&#34;，读取前n个Pull request并保存至csvFile指定的文件中，格式如下：
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// number,author,title
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 12345,blindpirate,这是一个标题
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 12345,FrankFang,这是第二个标题
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">savePullRequestsToCSV</span><span style="color:#f92672">(</span>String repo<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> n<span style="color:#f92672">,</span> File csvFile<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        GitHub github <span style="color:#f92672">=</span> GitHub<span style="color:#f92672">.</span><span style="color:#a6e22e">connectAnonymously</span><span style="color:#f92672">();</span>
+        GHRepository repository <span style="color:#f92672">=</span> github<span style="color:#f92672">.</span><span style="color:#a6e22e">getRepository</span><span style="color:#f92672">(</span>repo<span style="color:#f92672">);</span>
+        List<span style="color:#f92672">&lt;</span>GHPullRequest<span style="color:#f92672">&gt;</span> pullRequests <span style="color:#f92672">=</span> repository<span style="color:#f92672">.</span><span style="color:#a6e22e">getPullRequests</span><span style="color:#f92672">(</span>GHIssueState<span style="color:#f92672">.</span><span style="color:#a6e22e">OPEN</span><span style="color:#f92672">);</span>
+
+        String title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;number,author,title&#34;</span><span style="color:#f92672">;</span>
+        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> lines <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> body <span style="color:#f92672">=</span> pullRequests<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Crawler<span style="color:#f92672">::</span>getLine<span style="color:#f92672">).</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toList</span><span style="color:#f92672">());</span>
+        lines<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>title<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> n<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            lines<span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">(</span>Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">singleton</span><span style="color:#f92672">(</span>body<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">)));</span>
+        <span style="color:#f92672">}</span>
+
+
+        Files<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>csvFile<span style="color:#f92672">.</span><span style="color:#a6e22e">toPath</span><span style="color:#f92672">(),</span> lines<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">getLine</span><span style="color:#f92672">(</span>GHPullRequest pullRequest<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> pullRequest<span style="color:#f92672">.</span><span style="color:#a6e22e">getNumber</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span> <span style="color:#f92672">+</span> pullRequest<span style="color:#f92672">.</span><span style="color:#a6e22e">getUser</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getLogin</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span> <span style="color:#f92672">+</span> pullRequest<span style="color:#f92672">.</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> UncheckedIOException<span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div>
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/javaio/">JavaIO</a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        500 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-08-30 15:29 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/java-%E9%83%A8%E7%BD%B2/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Java 部署</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/">
+                <span class="button__text">计算机网络TCP and SOCket</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

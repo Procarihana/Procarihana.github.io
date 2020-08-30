@@ -2,13 +2,8 @@
 title: "HTML 标签"
 date: 2020-07-04T17:11:23+08:00
 draft: false
-tags: ["HTML"]
+tags: [HTML]
 ---
-
-<!-- TOC -->
-
-
-<!-- /TOC -->
 
  ## A标签
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tcp on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/tcp/</link>
+    <description>Recent content in Tcp on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sun, 30 Aug 2020 11:39:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/tcp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>计算机网络TCP and SOCket</title>
+      <link>https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/</link>
+      <pubDate>Sun, 30 Aug 2020 11:39:13 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/</guid>
+      <description>没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&amp;gt; 获得SYN seq=y,ACK x+1 （同意建立请求） ACK =y+1 表明收到同意建立连接 ==&amp;gt; 连接建立，        四次挥手断开连接        FIN seq = x+2 ACK = y+1发送断链接的请求 -&amp;gt; 获得ACK x+3 表示收到，又获得 FIN seq= y+1 表示断开链接 ACK = y+2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Socket    </description>
+    </item>
+    
+  </channel>
+</rss>

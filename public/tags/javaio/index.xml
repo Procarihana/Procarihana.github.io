@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaIO on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/javaio/</link>
+    <description>Recent content in JavaIO on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sun, 30 Aug 2020 15:29:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/javaio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JAVA IO</title>
+      <link>https://procarihana.github.io/public/posts/io/</link>
+      <pubDate>Sun, 30 Aug 2020 15:29:44 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/io/</guid>
+      <description>cpu 负责所有运算
+  3GHz 每秒运行30亿条指令，做一件事情只需要0.38纳秒
+   SSD（固态硬盘）：寻址时间太慢了，和CPU形成矛盾     内存：存数据，断电丢失     硬盘（硬盘驱动器） 存数据容量大，断电不丢失    一个文件本质上是一段字节流，由一个执行程序决定怎么执行一段字节流（16进制）
+  字节范围 0～255
+一切文件的本质  一段字节流：   文本文件（txt/代码/HTML等）     二进制文件   每个程序负责解释文件中的字节流  输入输出是站在程序的角度
+InputStream/PutputStream  抽象的输入/输出操作   从文件读取字节流 【实战】    value ==-1 的时候，循环结束
+ -从网络读取字节流【实战】 -从其他
+最好使用绝对路径
+抽象类不能直接实例化，因为抽象类里面包含还没有实现的方法 InputStream…… 这种只是抽象方法，不能够直接实现 用ProcessBuilder建立新的进程  Java中的File   file 代表的是文件路径</description>
+    </item>
+    
+  </channel>
+</rss>

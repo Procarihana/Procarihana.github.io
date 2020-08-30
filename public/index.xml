@@ -7,10 +7,55 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 06 Jul 2020 15:29:45 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2020 17:47:43 +0800</lastBuildDate>
     
 	<atom:link href="https://procarihana.github.io/public/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java 部署</title>
+      <link>https://procarihana.github.io/public/posts/java-%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Sun, 30 Aug 2020 17:47:43 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/java-%E9%83%A8%E7%BD%B2/</guid>
+      <description>应用开发流程  产品调研 产品设计 系统设计 -&amp;gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  分库分表  </description>
+    </item>
+    
+    <item>
+      <title>JAVA IO</title>
+      <link>https://procarihana.github.io/public/posts/io/</link>
+      <pubDate>Sun, 30 Aug 2020 15:29:44 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/io/</guid>
+      <description>cpu 负责所有运算
+  3GHz 每秒运行30亿条指令，做一件事情只需要0.38纳秒
+   SSD（固态硬盘）：寻址时间太慢了，和CPU形成矛盾     内存：存数据，断电丢失     硬盘（硬盘驱动器） 存数据容量大，断电不丢失    一个文件本质上是一段字节流，由一个执行程序决定怎么执行一段字节流（16进制）
+  字节范围 0～255
+一切文件的本质  一段字节流：   文本文件（txt/代码/HTML等）     二进制文件   每个程序负责解释文件中的字节流  输入输出是站在程序的角度
+InputStream/PutputStream  抽象的输入/输出操作   从文件读取字节流 【实战】    value ==-1 的时候，循环结束
+ -从网络读取字节流【实战】 -从其他
+最好使用绝对路径
+抽象类不能直接实例化，因为抽象类里面包含还没有实现的方法 InputStream…… 这种只是抽象方法，不能够直接实现 用ProcessBuilder建立新的进程  Java中的File   file 代表的是文件路径</description>
+    </item>
+    
+    <item>
+      <title>计算机网络TCP and SOCket</title>
+      <link>https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/</link>
+      <pubDate>Sun, 30 Aug 2020 11:39:13 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/</guid>
+      <description>没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&amp;gt; 获得SYN seq=y,ACK x+1 （同意建立请求） ACK =y+1 表明收到同意建立连接 ==&amp;gt; 连接建立，        四次挥手断开连接        FIN seq = x+2 ACK = y+1发送断链接的请求 -&amp;gt; 获得ACK x+3 表示收到，又获得 FIN seq= y+1 表示断开链接 ACK = y+2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Socket    </description>
+    </item>
+    
+    <item>
+      <title>AccountingService</title>
+      <link>https://procarihana.github.io/public/posts/accountingservice/</link>
+      <pubDate>Mon, 10 Aug 2020 20:48:22 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/accountingservice/</guid>
+      <description>.ignore放什么 1 *.iml 是 intellij idea的工程配置文件，里面是当前project的一些配置信息。.Idea存放项目的配置信息，包括历史记录，版本控制信息等。 2. .idea/ 3. target/
+项目结构和模型转换  external 用于存放外部团队的接口和服务，然后再Manager里面放。在接口处写注析。 exception 异常处理 config 存放MybatisBean等等的Bean Controller 存放SpringBoot对外接口（API接口）   不要有过多的处理逻辑 参数校验越早做越好  manager 组合各个业务的逻辑 先写接口后写实现 Dao Converter 用于转换 Moudle的common向service等等的转换但是不能够用于Http、数据库、IO等操作 Service 部分是给前段展示的内容，不能直接返回密码（加密后的还是可以的）等内容  添加Maven  通过Maven getting start  SpringBoot Spring boot 开发四大步  添加相应依赖   SpringBoot 引入       基础Maven引入：、spring-boot-starter-web、plugin     添加相应注解   添加Appliation类作为SpringBoot入口，并添加注解@SpringBootApplication     添加Controller类，并添加注解@RestController      @RestController == @Controller + @ResponseBodymapping    编写代码 添加相应配置   在resources里添加application.</description>
+    </item>
     
     <item>
       <title>Spring Web</title>
