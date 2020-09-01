@@ -62,17 +62,17 @@ paginate = 10
    url        = "tags"
    weight     = "2"
    [[menu.main]]
-   identifier = "notes"
+   identifier = "blog"
    name       = "PNotes"
    url        = "notes"
    weight     = "3"
     [[menu.main]]
-   identifier = "projects"
+   identifier = "blog"
    name       = "Projects"
    url        = "projects"
    weight     = "4"
      [[menu.main]]
-   identifier = "exerciseProblems"
+   identifier = "blog"
    name       = "EProblems"
    url        = "exerciseproblems"
    weight     = "5"

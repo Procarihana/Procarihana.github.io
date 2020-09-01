@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="Bean生成   一个对象生成Bean只能用一个方法配置，不能每个方法都对同一个对象生成bean
+  class从java下一个文件夹开始~
+class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderService
+  Bean 配置
+   xml（旧的）   新建一个src/main/resources/applicationContext.xml 复制  &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:context=&amp;quot;http://www.springframework.org/schema/context&amp;quot; xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&amp;quot;&amp;gt; &amp;lt;!-- &amp;lt;context:component-scan base-package=&amp;quot;com.in28minutes.spring.basics&amp;quot;/&amp;gt; --&amp;gt; &amp;lt;bean id=&amp;quot;xmlStringBean1&amp;quot; class=&amp;quot;java.lang.String&amp;quot;&amp;gt; &amp;lt;constructor-arg value=&amp;quot;stringBean1&amp;quot; /&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;bean id=&amp;quot;xmlStringBean2&amp;quot; class=&amp;quot;java.lang.String&amp;quot;&amp;gt; &amp;lt;constructor-arg value=&amp;quot;stringBean2&amp;quot; /&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;/beans&amp;gt;  修改bean id 和所在的class,不需要参数可以删掉 添加一个配置类(Eg:XmlConfiguration.class)，Bean会被加载。最好是放在一个包里面方便管理  @Configuration @ImportResource({&amp;#34;classpath*:applicationContext.xml&amp;#34;}) public class XmlConfiguration { } @ammunition   新建一个配置类(Eg:JavaConfiguration.class)  package com." />
+<meta name="keywords" content=", Bean" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/notes/bean/" />
+
+
+    <title>
+        
+            Bean :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Bean">
+<meta itemprop="description" content="Bean生成   一个对象生成Bean只能用一个方法配置，不能每个方法都对同一个对象生成bean
+  class从java下一个文件夹开始~
+class=java.com.service.OrderService&ndash;&gt;class=com.service.OrderService
+  Bean 配置
+   xml（旧的）   新建一个src/main/resources/applicationContext.xml 复制  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt; &lt;!-- &lt;context:component-scan base-package=&quot;com.in28minutes.spring.basics&quot;/&gt; --&gt; &lt;bean id=&quot;xmlStringBean1&quot; class=&quot;java.lang.String&quot;&gt; &lt;constructor-arg value=&quot;stringBean1&quot; /&gt; &lt;/bean&gt; &lt;bean id=&quot;xmlStringBean2&quot; class=&quot;java.lang.String&quot;&gt; &lt;constructor-arg value=&quot;stringBean2&quot; /&gt; &lt;/bean&gt; &lt;/beans&gt;  修改bean id 和所在的class,不需要参数可以删掉 添加一个配置类(Eg:XmlConfiguration.class)，Bean会被加载。最好是放在一个包里面方便管理  @Configuration @ImportResource({&#34;classpath*:applicationContext.xml&#34;}) public class XmlConfiguration { } @ammunition   新建一个配置类(Eg:JavaConfiguration.class)  package com.">
+<meta itemprop="datePublished" content="2020-09-01T10:04:08&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-01T10:04:08&#43;08:00" />
+<meta itemprop="wordCount" content="93">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="Bean," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="Bean"/>
+<meta name="twitter:description" content="Bean生成   一个对象生成Bean只能用一个方法配置，不能每个方法都对同一个对象生成bean
+  class从java下一个文件夹开始~
+class=java.com.service.OrderService&ndash;&gt;class=com.service.OrderService
+  Bean 配置
+   xml（旧的）   新建一个src/main/resources/applicationContext.xml 复制  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt; &lt;!-- &lt;context:component-scan base-package=&quot;com.in28minutes.spring.basics&quot;/&gt; --&gt; &lt;bean id=&quot;xmlStringBean1&quot; class=&quot;java.lang.String&quot;&gt; &lt;constructor-arg value=&quot;stringBean1&quot; /&gt; &lt;/bean&gt; &lt;bean id=&quot;xmlStringBean2&quot; class=&quot;java.lang.String&quot;&gt; &lt;constructor-arg value=&quot;stringBean2&quot; /&gt; &lt;/bean&gt; &lt;/beans&gt;  修改bean id 和所在的class,不需要参数可以删掉 添加一个配置类(Eg:XmlConfiguration.class)，Bean会被加载。最好是放在一个包里面方便管理  @Configuration @ImportResource({&#34;classpath*:applicationContext.xml&#34;}) public class XmlConfiguration { } @ammunition   新建一个配置类(Eg:JavaConfiguration.class)  package com."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-01 10:04:08 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/exerciseproblems">EProblems</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://procarihana.github.io/public/notes/bean/">Bean</a></h2>
+
+            
+
+            <div class="post-content">
+                <h2 id="bean生成">Bean生成</h2>
+<ul>
+<li>
+<p>一个对象生成Bean只能用一个方法配置，不能每个方法都对同一个对象生成bean</p>
+</li>
+<li>
+<p>class从java下一个文件夹开始~</p>
+<p><code>class=java.com.service.OrderService</code>&ndash;&gt;<code>class=com.service.OrderService</code></p>
+</li>
+<li>
+<p>Bean 配置</p>
+</li>
+</ul>
+<ol>
+<li>xml（旧的）</li>
+</ol>
+<ul>
+<li>新建一个<code>src/main/resources/applicationContext.xml</code></li>
+<li>复制</li>
+</ul>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+
+	&lt;!-- &lt;context:component-scan base-package=&quot;com.in28minutes.spring.basics&quot;/&gt; --&gt;
+
+	&lt;bean id=&quot;xmlStringBean1&quot; class=&quot;java.lang.String&quot;&gt;
+		&lt;constructor-arg value=&quot;stringBean1&quot; /&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id=&quot;xmlStringBean2&quot; class=&quot;java.lang.String&quot;&gt;
+		&lt;constructor-arg value=&quot;stringBean2&quot; /&gt;
+	&lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre><ul>
+<li>修改bean id 和所在的class,不需要参数可以删掉</li>
+<li>添加一个配置类(Eg:<code>XmlConfiguration.class</code>)，Bean会被加载。最好是放在一个包里面方便管理</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
+<span style="color:#a6e22e">@ImportResource</span><span style="color:#f92672">({</span><span style="color:#e6db74">&#34;classpath*:applicationContext.xml&#34;</span><span style="color:#f92672">})</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XmlConfiguration</span> <span style="color:#f92672">{</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ol start="2">
+<li><code>@ammunition</code></li>
+</ol>
+<ul>
+<li>新建一个配置类(Eg:<code>JavaConfiguration.class</code>)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.in28minutes.springboot.tutorial.basics.example.application.context.java<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> org.springframework.context.annotation.Bean<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.springframework.context.annotation.Configuration<span style="color:#f92672">;</span>
+
+<span style="color:#a6e22e">@Configuration</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaConfiguration</span> <span style="color:#f92672">{</span>
+	
+	<span style="color:#a6e22e">@Bean</span>
+	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">someDummyBean1</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;someDummyBean1&#34;</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+	
+	<span style="color:#a6e22e">@Bean</span>
+	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">someDummyBean2</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;someDummyBean2&#34;</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>修改<code>String someDummyBean1</code>为需要的（Eg：<code>UserService userService</code>）</li>
+<li><code>return new UserService();</code></li>
+</ul>
+<ol start="3">
+<li>在Bean的类名前面声明<code>@Service</code>、<code>@Component</code>,就可以实现自动Bean声明，就不需要前面的两个方法.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span><span style="color:#f92672">{</span>
+    
+<span style="color:#f92672">}</span>
+</code></pre></div><p><strong><a href="https://www.springboottutorial.com/spring-boot-java-xml-context-configuration">https://www.springboottutorial.com/spring-boot-java-xml-context-configuration</a></strong></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  				<p>
+  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://procarihana.github.io/public/tags/bean">Bean</a></span>
+  				</p>
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

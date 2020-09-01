@@ -14,10 +14,10 @@
     
     <item>
       <title>Bean</title>
-      <link>https://procarihana.github.io/public/posts/note/bean/</link>
+      <link>https://procarihana.github.io/public/notes/bean/</link>
       <pubDate>Tue, 01 Sep 2020 10:04:08 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/public/posts/note/bean/</guid>
+      <guid>https://procarihana.github.io/public/notes/bean/</guid>
       <description>Bean生成   一个对象生成Bean只能用一个方法配置，不能每个方法都对同一个对象生成bean
   class从java下一个文件夹开始~
 class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderService

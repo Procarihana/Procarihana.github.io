@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/notes/</link>
+    <description>Recent content in Notes on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 01 Sep 2020 11:37:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/notes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring</title>
+      <link>https://procarihana.github.io/public/notes/spring/</link>
+      <pubDate>Tue, 01 Sep 2020 11:37:47 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/spring/</guid>
+      <description>Spring MVC  模型model(javabean), 视图view(jsp/img) 控制器Controller(Action/servlet) C 存在的目的就是为了保证M和V的一致性 当M发生改变时,C可以把M中的新内容更新到V中. SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架
+MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。
+支持 RESTful风格的 URL 请求 。
+采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性。 为了解决页面代码和后台代码的分离  Spring 容器原理  Ioc 容器的事实标准 Ioc (Inverse of Control控制反转) :只需要告诉容器对象的依赖关系，容器就会自动完成依赖和Beans的生成，通过依赖注入完成依赖，整个过程就是控制反转 Java对象是Bean 当A对象必须使用B对象才能完成自己的工作的时候，就是A依赖B  </description>
+    </item>
+    
+    <item>
+      <title>Mybatis</title>
+      <link>https://procarihana.github.io/public/notes/mybatis/</link>
+      <pubDate>Tue, 01 Sep 2020 10:57:12 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/mybatis/</guid>
+      <description>Environment DataSource   dataSource 元素使用标准的 JDBC 数据源接口来配置 JDBC 连接对象的资源。
+  大多数 MyBatis 应用程序会按示例中的例子来配置数据源。虽然数据源配置是可选的，但如果要启用延迟加载特性，就必须配置数据源。 有三种内建的数据源类型（也就是 type=&amp;rdquo;[UNPOOLED|POOLED|JNDI]&amp;quot;）：
+   UNPOOLED– 这个数据源的实现会每次请求时打开和关闭连接。虽然有点慢，但对那些数据库连接可用性要求不高的简单应用程序来说，是一个很好的选择。 性能表现则依赖于使用的数据库，对某些数据库来说，使用连接池并不重要，这个配置就很适合这种情形。UNPOOLED 类型的数据源仅仅需要配置以下 5 种属性：      driver – 这是 JDBC 驱动的 Java 类全限定名（并不是 JDBC 驱动中可能包含的数据源类）。 url – 这是数据库的 JDBC URL 地址。 username – 登录数据库的用户名。 password – 登录数据库的密码。 defaultTransactionIsolationLevel – 默认的连接事务隔离级别。 defaultNetworkTimeout – 等待数据库操作完成的默认网络超时时间（单位：毫秒）。查看 java.sql.Connection#setNetworkTimeout() 的 API 文档以获取更多信息。 作为可选项，你也可以传递属性给数据库驱动。只需在属性名加上“driver.”前缀即可，例如：driver.encoding=UTF8这将通过 DriverManager.getConnection(url, driverProperties) 方法传递值为 UTF8 的 encoding 属性给数据库驱动。      POOLED– 这种数据源的实现利用“池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间。 这种处理方式很流行，能使并发 Web 应用快速响应请求。    除了上述提到 UNPOOLED 下的属性外，还有更多属性用来配置 POOLED 的数据源：</description>
+    </item>
+    
+    <item>
+      <title>Bean</title>
+      <link>https://procarihana.github.io/public/notes/bean/</link>
+      <pubDate>Tue, 01 Sep 2020 10:04:08 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/bean/</guid>
+      <description>Bean生成   一个对象生成Bean只能用一个方法配置，不能每个方法都对同一个对象生成bean
+  class从java下一个文件夹开始~
+class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderService
+  Bean 配置
+   xml（旧的）   新建一个src/main/resources/applicationContext.xml 复制  &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:context=&amp;quot;http://www.springframework.org/schema/context&amp;quot; xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&amp;quot;&amp;gt; &amp;lt;!-- &amp;lt;context:component-scan base-package=&amp;quot;com.in28minutes.spring.basics&amp;quot;/&amp;gt; --&amp;gt; &amp;lt;bean id=&amp;quot;xmlStringBean1&amp;quot; class=&amp;quot;java.lang.String&amp;quot;&amp;gt; &amp;lt;constructor-arg value=&amp;quot;stringBean1&amp;quot; /&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;bean id=&amp;quot;xmlStringBean2&amp;quot; class=&amp;quot;java.lang.String&amp;quot;&amp;gt; &amp;lt;constructor-arg value=&amp;quot;stringBean2&amp;quot; /&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;/beans&amp;gt;  修改bean id 和所在的class,不需要参数可以删掉 添加一个配置类(Eg:XmlConfiguration.class)，Bean会被加载。最好是放在一个包里面方便管理  @Configuration @ImportResource({&amp;#34;classpath*:applicationContext.xml&amp;#34;}) public class XmlConfiguration { } @ammunition   新建一个配置类(Eg:JavaConfiguration.class)  package com.</description>
+    </item>
+    
+  </channel>
+</rss>

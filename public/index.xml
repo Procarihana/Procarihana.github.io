@@ -23,10 +23,10 @@
     
     <item>
       <title>Spring</title>
-      <link>https://procarihana.github.io/public/posts/note/spring/</link>
+      <link>https://procarihana.github.io/public/notes/spring/</link>
       <pubDate>Tue, 01 Sep 2020 11:37:47 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/public/posts/note/spring/</guid>
+      <guid>https://procarihana.github.io/public/notes/spring/</guid>
       <description>Spring MVC  模型model(javabean), 视图view(jsp/img) 控制器Controller(Action/servlet) C 存在的目的就是为了保证M和V的一致性 当M发生改变时,C可以把M中的新内容更新到V中. SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架
 MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。
 支持 RESTful风格的 URL 请求 。
@@ -35,10 +35,10 @@ MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、�
     
     <item>
       <title>Mybatis</title>
-      <link>https://procarihana.github.io/public/posts/note/mybatis/</link>
+      <link>https://procarihana.github.io/public/notes/mybatis/</link>
       <pubDate>Tue, 01 Sep 2020 10:57:12 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/public/posts/note/mybatis/</guid>
+      <guid>https://procarihana.github.io/public/notes/mybatis/</guid>
       <description>Environment DataSource   dataSource 元素使用标准的 JDBC 数据源接口来配置 JDBC 连接对象的资源。
   大多数 MyBatis 应用程序会按示例中的例子来配置数据源。虽然数据源配置是可选的，但如果要启用延迟加载特性，就必须配置数据源。 有三种内建的数据源类型（也就是 type=&amp;rdquo;[UNPOOLED|POOLED|JNDI]&amp;quot;）：
    UNPOOLED– 这个数据源的实现会每次请求时打开和关闭连接。虽然有点慢，但对那些数据库连接可用性要求不高的简单应用程序来说，是一个很好的选择。 性能表现则依赖于使用的数据库，对某些数据库来说，使用连接池并不重要，这个配置就很适合这种情形。UNPOOLED 类型的数据源仅仅需要配置以下 5 种属性：      driver – 这是 JDBC 驱动的 Java 类全限定名（并不是 JDBC 驱动中可能包含的数据源类）。 url – 这是数据库的 JDBC URL 地址。 username – 登录数据库的用户名。 password – 登录数据库的密码。 defaultTransactionIsolationLevel – 默认的连接事务隔离级别。 defaultNetworkTimeout – 等待数据库操作完成的默认网络超时时间（单位：毫秒）。查看 java.sql.Connection#setNetworkTimeout() 的 API 文档以获取更多信息。 作为可选项，你也可以传递属性给数据库驱动。只需在属性名加上“driver.”前缀即可，例如：driver.encoding=UTF8这将通过 DriverManager.getConnection(url, driverProperties) 方法传递值为 UTF8 的 encoding 属性给数据库驱动。      POOLED– 这种数据源的实现利用“池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间。 这种处理方式很流行，能使并发 Web 应用快速响应请求。    除了上述提到 UNPOOLED 下的属性外，还有更多属性用来配置 POOLED 的数据源：</description>
@@ -46,10 +46,10 @@ MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、�
     
     <item>
       <title>Bean</title>
-      <link>https://procarihana.github.io/public/posts/note/bean/</link>
+      <link>https://procarihana.github.io/public/notes/bean/</link>
       <pubDate>Tue, 01 Sep 2020 10:04:08 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/public/posts/note/bean/</guid>
+      <guid>https://procarihana.github.io/public/notes/bean/</guid>
       <description>Bean生成   一个对象生成Bean只能用一个方法配置，不能每个方法都对同一个对象生成bean
   class从java下一个文件夹开始~
 class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderService
@@ -59,19 +59,19 @@ class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderSer
     
     <item>
       <title>SpringBoot Blog</title>
-      <link>https://procarihana.github.io/public/posts/procject/springboot-blog/</link>
+      <link>https://procarihana.github.io/public/projects/springboot-blog/</link>
       <pubDate>Tue, 01 Sep 2020 08:01:27 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/public/posts/procject/springboot-blog/</guid>
+      <guid>https://procarihana.github.io/public/projects/springboot-blog/</guid>
       <description>Servlet Tomcat  servlet容器 catalina  Filter 过滤器  是一个执行过滤任务的对象， doFilter 请求响应，也能够通过FilterChain抽根烟·传给下一个filter，实现过滤的功能  listerner  Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 用于启动和关闭Spring容器的本体  Docker  用统一的环境处理软件交互，运行速度比虚拟机要快 Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 docker的端口和本机的端口没有关系，除非绑定  index.html 渲染  后端渲染:根据用户请求的内容的不同，决定返回的内容 前端渲染：把后端返回的内容填充到页面上面 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的  浏览器  浏览器栏发出的请求都是GET 要调试post请求需要用到其他工具，例如postman HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的  JVM  Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.classd的版本是JVM 能够运行的（JVM不能够运行比自己版本搞的字节码文件），对应版本的Java就能够运行。  SpringBoot 基础知识  对象   需要对外提供服务的需要声明Bean，例如提供鉴权、查询等服务功能       Controller对象则会通过声明@Controller从而完成Bean的声明,进行Bean装配         Service对象则会通过@Component、@Service进行声明       作为数据容器容纳数据的就不需要，一般放在entity包里面会比较容易处理    public class User { Integer id; String name; String avatar; Instant createdAt; Instant updateAt; public User(Integer id, String name) { this.</description>
     </item>
     
     <item>
       <title>Try/catch</title>
-      <link>https://procarihana.github.io/public/posts/exerciseproblem/catch/</link>
+      <link>https://procarihana.github.io/public/exerciseproblems/catch/</link>
       <pubDate>Tue, 01 Sep 2020 07:07:27 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/public/posts/exerciseproblem/catch/</guid>
+      <guid>https://procarihana.github.io/public/exerciseproblems/catch/</guid>
       <description>Try/catch    try { int i = 10 / 0; } finally { System.out.println(&amp;#34;last&amp;#34;); }  能够成功执行，并且会返回last，同时也会返回Exeception 提示：: / by zero  finally 不一定都会被执行   try里面包含System.exit() finally 里包含异常就会抛出异常并终止执行  try { System.out.println(&amp;#34;try&amp;#34;); } catch (Exception e) { System.out.println(&amp;#34;catch&amp;#34;); } finally { int k = 3 / 0; System.out.println(&amp;#34;finally&amp;#34;); } System.out.println(&amp;#34;main&amp;#34;); </description>
     </item>
     
