@@ -52,7 +52,7 @@ paginate = 10
 # 板块化分
 # 权重对应在页面上显示的次序
 [[menu.main]]
-    identifier = "blog"
+    identifier = "posts"
     name       = "CNotes"
     url        = "posts"
     weight     = "1"
@@ -62,17 +62,17 @@ paginate = 10
    url        = "tags"
    weight     = "2"
    [[menu.main]]
-   identifier = "blog"
+   identifier = "notes"
    name       = "PNotes"
    url        = "notes"
    weight     = "3"
     [[menu.main]]
-   identifier = "blog"
+   identifier = "projects"
    name       = "Projects"
    url        = "projects"
    weight     = "4"
      [[menu.main]]
-   identifier = "blog"
+   identifier = "exerciseproblems"
    name       = "EProblems"
    url        = "exerciseproblems"
    weight     = "5"
