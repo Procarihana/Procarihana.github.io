@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="Spring MVC  模型model(javabean), 视图view(jsp/img) 控制器Controller(Action/servlet) C 存在的目的就是为了保证M和V的一致性 当M发生改变时,C可以把M中的新内容更新到V中. SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架
+MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。
+支持 RESTful风格的 URL 请求 。
+采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性。 为了解决页面代码和后台代码的分离  Spring 容器原理  Ioc 容器的事实标准 Ioc (Inverse of Control控制反转) :只需要告诉容器对象的依赖关系，容器就会自动完成依赖和Beans的生成，通过依赖注入完成依赖，整个过程就是控制反转 Java对象是Bean 当A对象必须使用B对象才能完成自己的工作的时候，就是A依赖B  " />
+<meta name="keywords" content=", SpringMvc" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/note/spring/" />
+
+
+    <title>
+        
+            Spring :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Spring">
+<meta itemprop="description" content="Spring MVC  模型model(javabean), 视图view(jsp/img) 控制器Controller(Action/servlet) C 存在的目的就是为了保证M和V的一致性 当M发生改变时,C可以把M中的新内容更新到V中. SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架
+MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。
+支持 RESTful风格的 URL 请求 。
+采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性。 为了解决页面代码和后台代码的分离  Spring 容器原理  Ioc 容器的事实标准 Ioc (Inverse of Control控制反转) :只需要告诉容器对象的依赖关系，容器就会自动完成依赖和Beans的生成，通过依赖注入完成依赖，整个过程就是控制反转 Java对象是Bean 当A对象必须使用B对象才能完成自己的工作的时候，就是A依赖B  ">
+<meta itemprop="datePublished" content="2020-09-01T11:37:47&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-01T11:37:47&#43;08:00" />
+<meta itemprop="wordCount" content="30">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="SpringMvc," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="Spring"/>
+<meta name="twitter:description" content="Spring MVC  模型model(javabean), 视图view(jsp/img) 控制器Controller(Action/servlet) C 存在的目的就是为了保证M和V的一致性 当M发生改变时,C可以把M中的新内容更新到V中. SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架
+MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。
+支持 RESTful风格的 URL 请求 。
+采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性。 为了解决页面代码和后台代码的分离  Spring 容器原理  Ioc 容器的事实标准 Ioc (Inverse of Control控制反转) :只需要告诉容器对象的依赖关系，容器就会自动完成依赖和Beans的生成，通过依赖注入完成依赖，整个过程就是控制反转 Java对象是Bean 当A对象必须使用B对象才能完成自己的工作的时候，就是A依赖B  "/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-01 11:37:47 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd/Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">Blogs</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/note/spring/">Spring</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="spring-mvc">Spring MVC</h2>
+<ul>
+<li>模型model(javabean),  视图view(jsp/img)   控制器Controller(Action/servlet)</li>
+<li>C 存在的目的就是为了保证M和V的一致性
+当M发生改变时,C可以把M中的新内容更新到V中.</li>
+<li><strong>SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架</strong><br>
+MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。<br>
+支持 RESTful风格的 URL 请求 。<br>
+采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性。</li>
+<li>为了解决页面代码和后台代码的分离</li>
+</ul>
+<h2 id="spring-容器原理">Spring 容器原理</h2>
+<ul>
+<li>Ioc 容器的事实标准</li>
+<li>Ioc (Inverse of Control控制反转) :只需要告诉容器对象的依赖关系，容器就会自动完成依赖和Beans的生成，通过依赖注入完成依赖，整个过程就是控制反转</li>
+<li>Java对象是Bean</li>
+<li>当A对象必须使用B对象才能完成自己的工作的时候，就是A依赖B</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/springmvc/">SpringMvc</a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        30 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-09-01 11:37 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/docker%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Docker的原理和应用</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/note/mybatis/">
+                <span class="button__text">Mybatis</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

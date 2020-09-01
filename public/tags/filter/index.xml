@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Filter on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/filter/</link>
+    <description>Recent content in Filter on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 01 Sep 2020 08:01:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/filter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SpringBoot Blog</title>
+      <link>https://procarihana.github.io/public/posts/procject/springboot-blog/</link>
+      <pubDate>Tue, 01 Sep 2020 08:01:27 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/procject/springboot-blog/</guid>
+      <description>Servlet Tomcat  servlet容器 catalina  Filter 过滤器  是一个执行过滤任务的对象， doFilter 请求响应，也能够通过FilterChain抽根烟·传给下一个filter，实现过滤的功能  listerner  Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 用于启动和关闭Spring容器的本体  Docker  用统一的环境处理软件交互，运行速度比虚拟机要快 Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 docker的端口和本机的端口没有关系，除非绑定  index.html 渲染  后端渲染:根据用户请求的内容的不同，决定返回的内容 前端渲染：把后端返回的内容填充到页面上面 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的  浏览器  浏览器栏发出的请求都是GET 要调试post请求需要用到其他工具，例如postman HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的  JVM  Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.classd的版本是JVM 能够运行的（JVM不能够运行比自己版本搞的字节码文件），对应版本的Java就能够运行。  SpringBoot 基础知识  对象   需要对外提供服务的需要声明Bean，例如提供鉴权、查询等服务功能       Controller对象则会通过声明@Controller从而完成Bean的声明,进行Bean装配         Service对象则会通过@Component、@Service进行声明       作为数据容器容纳数据的就不需要，一般放在entity包里面会比较容易处理    public class User { Integer id; String name; String avatar; Instant createdAt; Instant updateAt; public User(Integer id, String name) { this.</description>
+    </item>
+    
+  </channel>
+</rss>

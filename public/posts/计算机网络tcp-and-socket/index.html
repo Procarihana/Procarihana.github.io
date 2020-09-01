@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Hana ">
-<meta name="description" content="没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&amp;gt; 获得SYN seq=y,ACK x&#43;1 （同意建立请求） ACK =y&#43;1 表明收到同意建立连接 ==&amp;gt; 连接建立，        四次挥手断开连接        FIN seq = x&#43;2 ACK = y&#43;1发送断链接的请求 -&amp;gt; 获得ACK x&#43;3 表示收到，又获得 FIN seq= y&#43;1 表示断开链接 ACK = y&#43;2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Socket    " />
-<meta name="keywords" content=", Socket, Tcp" />
+<meta name="description" content="没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&amp;gt; 获得SYN seq=y,ACK x&#43;1 （同意建立请求） ACK =y&#43;1 表明收到同意建立连接 ==&amp;gt; 连接建立，        四次挥手断开连接        FIN seq = x&#43;2 ACK = y&#43;1发送断链接的请求 -&amp;gt; 获得ACK x&#43;3 表示收到，又获得 FIN seq= y&#43;1 表示断开链接 ACK = y&#43;2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Scoket  TCP包含客户端和服务器双方的ip和port。这四个元素是四元组（client的src源ip、port和dest目标ip。port），也就是socket/socket的链接。   ip &amp;ndash;&amp;gt; 唯一确定一台计算机，port &amp;ndash;&amp;gt; 端口可以唯一确定监听端口的一个程序   socket 只要制定目标ip和port 就可以发送信息，自身ip会自动提供，如果有指定的port就会使用，如果没有就会自动挑选一个空闲的端口   查询网站ip地址： $ nslookup &#43; 地址    public class SocketTest { public static void main(String[] args) throws IOException { Socket socket = new Socket(&amp;#34;182." />
+<meta name="keywords" content=", Socket, TCP" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/" />
@@ -14,7 +14,7 @@
 
     <title>
         
-            计算机网络TCP and SOCket :: FAFA Blog  — Just for fun
+            计算机网络TCP and Socket :: FAFA Blog  — Just for fun
         
     </title>
 
@@ -32,21 +32,21 @@
 
 
 
-<meta itemprop="name" content="计算机网络TCP and SOCket">
-<meta itemprop="description" content="没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&gt; 获得SYN seq=y,ACK x&#43;1 （同意建立请求） ACK =y&#43;1 表明收到同意建立连接 ==&gt; 连接建立，        四次挥手断开连接        FIN seq = x&#43;2 ACK = y&#43;1发送断链接的请求 -&gt; 获得ACK x&#43;3 表示收到，又获得 FIN seq= y&#43;1 表示断开链接 ACK = y&#43;2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Socket    ">
+<meta itemprop="name" content="计算机网络TCP and Socket">
+<meta itemprop="description" content="没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&gt; 获得SYN seq=y,ACK x&#43;1 （同意建立请求） ACK =y&#43;1 表明收到同意建立连接 ==&gt; 连接建立，        四次挥手断开连接        FIN seq = x&#43;2 ACK = y&#43;1发送断链接的请求 -&gt; 获得ACK x&#43;3 表示收到，又获得 FIN seq= y&#43;1 表示断开链接 ACK = y&#43;2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Scoket  TCP包含客户端和服务器双方的ip和port。这四个元素是四元组（client的src源ip、port和dest目标ip。port），也就是socket/socket的链接。   ip &ndash;&gt; 唯一确定一台计算机，port &ndash;&gt; 端口可以唯一确定监听端口的一个程序   socket 只要制定目标ip和port 就可以发送信息，自身ip会自动提供，如果有指定的port就会使用，如果没有就会自动挑选一个空闲的端口   查询网站ip地址： $ nslookup &#43; 地址    public class SocketTest { public static void main(String[] args) throws IOException { Socket socket = new Socket(&#34;182.">
 <meta itemprop="datePublished" content="2020-08-30T11:39:13&#43;08:00" />
 <meta itemprop="dateModified" content="2020-08-30T11:39:13&#43;08:00" />
-<meta itemprop="wordCount" content="76">
+<meta itemprop="wordCount" content="226">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
 
-<meta itemprop="keywords" content="Socket,Tcp," />
+<meta itemprop="keywords" content="Socket,TCP," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://procarihana.github.io/public/"/>
 
-<meta name="twitter:title" content="计算机网络TCP and SOCket"/>
-<meta name="twitter:description" content="没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&gt; 获得SYN seq=y,ACK x&#43;1 （同意建立请求） ACK =y&#43;1 表明收到同意建立连接 ==&gt; 连接建立，        四次挥手断开连接        FIN seq = x&#43;2 ACK = y&#43;1发送断链接的请求 -&gt; 获得ACK x&#43;3 表示收到，又获得 FIN seq= y&#43;1 表示断开链接 ACK = y&#43;2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Socket    "/>
+<meta name="twitter:title" content="计算机网络TCP and Socket"/>
+<meta name="twitter:description" content="没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&gt; 获得SYN seq=y,ACK x&#43;1 （同意建立请求） ACK =y&#43;1 表明收到同意建立连接 ==&gt; 连接建立，        四次挥手断开连接        FIN seq = x&#43;2 ACK = y&#43;1发送断链接的请求 -&gt; 获得ACK x&#43;3 表示收到，又获得 FIN seq= y&#43;1 表示断开链接 ACK = y&#43;2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Scoket  TCP包含客户端和服务器双方的ip和port。这四个元素是四元组（client的src源ip、port和dest目标ip。port），也就是socket/socket的链接。   ip &ndash;&gt; 唯一确定一台计算机，port &ndash;&gt; 端口可以唯一确定监听端口的一个程序   socket 只要制定目标ip和port 就可以发送信息，自身ip会自动提供，如果有指定的port就会使用，如果没有就会自动挑选一个空闲的端口   查询网站ip地址： $ nslookup &#43; 地址    public class SocketTest { public static void main(String[] args) throws IOException { Socket socket = new Socket(&#34;182."/>
 
 
 
@@ -120,7 +120,7 @@
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
-        One minute
+        2 minutes
 
         
       </p>
@@ -128,7 +128,7 @@
 
     <article>
       <h1 class="post-title">
-        <a href="https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/">计算机网络TCP and SOCket</a>
+        <a href="https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/">计算机网络TCP and Socket</a>
       </h1>
 
       
@@ -245,11 +245,181 @@
 </ul>
 </li>
 </ul>
-<h2 id="socket">Socket</h2>
+<h2 id="scoket">Scoket</h2>
 <ul>
-<li></li>
+<li>TCP包含客户端和服务器双方的ip和port。这四个元素是四元组（client的src源ip、port和dest目标ip。port），也就是socket/socket的链接。</li>
+<li>
+<ul>
+<li>ip &ndash;&gt; 唯一确定一台计算机，port &ndash;&gt; 端口可以唯一确定监听端口的一个程序</li>
 </ul>
+</li>
+<li>socket 只要制定目标ip和port 就可以发送信息，自身ip会自动提供，如果有指定的port就会使用，如果没有就会自动挑选一个空闲的端口</li>
+<li>
+<ul>
+<li>查询网站ip地址： $ nslookup + 地址</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SocketTest</span> <span style="color:#f92672">{</span>
 
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        Socket socket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Socket<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;182.61.200.7&#34;</span><span style="color:#f92672">,</span>443<span style="color:#f92672">);</span>
+        socket<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>
+<p>Socket 里传输速Http 协议</p>
+</li>
+<li>
+<ul>
+<li>抵达服务器地第一个字节一定时是<code>G</code>之后是<code>E</code>、<code>T</code>、<code>0x20</code></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>按照HTTP协议格式的规定，给服务器返回字节流，就能够手写出HTTP服务器</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>请求行：</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>请求方法</th>
+<th><code>|</code>空格</th>
+<th><code>|</code>URL方法</th>
+<th><code>|</code>空格</th>
+<th><code>|</code>协议版本</th>
+<th><code>|</code>回车符（\r）</th>
+<th><code>|</code>换行符（\n）</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+</table>
+<ul>
+<li>
+<ul>
+<li>请求头部：</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>头部字段名</th>
+<th><code>|</code>：</th>
+<th><code>|</code>value</th>
+<th><code>|</code>\r</th>
+<th><code>|</code>\n</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>……</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>头部字段名</td>
+<td><code>|</code>：</td>
+<td><code>|</code>value</td>
+<td><code>|</code>\r</td>
+<td><code>|</code>\n</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>\r</td>
+<td><code>|</code>\n</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<ul>
+<li>请求数据</li>
+</ul>
+</li>
+<li>手写HTTP协议</li>
+<li>
+<ul>
+<li>本地环回网络接口：127.0.0.1。 能够通过这个接口访问自己的机器</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>socker.accept()</code>执行后要是没有设置返回或者没有下一步的操作，就会一直停在那里阻塞，返回的是一个socket。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SocketTest</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> port <span style="color:#f92672">=</span> 8080<span style="color:#f92672">;</span>
+        ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket<span style="color:#f92672">();</span>
+         serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InetSocketAddress<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;127.0.0.1&#34;</span><span style="color:#f92672">,</span>port<span style="color:#f92672">));</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">()</span><span style="color:#960050;background-color:#1e0010">：</span>Socket<span style="color:#f92672">[</span>addr<span style="color:#f92672">=/</span>127<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">,</span>port<span style="color:#f92672">=</span>54777<span style="color:#f92672">,</span>localport<span style="color:#f92672">=</span>8080<span style="color:#f92672">]</span>
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SocketTest</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> port <span style="color:#f92672">=</span> 8080<span style="color:#f92672">;</span>
+        ServerSocket serverSocket <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket<span style="color:#f92672">();</span>
+        serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InetSocketAddress<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;127.0.0.1&#34;</span><span style="color:#f92672">,</span> port<span style="color:#f92672">));</span>
+        Socket socket <span style="color:#f92672">=</span> serverSocket<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">();</span>
+        BufferedReader bufferedReader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InputStreamReader<span style="color:#f92672">(</span>socket<span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">()));</span>
+        String line <span style="color:#f92672">=</span> bufferedReader<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">();</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>line<span style="color:#f92672">);</span>
+        <span style="color:#75715e">//HTTP response header
+</span><span style="color:#75715e"></span>        socket<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;HTTP/1.1 200OK\r\n&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+        <span style="color:#75715e">//HTTP response header/body 分隔符
+</span><span style="color:#75715e"></span>        socket<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\r\n&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+        <span style="color:#75715e">//HTTP response body
+</span><span style="color:#75715e"></span>        socket<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello!&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span>
+
+        <span style="color:#75715e">//清理缓冲区，避免堵在缓冲区没有执行
+</span><span style="color:#75715e"></span>        socket<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">flush</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div>
       </div>
     </article>
 
@@ -260,7 +430,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
             <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
             <line x1="7" y1="7" x2="7" y2="7"></line>
-          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/socket/">Socket</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/tcp/">Tcp</a></span>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/socket/">Socket</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/tcp/">TCP</a></span>
         </p>
 
       <p>
@@ -271,7 +441,7 @@
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        76 Words
+        226 Words
       </p>
 
       <p>

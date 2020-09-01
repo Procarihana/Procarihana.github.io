@@ -7,10 +7,83 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 30 Aug 2020 17:47:43 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2020 18:41:11 +0800</lastBuildDate>
     
 	<atom:link href="https://procarihana.github.io/public/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker的原理和应用</title>
+      <link>https://procarihana.github.io/public/posts/docker%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Tue, 01 Sep 2020 18:41:11 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/docker%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/</guid>
+      <description>虚拟机有一套完整独立的操作系统，非常占内存和资源  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Tag  不指定就是latest Docker运行的镜像要放到指定的仓库里面 Tag 前面是url/域名，push、pull、run，就会把镜像自动解析到相应的仓库里面 my.</description>
+    </item>
+    
+    <item>
+      <title>Spring</title>
+      <link>https://procarihana.github.io/public/posts/note/spring/</link>
+      <pubDate>Tue, 01 Sep 2020 11:37:47 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/note/spring/</guid>
+      <description>Spring MVC  模型model(javabean), 视图view(jsp/img) 控制器Controller(Action/servlet) C 存在的目的就是为了保证M和V的一致性 当M发生改变时,C可以把M中的新内容更新到V中. SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架
+MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。
+支持 RESTful风格的 URL 请求 。
+采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性。 为了解决页面代码和后台代码的分离  Spring 容器原理  Ioc 容器的事实标准 Ioc (Inverse of Control控制反转) :只需要告诉容器对象的依赖关系，容器就会自动完成依赖和Beans的生成，通过依赖注入完成依赖，整个过程就是控制反转 Java对象是Bean 当A对象必须使用B对象才能完成自己的工作的时候，就是A依赖B  </description>
+    </item>
+    
+    <item>
+      <title>Mybatis</title>
+      <link>https://procarihana.github.io/public/posts/note/mybatis/</link>
+      <pubDate>Tue, 01 Sep 2020 10:57:12 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/note/mybatis/</guid>
+      <description>Environment DataSource   dataSource 元素使用标准的 JDBC 数据源接口来配置 JDBC 连接对象的资源。
+  大多数 MyBatis 应用程序会按示例中的例子来配置数据源。虽然数据源配置是可选的，但如果要启用延迟加载特性，就必须配置数据源。 有三种内建的数据源类型（也就是 type=&amp;rdquo;[UNPOOLED|POOLED|JNDI]&amp;quot;）：
+   UNPOOLED– 这个数据源的实现会每次请求时打开和关闭连接。虽然有点慢，但对那些数据库连接可用性要求不高的简单应用程序来说，是一个很好的选择。 性能表现则依赖于使用的数据库，对某些数据库来说，使用连接池并不重要，这个配置就很适合这种情形。UNPOOLED 类型的数据源仅仅需要配置以下 5 种属性：      driver – 这是 JDBC 驱动的 Java 类全限定名（并不是 JDBC 驱动中可能包含的数据源类）。 url – 这是数据库的 JDBC URL 地址。 username – 登录数据库的用户名。 password – 登录数据库的密码。 defaultTransactionIsolationLevel – 默认的连接事务隔离级别。 defaultNetworkTimeout – 等待数据库操作完成的默认网络超时时间（单位：毫秒）。查看 java.sql.Connection#setNetworkTimeout() 的 API 文档以获取更多信息。 作为可选项，你也可以传递属性给数据库驱动。只需在属性名加上“driver.”前缀即可，例如：driver.encoding=UTF8这将通过 DriverManager.getConnection(url, driverProperties) 方法传递值为 UTF8 的 encoding 属性给数据库驱动。      POOLED– 这种数据源的实现利用“池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间。 这种处理方式很流行，能使并发 Web 应用快速响应请求。    除了上述提到 UNPOOLED 下的属性外，还有更多属性用来配置 POOLED 的数据源：</description>
+    </item>
+    
+    <item>
+      <title>Bean</title>
+      <link>https://procarihana.github.io/public/posts/note/bean/</link>
+      <pubDate>Tue, 01 Sep 2020 10:04:08 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/note/bean/</guid>
+      <description>Bean生成   一个对象生成Bean只能用一个方法配置，不能每个方法都对同一个对象生成bean
+  class从java下一个文件夹开始~
+class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderService
+  Bean 配置
+   xml（旧的）   新建一个src/main/resources/applicationContext.xml 复制  &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:context=&amp;quot;http://www.springframework.org/schema/context&amp;quot; xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&amp;quot;&amp;gt; &amp;lt;!-- &amp;lt;context:component-scan base-package=&amp;quot;com.in28minutes.spring.basics&amp;quot;/&amp;gt; --&amp;gt; &amp;lt;bean id=&amp;quot;xmlStringBean1&amp;quot; class=&amp;quot;java.lang.String&amp;quot;&amp;gt; &amp;lt;constructor-arg value=&amp;quot;stringBean1&amp;quot; /&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;bean id=&amp;quot;xmlStringBean2&amp;quot; class=&amp;quot;java.lang.String&amp;quot;&amp;gt; &amp;lt;constructor-arg value=&amp;quot;stringBean2&amp;quot; /&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;/beans&amp;gt;  修改bean id 和所在的class,不需要参数可以删掉 添加一个配置类(Eg:XmlConfiguration.class)，Bean会被加载。最好是放在一个包里面方便管理  @Configuration @ImportResource({&amp;#34;classpath*:applicationContext.xml&amp;#34;}) public class XmlConfiguration { } @ammunition   新建一个配置类(Eg:JavaConfiguration.class)  package com.</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot Blog</title>
+      <link>https://procarihana.github.io/public/posts/procject/springboot-blog/</link>
+      <pubDate>Tue, 01 Sep 2020 08:01:27 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/procject/springboot-blog/</guid>
+      <description>Servlet Tomcat  servlet容器 catalina  Filter 过滤器  是一个执行过滤任务的对象， doFilter 请求响应，也能够通过FilterChain抽根烟·传给下一个filter，实现过滤的功能  listerner  Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 用于启动和关闭Spring容器的本体  Docker  用统一的环境处理软件交互，运行速度比虚拟机要快 Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 docker的端口和本机的端口没有关系，除非绑定  index.html 渲染  后端渲染:根据用户请求的内容的不同，决定返回的内容 前端渲染：把后端返回的内容填充到页面上面 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的  浏览器  浏览器栏发出的请求都是GET 要调试post请求需要用到其他工具，例如postman HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的  JVM  Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.classd的版本是JVM 能够运行的（JVM不能够运行比自己版本搞的字节码文件），对应版本的Java就能够运行。  SpringBoot 基础知识  对象   需要对外提供服务的需要声明Bean，例如提供鉴权、查询等服务功能       Controller对象则会通过声明@Controller从而完成Bean的声明,进行Bean装配         Service对象则会通过@Component、@Service进行声明       作为数据容器容纳数据的就不需要，一般放在entity包里面会比较容易处理    public class User { Integer id; String name; String avatar; Instant createdAt; Instant updateAt; public User(Integer id, String name) { this.</description>
+    </item>
+    
+    <item>
+      <title>Try/catch</title>
+      <link>https://procarihana.github.io/public/posts/exerciseproblem/catch/</link>
+      <pubDate>Tue, 01 Sep 2020 07:07:27 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/exerciseproblem/catch/</guid>
+      <description>Try/catch    try { int i = 10 / 0; } finally { System.out.println(&amp;#34;last&amp;#34;); }  能够成功执行，并且会返回last，同时也会返回Exeception 提示：: / by zero  finally 不一定都会被执行   try里面包含System.exit() finally 里包含异常就会抛出异常并终止执行  try { System.out.println(&amp;#34;try&amp;#34;); } catch (Exception e) { System.out.println(&amp;#34;catch&amp;#34;); } finally { int k = 3 / 0; System.out.println(&amp;#34;finally&amp;#34;); } System.out.println(&amp;#34;main&amp;#34;); </description>
+    </item>
+    
+    <item>
+      <title>算法和数据结构</title>
+      <link>https://procarihana.github.io/public/posts/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Mon, 31 Aug 2020 20:15:50 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description>空接口:只是说明有这个功能，使用这个框架，但是不提供实现
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   O(1) - 哈希桶/数组随机寻址（常数时间复杂度）      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!</description>
+    </item>
     
     <item>
       <title>Java 部署</title>
@@ -18,7 +91,7 @@
       <pubDate>Sun, 30 Aug 2020 17:47:43 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/posts/java-%E9%83%A8%E7%BD%B2/</guid>
-      <description>应用开发流程  产品调研 产品设计 系统设计 -&amp;gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  分库分表  </description>
+      <description>应用开发流程  产品调研 产品设计 系统设计 -&amp;gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    exec:exec -&amp;gt; 在一个独立的进程中执行一个程序 exec:java -&amp;gt; 在同一个JVM里执行java  &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
     </item>
     
     <item>
@@ -39,12 +112,12 @@ InputStream/PutputStream  抽象的输入/输出操作   从文件读取字节�
     </item>
     
     <item>
-      <title>计算机网络TCP and SOCket</title>
+      <title>计算机网络TCP and Socket</title>
       <link>https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/</link>
       <pubDate>Sun, 30 Aug 2020 11:39:13 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9Ctcp-and-socket/</guid>
-      <description>没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&amp;gt; 获得SYN seq=y,ACK x+1 （同意建立请求） ACK =y+1 表明收到同意建立连接 ==&amp;gt; 连接建立，        四次挥手断开连接        FIN seq = x+2 ACK = y+1发送断链接的请求 -&amp;gt; 获得ACK x+3 表示收到，又获得 FIN seq= y+1 表示断开链接 ACK = y+2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Socket    </description>
+      <description>没有100%可靠的通信协议  红军/蓝军 计算机网络：虚电路分组，A服务器把报文给离目标IP最近的力所能及的设备（过程为HOP），这个设备再把报文发给下一个设备，如果中间某个最佳的设备被毁，就选择另一个设备绕过，直到到达目标IP（快递发货）   网络分层模型  TCP/IP模型（应用层、传输层【四层交换机、四层路由器】、网络层【路由器，三层交换机】） TCP Transmisson Control ProTocal 传输控制协议   TCP的握手与断开       三次握手建立连接        SYN SENT seq = x 发送请求建立连接的请求 -&amp;gt; 获得SYN seq=y,ACK x+1 （同意建立请求） ACK =y+1 表明收到同意建立连接 ==&amp;gt; 连接建立，        四次挥手断开连接        FIN seq = x+2 ACK = y+1发送断链接的请求 -&amp;gt; 获得ACK x+3 表示收到，又获得 FIN seq= y+1 表示断开链接 ACK = y+2 表示收到同意断开链接        如果中间有信息丢掉没有成功收到，会通过请求超时来知道链接断开成功     TCP 协议无法传递数据包，只能把所有数据包拆、黏包   TCP 没有规定包的界限，需要自己设计协议、分隔符、结束符来设计包的边界   TCP 中的数据包含TCP 包首部和数据两个部分，而IP中的数据包含前两个部分，在加上IP包首部 TCP 只有两个字节的端口（65536），端口数量有限制（同时使用），而每个端口访问的对象是不限制   TCP数据里面有确认号码，如果接受的没有收到，就需要重传。校验和可以检验数据是否有被串改，如果有则向发送的一方放再次发送请求 的   以太网则在IP数据的基础杀昂添加以太网包首部 TCP特点   面向连接     点对点 需要有目标端口     可靠交付 校验和、序列号码、确认号码 保证数据正确     面向字节流   UDP 协议（用于视频）   无连接的 无法保证数据是否到达     尽最大可能交付     面向报文的    Scoket  TCP包含客户端和服务器双方的ip和port。这四个元素是四元组（client的src源ip、port和dest目标ip。port），也就是socket/socket的链接。   ip &amp;ndash;&amp;gt; 唯一确定一台计算机，port &amp;ndash;&amp;gt; 端口可以唯一确定监听端口的一个程序   socket 只要制定目标ip和port 就可以发送信息，自身ip会自动提供，如果有指定的port就会使用，如果没有就会自动挑选一个空闲的端口   查询网站ip地址： $ nslookup + 地址    public class SocketTest { public static void main(String[] args) throws IOException { Socket socket = new Socket(&amp;#34;182.</description>
     </item>
     
     <item>

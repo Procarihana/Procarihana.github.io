@@ -4,7 +4,7 @@ date: 2020-08-10T20:48:22+08:00
 draft: false
 toc: false
 images: 
-tags: [SpringBoot,Mybatis,数据结构,数据模型转换,shiro,]
+tags: [SpringBoot,Mybatis,数据结构,数据模型转换,Shiro,]
 ---
 
 ## `.ignore`放什么

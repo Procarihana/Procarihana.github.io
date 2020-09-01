@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 10 Aug 2020 20:48:22 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2020 10:57:12 +0800</lastBuildDate>
     
 	<atom:link href="https://procarihana.github.io/public/tags/mybatis/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mybatis</title>
+      <link>https://procarihana.github.io/public/posts/note/mybatis/</link>
+      <pubDate>Tue, 01 Sep 2020 10:57:12 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/note/mybatis/</guid>
+      <description>Environment DataSource   dataSource 元素使用标准的 JDBC 数据源接口来配置 JDBC 连接对象的资源。
+  大多数 MyBatis 应用程序会按示例中的例子来配置数据源。虽然数据源配置是可选的，但如果要启用延迟加载特性，就必须配置数据源。 有三种内建的数据源类型（也就是 type=&amp;rdquo;[UNPOOLED|POOLED|JNDI]&amp;quot;）：
+   UNPOOLED– 这个数据源的实现会每次请求时打开和关闭连接。虽然有点慢，但对那些数据库连接可用性要求不高的简单应用程序来说，是一个很好的选择。 性能表现则依赖于使用的数据库，对某些数据库来说，使用连接池并不重要，这个配置就很适合这种情形。UNPOOLED 类型的数据源仅仅需要配置以下 5 种属性：      driver – 这是 JDBC 驱动的 Java 类全限定名（并不是 JDBC 驱动中可能包含的数据源类）。 url – 这是数据库的 JDBC URL 地址。 username – 登录数据库的用户名。 password – 登录数据库的密码。 defaultTransactionIsolationLevel – 默认的连接事务隔离级别。 defaultNetworkTimeout – 等待数据库操作完成的默认网络超时时间（单位：毫秒）。查看 java.sql.Connection#setNetworkTimeout() 的 API 文档以获取更多信息。 作为可选项，你也可以传递属性给数据库驱动。只需在属性名加上“driver.”前缀即可，例如：driver.encoding=UTF8这将通过 DriverManager.getConnection(url, driverProperties) 方法传递值为 UTF8 的 encoding 属性给数据库驱动。      POOLED– 这种数据源的实现利用“池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间。 这种处理方式很流行，能使并发 Web 应用快速响应请求。    除了上述提到 UNPOOLED 下的属性外，还有更多属性用来配置 POOLED 的数据源：</description>
+    </item>
     
     <item>
       <title>AccountingService</title>

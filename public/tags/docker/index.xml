@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/docker/</link>
+    <description>Recent content in docker on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 01 Sep 2020 18:41:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker的原理和应用</title>
+      <link>https://procarihana.github.io/public/posts/docker%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Tue, 01 Sep 2020 18:41:11 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/docker%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/</guid>
+      <description>虚拟机有一套完整独立的操作系统，非常占内存和资源  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Tag  不指定就是latest Docker运行的镜像要放到指定的仓库里面 Tag 前面是url/域名，push、pull、run，就会把镜像自动解析到相应的仓库里面 my.</description>
+    </item>
+    
+  </channel>
+</rss>

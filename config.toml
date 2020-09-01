@@ -46,14 +46,14 @@ paginate = 10
     readOtherPosts = "Read other posts"
 
     [languages.en.params.logo]
-      logoText = "cd/Home"
+      logoText = "知っているでしょう。"
       logoHomeLink = "/"
    
 # 板块化分
 # 权重对应在页面上显示的次序
 [[menu.main]]
     identifier = "blog"
-    name       = "Blogs"
+    name       = "CNotes"
     url        = "posts"
     weight     = "1"
 [[menu.main]]
@@ -61,6 +61,21 @@ paginate = 10
    name       = "Tags"
    url        = "tags"
    weight     = "2"
+   [[menu.main]]
+   identifier = "notes"
+   name       = "PNotes"
+   url        = "notes"
+   weight     = "3"
+    [[menu.main]]
+   identifier = "projects"
+   name       = "Projects"
+   url        = "projects"
+   weight     = "4"
+     [[menu.main]]
+   identifier = "exerciseProblems"
+   name       = "EProblems"
+   url        = "exerciseproblems"
+   weight     = "5"
 
 
 

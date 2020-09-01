@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Hana ">
-<meta name="description" content="应用开发流程  产品调研 产品设计 系统设计 -&amp;gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  分库分表  " />
-<meta name="keywords" content=", untagged" />
+<meta name="description" content="应用开发流程  产品调研 产品设计 系统设计 -&amp;gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    exec:exec -&amp;gt; 在一个独立的进程中执行一个程序 exec:java -&amp;gt; 在同一个JVM里执行java  &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org." />
+<meta name="keywords" content=", 开发, 部署, socker, 分布式" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://procarihana.github.io/public/posts/java-%E9%83%A8%E7%BD%B2/" />
@@ -33,20 +33,20 @@
 
 
 <meta itemprop="name" content="Java 部署">
-<meta itemprop="description" content="应用开发流程  产品调研 产品设计 系统设计 -&gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  分库分表  ">
+<meta itemprop="description" content="应用开发流程  产品调研 产品设计 系统设计 -&gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    exec:exec -&gt; 在一个独立的进程中执行一个程序 exec:java -&gt; 在同一个JVM里执行java  &lt;plugin&gt; &lt;groupId&gt;org.">
 <meta itemprop="datePublished" content="2020-08-30T17:47:43&#43;08:00" />
 <meta itemprop="dateModified" content="2020-08-30T17:47:43&#43;08:00" />
-<meta itemprop="wordCount" content="31">
+<meta itemprop="wordCount" content="151">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
 
-<meta itemprop="keywords" content="untagged," />
+<meta itemprop="keywords" content="开发,部署,socker,分布式," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://procarihana.github.io/public/"/>
 
 <meta name="twitter:title" content="Java 部署"/>
-<meta name="twitter:description" content="应用开发流程  产品调研 产品设计 系统设计 -&gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  分库分表  "/>
+<meta name="twitter:description" content="应用开发流程  产品调研 产品设计 系统设计 -&gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    exec:exec -&gt; 在一个独立的进程中执行一个程序 exec:java -&gt; 在同一个JVM里执行java  &lt;plugin&gt; &lt;groupId&gt;org."/>
 
 
 
@@ -192,8 +192,211 @@
 </blockquote>
 <h2 id="部署">部署</h2>
 <ul>
-<li>分库分表</li>
+<li>将开发好的程序放在服务器上</li>
+<li>
+<ul>
+<li>监听端口</li>
 </ul>
+</li>
+<li>
+<ul>
+<li>相应HTTP请求</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>进行预定义的业务逻辑处理</li>
+</ul>
+</li>
+<li>产品不停迭代</li>
+</ul>
+<ol>
+<li>灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。</li>
+<li>半夜更新</li>
+</ol>
+<ul>
+<li>
+<ul>
+<li>部署的版本需要不停进行更新</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>分布式更新</li>
+</ul>
+</li>
+<li>环境问题</li>
+<li>
+<ul>
+<li>开发环境（测试环境）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>预发布环境（预生产环境，可能是生产环境的副本）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>生产魂晶（正式环境）</li>
+</ul>
+</li>
+<li>环境的兼容性问题</li>
+<li>
+<ul>
+<li>硬件、软件</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>开发的软件、运行的软件、服务器系统</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>数据库等</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>数据库版本、内容、结构</li>
+</ul>
+</blockquote>
+<h2 id="发布和部署程序">发布和部署程序</h2>
+<ul>
+<li>如何在生产环境下运行</li>
+<li>解决</li>
+<li>
+<ul>
+<li>编写的代码</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>依赖的第三方库</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>依赖的特殊环境配置（数据库、缓存）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>稳定性</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>升级和回滚</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用maven-exec-plugin">使用Maven exec plugin</h2>
+<ul>
+<li>自动将所有的传递性依赖加入</li>
+<li>
+<ul>
+<li>优点：简单</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>缺点： 不适用与自动化的场景</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行</li>
+</ul>
+</blockquote>
+<ul>
+<li>exec:exec -&gt; 在一个独立的进程中执行一个程序</li>
+<li>exec:java -&gt; 在同一个JVM里执行java</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">&lt;</span>plugin<span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mojo</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>exec<span style="color:#f92672">-</span>maven<span style="color:#f92672">-</span>plugin<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>3<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span>configuration<span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;--</span> executable <span style="color:#f92672">:</span>要运行什么程序 <span style="color:#f92672">--&gt;</span>
+          <span style="color:#f92672">&lt;</span>executable<span style="color:#f92672">&gt;</span>java<span style="color:#f92672">&lt;/</span>executable<span style="color:#f92672">&gt;</span>
+          <span style="color:#f92672">&lt;</span>arguments<span style="color:#f92672">&gt;</span>
+           <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;-</span>classpath<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;!--</span> automatically creates the classpath using all project dependencies<span style="color:#f92672">,</span>
+                 also adding the project build directory
+                 自动给jvm运行的class生成classpath<span style="color:#960050;background-color:#1e0010">（</span>全地址<span style="color:#960050;background-color:#1e0010">），</span>避免填写的麻烦<span style="color:#f92672">--&gt;</span>
+            <span style="color:#f92672">&lt;</span>classpath<span style="color:#f92672">/&gt;</span>
+           <span style="color:#f92672">&lt;--</span> argument运行程序是用的参数<span style="color:#960050;background-color:#1e0010">（</span>jvm要启动的类名<span style="color:#960050;background-color:#1e0010">）</span> <span style="color:#f92672">--&gt;</span>
+            <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">example</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Main</span><span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+          <span style="color:#f92672">&lt;/</span>arguments<span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;/</span>configuration<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;/</span>plugin<span style="color:#f92672">&gt;</span>
+</code></pre></div><ul>
+<li>命令行：可执行程序+参数</li>
+<li>
+<ul>
+<li>mvn exec:exec 执行java</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>mvn exec:exex -x 打印出执行的信息</li>
+</ul>
+</li>
+</ul>
+<h2 id="jar包">jar包</h2>
+<ul>
+<li>编译后的代码打包</li>
+<li>
+<ul>
+<li>java 启动方式(两种方式都是一样的，因为jar包里面有清单文件（manifest），文件里面包含mainClass)</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>java -classpath mainClass</li>
+<li>java -jar jarName.zip/jarName.jar</li>
+</ol>
+<ul>
+<li>jar包和war包区别</li>
+<li>
+<ul>
+<li>jar包本质是一个压缩包，把所以代码打包压缩，运行信息、依赖、内嵌Tomcat等等</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>war包也是压缩包，但是只包含依赖（资源），没有内嵌Tomcat，不能够运行。如果要运行就要放在servlet容器里面运行</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Eg：SpringBoot.jar = war + Tomcat(Servlet容器提供底层HTTP互交)</li>
+</ul>
+</li>
+<li>SpringBoot repackage: 创建一个自动可执行的jar或war文件。它可以替换常规的artifact(手动运行)，或者用一个单独的classifier附属在maven构建的生命周期中，使得程序可以自动执行。</li>
+<li>优点：简单可靠</li>
+<li>缺点：依赖于JVM环境，虽然碰到问题的概率低</li>
+</ul>
+<h2 id="部署-1">部署</h2>
+<ul>
+<li>域名指向服务器IP地址</li>
+<li>
+<ul>
+<li>把Spring xml配置里面的<code>datasource.url</code>更改成IP地址（网域名）
+<code>spring.datasource.url = jdbc:mysql://localhost:3306/user</code></li>
+</ul>
+</li>
+<li>NGINX 监听80端口</li>
+</ul>
+<h4 id="maven-直接运行源代码">maven 直接运行源代码</h4>
+<h4 id="jar方式">jar方式</h4>
+<h4 id="docker-方式">Docker 方式</h4>
 
       </div>
     </article>
@@ -205,7 +408,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
             <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
             <line x1="7" y1="7" x2="7" y2="7"></line>
-          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/untagged/">untagged</a></span>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/%E5%BC%80%E5%8F%91/">开发</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/%E9%83%A8%E7%BD%B2/">部署</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/socker/">socker</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a></span>
         </p>
 
       <p>
@@ -216,7 +419,7 @@
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        31 Words
+        151 Words
       </p>
 
       <p>
@@ -238,6 +441,13 @@
         </div>
 
         <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                <span class="button__icon">←</span>
+                <span class="button__text">算法和数据结构</span>
+              </a>
+            </span>
           
 
           

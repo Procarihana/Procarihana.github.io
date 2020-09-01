@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="空接口:只是说明有这个功能，使用这个框架，但是不提供实现
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   O(1) - 哈希桶/数组随机寻址（常数时间复杂度）      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!" />
+<meta name="keywords" content=", 算法, 数据结构" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" />
+
+
+    <title>
+        
+            算法和数据结构 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="算法和数据结构">
+<meta itemprop="description" content="空接口:只是说明有这个功能，使用这个框架，但是不提供实现
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   O(1) - 哈希桶/数组随机寻址（常数时间复杂度）      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!">
+<meta itemprop="datePublished" content="2020-08-31T20:15:50&#43;08:00" />
+<meta itemprop="dateModified" content="2020-08-31T20:15:50&#43;08:00" />
+<meta itemprop="wordCount" content="170">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="算法,数据结构," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="算法和数据结构"/>
+<meta name="twitter:description" content="空接口:只是说明有这个功能，使用这个框架，但是不提供实现
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   O(1) - 哈希桶/数组随机寻址（常数时间复杂度）      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-08-31 20:15:50 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd/Home</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">Blogs</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法和数据结构</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <ul>
+<li>空接口:只是说明有这个功能，使用这个框架，但是不提供实现<br>
+例如：RandomAccess……
+随机访问</li>
+</ul>
+<h2 id="时间复杂度与常数时间的哈希表">时间复杂度与常数时间的哈希表</h2>
+<ul>
+<li>时间复杂度</li>
+<li>
+<ul>
+<li>O(1) - 哈希桶/数组随机寻址（常数时间复杂度）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>无论问题的规模多大，都可以在常数时间范围内求得解</li>
+<li>解决的题的时间和问题的规模没有关系</li>
+<li>O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的</li>
+<li>
+<ul>
+<li>内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>数组：array、arrayList（继承object）</li>
+</ul>
+</li>
+<li>哈希桶、哈希表</li>
+<li>
+<ul>
+<li>把对象映射成整数，然后这个整数放进哈希表里（数组）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>O(n) - 遍历（线性）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>O(log(n)) - 二分查找，二叉树（对数）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>O(n^2) -</li>
+</ul>
+</li>
+</ul>
+<h2 id="递归">递归</h2>
+<ol>
+<li>把一个大问题分解成小问题</li>
+<li>假设小问题已经解决</li>
+<li>对分解的小问题进行求解</li>
+</ol>
+<ul>
+<li>要完成递归就需要完成递归本身</li>
+<li>把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。</li>
+<li>一定要有返回条件（退出条件），否则就会发生栈溢出</li>
+</ul>
+<h4 id="阶乘">阶乘</h4>
+<ul>
+<li>当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。</li>
+</ul>
+<pre><code> 1！= 1
+ 2! = 2*1
+ 3! = 3*2*1
+……
+N！ = N*……*3*2*1
+
+public static int f(int i){
+  if (i == 1) {
+    return 1;
+  } else {
+    return i * f(i-1)；
+  }
+}
+</code></pre><h4 id="数组求和">数组求和</h4>
+<ul>
+<li><code>List.subList(int,lisr.size())</code> :从第int个元素开始后面的元素和（不包括int）</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#f92672">*</span> <span style="color:#a6e22e">@param</span> fromIndex low <span style="color:#a6e22e">endpoint</span> <span style="color:#f92672">(</span>inclusive<span style="color:#f92672">)</span> of the subList
+     <span style="color:#f92672">*</span> <span style="color:#a6e22e">@param</span> toIndex high <span style="color:#a6e22e">endpoint</span> <span style="color:#f92672">(</span>exclusive<span style="color:#f92672">)</span> of the subList
+     <span style="color:#f92672">*</span> <span style="color:#a6e22e">@return</span> a view of the specified range within <span style="color:#66d9ef">this</span> list
+     <span style="color:#f92672">*</span> <span style="color:#a6e22e">@throws</span> IndexOutOfBoundsException <span style="color:#66d9ef">for</span> an illegal endpoint index value
+     <span style="color:#f92672">*</span>         <span style="color:#f92672">(&lt;</span>tt<span style="color:#f92672">&gt;</span>fromIndex <span style="color:#f92672">&amp;</span>lt<span style="color:#f92672">;</span> 0 <span style="color:#f92672">||</span> toIndex <span style="color:#f92672">&amp;</span>gt<span style="color:#f92672">;</span> size <span style="color:#f92672">||</span>
+     <span style="color:#f92672">*</span>         fromIndex <span style="color:#f92672">&amp;</span>gt<span style="color:#f92672">;</span> toIndex<span style="color:#f92672">&lt;/</span>tt<span style="color:#f92672">&gt;)</span>
+     <span style="color:#f92672">*/</span>
+    List<span style="color:#f92672">&lt;</span>E<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">subList</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> fromIndex<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> toIndex<span style="color:#f92672">);</span>
+    <span style="color:#960050;background-color:#1e0010">```</span>
+<span style="color:#960050;background-color:#1e0010">```</span>java
+   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">)</span> <span style="color:#f92672">+</span> sum<span style="color:#f92672">(</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">subList</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()));</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sum<span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 3<span style="color:#f92672">,</span> 4<span style="color:#f92672">,</span> 5<span style="color:#f92672">,</span> 6<span style="color:#f92672">,</span> 7<span style="color:#f92672">,</span> 8<span style="color:#f92672">,</span> 9<span style="color:#f92672">)));</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div>
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/%E7%AE%97%E6%B3%95/">算法</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        170 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-08-31 20:15 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/exerciseproblem/catch/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Try/catch</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/java-%E9%83%A8%E7%BD%B2/">
+                <span class="button__text">Java 部署</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

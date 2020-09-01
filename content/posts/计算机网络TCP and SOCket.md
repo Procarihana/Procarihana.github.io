@@ -1,10 +1,10 @@
 ---
-title: "计算机网络TCP and SOCket"
+title: "计算机网络TCP and Socket"
 date: 2020-08-30T11:39:13+08:00
-draft: true
+draft: false
 toc: false
 images:
-tags: [Socket,Tcp]
+tags: [Socket,TCP]
 ---
 
 ## 没有100%可靠的通信协议
@@ -39,7 +39,75 @@ tags: [Socket,Tcp]
 - - 无连接的 无法保证数据是否到达
 - - 尽最大可能交付
 - - 面向报文的
+## Scoket
+- TCP包含客户端和服务器双方的ip和port。这四个元素是四元组（client的src源ip、port和dest目标ip。port），也就是socket/socket的链接。
+- - ip --> 唯一确定一台计算机，port --> 端口可以唯一确定监听端口的一个程序
+- socket 只要制定目标ip和port 就可以发送信息，自身ip会自动提供，如果有指定的port就会使用，如果没有就会自动挑选一个空闲的端口
+- - 查询网站ip地址： $ nslookup + 地址
+```java
+public class SocketTest {
 
-## Socket
-- 
+    public static void main(String[] args) throws IOException {
+        Socket socket = new Socket("182.61.200.7",443);
+        socket.getOutputStream().write('a');
+    }
+}
+```
+- Socket 里传输速Http 协议
+- - 抵达服务器地第一个字节一定时是`G`之后是`E`、`T`、`0x20`
+- - 按照HTTP协议格式的规定，给服务器返回字节流，就能够手写出HTTP服务器
+
+- - 请求行：
+
+|请求方法|`|`空格|`|`URL方法|`|`空格|`|`协议版本|`|`回车符（\r）|`|`换行符（\n）|
+|---|---|---|---|---|---|---|---|---|---|---|
+- - 请求头部：
+
+|头部字段名|`|`：|`|`value|`|`\r|`|`\n|
+|---|---|---|---|---|---|---|---|---|---|---|
+|……|
+头部字段名|`|`：|`|`value|`|`\r|`|`\n|
+\r|`|`\n|
+- - 请求数据
+- 手写HTTP协议
+- - 本地环回网络接口：127.0.0.1。 能够通过这个接口访问自己的机器
+- - `socker.accept()`执行后要是没有设置返回或者没有下一步的操作，就会一直停在那里阻塞，返回的是一个socket。
+```java
+public class SocketTest {
+
+    public static void main(String[] args) throws IOException {
+        int port = 8080;
+        ServerSocket serverSocket = new ServerSocket();
+         serverSocket.bind(new InetSocketAddress("127.0.0.1",port));
+        System.out.print(serverSocket.accept());
+    }
+}
+serverSocket.accept()：Socket[addr=/127.0.0.1,port=54777,localport=8080]
+
+```
+```java
+public class SocketTest {
+
+    public static void main(String[] args) throws IOException {
+        int port = 8080;
+        ServerSocket serverSocket = new ServerSocket();
+        serverSocket.bind(new InetSocketAddress("127.0.0.1", port));
+        Socket socket = serverSocket.accept();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String line = bufferedReader.readLine();
+        System.out.println(line);
+        //HTTP response header
+        socket.getOutputStream().write("HTTP/1.1 200OK\r\n".getBytes());
+        //HTTP response header/body 分隔符
+        socket.getOutputStream().write("\r\n".getBytes());
+        //HTTP response body
+        socket.getOutputStream().write("Hello!".getBytes());
+
+        //清理缓冲区，避免堵在缓冲区没有执行
+        socket.getOutputStream().flush();
+    }
+}
+```
+
+
 

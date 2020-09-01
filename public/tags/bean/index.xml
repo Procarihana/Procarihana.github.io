@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bean on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/bean/</link>
+    <description>Recent content in Bean on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 01 Sep 2020 10:04:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/bean/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bean</title>
+      <link>https://procarihana.github.io/public/posts/note/bean/</link>
+      <pubDate>Tue, 01 Sep 2020 10:04:08 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/note/bean/</guid>
+      <description>Bean生成   一个对象生成Bean只能用一个方法配置，不能每个方法都对同一个对象生成bean
+  class从java下一个文件夹开始~
+class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderService
+  Bean 配置
+   xml（旧的）   新建一个src/main/resources/applicationContext.xml 复制  &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns:context=&amp;quot;http://www.springframework.org/schema/context&amp;quot; xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&amp;quot;&amp;gt; &amp;lt;!-- &amp;lt;context:component-scan base-package=&amp;quot;com.in28minutes.spring.basics&amp;quot;/&amp;gt; --&amp;gt; &amp;lt;bean id=&amp;quot;xmlStringBean1&amp;quot; class=&amp;quot;java.lang.String&amp;quot;&amp;gt; &amp;lt;constructor-arg value=&amp;quot;stringBean1&amp;quot; /&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;bean id=&amp;quot;xmlStringBean2&amp;quot; class=&amp;quot;java.lang.String&amp;quot;&amp;gt; &amp;lt;constructor-arg value=&amp;quot;stringBean2&amp;quot; /&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;/beans&amp;gt;  修改bean id 和所在的class,不需要参数可以删掉 添加一个配置类(Eg:XmlConfiguration.class)，Bean会被加载。最好是放在一个包里面方便管理  @Configuration @ImportResource({&amp;#34;classpath*:applicationContext.xml&amp;#34;}) public class XmlConfiguration { } @ammunition   新建一个配置类(Eg:JavaConfiguration.class)  package com.</description>
+    </item>
+    
+  </channel>
+</rss>
