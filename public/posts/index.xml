@@ -15,7 +15,7 @@
             <pubDate>Tue, 01 Sep 2020 18:41:11 +0800</pubDate>
             
             <guid>https://procarihana.github.io/public/posts/docker%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/</guid>
-            <description>虚拟机有一套完整独立的操作系统，非常占内存和资源  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Tag  不指定就是latest Docker运行的镜像要放到指定的仓库里面 Tag 前面是url/域名，push、pull、run，就会把镜像自动解析到相应的仓库里面 my.</description>
+            <description>虚拟机有一套完整独立的操作系统，非常占内存和资源  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &amp;lt;镜像名&amp;gt;&amp;lt;镜像中要运行的命令和参数&amp;gt;   交互式命令行，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &amp;ndash; name 为容器指定一个名字 &amp;ndash; restart=always 遇到错误子哦那个重启 -v &amp;lt;本地文件&amp;gt;:&amp;lt;容器文件&amp;gt;:文件权限（ro、rw……）   宿主机上的文件映射到docker容器里面，使得docker容器里也可以打开这个文件，如果文件在容器里发生改变，同样的宿主机读取时也会发生改变。权限是不强制定义。而dockerfile里也可以控制权限。   -p &amp;lt;本地端口&amp;gt;:&amp;lt;容器端口&amp;gt;   把宿主机和容器通过指定的端口链接起来     能够实现控制多个数据库，达到分布式部署的目的   -e NAME=VALUE   传递初始化的参数，指定参数后，在容器里面输入Name，就会获得相应的VALUE，或者通过相应的VALUE启动程序   Docker exec（ute）   指定目标容器，进入容器执行命令      docker run -it&amp;lt;目标容器ID&amp;gt; &amp;lt;目标命令（通常为bash）&amp;gt; （进入容器内部） docker exec -it my-sql bash 可以想为ssh      调试、解决问题必备命令    Docker pull  不指定镜像版本就默认为最新的版本（latest） url（镜像仓库地址）/镜像名：tag   如果不加url，就是去中央仓库里面寻找镜像，如果添加，就去这个指定的地址下载镜像    docker images ： 查看本地已有的镜像  下载一个指定的镜像，方便随时启动  Dockerfile  指定镜像如何生成 每个镜像都会有一个唯一的ID Dockerfile （在一个文件加里面生成一个text）  FROM ubuntu :16.</description>
             <content type="html"><![CDATA[<ul>
 <li>虚拟机有一套完整独立的操作系统，非常占内存和资源</li>
 </ul>
@@ -75,6 +75,107 @@
 <li>意味着数据是没有持久化的</li>
 </ul>
 </blockquote>
+<h2 id="docker-指令">Docker 指令</h2>
+<h4 id="docker-run--启动一个全新的控制资源隔离的docker容器">docker run : 启动一个全新的控制资源隔离的docker容器</h4>
+<ul>
+<li>一台独立的计算机</li>
+<li>每个容器都有一个ID，支持缩写</li>
+<li>docker run -it &lt;镜像名&gt;&lt;镜像中要运行的命令和参数&gt;</li>
+<li>
+<ul>
+<li>交互式命令行，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）</li>
+</ul>
+</li>
+<li>docker run -d</li>
+<li>
+<ul>
+<li>daemon模式，在后台运行</li>
+</ul>
+</li>
+<li>&ndash; name 为容器指定一个名字</li>
+<li>&ndash; restart=always 遇到错误子哦那个重启</li>
+<li>-v &lt;本地文件&gt;:&lt;容器文件&gt;:文件权限（ro、rw……）</li>
+<li>
+<ul>
+<li>宿主机上的文件映射到docker容器里面，使得docker容器里也可以打开这个文件，如果文件在容器里发生改变，同样的宿主机读取时也会发生改变。权限是不强制定义。而dockerfile里也可以控制权限。</li>
+</ul>
+</li>
+<li>-p &lt;本地端口&gt;:&lt;容器端口&gt;</li>
+<li>
+<ul>
+<li>把宿主机和容器通过指定的端口链接起来</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>能够实现控制多个数据库，达到分布式部署的目的</li>
+</ul>
+</li>
+<li>-e NAME=VALUE</li>
+<li>
+<ul>
+<li>传递初始化的参数，指定参数后，在容器里面输入Name，就会获得相应的VALUE，或者通过相应的VALUE启动程序</li>
+</ul>
+</li>
+<li>Docker exec（ute）</li>
+<li>
+<ul>
+<li>指定目标容器，进入容器执行命令</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>docker run -it&lt;目标容器ID&gt; &lt;目标命令（通常为bash）&gt; （进入容器内部）
+<code>docker exec -it my-sql bash</code></li>
+<li>可以想为ssh</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>调试、解决问题必备命令</li>
+</ul>
+</li>
+</ul>
+<h4 id="docker-pull">Docker pull</h4>
+<ul>
+<li>不指定镜像版本就默认为最新的版本（latest）</li>
+<li>url（镜像仓库地址）/镜像名：tag</li>
+<li>
+<ul>
+<li>如果不加url，就是去中央仓库里面寻找镜像，如果添加，就去这个指定的地址下载镜像</li>
+</ul>
+</li>
+</ul>
+<h4 id="docker-images--查看本地已有的镜像">docker images ： 查看本地已有的镜像</h4>
+<ul>
+<li>下载一个指定的镜像，方便随时启动</li>
+</ul>
+<h4 id="dockerfile">Dockerfile</h4>
+<ul>
+<li>指定镜像如何生成</li>
+<li>每个镜像都会有一个唯一的ID</li>
+<li>Dockerfile （在一个文件加里面生成一个text）</li>
+</ul>
+<pre><code>FROM ubuntu :16.04 (容器运行系统)
+
+RUN apt-get update &amp;&amp; apt-get install -y nginx (容器生成后运行内容)
+
+RUN echo&quot;Hahaha&quot; &gt; /user/share/nginx/html/index.html 
+
+EXPOSE 80 （访问端口）
+</code></pre><ul>
+<li><code>docker build .</code></li>
+<li>
+<ul>
+<li>bulid 需要在存放dockerfile 文件里执行</li>
+</ul>
+</li>
+<li>完成后就可以在 docker images 里面找到刚才自己新建的镜像（没有名字和tag，但是有id），然后就可以run</li>
+</ul>
+<h4 id="镜像分层">镜像分层</h4>
+<p>两个镜像基本内容一致，只有某些部分不一样，就可以通过分层的镜像，从而使镜像能够共用一致的部分，再分别执行剩下的</p>
 <h4 id="tag">Tag</h4>
 <ul>
 <li>不指定就是latest</li>
@@ -96,7 +197,7 @@
             
             <guid>https://procarihana.github.io/public/posts/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
             <description>空接口:只是说明有这个功能，使用这个框架，但是不提供实现
-例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   O(1) - 哈希桶/数组随机寻址（常数时间复杂度）      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!</description>
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  先行时间复杂度与链表 递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!</description>
             <content type="html"><![CDATA[<ul>
 <li>空接口:只是说明有这个功能，使用这个框架，但是不提供实现<br>
 例如：RandomAccess……
@@ -107,7 +208,27 @@
 <li>时间复杂度</li>
 <li>
 <ul>
+<li>最好时间复杂度</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>最坏时间复杂度</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>平均时间复杂度</li>
+</ul>
+</li>
+<li>
+<ul>
 <li>O(1) - 哈希桶/数组随机寻址（常数时间复杂度）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>哈希表的时间复杂度指的是品均时间复杂度</li>
 </ul>
 </li>
 </ul>
@@ -160,6 +281,12 @@
 </ul>
 </li>
 </ul>
+<h4 id="hashmap-如何扩容">Hashmap 如何扩容……</h4>
+<ul>
+<li>indexFor</li>
+<li>当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树</li>
+</ul>
+<h2 id="先行时间复杂度与链表">先行时间复杂度与链表</h2>
 <h2 id="递归">递归</h2>
 <ol>
 <li>把一个大问题分解成小问题</li>
