@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 21 Sep 2020 18:23:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>工厂方法</title>
+      <link>https://procarihana.github.io/public/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Mon, 21 Sep 2020 18:23:42 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</guid>
+      <description>对象创建模式  避免用new创建过程中需要依赖具体类，从而支持对象创建的稳定 避免紧耦合，对拓展是开放的，对修改是封闭的 典型： Factory Method Absttact Factory Builder Prototype（原型）   Clone   Singleton  简单工厂模式 例  处理从文件里面读出的数据 设计：DataManager类，FileReader类   从不同的去到读取数据，一开始需要每渠道都写一种实现 processDataFromRest 、processDataFromDatabase 等等的方法，而这些方法都要需要相应的dataReader对象去实现。 为了减少  </description>
+    </item>
+    
+  </channel>
+</rss>

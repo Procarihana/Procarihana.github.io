@@ -71,11 +71,7 @@ paginate = 10
    name       = "Projects"
    url        = "projects"
    weight     = "4"
-     [[menu.main]]
-   identifier = "exerciseproblems"
-   name       = "EProblems"
-   url        = "exerciseproblems"
-   weight     = "5"
+
 
 
 

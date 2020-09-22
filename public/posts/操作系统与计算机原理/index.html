@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="计算机体系原理 核心 ：CPU 中央处理器 包含控制器和运算器    寄存器 ：临时存放 register 是CPU的内置，容量小，但是速度极快的内存     内存 ：包含数据和指令（说明书）冯诺依曼结构&amp;ndash;&amp;gt; 将程序指令和数据存储一起的结构     汇编指令    程序的装载和执行  可执行程序 exe、executable： 执行指令和数据的共同体   一个exe 可以执行多个进程 &amp;ndash;&amp;gt; 装载到内存不同的进程里，两个进程是不相同的      物理寻址 通过指令完成 物理地址：真是的内存地址 虚拟地址空间：对于每一个进程而言，操作系统随机分配给进程的内存空间   每个程序是独立的，程序间数据不共享，程序不会窃取别的程序，互不干扰，一个崩溃另一个也不会出事   跨平台性   不同架构的CUP执行指令是不一样的，所以不同平台的CPU不能执行其他CUP的指令     而模拟器能够实现      动态链接库 静态链接库    CPU 在执行指令的时候，有的方法是存在另外的地方，需要用的时候就去加载。能够节省空间，共用方法，升级的时候也比较简单。但是如果不存在的话就会出现错误，也有可能出现和系统不兼容的问题    《链接、装载与库》  程序的分时复用调度  CPU 速度 &amp;raquo; memory &amp;raquo; IO 操作系统根据实际采用调度 时间片轮转：不停地轮流做不同的事情，基于CUP运行速度快 每个程序轮流占用CPU的时间片（进程、线程）   什么时候放弃占用CUP时间片      程序时间片到时间 请求慢速设备（把数据储存到磁盘） CPU需要响应中断（磁盘处理完后向CPU发出中断，CPU 就马上去完成中断后的工作）     上下文切换" />
+<meta name="keywords" content=", , " />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86/" />
+
+
+    <title>
+        
+            操作系统与计算机原理 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="操作系统与计算机原理">
+<meta itemprop="description" content="计算机体系原理 核心 ：CPU 中央处理器 包含控制器和运算器    寄存器 ：临时存放 register 是CPU的内置，容量小，但是速度极快的内存     内存 ：包含数据和指令（说明书）冯诺依曼结构&ndash;&gt; 将程序指令和数据存储一起的结构     汇编指令    程序的装载和执行  可执行程序 exe、executable： 执行指令和数据的共同体   一个exe 可以执行多个进程 &ndash;&gt; 装载到内存不同的进程里，两个进程是不相同的      物理寻址 通过指令完成 物理地址：真是的内存地址 虚拟地址空间：对于每一个进程而言，操作系统随机分配给进程的内存空间   每个程序是独立的，程序间数据不共享，程序不会窃取别的程序，互不干扰，一个崩溃另一个也不会出事   跨平台性   不同架构的CUP执行指令是不一样的，所以不同平台的CPU不能执行其他CUP的指令     而模拟器能够实现      动态链接库 静态链接库    CPU 在执行指令的时候，有的方法是存在另外的地方，需要用的时候就去加载。能够节省空间，共用方法，升级的时候也比较简单。但是如果不存在的话就会出现错误，也有可能出现和系统不兼容的问题    《链接、装载与库》  程序的分时复用调度  CPU 速度 &raquo; memory &raquo; IO 操作系统根据实际采用调度 时间片轮转：不停地轮流做不同的事情，基于CUP运行速度快 每个程序轮流占用CPU的时间片（进程、线程）   什么时候放弃占用CUP时间片      程序时间片到时间 请求慢速设备（把数据储存到磁盘） CPU需要响应中断（磁盘处理完后向CPU发出中断，CPU 就马上去完成中断后的工作）     上下文切换">
+<meta itemprop="datePublished" content="2020-09-21T23:40:37&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-21T23:40:37&#43;08:00" />
+<meta itemprop="wordCount" content="111">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content=",," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="操作系统与计算机原理"/>
+<meta name="twitter:description" content="计算机体系原理 核心 ：CPU 中央处理器 包含控制器和运算器    寄存器 ：临时存放 register 是CPU的内置，容量小，但是速度极快的内存     内存 ：包含数据和指令（说明书）冯诺依曼结构&ndash;&gt; 将程序指令和数据存储一起的结构     汇编指令    程序的装载和执行  可执行程序 exe、executable： 执行指令和数据的共同体   一个exe 可以执行多个进程 &ndash;&gt; 装载到内存不同的进程里，两个进程是不相同的      物理寻址 通过指令完成 物理地址：真是的内存地址 虚拟地址空间：对于每一个进程而言，操作系统随机分配给进程的内存空间   每个程序是独立的，程序间数据不共享，程序不会窃取别的程序，互不干扰，一个崩溃另一个也不会出事   跨平台性   不同架构的CUP执行指令是不一样的，所以不同平台的CPU不能执行其他CUP的指令     而模拟器能够实现      动态链接库 静态链接库    CPU 在执行指令的时候，有的方法是存在另外的地方，需要用的时候就去加载。能够节省空间，共用方法，升级的时候也比较简单。但是如果不存在的话就会出现错误，也有可能出现和系统不兼容的问题    《链接、装载与库》  程序的分时复用调度  CPU 速度 &raquo; memory &raquo; IO 操作系统根据实际采用调度 时间片轮转：不停地轮流做不同的事情，基于CUP运行速度快 每个程序轮流占用CPU的时间片（进程、线程）   什么时候放弃占用CUP时间片      程序时间片到时间 请求慢速设备（把数据储存到磁盘） CPU需要响应中断（磁盘处理完后向CPU发出中断，CPU 就马上去完成中断后的工作）     上下文切换"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-21 23:40:37 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86/">操作系统与计算机原理</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="计算机体系原理">计算机体系原理</h2>
+<h4 id="核心-cpu-中央处理器-包含控制器和运算器">核心 ：CPU 中央处理器 包含控制器和运算器</h4>
+<ul>
+<li>
+<ul>
+<li>寄存器 ：临时存放 register 是CPU的内置，容量小，但是速度极快的内存</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>内存 ：包含数据和指令（说明书）冯诺依曼结构&ndash;&gt; 将程序指令和数据存储一起的结构</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>汇编指令</li>
+</ul>
+</li>
+</ul>
+<h4 id="程序的装载和执行">程序的装载和执行</h4>
+<ul>
+<li>可执行程序 exe、executable： 执行指令和数据的共同体</li>
+<li>
+<ul>
+<li>一个exe 可以执行多个进程 &ndash;&gt; 装载到内存不同的进程里，两个进程是不相同的</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>物理寻址 通过指令完成</li>
+<li>物理地址：真是的内存地址</li>
+<li>虚拟地址空间：对于每一个进程而言，操作系统随机分配给进程的内存空间</li>
+<li>
+<ul>
+<li>每个程序是独立的，程序间数据不共享，程序不会窃取别的程序，互不干扰，一个崩溃另一个也不会出事</li>
+</ul>
+</li>
+<li>跨平台性</li>
+<li>
+<ul>
+<li>不同架构的CUP执行指令是不一样的，所以不同平台的CPU不能执行其他CUP的指令</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>而模拟器能够实现</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>动态链接库 静态链接库</li>
+</ul>
+<blockquote>
+<ul>
+<li>CPU 在执行指令的时候，有的方法是存在另外的地方，需要用的时候就去加载。能够节省空间，共用方法，升级的时候也比较简单。但是如果不存在的话就会出现错误，也有可能出现和系统不兼容的问题</li>
+</ul>
+</blockquote>
+<ul>
+<li>《链接、装载与库》</li>
+</ul>
+<h4 id="程序的分时复用调度">程序的分时复用调度</h4>
+<ul>
+<li>CPU 速度 &raquo; memory &raquo; IO</li>
+<li>操作系统根据实际采用调度</li>
+<li>时间片轮转：不停地轮流做不同的事情，基于CUP运行速度快</li>
+<li>每个程序轮流占用CPU的时间片（进程、线程）</li>
+<li>
+<ul>
+<li>什么时候放弃占用CUP时间片</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>程序时间片到时间</li>
+<li>请求慢速设备（把数据储存到磁盘）</li>
+<li>CPU需要响应中断（磁盘处理完后向CPU发出中断，CPU 就马上去完成中断后的工作）</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>上下文切换</p>
+</li>
+<li>
+<p>上下文context：程序的环境（寄存器、PC），CPU在运行任何任务前，必须的依赖环境</p>
+</li>
+<li>
+<ul>
+<li>CP 程序计算器“用来存储CPU正在执行的指令位置，或者即将执行的吓一跳指令位置</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>就是先把前一个任务的 CPU 上下文（也就是 CPU 寄存器和程序计数器）保存起来，然后加载新任务的上下文到这些寄存器和程序计数器，最后再跳转到程序计数器所指的新位置，运行新任务。而这些保存下来的上下文，会存储在系统内核中，并在任务重新调度执行时再次加载进来。这样就能保证任务原来的状态不受影响，让任务看起来还是连续运行。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>放弃CPU时，保存上下文</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>拥有CPU时，恢复上下文</li>
+</ul>
+</li>
+<li>
+<p>协程 用户态线程，内存小，但是要自己写调度算法。是编译层概念，在操作系统上Linxu 并没有线层的概念</p>
+</li>
+</ul>
+<h2 id="操作系统">操作系统</h2>
+<ul>
+<li>欺上瞒下</li>
+<li>
+<ul>
+<li>对上层提供统一的API，简化应用开发逻辑</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>对下层通过硬件驱动提供兼容性</li>
+</ul>
+</li>
+<li>例如：</li>
+<li>
+<ul>
+<li>通过windows的CreateProcessA方法创建新的进程</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>通过Unix的fork系统调用创建新的进程 &ndash;&gt;posix （Linux、Macos）可移植的操作标准（unix、*nix） 和 windows系统不一样</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>通过不同的抽象（中间件）来完成不同的地方进行兼容实现同一方便。但是效率低，因为不同的部件要完成这些抽象传来的指令就需要有属于自己程序运行</li>
+</ul>
+</li>
+<li>驱动：负责操作系统的指令传递到硬件</li>
+<li>JVM ：不同的指令在不同的系统内兼容</li>
+</ul>
+<h2 id="进程与线程">进程与线程</h2>
+<ul>
+<li>进程是资源分配的最小单位，线程是CPU调度的最小单位</li>
+<li>共同点</li>
+<li>
+<ul>
+<li>都拥有独立的PC，可以独立地执行程序</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>在Linxu上甚至用同一种数据结构处理进程和线程</li>
+</ul>
+</li>
+<li>进程：拥有独立的内存空间、文件等资源</li>
+<li>线程：处于进程内部，所以每个线程可以独立地运行。和其他的线程共享内存地址空间。文件等资源</li>
+<li>Linux 线程是轻量级进程，线程和进程都是任务，两者刚好运用同一个地址内存空间</li>
+</ul>
+<h2 id="文件iofilesystem硬盘">文件IO、FileSystem（硬盘）</h2>
+<ul>
+<li>文件的本质是字节流</li>
+<li>文件与文件指针</li>
+<li>
+<ul>
+<li>文件指针不断地移动从文件流里读取数据块</li>
+</ul>
+</li>
+<li>缓冲区 buffer 硬盘数据读取和cpu 没有关系，读取一块信息后给CPU进行操作</li>
+</ul>
+<h2 id="源代码到ast抽象语法树编译器前端">源代码到AST(抽象语法树)编译器前端</h2>
+<ul>
+<li>源代码 -&gt; tokens</li>
+<li>
+<ul>
+<li>解析成一个个的关键字</li>
+</ul>
+</li>
+<li>tokens -&gt; AST</li>
+<li>
+<ul>
+<li>通过语法规则生成语法数</li>
+</ul>
+</li>
+</ul>
+<h2 id="从ast到目标代码编译器后端">从AST到目标代码（编译器后端）</h2>
+<ul>
+<li>AST -&gt; 字节码</li>
+<li>AST -&gt;  平台相关到的目标代码</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        111 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-09-21 23:40 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                <span class="button__icon">←</span>
+                <span class="button__text">多线程</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/">
+                <span class="button__text">工厂方法</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

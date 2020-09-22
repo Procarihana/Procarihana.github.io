@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>命令行 on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</link>
+    <description>Recent content in 命令行 on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 09 Sep 2020 15:11:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>命令行</title>
+      <link>https://procarihana.github.io/public/notes/%E5%91%BD%E4%BB%A4%E8%A1%8C/</link>
+      <pubDate>Wed, 09 Sep 2020 15:11:56 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/%E5%91%BD%E4%BB%A4%E8%A1%8C/</guid>
+      <description>查看历史   history | grep 关键字   查看端口   lsof -i:80   kill 端口进程   kill -9 进程号   查看流量   ping com   获得本机局域网IP地址，由路由器分配 -&amp;gt; 192.168.1.7   ifconfig    lo0: flags=8049&amp;lt;UP,LOOPBACK,RUNNING,MULTICAST&amp;gt; mtu 16384 options=1203&amp;lt;RXCSUM,TXCSUM,TXSTATUS,SW_TIMESTAMP&amp;gt; inet 127.0.0.1 netmask 0xff000000 inet6 ::1 prefixlen 128 inet6 fe80::1%lo0 prefixlen 64 scopeid 0x1 nd6 options=201&amp;lt;PERFORMNUD,DAD&amp;gt; gif0: flags=8010&amp;lt;POINTOPOINT,MULTICAST&amp;gt; mtu 1280 stf0: flags=0&amp;lt;&amp;gt; mtu 1280 XHC20: flags=0&amp;lt;&amp;gt; mtu 0 en0: flags=8863&amp;lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&amp;gt; mtu 1500 ether ac:bc:32:8b:8d:55 inet6 fe80::1810:c22d:afa:8bf9%en0 prefixlen 64 secured scopeid 0x5 inet 192.</description>
+    </item>
+    
+  </channel>
+</rss>

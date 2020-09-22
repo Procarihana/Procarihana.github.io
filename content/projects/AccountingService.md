@@ -1119,7 +1119,7 @@ public class UserInfoDaoImpl implements UserInfoDao{
 
 
 ## Converter
-- 通过继承`Converter`方法来完成类型的转换 
+- 通过继承`Converter`方法来完成类型的转换 (Guava maven)
 Eg
 ```java
 package com.Procarihana.AccountingService.converter.presisitenceToCommon;
@@ -1577,7 +1577,7 @@ SELECT * FROM accounting_record ORDER BY amount DESC , id desc
 - Mybatis pageInfo
 - - 在使用PageInfo的时候 `pageNum`、`pageSize`等需要用到的变量一定要和文档里面的名字相同，否则就不会执行分页等方法！！！
 
-## 事物
+## 事务
 - 原子性：事物内的业务全部完成才算成功，有一步失败都会回滚到最初。
 - 一致性：满足数据库完整性的约束，就是建表的时候数据的类型约束、数据范围等，都会满足。
 - 隔离性：写的内容没有提交前，其他读的对象是只能够执行没有改变前的数据内容，只有写的内容提交后才能够读到变更后的内容。
@@ -1588,7 +1588,7 @@ SELECT * FROM accounting_record ORDER BY amount DESC , id desc
 - 读提交（READ COMMITTED）只能看到提交的事物，但是不可重复度，因为执行多次的查询可能会得到不同的结果（因为多次查询中间如果其他事务进行了commit，查询的结果就会出现不同）
 - 可重复读：在同一个事务中，多次进行查询的到的结果也是一样的，即使在多次读取的中间有其他事务进行了commit，读取的结果也不会因为其他的commit而改变。
 > - 但是可能会出现幻读：在其他事务已经插入了某个ID的数据且commit，在可重复读的事务里不能够查询到这个数据，还能够用同样的ID进行数据的插入和查询，没有出现主键冲突的现象，commit后查询能够看到同一个ID插入了两条不一样的数据
-> - - 但是在musql 8 后就禁用了，一般都不会出现
+> - - 但是在mysql 8 后就禁用了，一般都不会出现
 - 可串行化（SERIAIZABLE）：事务查询数据时，如果其他事务在进行数据的变更时候没有commit，就必须等待直到其他事务commit后才能够查询出数据结果，否则会一直等待到超时
 
 

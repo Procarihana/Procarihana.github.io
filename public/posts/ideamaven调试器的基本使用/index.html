@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Hana ">
 <meta name="description" content="SpotBugs  Maven 生命周期
-设置生命周期后的Maven会在相应的阶段执行 Picture 设置 生命周期对应执行的工作需要绑定插件进行设置   complie —— goal ——&amp;gt; maven-compilen-plugin test —— goal ——&amp;gt; surefire 测试插件 verlfy —— goal ——&amp;gt; checkstyle（非核心插件可以绑定到任何阶段  " />
+设置生命周期后的Maven会在相应的阶段执行 Picture 设置 生命周期对应执行的工作需要绑定插件进行设置   complie —— goal ——&amp;gt; maven-compilen-plugin test —— goal ——&amp;gt; surefire 测试插件 verlfy —— goal ——&amp;gt; checkstyle（非核心插件可以绑定到任何阶段  Maven 生命周期  编译源代码   mvn compile   发布项目   mvn deploy   编译测试源代码   mvn test-compile   运行应用程序中的单元测试   mvn test   生成项目相关信息的网站   mvn site   编译源代码   mvn compile   清除项目目录中的生成结果   mvn clean 根据项目生成的jar mvn package 在本地Repository中安装jar mvn install 生成eclipse项目文件 mvn eclipse:eclipse 启动jetty服务 mvn jetty:run 启动tomcat服务 mvn tomcat:run 清除以前的包后重新打包，跳过测试类 mvn clean package -Dmaven." />
 <meta name="keywords" content="" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -35,10 +35,10 @@
 
 <meta itemprop="name" content="IDEAMaven调试器的基本使用">
 <meta itemprop="description" content="SpotBugs  Maven 生命周期
-设置生命周期后的Maven会在相应的阶段执行 Picture 设置 生命周期对应执行的工作需要绑定插件进行设置   complie —— goal ——&gt; maven-compilen-plugin test —— goal ——&gt; surefire 测试插件 verlfy —— goal ——&gt; checkstyle（非核心插件可以绑定到任何阶段  ">
+设置生命周期后的Maven会在相应的阶段执行 Picture 设置 生命周期对应执行的工作需要绑定插件进行设置   complie —— goal ——&gt; maven-compilen-plugin test —— goal ——&gt; surefire 测试插件 verlfy —— goal ——&gt; checkstyle（非核心插件可以绑定到任何阶段  Maven 生命周期  编译源代码   mvn compile   发布项目   mvn deploy   编译测试源代码   mvn test-compile   运行应用程序中的单元测试   mvn test   生成项目相关信息的网站   mvn site   编译源代码   mvn compile   清除项目目录中的生成结果   mvn clean 根据项目生成的jar mvn package 在本地Repository中安装jar mvn install 生成eclipse项目文件 mvn eclipse:eclipse 启动jetty服务 mvn jetty:run 启动tomcat服务 mvn tomcat:run 清除以前的包后重新打包，跳过测试类 mvn clean package -Dmaven.">
 <meta itemprop="datePublished" content="2020-05-06T17:06:17&#43;08:00" />
 <meta itemprop="dateModified" content="2020-05-06T17:06:17&#43;08:00" />
-<meta itemprop="wordCount" content="23">
+<meta itemprop="wordCount" content="67">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -49,7 +49,7 @@
 
 <meta name="twitter:title" content="IDEAMaven调试器的基本使用"/>
 <meta name="twitter:description" content="SpotBugs  Maven 生命周期
-设置生命周期后的Maven会在相应的阶段执行 Picture 设置 生命周期对应执行的工作需要绑定插件进行设置   complie —— goal ——&gt; maven-compilen-plugin test —— goal ——&gt; surefire 测试插件 verlfy —— goal ——&gt; checkstyle（非核心插件可以绑定到任何阶段  "/>
+设置生命周期后的Maven会在相应的阶段执行 Picture 设置 生命周期对应执行的工作需要绑定插件进行设置   complie —— goal ——&gt; maven-compilen-plugin test —— goal ——&gt; surefire 测试插件 verlfy —— goal ——&gt; checkstyle（非核心插件可以绑定到任何阶段  Maven 生命周期  编译源代码   mvn compile   发布项目   mvn deploy   编译测试源代码   mvn test-compile   运行应用程序中的单元测试   mvn test   生成项目相关信息的网站   mvn site   编译源代码   mvn compile   清除项目目录中的生成结果   mvn clean 根据项目生成的jar mvn package 在本地Repository中安装jar mvn install 生成eclipse项目文件 mvn eclipse:eclipse 启动jetty服务 mvn jetty:run 启动tomcat服务 mvn tomcat:run 清除以前的包后重新打包，跳过测试类 mvn clean package -Dmaven."/>
 
 
 
@@ -90,7 +90,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li><li><a href="https://procarihana.github.io/public/exerciseproblems">EProblems</a></li>
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
     </ul>
 </nav>
 
@@ -149,6 +149,64 @@ Picture 设置</li>
 <li>test —— goal ——&gt; surefire 测试插件</li>
 <li>verlfy —— goal ——&gt; checkstyle（非核心插件可以绑定到任何阶段</li>
 </ol>
+<h2 id="maven-生命周期">Maven 生命周期</h2>
+<ul>
+<li>编译源代码</li>
+<li>
+<ul>
+<li>mvn compile</li>
+</ul>
+</li>
+<li>发布项目</li>
+<li>
+<ul>
+<li>mvn deploy</li>
+</ul>
+</li>
+<li>编译测试源代码</li>
+<li>
+<ul>
+<li>mvn test-compile</li>
+</ul>
+</li>
+<li>运行应用程序中的单元测试</li>
+<li>
+<ul>
+<li>mvn test</li>
+</ul>
+</li>
+<li>生成项目相关信息的网站</li>
+<li>
+<ul>
+<li>mvn site</li>
+</ul>
+</li>
+<li>编译源代码</li>
+<li>
+<ul>
+<li>mvn compile</li>
+</ul>
+</li>
+<li>清除项目目录中的生成结果</li>
+<li>
+<ul>
+<li>mvn clean
+根据项目生成的jar
+mvn package
+在本地Repository中安装jar
+mvn install
+生成eclipse项目文件
+mvn eclipse:eclipse
+启动jetty服务
+mvn jetty:run
+启动tomcat服务
+mvn tomcat:run
+清除以前的包后重新打包，跳过测试类
+mvn clean package -Dmaven.test.skip=true</li>
+</ul>
+</li>
+</ul>
+<p>[https://segmentfault.com/a/1190000015077021]</p>
 
       </div>
     </article>
@@ -165,7 +223,7 @@ Picture 设置</li>
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        23 Words
+        67 Words
       </p>
 
       <p>

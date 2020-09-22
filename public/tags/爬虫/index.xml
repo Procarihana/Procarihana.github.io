@@ -20,7 +20,7 @@
       <guid>https://procarihana.github.io/public/posts/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</guid>
       <description>原则  使用GitHub+主干/分支模型进行开发 禁止直接push master 所有的变更通过PR进行 自动化代码质量检查+测试 Checkstyle/SpotBugs 最基本的自动化测试覆盖 一切工作自动化 规范化提交流程   创建仓库流程   Github -new
   建立新项目 newBranch 的时候选Apache License 2.0
-   Mvn archetype     IDEA - new     copy （cp -r ～/* .）    .gitigonre
+   Mvn archetype 项目骨架     IDEA - new     copy （cp -r ../* .）    .gitigonre
   git commit &amp;ndash;amend 就可以把这一次的commit和上一次的合并起来
    记得要把.iml 放进（vi .gitignore）： *.iml和target/(放在最后一行就好) 更改pom 里面的groundId，artifactId cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到.</description>
     </item>

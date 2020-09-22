@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MVC on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/mvc/</link>
+    <description>Recent content in MVC on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 17 Sep 2020 23:41:33 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/mvc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring MVC</title>
+      <link>https://procarihana.github.io/public/notes/spring-mvc/</link>
+      <pubDate>Thu, 17 Sep 2020 23:41:33 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/spring-mvc/</guid>
+      <description>Spring MVC   模型model(javabean), 视图view(jsp/img) 控制器Controller(Action/servlet)
+  C 存在的目的就是为了保证M和V的一致性 当M发生改变时,C可以把M中的新内容更新到V中.
+  使用MVC模式的好处是，Controller专注于业务处理，它的处理结果就是Model。Model可以是一个JavaBean，也可以是一个包含多个对象的Map，Controller只负责把Model传递给View，View只负责把Model给“渲染”出来，这样，三者职责明确，且开发更简单，因为开发Controller时无需关注页面，开发View时无需关心如何创建Model。     SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架
+MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。
+支持 RESTful风格的 URL 请求 。
+采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性。
+  为了解决页面代码和后台代码的分离
+  </description>
+    </item>
+    
+  </channel>
+</rss>

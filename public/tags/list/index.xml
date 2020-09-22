@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>List on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/list/</link>
+    <description>Recent content in List on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 18 Sep 2020 17:39:03 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/list/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LinkedList</title>
+      <link>https://procarihana.github.io/public/notes/linkedlist/</link>
+      <pubDate>Fri, 18 Sep 2020 17:39:03 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/linkedlist/</guid>
+      <description>属性 初始值为0 void push（）  在链条的头部添加元素 addFirst（）  boolrean offer()  在尾部添加元素 实现Queue接口的offer  push()  实质上就是addFirst()  offerLast()/offerFirst ()  实质上执行的addLast()和addFirst()return true  peekFirst()/peekLast()  查看第一个或者最后一个元素，如果list为空则返回null，除此以外什么都不做  poll（）  检索和删除顶元素，如果为null 返回null  pop（）  删除列表的顶元素，如果为null ，则抛出异常  void add(int index, E element)  LinkedList 并没有add（），但是在继承的AbstractSequentiaList里面 有实现add()   add(0, element) 就是把 element 放在first， 原本的first 就会变成second     add(2 ,element) 就是把element 放在第二个的右边，成为第三个元素，原本的第三个就会变成第四个    </description>
+    </item>
+    
+  </channel>
+</rss>

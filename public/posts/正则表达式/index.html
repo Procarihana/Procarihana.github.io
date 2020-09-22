@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="正则表达式  ⽤于描述⽂本/字符串的⼀组规则   你可以使⽤⼀些强⼤的规则来：   处理⽂本 提取信息  常⽤的元字符          ^ 开始位置   $ 结束位置   . 单个任意字符（不⼀定包含换⾏符）   \w 单个“word”字符 字⺟/数字/下划线/汉字   \s 单个空⽩字符（\n\r\t）   \d 单个数字字符   \b 单词的开始或结束    重复          |0次或多次   |1次或多次 ? |0次或1次 {n} |n次 {n,} |&amp;gt;=n次 {n,m} |n到m次  选择          [aeiou] 单个的a/e/i/o/u字符之⼀   [0-9] 单个数字字符   [A-Z] 单个⼤写字⺟   [A-Z0-9_] ⼤写字⺟或者数字或者下划线   Hi hi 等价于    反义          [^aeiou] 单个的除a/e/i/o/u之外的字符   [^A] 单个⾮x字符   \W 单个⾮\w（字⺟/数字/下划线/汉字）   \S 单个⾮\s（空⽩）   \D 单个⾮\d（数字）字符   \B ⾮开头/结束位置    Java中的正则表达式  String split() 划分的标准   line 为”\n“   replaceAll/replaceFirst matches    尽量少⽤或者少编译，因为效率低 Java中的正则表达式是⽐较昂贵的 正则表达式需要解析，代码⾮常昂贵 匹配过程⾮常昂贵   分组与捕获  想要将所有符合正则表达式的⽂本抓出来处理 使⽤括号来指定⼀个被捕获的分组 分组的编号从1开始 分组的编号计算只看左括号 (?" />
+<meta name="keywords" content=", 正则表达式" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" />
+
+
+    <title>
+        
+            正则表达式 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="正则表达式">
+<meta itemprop="description" content="正则表达式  ⽤于描述⽂本/字符串的⼀组规则   你可以使⽤⼀些强⼤的规则来：   处理⽂本 提取信息  常⽤的元字符          ^ 开始位置   $ 结束位置   . 单个任意字符（不⼀定包含换⾏符）   \w 单个“word”字符 字⺟/数字/下划线/汉字   \s 单个空⽩字符（\n\r\t）   \d 单个数字字符   \b 单词的开始或结束    重复          |0次或多次   |1次或多次 ? |0次或1次 {n} |n次 {n,} |&gt;=n次 {n,m} |n到m次  选择          [aeiou] 单个的a/e/i/o/u字符之⼀   [0-9] 单个数字字符   [A-Z] 单个⼤写字⺟   [A-Z0-9_] ⼤写字⺟或者数字或者下划线   Hi hi 等价于    反义          [^aeiou] 单个的除a/e/i/o/u之外的字符   [^A] 单个⾮x字符   \W 单个⾮\w（字⺟/数字/下划线/汉字）   \S 单个⾮\s（空⽩）   \D 单个⾮\d（数字）字符   \B ⾮开头/结束位置    Java中的正则表达式  String split() 划分的标准   line 为”\n“   replaceAll/replaceFirst matches    尽量少⽤或者少编译，因为效率低 Java中的正则表达式是⽐较昂贵的 正则表达式需要解析，代码⾮常昂贵 匹配过程⾮常昂贵   分组与捕获  想要将所有符合正则表达式的⽂本抓出来处理 使⽤括号来指定⼀个被捕获的分组 分组的编号从1开始 分组的编号计算只看左括号 (?">
+<meta itemprop="datePublished" content="2020-09-02T23:44:15&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-02T23:44:15&#43;08:00" />
+<meta itemprop="wordCount" content="285">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="正则表达式," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="正则表达式"/>
+<meta name="twitter:description" content="正则表达式  ⽤于描述⽂本/字符串的⼀组规则   你可以使⽤⼀些强⼤的规则来：   处理⽂本 提取信息  常⽤的元字符          ^ 开始位置   $ 结束位置   . 单个任意字符（不⼀定包含换⾏符）   \w 单个“word”字符 字⺟/数字/下划线/汉字   \s 单个空⽩字符（\n\r\t）   \d 单个数字字符   \b 单词的开始或结束    重复          |0次或多次   |1次或多次 ? |0次或1次 {n} |n次 {n,} |&gt;=n次 {n,m} |n到m次  选择          [aeiou] 单个的a/e/i/o/u字符之⼀   [0-9] 单个数字字符   [A-Z] 单个⼤写字⺟   [A-Z0-9_] ⼤写字⺟或者数字或者下划线   Hi hi 等价于    反义          [^aeiou] 单个的除a/e/i/o/u之外的字符   [^A] 单个⾮x字符   \W 单个⾮\w（字⺟/数字/下划线/汉字）   \S 单个⾮\s（空⽩）   \D 单个⾮\d（数字）字符   \B ⾮开头/结束位置    Java中的正则表达式  String split() 划分的标准   line 为”\n“   replaceAll/replaceFirst matches    尽量少⽤或者少编译，因为效率低 Java中的正则表达式是⽐较昂贵的 正则表达式需要解析，代码⾮常昂贵 匹配过程⾮常昂贵   分组与捕获  想要将所有符合正则表达式的⽂本抓出来处理 使⽤括号来指定⼀个被捕获的分组 分组的编号从1开始 分组的编号计算只看左括号 (?"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-02 23:44:15 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        2 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="正则表达式">正则表达式</h2>
+<ul>
+<li>⽤于描述⽂本/字符串的⼀组规则</li>
+<li>
+<ul>
+<li>你可以使⽤⼀些强⼤的规则来：</li>
+</ul>
+</li>
+<li>处理⽂本</li>
+<li>提取信息</li>
+</ul>
+<h2 id="常的元字符">常⽤的元字符</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>^</td>
+<td>开始位置</td>
+</tr>
+<tr>
+<td>$</td>
+<td>结束位置</td>
+</tr>
+<tr>
+<td>.</td>
+<td>单个任意字符（不⼀定包含换⾏符）</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>单个“word”字符 字⺟/数字/下划线/汉字</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>单个空⽩字符（\n\r\t）</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>单个数字字符</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>单词的开始或结束</td>
+</tr>
+</tbody>
+</table>
+<h2 id="重复">重复</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+</table>
+<ul>
+<li>|0次或多次</li>
+</ul>
+<ul>
+<li>|1次或多次
+? |0次或1次
+{n} |n次
+{n,} |&gt;=n次
+{n,m} |n到m次</li>
+</ul>
+<h2 id="选择">选择</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[aeiou]</td>
+<td>单个的a/e/i/o/u字符之⼀</td>
+</tr>
+<tr>
+<td>[0-9]</td>
+<td>单个数字字符</td>
+</tr>
+<tr>
+<td>[A-Z]</td>
+<td>单个⼤写字⺟</td>
+</tr>
+<tr>
+<td>[A-Z0-9_]</td>
+<td>⼤写字⺟或者数字或者下划线</td>
+</tr>
+<tr>
+<td>Hi</td>
+<td>hi 等价于</td>
+</tr>
+</tbody>
+</table>
+<h2 id="反义">反义</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[^aeiou]</td>
+<td>单个的除a/e/i/o/u之外的字符</td>
+</tr>
+<tr>
+<td>[^A]</td>
+<td>单个⾮x字符</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>单个⾮\w（字⺟/数字/下划线/汉字）</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>单个⾮\s（空⽩）</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>单个⾮\d（数字）字符</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>⾮开头/结束位置</td>
+</tr>
+</tbody>
+</table>
+<h2 id="java中的正则表达式">Java中的正则表达式</h2>
+<ul>
+<li>String</li>
+<li>split() 划分的标准</li>
+<li>
+<ul>
+<li>line 为<code>”\n“</code></li>
+</ul>
+</li>
+<li>replaceAll/replaceFirst</li>
+<li>matches</li>
+</ul>
+<blockquote>
+<ul>
+<li>尽量少⽤或者少编译，因为效率低</li>
+<li>Java中的正则表达式是⽐较昂贵的</li>
+<li>正则表达式需要解析，代码⾮常昂贵</li>
+<li>匹配过程⾮常昂贵</li>
+</ul>
+</blockquote>
+<h2 id="分组与捕获">分组与捕获</h2>
+<ul>
+<li>想要将所有符合正则表达式的⽂本抓出来处理</li>
+<li>使⽤括号来指定⼀个被捕获的分组</li>
+<li>分组的编号从1开始</li>
+<li>分组的编号计算只看左括号</li>
+<li>(?:)不捕获和分配编号，括号只⽤于分组或标记优先级</li>
+</ul>
+<h2 id="分组和捕获">分组和捕获</h2>
+<ul>
+<li>Pattern</li>
+<li>
+<ul>
+<li>matcher()</li>
+</ul>
+</li>
+<li>Matcher</li>
+<li>
+<ul>
+<li>find()</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>group(n)</li>
+</ul>
+</li>
+<li>先用<code>Pattern.compile()</code>来填好正则表达</li>
+<li><code>Matcher matcher = pattern.matcher(String)</code>匹配字符串</li>
+</ul>
+<blockquote>
+<ul>
+<li>Creates a matcher that will match the given input against this pattern.</li>
+<li>线程安全</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> Matcher <span style="color:#a6e22e">matcher</span><span style="color:#f92672">(</span>CharSequence input<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>compiled<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">synchronized</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>compiled<span style="color:#f92672">)</span>
+                    compile<span style="color:#f92672">();</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        Matcher m <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Matcher<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> input<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">return</span> m<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+</code></pre></div><ul>
+<li>
+<ul>
+<li><code>matcher.find()</code>bollean</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>matcher.ground(Int)</code>匹配组中的对应部分</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>分组只算左括号</li>
+</ul>
+</blockquote>
+<ul>
+<li>用Builder模式会更加清楚，使用<code>@lombok</code>要记得引入maven，在对象前要添加<code>@Data</code>、<code>@Builder</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List<span style="color:#f92672">&lt;</span>GCActivity<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">parse</span><span style="color:#f92672">(</span>File gcLog<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        List<span style="color:#f92672">&lt;</span>GCActivity<span style="color:#f92672">&gt;</span> result <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> lines <span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            FileInputStream fileInputStream <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span>gcLog<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">int</span> readInt <span style="color:#f92672">=</span> fileInputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+            StringBuilder readString <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+            <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>readInt <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                readString<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">((</span><span style="color:#66d9ef">char</span><span style="color:#f92672">)</span> readInt<span style="color:#f92672">);</span>
+                readInt <span style="color:#f92672">=</span> fileInputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+            <span style="color:#f92672">}</span>
+            fileInputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+            lines <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>readString<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">().</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">));</span>
+            Pattern pattern <span style="color:#f92672">=</span> Pattern<span style="color:#f92672">.</span><span style="color:#a6e22e">compile</span><span style="color:#f92672">(</span>
+                <span style="color:#e6db74">&#34;(\\d+)K-&gt;(\\d+)K.(\\d+)K.+\\s(\\d+)K-&gt;(\\d+)K\\((\\d+)K\\).+user=(\\d.\\d+).+sys=(\\d.\\d+).+real=(\\d.\\d+)&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String line <span style="color:#f92672">:</span> lines<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                Matcher matcher <span style="color:#f92672">=</span> pattern<span style="color:#f92672">.</span><span style="color:#a6e22e">matcher</span><span style="color:#f92672">(</span>line<span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+                     result<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> GCActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">GCActivityBuilder</span><span style="color:#f92672">()</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">youngGenBefore</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">(</span>1<span style="color:#f92672">)))</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">youngGenAfter</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">(</span>2<span style="color:#f92672">)))</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">youngGenTotal</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">(</span>3<span style="color:#f92672">)))</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">heapBefore</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">(</span>4<span style="color:#f92672">)))</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">heapAfter</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">(</span>5<span style="color:#f92672">)))</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">heapTotal</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">(</span>6<span style="color:#f92672">)))</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">real</span><span style="color:#f92672">(</span>Double<span style="color:#f92672">.</span><span style="color:#a6e22e">parseDouble</span><span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">(</span>7<span style="color:#f92672">)))</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">sys</span><span style="color:#f92672">(</span>Double<span style="color:#f92672">.</span><span style="color:#a6e22e">parseDouble</span><span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">(</span>8<span style="color:#f92672">)))</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">user</span><span style="color:#f92672">(</span>Double<span style="color:#f92672">.</span><span style="color:#a6e22e">parseDouble</span><span style="color:#f92672">(</span>matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">(</span>9<span style="color:#f92672">)))</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">());</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> result<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h2 id="替换">替换</h2>
+<ul>
+<li>
+<ul>
+<li>先用<code>Pattern.compile()</code>来填好正则表达</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>pattern.matcher(String)</code>来匹配好需要替换的字符串，匹配出需要替换的部分</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>.replaceAll</code>/<code>.replaceFirst</code>(只需要一次配对，避免匹配到后面格式相同但不需要的)</li>
+</ul>
+</li>
+<li>替换时间戳</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">process</span><span style="color:#f92672">(</span>String log<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Pattern pattern <span style="color:#f92672">=</span> Pattern<span style="color:#f92672">.</span><span style="color:#a6e22e">compile</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\\[\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\]&#34;</span><span style="color:#f92672">);</span>
+        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span>lines <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>log<span style="color:#f92672">.</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">));</span>
+        String result <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String line<span style="color:#f92672">:</span>lines<span style="color:#f92672">){</span>
+            String temp<span style="color:#f92672">=</span> pattern<span style="color:#f92672">.</span><span style="color:#a6e22e">matcher</span><span style="color:#f92672">(</span>line<span style="color:#f92672">).</span><span style="color:#a6e22e">replaceFirst</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">);</span>
+            result <span style="color:#f92672">+=</span>temp<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> result<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        String str <span style="color:#f92672">=</span>
+                <span style="color:#e6db74">&#34;[2019-08-01 21:24:41] bt3102 (11m:21s)\n&#34;</span>
+                        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;[2019-08-01 21:24:42] TeamCity server version is 2019.1.1 (build 66192)\n&#34;</span>
+                        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;[2019-08-01 21:24:43] Collecting changes in 2 VCS roots (22s)\n&#34;</span><span style="color:#f92672">;</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>process<span style="color:#f92672">(</span>str<span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div>
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        285 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-09-02 23:44 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/aop%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8Aredis/">
+                <span class="button__icon">←</span>
+                <span class="button__text">AOP和装饰器模式以及Redis</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/docker%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/">
+                <span class="button__text">Docker的原理和应用</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

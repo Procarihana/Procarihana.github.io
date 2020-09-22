@@ -7,10 +7,347 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 01 Sep 2020 18:41:11 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Sep 2020 10:20:53 +0800</lastBuildDate>
     
 	<atom:link href="https://procarihana.github.io/public/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>多线程</title>
+      <link>https://procarihana.github.io/public/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Tue, 22 Sep 2020 10:20:53 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>操作系统与计算机原理</title>
+      <link>https://procarihana.github.io/public/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Mon, 21 Sep 2020 23:40:37 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86/</guid>
+      <description>计算机体系原理 核心 ：CPU 中央处理器 包含控制器和运算器    寄存器 ：临时存放 register 是CPU的内置，容量小，但是速度极快的内存     内存 ：包含数据和指令（说明书）冯诺依曼结构&amp;ndash;&amp;gt; 将程序指令和数据存储一起的结构     汇编指令    程序的装载和执行  可执行程序 exe、executable： 执行指令和数据的共同体   一个exe 可以执行多个进程 &amp;ndash;&amp;gt; 装载到内存不同的进程里，两个进程是不相同的      物理寻址 通过指令完成 物理地址：真是的内存地址 虚拟地址空间：对于每一个进程而言，操作系统随机分配给进程的内存空间   每个程序是独立的，程序间数据不共享，程序不会窃取别的程序，互不干扰，一个崩溃另一个也不会出事   跨平台性   不同架构的CUP执行指令是不一样的，所以不同平台的CPU不能执行其他CUP的指令     而模拟器能够实现      动态链接库 静态链接库    CPU 在执行指令的时候，有的方法是存在另外的地方，需要用的时候就去加载。能够节省空间，共用方法，升级的时候也比较简单。但是如果不存在的话就会出现错误，也有可能出现和系统不兼容的问题    《链接、装载与库》  程序的分时复用调度  CPU 速度 &amp;raquo; memory &amp;raquo; IO 操作系统根据实际采用调度 时间片轮转：不停地轮流做不同的事情，基于CUP运行速度快 每个程序轮流占用CPU的时间片（进程、线程）   什么时候放弃占用CUP时间片      程序时间片到时间 请求慢速设备（把数据储存到磁盘） CPU需要响应中断（磁盘处理完后向CPU发出中断，CPU 就马上去完成中断后的工作）     上下文切换</description>
+    </item>
+    
+    <item>
+      <title>工厂方法</title>
+      <link>https://procarihana.github.io/public/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Mon, 21 Sep 2020 18:23:42 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</guid>
+      <description>对象创建模式  避免用new创建过程中需要依赖具体类，从而支持对象创建的稳定 避免紧耦合，对拓展是开放的，对修改是封闭的 典型： Factory Method Absttact Factory Builder Prototype（原型）   Clone   Singleton  简单工厂模式 例  处理从文件里面读出的数据 设计：DataManager类，FileReader类   从不同的去到读取数据，一开始需要每渠道都写一种实现 processDataFromRest 、processDataFromDatabase 等等的方法，而这些方法都要需要相应的dataReader对象去实现。 为了减少  </description>
+    </item>
+    
+    <item>
+      <title>SOLID原则</title>
+      <link>https://procarihana.github.io/public/posts/solid%E5%8E%9F%E5%88%99/</link>
+      <pubDate>Sun, 20 Sep 2020 15:53:38 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/solid%E5%8E%9F%E5%88%99/</guid>
+      <description>面向对象设计基本原则：SOLID原则 单一责任原则  定义：一个类只应承担一种责任 让一个类只做一件事。如果需要承担更多的工作，那么分解这个类  开放封闭原则  定义：实体应该对扩展是开放的，对修改是封闭的 类应该无需改类本身但是却容易扩展 例子： 继承 可以通过继承来扩展，但是不能够修改父类  里氏替换原则  定义：一个 对象在其出现的任何地方，都可以用子类实例做替换 当一个子类可以在任意地方替换基类，且短剑功能不受影响时，不会导致程序的错误 Eg： 多个数据源（SQL与NoSQL）获取用户信息  接口分离原则  定义：多个专门接口比单一的总体接口要好 客户不应被强迫依赖他是不用的方法。即，一个类实现的接口中，包含了他不需要的方法。将接口拆分成更小和更具体的接口，有助于解耦，从而更容易重构与更改  依赖倒置原则  定义：   高层次的模块不应该依赖低层次的模块，他们都应该依赖于抽象。     抽象不应该依赖于具体方法实现，具体实现应该依赖抽象   依赖倒置是实现开闭原则的方法 扩展 IOC DI?  </description>
+    </item>
+    
+    <item>
+      <title>LinkedList</title>
+      <link>https://procarihana.github.io/public/notes/linkedlist/</link>
+      <pubDate>Fri, 18 Sep 2020 17:39:03 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/linkedlist/</guid>
+      <description>属性 初始值为0 void push（）  在链条的头部添加元素 addFirst（）  boolrean offer()  在尾部添加元素 实现Queue接口的offer  push()  实质上就是addFirst()  offerLast()/offerFirst ()  实质上执行的addLast()和addFirst()return true  peekFirst()/peekLast()  查看第一个或者最后一个元素，如果list为空则返回null，除此以外什么都不做  poll（）  检索和删除顶元素，如果为null 返回null  pop（）  删除列表的顶元素，如果为null ，则抛出异常  void add(int index, E element)  LinkedList 并没有add（），但是在继承的AbstractSequentiaList里面 有实现add()   add(0, element) 就是把 element 放在first， 原本的first 就会变成second     add(2 ,element) 就是把element 放在第二个的右边，成为第三个元素，原本的第三个就会变成第四个    </description>
+    </item>
+    
+    <item>
+      <title>Queue</title>
+      <link>https://procarihana.github.io/public/notes/queue/</link>
+      <pubDate>Fri, 18 Sep 2020 16:19:46 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/queue/</guid>
+      <description>poll  remove head of this queue 不同于 remove 的是当queue为空 的时候会返回null  remove  移出队列的顶元素，队列为空则会抛出异常  offer()  在尾部添加元素  Queue 常用方法            add 增加一个元索 如果队列已满，则抛出一个IIIegaISlabEepeplian异常    remove 移除并返回队列头部的元素 如果队列为空，则抛出一个NoSuchElementException异常    element 返回队列头部的元素 如果队列为空，则抛出一个 NoSuchElementException异常   offer 添加一个元素并返回true 如果队列已满，则返回false    poll 移除并返问队列头部的元素 如果队列为空，则返回null    peek 返回队列头部的元素 如果队列为空，则返回null    put 添加一个元素 如果队列满，则阻塞    take 移除并返回队列头部的元素      </description>
+    </item>
+    
+    <item>
+      <title>Spring MVC</title>
+      <link>https://procarihana.github.io/public/notes/spring-mvc/</link>
+      <pubDate>Thu, 17 Sep 2020 23:41:33 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/spring-mvc/</guid>
+      <description>Spring MVC   模型model(javabean), 视图view(jsp/img) 控制器Controller(Action/servlet)
+  C 存在的目的就是为了保证M和V的一致性 当M发生改变时,C可以把M中的新内容更新到V中.
+  使用MVC模式的好处是，Controller专注于业务处理，它的处理结果就是Model。Model可以是一个JavaBean，也可以是一个包含多个对象的Map，Controller只负责把Model传递给View，View只负责把Model给“渲染”出来，这样，三者职责明确，且开发更简单，因为开发Controller时无需关注页面，开发View时无需关心如何创建Model。     SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架
+MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。
+支持 RESTful风格的 URL 请求 。
+采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性。
+  为了解决页面代码和后台代码的分离
+  </description>
+    </item>
+    
+    <item>
+      <title>Servlet</title>
+      <link>https://procarihana.github.io/public/notes/servlet/</link>
+      <pubDate>Thu, 17 Sep 2020 20:02:18 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/servlet/</guid>
+      <description>Servlet的生命周期分为5个阶段：加载、创建、初始化、处理客户请求、卸载。 (1)加载：容器通过类加载器使用servlet类对应的文件加载servlet (2)创建：通过调用servlet构造函数创建一个servlet对象 (3)初始化：调用init方法初始化 (4)处理客户请求：每当有一个客户请求，容器会创建一个线程来处理客户请求 (5)卸载：调用destroy方法让servlet自己释放其占用的资源</description>
+    </item>
+    
+    <item>
+      <title>Set接口</title>
+      <link>https://procarihana.github.io/public/notes/set%E6%8E%A5%E5%8F%A3/</link>
+      <pubDate>Thu, 17 Sep 2020 10:13:05 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/set%E6%8E%A5%E5%8F%A3/</guid>
+      <description>addAll  元素不重复 addAll（Colletcion） 如果set里面原本有不属于这个集合的元素，就会被移出，剩下的是原本的set和新集合的交集 不允许添加包含null的集合，否则会出现exception  Add  add（Object） 通过判断Objcet 是否为 null 且是否和集合里面的元素相等，如果Object 已经存在于set里面就不会发生改变并且return false  remove  如果存在这个元素 移出后return true  </description>
+    </item>
+    
+    <item>
+      <title>ArryList</title>
+      <link>https://procarihana.github.io/public/notes/arrylist/</link>
+      <pubDate>Wed, 16 Sep 2020 23:52:09 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/arrylist/</guid>
+      <description>初始容量为 10  之后每超过10就添加16个  有设置容量  意义在于先准备一个空间，避免以后不断地扩容造成空间浪费 如果指定初始容量a，数组的容量就为a 如果初始容量为0或者没有指定，就为0 负数就抛出异常  public ArrayList(int initialCapacity) { if (initialCapacity &amp;gt; 0) { this.elementData = new Object[initialCapacity]; } else if (initialCapacity == 0) { this.elementData = EMPTY_ELEMENTDATA; } else { throw new IllegalArgumentException(&amp;#34;Illegal Capacity: &amp;#34;+ initialCapacity); } } 扩容的时候自动调整大小  ArrayList 里面有一个Object[] elementData 用于存储实际的元素   包含size   扩容过程    执行add（）的时候会先判断当前未添加前的elementDate.length 是否会等于初始容量 size，如果等于就执行grow()扩容，并把扩容后的新对象组size 赋值到 elementData 里面 Object[]grow（） 增长的最小的目标容量（minCapacity）是当前的目标容量+1   之后执行Object[] grow(int minCapacity) 。先复制就的Array，然后加入扩充好的新容量的数组（newCapacity（int minCapacity））里，复制给elementData并返回这个新的数组       newCapacity(int minCapacity) 新容量的目标容量为旧容量的1.</description>
+    </item>
+    
+    <item>
+      <title>单例模式</title>
+      <link>https://procarihana.github.io/public/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Wed, 16 Sep 2020 18:13:34 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>保证一个类只有一个实例，并提供一个访问它的全局访问点   常见的单例模式   Hibernate、Mybatis SessionFactory Spring Bean 每个Bean 都是单例的（依赖倒置原则） Java Runtime  动机  在软件工程里经常有一些特殊类，必须保证他们在系统里有且只有一个实例 绕开 new，提供一种方式来确保一个类只有一个实例 需要由类设计者来考虑实现，而不是类使用者来保证  优势  提供了对唯一实例的受控访问 对频繁使用的对象，可以省略创建对象所花费的时间，对于那些重量级对象而言，是非常可观的一笔系统开销 对于Java语言，额外的好处：由于new操作的次数减少，因而对系统内存的使用频率也会降低。这将减轻GC压力，缩短GC停顿时间  使用场景  当只能有一个实例而且客户可以从一个众所周知的访问点访问 当这个唯一实例应该是通过子类化可拓展，并且客户应该无须更改代码就能使用一个拓展的实例  结构  Singgleton ： 定义一个Instacne操作，允许客户访问的唯一实例  单例模式七种方式 饿汉式 静态常量    当构造器是public的时候，这个类都能通过new()实现新的实例 &amp;ndash;&amp;gt; 构造器使用private     为了让外面能够使用到这个类，直接在创建的时候new出来    public class Singleton{ public static final Singleton INSTANCE = new Singleton(); //private constructor  private Singleton(){} public void doSomething(){……} }   改进模式：使用一个静态工厂，通过调用这个类的方法从而能够使用到这个实例   public class Singleton{ public static final Singleton INSTANCE = new Singleton(); //private constructor  private Singleton(){} public static Singleton getInstance(){ return INSTANCE;} public void doSomething(){……} }  饿汉式 静态代码块  public class Singleton{ private Singleton(){} private static Singleton instance; static{ instance = new Singleton(); } public static Singleton getInstance(){ return instance; } } 懒汉式 线程不安全  只在第一次new(),其余时间通过判断是否为null，不是的话就直接返回，是的话就new一个新的 如果多个线程同时执行if(instance == null),一个线程来不及创建完，就被另一个线程访问，会创建出多个实例来   可以懒加载。但是线程不安全，只能在单线程使用   不能在实际环境中使用  public class Singleton{ private static Singleton instacne; private Singleton(){ public static Singleton getInstance(){ if(instance == null){ instance = new Singleton(); } return instance; } } } 懒汉式 线程安全 同步安全  加锁 能懒加载   加锁导致效率低（程序串行化），每个线程在获得实例时都要进行同步，哪怕已经是读的操作     加锁是有性能开销的     不推荐使用    双重检查 double-check  懒汉式不安全,主要是判断是否为空   双重检查就是通过加锁，获得锁后把判断实例是否为空，如果是的话就new出实例，不是的话就返回已经new出的实例     在new的过程中，因为锁已经被拿走了，所以不会有其他的线程new实例    public class Singleton{ private static Singleton instacne; private Singleton(){ public static Singleton getInstance(){ if(instance == null){ synchrondized(Singleton.</description>
+    </item>
+    
+    <item>
+      <title>锁</title>
+      <link>https://procarihana.github.io/public/notes/%E9%94%81/</link>
+      <pubDate>Wed, 16 Sep 2020 17:27:26 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/%E9%94%81/</guid>
+      <description> volatile的措施，就是   每次从内存中取值，不从缓存中什么的拿值。这就保证了用 volatile修饰的共享变量，每次的更新对于其他线程都是可见的。 volatile保证了其他线程的立即可见性，就没有保证原子性。 3.由于有些时候对 volatile的操作，不会被保存，说明不会造成阻塞。不可用与多线程环境下的计数器。  </description>
+    </item>
+    
+    <item>
+      <title>Maven</title>
+      <link>https://procarihana.github.io/public/notes/maven/</link>
+      <pubDate>Tue, 15 Sep 2020 23:02:35 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/maven/</guid>
+      <description>Maven lifeCycle  verify 运行检查确保代码有效 integration-test (继承测试) 相比于 verify位 于maven生命周期的前几个（运行maven 的范围比 verify少）    如有必要，将包处理和部署到可以运行集成测试的环境中。   </description>
+    </item>
+    
+    <item>
+      <title>微商电商</title>
+      <link>https://procarihana.github.io/public/projects/%E5%BE%AE%E5%95%86%E7%94%B5%E5%95%86/</link>
+      <pubDate>Tue, 15 Sep 2020 22:39:33 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/projects/%E5%BE%AE%E5%95%86%E7%94%B5%E5%95%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>测试</title>
+      <link>https://procarihana.github.io/public/notes/%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Tue, 15 Sep 2020 20:31:34 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/%E6%B5%8B%E8%AF%95/</guid>
+      <description>白盒测试——把测试对象看作一个打开的盒子，程序内部的逻辑结构和其他信息对测试人员是公开的。 黑盒测试——已知产品的功能设计规格，不考虑程序内部结构，进行测试证明每个实现了的功能是否符合要求 灰盒测试——介于白盒和黑盒测试之间，即关注输出对输入的正确性，也关注程序内部表现。 回归测试——软件或环境的修复或更正后的“再测试”，自动测试工具对这类测试尤其有用。 单元测试——是最小粒度的测试，以测试某个功能或代码块。一般由程序员来做，因为它需要知道内部程序设计和编码的细节。
+JUnit JUnit中提供了很多断言方法用来测试不同的条件， assertEquals(a, b) 测试a是否等于b（a和b是原始类型数值(primitive value) 或者必须为实现比较而具有equal方法） assertFalse(a) 测试a是否为false （假），a是一个Boolean数值 。 assertTrue(a) 测试a是否为true （真），a是一个Boolean 数值 assertNotNull(a) 测试a是否非空，a是一个对象或者null 。 assertNull(a) 测试a是否为null，a是一个对象或者null 。 assertNotSame(a, b) 测试a和b是否没有都引用同一个对象 。 assertSame(a, b) 测试a和b是否都引用同一个对象 。  Unit 提供了6大类31组断言方法，包括基础断言、数字断言、字符断言、布尔断言、对象断言。   assertEquals（Object expcted,Object actual)内部逻辑判断使用equals()方法，这表明断言两个实例的内部哈希值是否相等时，最好使用该方法对相应类实例的值进行比较。     而assertSame（Object expected,Object actual）内部逻辑判断使用了Java运算符“==”，这表明该断言判断两个实例是否来自于同一个引用（Reference），最好使用该方法对不同类的实例的值进行比对。     asserEquals(String message,String expected,String actual)该方法对两个字符串进行逻辑比对，如果不匹配则显示着两个字符串有差异的地方。     ComparisonFailure类提供两个字符串的比对，不匹配则给出详细的差异字符。 [https://www.cnblogs.com/bnuvincent/archive/2004/01/13/2079550.html]    Mockito  Mockito并非不是通过代理调用真实实例，而是创建它的一个副本。 默认情况下，对于所有返回值的方法，mock将返回null， 一旦存根，该方法将始终返回一个存根值  Mock Spy  Spy使用真实的实例副本来进行，不会和实例进行交互 所以如果你保留真实的实例并与之交互，不要期望被间谍知道那些交互 及其对实际实例状态的影响。 推论是，当 unstustub 方法被称为on spy，而不在实际实例时， *你不会看到对实际实例的任何影响  MockitoUnit  Mockito使用JUnit运行器使测试保持整洁并改进调试体验。   自动检测存根参数，并设置为默认（Mockito 3.</description>
+    </item>
+    
+    <item>
+      <title>SQL</title>
+      <link>https://procarihana.github.io/public/notes/sql/</link>
+      <pubDate>Tue, 15 Sep 2020 11:03:10 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/sql/</guid>
+      <description>A：对于层次模型，采用的是树（二叉树）的结构来表达实体和实体间联系 B：网状模型，采用的是图的结构来表达实体和实体间联系 C：对象模型，就是用的面型对象的思想，用对象和其之间的联系来表达实体和实体间联系 D：关系模型，就是用的二维表
+候选键(Candidate Key)：一个或者多个属性的集合，可以唯一确定实体的一个实例； 主键(Primary Key):从候选键中，选中用来作为唯一标识的属性或者属性组被称为主键； 可选键(Alternative Key):候选键中没有选中的其他键，称为可选键； 而表的外键是另一表的主键, 外键可以有重复的, 可以是空值。
+活锁就是事务T有可能永远等待，而死锁是指T1和T2 两个事务永远不能结束
+第一范式：所有属性必须是原子的，某个属性有多个值时，必须拆分成不同的属性 第二范式：需满足1NF，非码属性必须完全依赖于候选码；即数据库中的每个实例或记录可以被唯一的区分。简而言之，第二范式就是在第一范式的基础上属性完全依赖于主键。 第三范式：在2NF基础上，任何非主属性不依赖于其他非主属性。换言之，第三范式（3NF）要求一个关系中不包含已在其它关系已包含的非主关键字信息。即关系不能包含其他关系中非主键的信息。 巴斯-科徳范式：在3NF基础上，任何非主属性不能对主键子集依赖（在3NF基础上消除对主码子集的依赖），为第三范式的修正 第四范式：限制关系模式的属性之间不允许有非平凡且非函数依赖的多值依赖。当一个表中的非主属性互相独立时（3NF），这些非主属性不应该有多值，若有多值就违反了4NF。 第五范式：表必须可以分解为较小的表，除非那些表在逻辑上拥有与原始表相同的主键。用来处理消除所有的业务冗余，以独立的表来表达每一个业务需求。
+1、sql server中删除约束的语句是： alter table 表名 drop constraint 约束名 sp_helpconstraint 表名 找到数据表中的所有列的约束 2、oracle中删除约束的语句： 先找到表的约束名称，执行： select * from user_constraints； 其中 CONSTRAINT_NAME 为表的约束名称 然后删除约束： alter table 表名 drop constraint 约束名 cascade; 3、mysql中删除约束的语句是： 1）删除主键约束： alter table 表名 drop primary key; 2）删除外键约束：alter table 表名 drop foreign key 外键（区分大小写）;
+存储过程是由流控制和SQL语句书写的过程，这个过程经编译和优化后存储在数据库服务器中，使用时只要调用即可。 使用存储过程有以下的优点： 1.存储过程的能力大大增强了SQL语言的功能和灵活性。存储过程可以用流控制语句编写，有很强的灵活性，可以完成复杂的判断和较复杂的 运算。 2.可保证数据的安全性和完整性。 3.通过存储过程可以使没有权限的用户在控制之下间接地存取数据库，从而保证数据的安全。 4.</description>
+    </item>
+    
+    <item>
+      <title>计算机基础</title>
+      <link>https://procarihana.github.io/public/notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 15 Sep 2020 10:40:07 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</guid>
+      <description>物理层：中继器、集线器 链路层：网桥、交换机 网络层：路由器
+TCP/IP: 数据链路层：ARP,RARP 网络层： IP,ICMP,IGMP 传输层：TCP ,UDP,UGP 应用层：Telnet,FTP,SMTP,SNMP.
+OSI: 物理层：EIA/TIA-232, EIA/TIA-499, V.35, V.24, RJ45, Ethernet, 802.3, 802.5, FDDI, NRZI, NRZ, B8ZS 数据链路层：Frame Relay, HDLC, PPP, IEEE 802.3/802.2, FDDI, ATM, IEEE 802.5/802.2 网络层：IP，IPX，AppleTalk DDP 传输层：TCP，UDP，SPX 会话层：RPC,SQL,NFS,NetBIOS,names,AppleTalk,ASP,DECnet,SCP 表示层:TIFF,GIF,JPEG,PICT,ASCII,EBCDIC,encryption,MPEG,MIDI,HTML 应用层：FTP,WWW,Telnet,NFS,SMTP,Gateway,SNMP
+端口 http 80 ftp 20/21 ssh 22 telnet 23 smtp 25
+jar 将许多文件组合成一个jar文件 javac 编译 javadoc 它从程序源代码中抽取类、方法、成员等注释形成一个和源代码配套的API帮助文档。 javah 把java代码声明的JNI方法转化成C\C++头文件。 JNI可参考java核心技术卷二第12章
+JTextField单行文本 JTextArea多行文本 JButton按键显示 JLable显示标签 信息</description>
+    </item>
+    
+    <item>
+      <title>多线程</title>
+      <link>https://procarihana.github.io/public/notes/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Mon, 14 Sep 2020 22:21:40 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <description>多线程一共有三种实现方式 方式1：继承Thread类，并重写run()方法 方式2：实现Runnable接口，实现run()方法 方式3：实现Callable接口，线程结束后可以有返回值，但是该方式是依赖于线程池的。</description>
+    </item>
+    
+    <item>
+      <title>Enum</title>
+      <link>https://procarihana.github.io/public/notes/enum/</link>
+      <pubDate>Mon, 14 Sep 2020 21:56:22 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/enum/</guid>
+      <description>题目    enum AccountType { SAVING, FIXED, CURRENT; private AccountType() { System.out.println(“It is a account type”); } } class EnumOne { public static void main(String[]args) { System.out.println(AccountType.FIXED); } }  所有的枚举值都是类静态常量，在初始化时会对所有的枚举值对象进行第一次初始化。 枚举类在后台实现时，实际上是转化为一个继承了java.lang.Enum类的实体类，原先的枚举类型变成对应的实体类型，上例中AccountType变成了个class AccountType，并且会生成一个新的构造函数，若原来有构造函数，则在此基础上添加两个参数，生成新的构造函数，如上例子中：  private AccountType(){ System.out.println(“It is a account type”); } 会变成：
+private AccountType(String s, int i){ super(s,i); System.out.println(“It is a account type”); }
+而在这个类中，会添加若干字段来代表具体的枚举类型： ```java public static final AccountType SAVING; public static final AccountType FIXED; public static final AccountType CURRENT; 而且还会添加一段static代码段：</description>
+    </item>
+    
+    <item>
+      <title>数组</title>
+      <link>https://procarihana.github.io/public/notes/%E6%95%B0%E7%BB%84/</link>
+      <pubDate>Mon, 14 Sep 2020 21:01:00 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/%E6%95%B0%E7%BB%84/</guid>
+      <description>初始化为{5,3,1} nums.add(6)后list为{5,3,1,6} nums.add(0,4)是在0号索引上添加数字4得到list为{4,5,3,1,6} nums.remove(1)是将1号索引上的5进行remove得到list为{4,3,1,6}</description>
+    </item>
+    
+    <item>
+      <title>待处理</title>
+      <link>https://procarihana.github.io/public/notes/%E5%BE%85%E5%A4%84%E7%90%86/</link>
+      <pubDate>Mon, 14 Sep 2020 20:44:10 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/%E5%BE%85%E5%A4%84%E7%90%86/</guid>
+      <description>Java通过synchronized进行访问的同步，synchronized作用非静态成员方法和静态成员方法上同步的目标是不同的
+character流和byte流的区别 字符流和字节流每次读入的字节数是不确定的，可能相同也可能不相同；字符流和字节流都有缓冲流
+完全二叉树
+get是立即加载，load是延迟加载。 hibernate
+重载的概念是：
+方法名称相同，参数个数、次序、类型不同
+因此重载对返回值没有要求，可以相同，也可以不同
+但是如果参数的个数、类型、次序都相同，方法名也相同，仅返回值不同，则无法构成重载
+Java的静态方法属于类的成员，实例方法属于对象的成员。 java不允许单独的方法，过程或函数存在,需要隶属于某一类中。 java语言中的方法属于对象的成员,而不是类的成员。不过，其中静态方法属于类的成员。
+从java虚拟机的角度讲，只有两种不同的类加载器：一种是启动类加载器（Bootstrap ClassLoader），这个类加载器使用的是c++实现的，是虚拟机的一部分，另一类是就是所有其他类加载器，这些类加载器都由java语言实现，独立于虚拟机外部，并且全都继承自抽象类。 从开发人员的角度看，类加载器还可以划分为3种系统类加载器，启动类加载器（Bootstrap ClassLoader），负责加载存放在&amp;lt;JAVA_HOME&amp;gt;/lib目录中的，或者被-Xbootclasspath参数所指定的路径中的，并且是虚拟机识别的（仅按照文件名识别，如rt.jar，名字不符的类库即使放在lib目录中也不会被加载）类库加载到虚拟机中内存中。启动类加载器无法被java程序直接引用，用户在编写自定义类加载器是，如果需要把加载请求委派给引导类加载器，那直接使用null代替即可。 扩展类加载器（Extension ClassLoader）：这个类加载器有sun.misc.Launcher$ExtClassLoader实现，负责加载&amp;lt;JAVA_HOME&amp;gt;/lib/ext目录中的，或者被java.ext.dirs系统变量所指定的路径中的所有类库，开发者可以直接使用扩展类加载器。 应用类加载器（Application ClassLoader）：这个类加载器由sun.misc.Launcher$AppClassLoader实现。由于这个类加载器是ClassLoader中的getSystemClassLoader（）方法的返回值，所以也称它为系统类加载器（System ClassLoader）。他负责加载用户类路径（ClassPath）上所指定的类库，开发者可以直接使用这个类加载器，如果应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。对此，如果有必要开发者可以加入自己定义的类加载器。 一般对于我们java程序员来说，类的加载使用的是双亲委派模型，即当一个类需要加载时，会将类传给Application ClassLoader，但是Application ClassLoader并不会加载，不管它是否能加载，而是传给它的&amp;quot;父类&amp;rdquo; Extension ClassLoader，Extension ClassLoader同样不会加载，同样传给 Bootstrap ClassLoader（注意不是我们常说的那种父类，但是可以这样理解）,这时Bootstrap ClassLoader会判断它是否能加载，能加载就直接加载了，不能加载就传给Extension ClassLoader，Extension ClassLoader同样的判断是否能加载，能加载就直接加载，不能加载就传给Application ClassLoader，然后Application ClassLoader也判断能否加载，如果还是不能加载应该就是报ClassNotFoundException了。这就是双亲委托模型的简单理解了。 对于上面的&amp;quot;父类&amp;quot;为什么要打引号，因为它们并不是真的像java中继承的关系，而是组合的关系，即在&amp;quot;子类&amp;quot;中存在一个成员变量指向&amp;quot;父类&amp;quot;的引用。 所以AE对DF错了。 对于C，很容易理解，因为我们知道一个类只需要加载一次就够了，所以要保证线程安全。 难点就在B了，其实也好理解，就是体现双亲委托模型的优势的时候了，之所以使用双亲委托机制是为了保证java程序的稳定运作，比如当你使用的不是双亲委托模型的时候，然后刚好开发者又定义了一个类，一个java.lang.String这样一个类，如果不使用双亲委托模型，当类加载的时候就有可能会加载开发者定义的String类，这导致了java代码的一片混乱，可读性极差。（PS：但这并不意味着类加载器只要双亲委托模型就行了，没有完美的模型，只有最合适的模型，有不同的需求使用不同的模型。比如破坏双亲委派模型，有兴趣的牛友可以自行了解），所以可以这么说，不同的类加载器加载出来的类是不一样的，不同的类加载器加载同一个类会在方法区产生两个不同的类，彼此不可见，并且在堆中生成不同的Class实例。对于接口，其实就是一个特殊的类，和类一样，在堆中产生不同的class对象。 纯手打，个人理解，欢迎大佬指出错误。
+A.Java系统提供3种类加载器：启动类加载器（Bootstrap ClassLoader） 扩展类加载器（Extension ClassLoader） 应用程序类加载器（Application ClassLoader）. A正确  B.《深入理解Java虚拟机》P228：对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立其在Java虚拟机中的唯一性，每一个类加载器，都拥有一个独立的类名称空间。这句话可以表达得更通俗一些：比较两个类是否“相等”，只有在这两个类是由同一个类加载器加载的前提下才有意义，否则，即使这两个类来源于同一个Class文件，被同一个虚拟机加载，只要加载它们的类加载器不同，那么这两个类必定不相等。接口类是一种特殊类，因此对于同一接口不同的类装载器装载所获得的类是不相同的。B错误 C.类只需加载一次就行，因此要保证类加载过程线程安全，防止类加载多次。C正确 D. Java程序的类加载器采用双亲委派模型，实现双亲委派的代码集中在java.lang.ClassLoader的loadClass()方法中，此方法实现的大致逻辑是：先检查是否已经被加载，若没有加载则调用父类加载器的loadClass()方法，若父类加载器为空则默认使用启动类加载器作为父类加载器。如果父类加载失败，抛出ClassNotFoundException异常。D错误 E.双亲委派模型的工作过程：如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求时，子加载器才会尝试自己去加载。E正确 F.应用程序类加载器（Application ClassLoader）负责加载用户类路径（ClassPath）上所指定的类库，不是所有的ClassLoader都加载此路径。F错误
+链接：https://www.nowcoder.com/questionTerminal/b82e4a85a66e4dc488a5ab49094976e9 来源：牛客网
+1、ThreadLocal的类声明： public class ThreadLocal可以看出ThreadLocal并没有继承自Thread，也没有实现Runnable接口。所以AB都不对。 2、ThreadLocal类为每一个线程都维护了自己独有的变量拷贝。每个线程都拥有了自己独立的一个变量。 所以ThreadLocal重要作用并不在于多线程间的数据共享，而是数据的独立，C选项错。 由于每个线程在访问该变量时，读取和修改的，都是自己独有的那一份变量拷贝，不会被其他线程访问， 变量被彻底封闭在每个访问的线程中。所以E对。 3、ThreadLocal中定义了一个哈希表用于为每个线程都提供一个变量的副本： static class ThreadLocalMap {</description>
+    </item>
+    
+    <item>
+      <title>Cookie and Session</title>
+      <link>https://procarihana.github.io/public/notes/cookie/</link>
+      <pubDate>Sat, 12 Sep 2020 16:08:36 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/cookie/</guid>
+      <description>Session 一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话，二者不能混淆。
+Session 和 cookie  会话（Session）跟踪是Web程序中常用的技术，用来跟踪用户的整个会话。常用的会话跟踪技术是Cookie与Session。Cookie通过在客户端记录信息确定用户身份，Session通过在服务器端记录信息确定用户身份。 Cookie就是这样的一种机制。它可以弥补HTTP协议无状态的不足。在Session出现之前，基本上所有的网站都采用Cookie来跟踪会话。  Session 和 cookie 区别  Cookie与Session的区别cookie数据存放在客户的浏览器（客户端）上，session数据放在服务器上，但是服务端的session的实现对客户端的cookie有依赖关系的； cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗，考虑到安全应当使用session； session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能。考虑到减轻服务器性能方面，应当使用COOKIE；单个cookie在客户端的限制是3K，就是说一个站点在客户端存放的COOKIE不能超过3K；  什么是 Cookie？   Cookie 是浏览器访问服务器后，服务器传给浏览器的一段数据。 浏览器需要保存这段数据，不得轻易删除。 此后每次浏览器访问该服务器，都必须带上这段数据。    Cookie 是一些数据, 存储于你电脑上的文本文件中。   当 web 服务器向浏览器发送 web 页面时，在连接关闭后，服务端不会记录用户的信息。   Cookie 的作用就是用于解决 &amp;ldquo;如何记录客户端的用户信息&amp;rdquo;:   当用户访问 web 页面时，他的名字可以记录在 cookie 中。 在用户下一次访问该页面时，可以在 cookie 中读取用户访问记录。   设置了新的 cookie，旧的 cookie 不会被覆盖。 Cookies提供了一种在服务器和浏览器之间交换信息的方法，以管理会话（登录，购物车，游戏得分），记住用户首选项（主题，隐私策略接受）以及跟踪整个站点的用户行为。Cookies在一定程度上解放了服务器端的压力，因为将一部分数据放在浏览器端存储，所以这部分数据不能是涉及应用安全的数据。  Cookie 作用   第一个作用是识别用户身份。
+   比如用户 A 用浏览器访问了 http://a.</description>
+    </item>
+    
+    <item>
+      <title>List</title>
+      <link>https://procarihana.github.io/public/notes/list/</link>
+      <pubDate>Fri, 11 Sep 2020 20:17:55 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/list/</guid>
+      <description>List add  添加元素在右边（最后）  LinkedList 和 ArrayList 区别 ArrayList  继承 AbstraciList （实现List接口中除了size()和get（int location）之外的方法和Collection接口）  public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomAccess, Cloneable, java.io.Serializable{ LinkdeList  继承 AbstractSequentialList（继承 AbstractCollectionm,实现了“链表中，根据index索引值操作链表的全部方法”）Deque接口） 双端 &amp;ndash;&amp;gt; 可以被当做站、队列或者双端队列使用  public class LinkedList&amp;lt;E&amp;gt; extends AbstractSequentialList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, Deque&amp;lt;E&amp;gt;, Cloneable, java.io.Serializable { transient int size = 0; /** * Pointer to first node. * Invariant: (first == null &amp;amp;&amp;amp; last == null) || * (first.prev == null &amp;amp;&amp;amp; first.</description>
+    </item>
+    
+    <item>
+      <title>Stack</title>
+      <link>https://procarihana.github.io/public/notes/stack/</link>
+      <pubDate>Fri, 11 Sep 2020 20:06:05 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/stack/</guid>
+      <description>stack  stack 继承Vector  Vector  Vector 是 AbstractList 子类  public class Vector&amp;lt;E&amp;gt;extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomAccess, Cloneable, java.io.Serializable{  Vector 实现了 List 接口   ArrayList 也是继承了 AbstructList&amp;lt;&amp;gt;    public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomAccess, Cloneable, java.io.Serializable{ &amp;mdash;&amp;gt; Stack 和 ArrayList 都是继承 AbstructList &amp;mdash;&amp;gt; Stack 本质也是一个 List
+ List 子类实现了 RandomAccess 接口，那表示它能快速随机访问存储的元素， 这时候你想到的可能是数组，通过下标 index 访问，实现了该接口的 ArrayList 底层实现就是数组，同样是通过下标访问，只是我们需要用 get() 方法的形式， ArrayList 底层仍然是数组的访问形式。 stack 的 search 能够通过下标查找对象  Stack 方法  初始化  Stack stack = new Stack(); Stack&amp;lt;&amp;gt; stack = new Stack&amp;lt;&amp;gt;();  栈顶元素出栈，并返回  public synchronized E pop() { E obj; int len = size(); obj = peek(); removeElementAt(len - 1); return obj; }  判断是否为空  isEmpty()  添加元素   push 和 list add 实现是一样的    push(ElementItem item)  获取栈顶值，元素不出栈（栈为空时抛出异常）就喵一眼啥也不干  public synchronized E peek() { int len = size(); if (len == 0) throw new EmptyStackException(); return elementAt(len - 1); }  是否存在object   返回值为int，若存在，返回值为obj距离栈顶的位置，若不存在，返回 -1    public synchronized int search(Object o) { int i = lastIndexOf(o); if (i &amp;gt;= 0) { return size() - i; } return -1; }  stack 作为list 也具备List 常用方法  //获取stack长度 size() //下标处添加 add(int index, E element) //添加集合 addAll(Collection&amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>命令行</title>
+      <link>https://procarihana.github.io/public/notes/%E5%91%BD%E4%BB%A4%E8%A1%8C/</link>
+      <pubDate>Wed, 09 Sep 2020 15:11:56 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/%E5%91%BD%E4%BB%A4%E8%A1%8C/</guid>
+      <description>查看历史   history | grep 关键字   查看端口   lsof -i:80   kill 端口进程   kill -9 进程号   查看流量   ping com   获得本机局域网IP地址，由路由器分配 -&amp;gt; 192.168.1.7   ifconfig    lo0: flags=8049&amp;lt;UP,LOOPBACK,RUNNING,MULTICAST&amp;gt; mtu 16384 options=1203&amp;lt;RXCSUM,TXCSUM,TXSTATUS,SW_TIMESTAMP&amp;gt; inet 127.0.0.1 netmask 0xff000000 inet6 ::1 prefixlen 128 inet6 fe80::1%lo0 prefixlen 64 scopeid 0x1 nd6 options=201&amp;lt;PERFORMNUD,DAD&amp;gt; gif0: flags=8010&amp;lt;POINTOPOINT,MULTICAST&amp;gt; mtu 1280 stf0: flags=0&amp;lt;&amp;gt; mtu 1280 XHC20: flags=0&amp;lt;&amp;gt; mtu 0 en0: flags=8863&amp;lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&amp;gt; mtu 1500 ether ac:bc:32:8b:8d:55 inet6 fe80::1810:c22d:afa:8bf9%en0 prefixlen 64 secured scopeid 0x5 inet 192.</description>
+    </item>
+    
+    <item>
+      <title>题目</title>
+      <link>https://procarihana.github.io/public/posts/%E9%A2%98%E7%9B%AE/</link>
+      <pubDate>Tue, 08 Sep 2020 20:10:37 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E9%A2%98%E7%9B%AE/</guid>
+      <description>基础 Java程序的运行原理  编译过程.java -编译器Compiler（编译）-&amp;gt; .class[字节码]   编译的结果存放在tarket、classes 里面   字节码通过JVM识别后解析成不同系统的调用，从而实现java 的跨平台   Object 里面有native()是一个空白的类,jvm里native实现能够让运行平台决定如何实现，    JDK/JRE 有什么区别  JDK = JRE + javac   JDK 完成java源代码到字节码的编译和运行过程，包含JRE   JRE 完成字节码到底层调用的解析和运行过程，如果只是运行java 程序，只安装JRE就可以了，不需要安装JDK。其中JVM就是完成java 实现跨平台的核心部分。  Java 的基础类型  char/string/short/byte/long/int/boolean/float   String 是基本数据类型？         Java 的参数传递是传值还是传引用  在Java里所有的对象都只是一个指针，传递的时候只是传递地址的拷贝，所以是传引用   一切对象都是指针（地址）     函数调用永远是传值。函数调用的过程中，把对象作为参数传递到函数里面的时候，传递的是一个复制的地址，地址里面包含对象的数据。这个传送复制的地址的过程就是传值。    引用数据类型(Reference data type)如一个对象(object)的传递，是以值的形式传进方法(are also passed into methods by value)。这意味着当函数执行完（when the method returns），传进去的引用（the passed-in reference）仍然参考(指向)之前的对象(still references the same object as before)。但是，对象的值(字段)可以在方法中被改变。</description>
+    </item>
+    
+    <item>
+      <title>简历</title>
+      <link>https://procarihana.github.io/public/notes/%E7%AE%80%E5%8E%86/</link>
+      <pubDate>Tue, 08 Sep 2020 19:44:00 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/%E7%AE%80%E5%8E%86/</guid>
+      <description>项目一  描述：多人在线博客平台   基于SpringBoot搭建框架     利用Mybatis完成连接数据库     通过Spring Security完成认证和授权     通过UIDD和迭代完成密码的加密     使用Java Mockito 完成集成测试     通过Docker 使用Mysql、Jenkins完成数据库和自动化部署     在阿里云里发布    项目二  描述：   基于SpringBoot框架搭建框架     使用Mybatis链接数据库     通过Shiro完成 认证、授权和web集成     使用CheckStyle、Jacoco和Spotbugs完成代码检查     使用Swagger 生成API文档     通过Docker 使用Mysql、Redis完成数据库的建立和数据缓存    </description>
+    </item>
+    
+    <item>
+      <title>MYSQL</title>
+      <link>https://procarihana.github.io/public/notes/mysql/</link>
+      <pubDate>Tue, 08 Sep 2020 11:24:13 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/mysql/</guid>
+      <description>数据库主键  UUID是无序的，所以不能用UUID进行数据库主键查找  主键 -- 唯一标识一条记录，不能有重复的，不允许为空 外键 -- 表的外键不一定是另一表的主键，但必须是唯一性索引,外键可以有重复的, 可以是空值 索引 -- 该字段没有重复值，但可以有一个空值 作用： 主键 -- 用来保证数据完整性 外键 -- 用来和其他表建立联系用的 索引 -- 是提高查询排序的速度 个数： 主键 -- 主键只能有一个 外键 -- 一个表可以有多个外键 索引 -- 一个表可以有多个唯一索引 SQL标准事务  原子性：事物内的业务全部完成才算成功，有一步失败都会回滚到最初。 一致性：满足数据库完整性的约束，就是建表的时候数据的类型约束、数据范围等，都会满足。 隔离性：写的内容没有提交前，其他读的对象是只能够执行没有改变前的数据内容，只有写的内容提交后才能够读到变更后的内容。 持久性：事物一旦提交，就会永久保存到数据库里面，即使系统发生故障，数据库也能够将数据恢复。  隔离级别  read-commited 云服务器一般都会用这个，因为隔离级别比较高 Console begin并不是开始，只有执行语句才是真正的开始 read uncommitted 读未提交： 一个事务还没提交时，它做的变更就能被别的事务看到。    脏读： 没有commit 的数据被 另一个console读取到了 可以获得最新的数据，    读提交（READ COMMITTED）只能看到提交的事物，但是不可重复度，因为执行多次的查询可能会得到不同的结果（因为多次查询中间如果其他事务进行了commit，查询的结果就会出现不同） 可重复读：在同一个事务中，多次进行查询的到的结果也是一样的，即使在多次读取的中间有其他事务进行了commit，读取的结果也不会因为其他的commit而改变。(没有commit也不能够读取到)    但是可能会出现幻读：在其他事务已经插入了某个ID的数据且commit，在可重复读的事务里不能够查询到这个数据，还能够用同样的ID进行数据的插入和查询，没有出现主键冲突的现象，commit后查询能够看到同一个ID插入了两条不一样的数据   但是在mysql 8 后就禁用了，一般都不会出现   在一个事务中SELECT操作一致，就是依靠ReadView(一致性视图的生成)    可串行化（SERIAIZABLE）：   事务查询数据时，如果其他事务在进行数据的变更时候没有commit，就必须等待直到其他事务commit后才能够查询出数据结果，否则会一直等待到超时     对于同一行记录，“写”会加“写锁”，“读”会加“读锁”。     实现serializable(可串行)采用加锁的策略通过牺牲并发能力而保证数据安全)   事务隔离级别就是系统并发能力和数据安全性间的妥协，隔离性越高，数据库的性能就越差  Mysql 事务  在不同的隔离级别下，数据库通过 MVCC 和隔离级别，让事务之间并行操作遵循了某种规则，来保证单个事务内前后数据的一致性 Multiversion concurrency control 多版本并发控制   并发访问（读或者写）数据库时，对正在事务内处理的数据做多版本的管理，用来避免由于写操作的堵塞，而引发读操作失败的并发问题。     MVCC机制下基于生成的Undo log链和一致性视图ReadView来实现的    MYISAM并不支持事务  独立于操作系统，可以轻松地将其从Windows服务器移植到LIinux 里面 选择密集型的表。 MyISAM存储引擎在筛选大量数据时非常迅速，这是它最突出的优点。 插入密集型的表。 MyISAM的并发插入特性允许同时选择和插入数据。  InnoDB实现了MVCC的事务并发处理机  需要事务支持，并且有较高的并发读取频率选择InnDB    单纯的MVCC机制并不能解决幻读问题,InnoDB也是通过加间隙锁来防止幻读    InnoDB 下的 MVCC 实现原理（Undo log）    在InnoDB中MVCC的实现通过两个重要的字段进行连接：DB_TRX_ID和DB_ROLL_PT，在多个事务并行操作某行数据的情况下，不同事务对该行数据的UPDATE会产生多个版本，数据库通过DB_TRX_ID来标记版本，然后用DB_ROLL_PT回滚指针将这些版本以先后顺序连接成一条 Undo Log 链。   DB_TRX_ID: 事务id，6byte，每处理一个事务，值自动加一。     InnoDB中每个事务有一个唯一的事务ID叫做 transaction id。在事务开始时向InnoDB事务系统申请得到，是按申请顺序严格递增的     每行数据是有多个版本的，每次事务更新数据时都会生成一个新的数据版本，并且把transaction id赋值给这个数据行的DB_TRX_ID    DB_ROLL_PT: 回滚指针，7byte     指向当前记录的ROLLBACK SEGMENT 的undolog记录，通过这个指针获得之前版本的数据。该行记录上所有旧版本在 undolog 中都通过链表的形式组织。    还有一个DB_ROW_ID(隐含id,6byte，由innodb自动产生)，      InnoDB下聚簇索引B+Tree的构造规则:</description>
+    </item>
+    
+    <item>
+      <title>Web页面  前后端渲染</title>
+      <link>https://procarihana.github.io/public/posts/web%E9%A1%B5%E9%9D%A2-%E5%89%8D%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93/</link>
+      <pubDate>Mon, 07 Sep 2020 14:59:13 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/web%E9%A1%B5%E9%9D%A2-%E5%89%8D%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93/</guid>
+      <description>前端渲染：前端发送静态的html数据 后端渲染：后端发送htlm数据  渲染模板  index.html -&amp;gt; 静态模板  &amp;lt;!DOCTYPE heml&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;商品排行榜&amp;lt;/h2&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;1&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;西瓜&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;400&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;2&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;香蕉&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;200&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;3&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  动态模板引擎 -&amp;gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &amp;lt;!-- spring-boot-starter-freemarker --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt;  文件结构 (View) resources/templaes/~.ftl -&amp;gt; 存放动态模板   其中list 为结果集 name-&amp;gt;items    &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;#list items as item&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;${item.</description>
+    </item>
+    
+    <item>
+      <title>MYSQL记录合集</title>
+      <link>https://procarihana.github.io/public/notes/mysql%E8%AE%B0%E5%BD%95%E5%90%88%E9%9B%86/</link>
+      <pubDate>Sun, 06 Sep 2020 15:43:53 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/mysql%E8%AE%B0%E5%BD%95%E5%90%88%E9%9B%86/</guid>
+      <description>1.联接查询作为数据
+insert into AddressList (name,address) select a.UserName,b.address from SYSTEM_Users a inner join BASE_Customer b on a.code=b.code
+问题：
+ &amp;ldquo;Error attempting to get column &amp;lsquo;goods_name&amp;rsquo; from result set. Cause: java.sql.SQLDataException: Cannot determine value type from string &amp;lsquo;桃子&amp;rsquo;\n; Cannot determine value type from string &amp;lsquo;桃子&amp;rsquo;; nested exception is java.sql.SQLDataException: Cannot determine value type from string &amp;lsquo;桃子&amp;rsquo;&amp;rdquo; 缺少无参数构造函数 moudle 四件套   @Builder     @Data     @AllArgsConstructor     @NoArgsConstructor    记录 Select  select ~ from ~ right join ~ on ~ group by ~ order by ~   as 别名 case when 条件 then 满足条件结果 else 不满足条件结果 case when ?</description>
+    </item>
+    
+    <item>
+      <title>Flyaway and Flyway</title>
+      <link>https://procarihana.github.io/public/notes/flyaway-and-flyway/</link>
+      <pubDate>Sun, 06 Sep 2020 11:42:45 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/flyaway-and-flyway/</guid>
+      <description>Docker mysal 迁移h2 的数据库  建立一个储存数据库的目录（datadir） mkdir   mkdir mysql-data  在docker 上面开设mysql的数据库   docker run --name mockNews-mysql -v `pwd`/mysql-mockNewsData:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=hana -e MYSQL_DATABSE=databasename -p 3306:3306 -d mysql    pwd只要MAC能够，Windows要用全路径名   更改有flyway的连接（用户名为root，密码为docker run 上面设置的密码）和Mybatis的config.xml里面的url，    config
+    flyway 数据库自动化管理 pom.xml
+ &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.flywaydb&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;flyway-maven-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;5.2.4&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;url&amp;gt;jdbc:mysql://localhost:3306/NEWS&amp;lt;/url&amp;gt; &amp;lt;user&amp;gt;root&amp;lt;/user&amp;gt; &amp;lt;password&amp;gt;hana&amp;lt;/password&amp;gt; &amp;lt;/configuration&amp;gt; or  &amp;lt;configuration&amp;gt; &amp;lt;url&amp;gt;jdbc:mysql://localhost:3306/news&amp;lt;/url&amp;gt; &amp;lt;user&amp;gt;root&amp;lt;/user&amp;gt; &amp;lt;password&amp;gt;hana&amp;lt;/password&amp;gt; &amp;lt;property name=&amp;quot;url&amp;quot;value=&amp;quot;jdbc:mysql://localhost:3306/news?characterEncoding=utf-8&amp;quot;/&amp;gt; 在src/main/resources/db/migration添加数据库需要重置的内容</description>
+    </item>
+    
+    <item>
+      <title>AOP和装饰器模式以及Redis</title>
+      <link>https://procarihana.github.io/public/posts/aop%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8Aredis/</link>
+      <pubDate>Fri, 04 Sep 2020 16:40:35 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/aop%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8Aredis/</guid>
+      <description>AOP  Aspect-Oriented Programming 面向切面编程 相当于OOP（面向对象编程） AOP是面向切面变成，关注一个统一的切面   切面并不是对象和方法，而是执行方法的和方法之间的一瞬间、一个面   AOP和Spring是不同的东西   没有Spring容器AOP也是能够工作的     Spring 通过AOP来完成一些请求    AOP 适用的场景  需要统一处理的场景   日志     缓存     鉴权    AOP的实现  JDK动态代理（Proxy）   优点：⽅便，不需要依赖任何第三⽅库     缺点：功能受限，只适⽤于接⼝     OOP完成这些需求的话，需要使用到装饰器模型   CGLIB/ByteBuddy字节码⽣成   优点：强⼤，不受接⼝的限制     缺点：需要引⽤额外的第三⽅类库     不能增强final类/final/private⽅法    AOP与Spring  在Spring中使⽤AOP实现Redis缓存 Spring是如何切换JDK动态代理和CGLIB的？   spring.</description>
+    </item>
+    
+    <item>
+      <title>正则表达式</title>
+      <link>https://procarihana.github.io/public/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+      <pubDate>Wed, 02 Sep 2020 23:44:15 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+      <description>正则表达式  ⽤于描述⽂本/字符串的⼀组规则   你可以使⽤⼀些强⼤的规则来：   处理⽂本 提取信息  常⽤的元字符          ^ 开始位置   $ 结束位置   . 单个任意字符（不⼀定包含换⾏符）   \w 单个“word”字符 字⺟/数字/下划线/汉字   \s 单个空⽩字符（\n\r\t）   \d 单个数字字符   \b 单词的开始或结束    重复          |0次或多次   |1次或多次 ? |0次或1次 {n} |n次 {n,} |&amp;gt;=n次 {n,m} |n到m次  选择          [aeiou] 单个的a/e/i/o/u字符之⼀   [0-9] 单个数字字符   [A-Z] 单个⼤写字⺟   [A-Z0-9_] ⼤写字⺟或者数字或者下划线   Hi hi 等价于    反义          [^aeiou] 单个的除a/e/i/o/u之外的字符   [^A] 单个⾮x字符   \W 单个⾮\w（字⺟/数字/下划线/汉字）   \S 单个⾮\s（空⽩）   \D 单个⾮\d（数字）字符   \B ⾮开头/结束位置    Java中的正则表达式  String split() 划分的标准   line 为”\n“   replaceAll/replaceFirst matches    尽量少⽤或者少编译，因为效率低 Java中的正则表达式是⽐较昂贵的 正则表达式需要解析，代码⾮常昂贵 匹配过程⾮常昂贵   分组与捕获  想要将所有符合正则表达式的⽂本抓出来处理 使⽤括号来指定⼀个被捕获的分组 分组的编号从1开始 分组的编号计算只看左括号 (?</description>
+    </item>
     
     <item>
       <title>Docker的原理和应用</title>
@@ -18,7 +355,7 @@
       <pubDate>Tue, 01 Sep 2020 18:41:11 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/posts/docker%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/</guid>
-      <description>虚拟机有一套完整独立的操作系统，非常占内存和资源  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &amp;lt;镜像名&amp;gt;&amp;lt;镜像中要运行的命令和参数&amp;gt;   交互式命令行，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &amp;ndash; name 为容器指定一个名字 &amp;ndash; restart=always 遇到错误子哦那个重启 -v &amp;lt;本地文件&amp;gt;:&amp;lt;容器文件&amp;gt;:文件权限（ro、rw……）   宿主机上的文件映射到docker容器里面，使得docker容器里也可以打开这个文件，如果文件在容器里发生改变，同样的宿主机读取时也会发生改变。权限是不强制定义。而dockerfile里也可以控制权限。   -p &amp;lt;本地端口&amp;gt;:&amp;lt;容器端口&amp;gt;   把宿主机和容器通过指定的端口链接起来     能够实现控制多个数据库，达到分布式部署的目的   -e NAME=VALUE   传递初始化的参数，指定参数后，在容器里面输入Name，就会获得相应的VALUE，或者通过相应的VALUE启动程序   Docker exec（ute）   指定目标容器，进入容器执行命令      docker run -it&amp;lt;目标容器ID&amp;gt; &amp;lt;目标命令（通常为bash）&amp;gt; （进入容器内部） docker exec -it my-sql bash 可以想为ssh      调试、解决问题必备命令    Docker pull  不指定镜像版本就默认为最新的版本（latest） url（镜像仓库地址）/镜像名：tag   如果不加url，就是去中央仓库里面寻找镜像，如果添加，就去这个指定的地址下载镜像    docker images ： 查看本地已有的镜像  下载一个指定的镜像，方便随时启动  Dockerfile  指定镜像如何生成 每个镜像都会有一个唯一的ID Dockerfile （在一个文件加里面生成一个text）  FROM ubuntu :16.</description>
+      <description>虚拟机有一套完整独立的操作系统，非常占内存和资源,虚拟机内即使有空闲的资源也不能够集中利用，只能够浪费 docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存 阿里云的镜像加速所向无敌  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &amp;lt;镜像名&amp;gt;&amp;lt;镜像中要运行的命令和参数&amp;gt;   交互式命令行模式，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &amp;ndash; name 为容器指定一个名字 &amp;ndash; restart=always 遇到错误马上重启 -&amp;gt; 用于NGINX等    docker run &amp;ndash;name springboot-nginx &amp;ndash;restart=always -v pwd/nginx/nginx.</description>
     </item>
     
     <item>
@@ -27,10 +364,7 @@
       <pubDate>Tue, 01 Sep 2020 11:37:47 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/notes/spring/</guid>
-      <description>Spring MVC  模型model(javabean), 视图view(jsp/img) 控制器Controller(Action/servlet) C 存在的目的就是为了保证M和V的一致性 当M发生改变时,C可以把M中的新内容更新到V中. SpringMVC是Spring框架内置的MVC的实现，一个Spring内置的MVC框架
-MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、表单验证、国际化、等等)，而且使用简单，与Spring无缝集成。
-支持 RESTful风格的 URL 请求 。
-采用了松散耦合可插拔组件结构，比其他 MVC 框架更具扩展性和灵活性。 为了解决页面代码和后台代码的分离  Spring 容器原理  Ioc 容器的事实标准 Ioc (Inverse of Control控制反转) :只需要告诉容器对象的依赖关系，容器就会自动完成依赖和Beans的生成，通过依赖注入完成依赖，整个过程就是控制反转 Java对象是Bean 当A对象必须使用B对象才能完成自己的工作的时候，就是A依赖B  </description>
+      <description>Spring 容器原理  Ioc 容器的事实标准 Ioc (Inverse of Control控制反转) :只需要告诉容器对象的依赖关系，容器就会自动完成依赖和Beans的生成，通过依赖注入完成依赖，整个过程就是控制反转 Java对象是Bean 当A对象必须使用B对象才能完成自己的工作的时候，就是A依赖B  Spring 注解  @RestController （Spring4.0）   继承 @Controller，在SpringMvc当中使用@Controller来标识当前类是一个控制器Servlet。     包含@Target(value=TYPE) @Retention(value=RUNTIME)、@Documented 、@Controller 、@ResponseBody   @RequestMapping，提供路由信息，告诉Spring 任何来自”/“路径的HTTP请求都会被映射到home 方法，@RestController注解告诉Spring 以字符串的形式渲染结果，并直接返回给调用者。    两者都是SpringMvc 的注解，不是SpringBoot特定部分    @EnableAutoConfiguration   告诉SpringBoot 根据添加的Jar 依赖猜测配置Spring。 而Spring-boot-start-web添加了Tomcat 和SpringMvc ，所以auto-configutation 会嘉定你正在开发一个web应用并对Spring 进行设置。     如果有不想自动配置的类可以通过 来禁止使用      @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})    @Configuration   @Configuration注解该类，等价 与XML中配置beans；用@Bean标注方法等价于XML中配置bean   @SpringBootApplication == @Configuration ， @EnableAutoConfiguration 和 @ComponentScan   能够自动在Application 中完成配置   @ResponseBody   表示该方法的返回结果直接写入HTTP response body中     一般在异步获取数据时使用，在使用@RequestMapping后，返回值通常解析为跳转路径，加上 @responsebody后返回结果不会被解析为跳转路径，而是直接写入HTTP response body中。比如 异步获取json数据，加上@responsebody后，会直接返回json数据。   @Resposotory诗句持久层DAO @Component   泛指组件，当组件不好归类的时候，可以使用这个注解进行标注。一般公共的方法会用上这个注解。非Controller、Service、DAO部分的注解   @Service   一般用于修饰service层的组件   @ComponentScan   表示将该类自动发现扫描组件。个人理解相当于，如果扫描到有@Component、@Controller、@Service等这些注解的类，并注册为Bean，可以自动收集所有的Spring组件，包括@Configuration类。我们经常使用@ComponentScan注解搜索beans，并结合@Autowired注解导入。可以自动收集所有的Spring组件，包括@Configuration类。我们经常使用@ComponentScan注解搜索beans，并结合@Autowired注解导入。如果没有配置的话，Spring Boot会扫描启动类所在包下以及子包下的使用了@Service,@Repository等注解的类。   @AutoWired   byType方式。把配置好的Bean拿来用，完成属性、方法的组装，它可以对类成员变量、方法及构 造函数进行标注，完成自动装配的工作。     当加上（required=false）时，就算找不到bean也不报错。   @RequestParam   用在方法的参数前面。   @PathVariable   路径变量。   @ControllerAdvice   包含@Component。可以被扫描到。     统一处理异常。   @ExceptionHandler（Exception.</description>
     </item>
     
     <item>
@@ -63,15 +397,16 @@ class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderSer
       <pubDate>Tue, 01 Sep 2020 08:01:27 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/projects/springboot-blog/</guid>
-      <description>Servlet Tomcat  servlet容器 catalina  Filter 过滤器  是一个执行过滤任务的对象， doFilter 请求响应，也能够通过FilterChain抽根烟·传给下一个filter，实现过滤的功能  listerner  Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 用于启动和关闭Spring容器的本体  Docker  用统一的环境处理软件交互，运行速度比虚拟机要快 Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 docker的端口和本机的端口没有关系，除非绑定  index.html 渲染  后端渲染:根据用户请求的内容的不同，决定返回的内容 前端渲染：把后端返回的内容填充到页面上面 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的  浏览器  浏览器栏发出的请求都是GET 要调试post请求需要用到其他工具，例如postman HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的  JVM  Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.classd的版本是JVM 能够运行的（JVM不能够运行比自己版本搞的字节码文件），对应版本的Java就能够运行。  SpringBoot 基础知识  对象   需要对外提供服务的需要声明Bean，例如提供鉴权、查询等服务功能       Controller对象则会通过声明@Controller从而完成Bean的声明,进行Bean装配         Service对象则会通过@Component、@Service进行声明       作为数据容器容纳数据的就不需要，一般放在entity包里面会比较容易处理    public class User { Integer id; String name; String avatar; Instant createdAt; Instant updateAt; public User(Integer id, String name) { this.</description>
+      <description>Spring Security
+ 就是一个Spring生态中关于安全方面的框架,是一个基于Spring AOP和Servlet过滤器的安全框架,充分利用了依赖注入（DI，Dependency Injection）和面向切面技术 SecurityContextHolder用于存储安全上下文（security context）的信息。当前操作的用户是谁，该用户是否已经被认证，他拥有哪些角色权限…这些都被保存在SecurityContextHolder中。SecurityContextHolder默认使用ThreadLocal 策略来存储认证信息。看到ThreadLocal 也就意味着，这是一种与线程绑定的策略。Spring Security在用户登录时自动绑定认证信息到当前线程，在用户退出时，自动清除当前线程的认证信息。 通过 @EnableWebSecurity注解开启Spring Security的功能 Authentication是spring security包中的接口，直接继承自Principal类，而Principal是位于java.security包中的。   Authentication在spring security中是最高级别的身份/认证的抽象。     由这个顶级接口，我们可以得到用户拥有的权限信息列表，密码，用户细节信息，用户身份信息，认证信息。 一个简单的使用Spring Security来进行验证用户名字密码的登录   Maven  ## Servlet #### HTTP 超文本传输协议 - 能够给任何人传送任何类型的文件 #### Tomcat - servlet容器 - catalina #### Filter 过滤器 - 是一个执行过滤任务的对象， - doFilter 请求响应，也能够通过FilterChain传给下一个filter，实现过滤的功能 #### listerner - Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 - 用于启动和关闭Spring容器的本体 #### Docker - 用统一的环境处理软件交互，运行速度比虚拟机要快 - Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 - docker的端口和本机的端口没有关系，除非绑定 #### index.html ##### 渲染 - 后端渲染:根据用户请求的内容的不同，决定返回的内容 - 前端渲染：把后端返回的内容填充到页面上面 - 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的 ##### 浏览器 - 浏览器栏发出的请求都是GET - 要调试post请求需要用到其他工具，例如postman - HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的 #### JVM - Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.</description>
     </item>
     
     <item>
       <title>Try/catch</title>
-      <link>https://procarihana.github.io/public/exerciseproblems/catch/</link>
+      <link>https://procarihana.github.io/public/notes/catch/</link>
       <pubDate>Tue, 01 Sep 2020 07:07:27 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/public/exerciseproblems/catch/</guid>
+      <guid>https://procarihana.github.io/public/notes/catch/</guid>
       <description>Try/catch    try { int i = 10 / 0; } finally { System.out.println(&amp;#34;last&amp;#34;); }  能够成功执行，并且会返回last，同时也会返回Exeception 提示：: / by zero  finally 不一定都会被执行   try里面包含System.exit() finally 里包含异常就会抛出异常并终止执行  try { System.out.println(&amp;#34;try&amp;#34;); } catch (Exception e) { System.out.println(&amp;#34;catch&amp;#34;); } finally { int k = 3 / 0; System.out.println(&amp;#34;finally&amp;#34;); } System.out.println(&amp;#34;main&amp;#34;); </description>
     </item>
     
@@ -82,7 +417,7 @@ class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderSer
       
       <guid>https://procarihana.github.io/public/posts/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
       <description>空接口:只是说明有这个功能，使用这个框架，但是不提供实现
-例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  先行时间复杂度与链表 递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!</description>
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）       Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  时间复杂度算法  O(1)=O(2)=O(3)/常数 - 哈希桶/数组随机寻址（常数）   O(n) - 遍历（线性）     O(lg(n)) - 二分查找，二叉树（对数）     O(n*lg(n))- 基于比较的排序算法下限     O(n^2) - 冒泡排序（平方）     O(n^3) 普通的没有优化过的二维矩阵的乘法   时间复杂度的计算是忽略常数的   O(n)=O(2n)   时间复杂度的计算中，高阶复杂度会吞并低阶复杂度   O(n^2)+O(n)=O(n^2)    时间复杂度的合并与乘方  基于比较的排序时间复杂度的上限是O(Nlg(n))[所有基于比较算法最好的时间复杂度都是nlg(n)]  线性时间复杂度与链表  求问题解的时间和问题的规模成正比 示例   求数组、链表的最大值     寻找数组中的重复元素     判断链表是否存在环（快慢指针）      快指针每次移动2步，慢指针每次移动1步 快慢指针相遇的时候就能够测出有闭环      求阶乘     合并两个链表     翻转链表 解决：   先把数据遍历一遍 排序（O(n*log(n))）比遍历慢  对数时间复杂度  二叉树、N叉数（B树、B+树）   在二叉树中查找某个值      二叉树： node left， node right      二叉树遍历（深度优先遍历）Depth first Search      深度优先会在最底层的节点返回 前序遍历 123 根-&amp;gt;子 中（根）序 213 子-&amp;gt;根-&amp;gt;子 后序 231 子-&amp;gt;子-&amp;gt;根      广度优先遍历 （ 队列 -&amp;gt; 先进先出）Broadth first Search      123456 1—&amp;gt;queue queue-&amp;gt;1;2,3-&amp;gt;queue queue-&amp;gt;2;4,5-&amp;gt;queue /queue:3、4、5 queue-&amp;gt;3;6-&amp;gt;queue /queue:4、5、6 直到队列为空，循环结束 queue.</description>
     </item>
     
     <item>
@@ -91,7 +426,7 @@ class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderSer
       <pubDate>Sun, 30 Aug 2020 17:47:43 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/posts/java-%E9%83%A8%E7%BD%B2/</guid>
-      <description>应用开发流程  产品调研 产品设计 系统设计 -&amp;gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    exec:exec -&amp;gt; 在一个独立的进程中执行一个程序 exec:java -&amp;gt; 在同一个JVM里执行java  &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+      <description>应用开发流程  产品调研 产品设计 系统设计 -&amp;gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    自动运行的部分记得不要加生命周期！！！不然就会卡在那里的！ configuration 要放在 execution 外面，否则会识别不到executable exec:exec -&amp;gt; 在一个独立的进程中执行一个程序 exec:java -&amp;gt; 在同一个JVM里执行java  &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
     </item>
     
     <item>
@@ -122,10 +457,10 @@ InputStream/PutputStream  抽象的输入/输出操作   从文件读取字节�
     
     <item>
       <title>AccountingService</title>
-      <link>https://procarihana.github.io/public/posts/accountingservice/</link>
+      <link>https://procarihana.github.io/public/projects/accountingservice/</link>
       <pubDate>Mon, 10 Aug 2020 20:48:22 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/public/posts/accountingservice/</guid>
+      <guid>https://procarihana.github.io/public/projects/accountingservice/</guid>
       <description>.ignore放什么 1 *.iml 是 intellij idea的工程配置文件，里面是当前project的一些配置信息。.Idea存放项目的配置信息，包括历史记录，版本控制信息等。 2. .idea/ 3. target/
 项目结构和模型转换  external 用于存放外部团队的接口和服务，然后再Manager里面放。在接口处写注析。 exception 异常处理 config 存放MybatisBean等等的Bean Controller 存放SpringBoot对外接口（API接口）   不要有过多的处理逻辑 参数校验越早做越好  manager 组合各个业务的逻辑 先写接口后写实现 Dao Converter 用于转换 Moudle的common向service等等的转换但是不能够用于Http、数据库、IO等操作 Service 部分是给前段展示的内容，不能直接返回密码（加密后的还是可以的）等内容  添加Maven  通过Maven getting start  SpringBoot Spring boot 开发四大步  添加相应依赖   SpringBoot 引入       基础Maven引入：、spring-boot-starter-web、plugin     添加相应注解   添加Appliation类作为SpringBoot入口，并添加注解@SpringBootApplication     添加Controller类，并添加注解@RestController      @RestController == @Controller + @ResponseBodymapping    编写代码 添加相应配置   在resources里添加application.</description>
     </item>
@@ -136,8 +471,7 @@ InputStream/PutputStream  抽象的输入/输出操作   从文件读取字节�
       <pubDate>Mon, 06 Jul 2020 15:29:45 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/posts/spring-web/</guid>
-      <description>Spring Web 和 HTTP进行沟通
-从零开始⼀个Spring应⽤ • pom.xml • src/main/java/hello/Application.java • src/main/java/hello/HelloController.java
+      <description>Web 和 HTTP  Web应用程序是使用HTTP协议传输数据的。HTTP协议是无状态的协议。一旦数据交换完毕，客户端与服务器端的连接就会关闭，再次交换数据需要建立新的连接。这就意味着服务器无法从连接上跟踪会话。  从零开始⼀个Spring应⽤ • pom.xml • src/main/java/hello/Application.java • src/main/java/hello/HelloController.java
 Query String 最简单的HTTP请求（查询字符串），就是</description>
     </item>
     
@@ -250,7 +584,7 @@ List&amp;lt;String&amp;gt; list = Arrays.asList(&amp;quot;1&amp;quot;,&amp;quot;
       <guid>https://procarihana.github.io/public/posts/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</guid>
       <description>原则  使用GitHub+主干/分支模型进行开发 禁止直接push master 所有的变更通过PR进行 自动化代码质量检查+测试 Checkstyle/SpotBugs 最基本的自动化测试覆盖 一切工作自动化 规范化提交流程   创建仓库流程   Github -new
   建立新项目 newBranch 的时候选Apache License 2.0
-   Mvn archetype     IDEA - new     copy （cp -r ～/* .）    .gitigonre
+   Mvn archetype 项目骨架     IDEA - new     copy （cp -r ../* .）    .gitigonre
   git commit &amp;ndash;amend 就可以把这一次的commit和上一次的合并起来
    记得要把.iml 放进（vi .gitignore）： *.iml和target/(放在最后一行就好) 更改pom 里面的groundId，artifactId cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到.</description>
     </item>
@@ -262,7 +596,7 @@ List&amp;lt;String&amp;gt; list = Arrays.asList(&amp;quot;1&amp;quot;,&amp;quot;
       
       <guid>https://procarihana.github.io/public/posts/ideamaven%E8%B0%83%E8%AF%95%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
       <description>SpotBugs  Maven 生命周期
-设置生命周期后的Maven会在相应的阶段执行 Picture 设置 生命周期对应执行的工作需要绑定插件进行设置   complie —— goal ——&amp;gt; maven-compilen-plugin test —— goal ——&amp;gt; surefire 测试插件 verlfy —— goal ——&amp;gt; checkstyle（非核心插件可以绑定到任何阶段  </description>
+设置生命周期后的Maven会在相应的阶段执行 Picture 设置 生命周期对应执行的工作需要绑定插件进行设置   complie —— goal ——&amp;gt; maven-compilen-plugin test —— goal ——&amp;gt; surefire 测试插件 verlfy —— goal ——&amp;gt; checkstyle（非核心插件可以绑定到任何阶段  Maven 生命周期  编译源代码   mvn compile   发布项目   mvn deploy   编译测试源代码   mvn test-compile   运行应用程序中的单元测试   mvn test   生成项目相关信息的网站   mvn site   编译源代码   mvn compile   清除项目目录中的生成结果   mvn clean 根据项目生成的jar mvn package 在本地Repository中安装jar mvn install 生成eclipse项目文件 mvn eclipse:eclipse 启动jetty服务 mvn jetty:run 启动tomcat服务 mvn tomcat:run 清除以前的包后重新打包，跳过测试类 mvn clean package -Dmaven.</description>
     </item>
     
     <item>
@@ -290,7 +624,7 @@ Eg：a+=2 | a = a+2
       <pubDate>Wed, 29 Apr 2020 15:16:54 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/posts/java%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid>
-      <description>数据类型  两种数据类型   原生数据 赋值的是值本身     原生数据 字节 最小值 最大值     byte 1     short 2  0*7fffffff(21亿)   int 4     long 8  2^63-1   float 4     double 8     char 2       boolean true/false void     存储数据超过最大值会溢出</description>
+      <description>数据类型  Java一律采用Unicode编码方式，每个字符无论中文还是英文字符都占用2个字节。 两种数据类型   原生数据 赋值的是值本身 引用数据类型 对象 本质上就都是地址 赋值的是地址     原生数据 字节 最小值 最大值     byte 1     short 2  0*7fffffff(21亿)   int 4     long 8  2^63-1   float 4     double 8     char 2        基本数据类型的运算，会自动向上转型。 boolean不可以和其他基本数据类型相互转换。 byte-&amp;gt;short,char -&amp;gt; int -&amp;gt; long float -&amp;gt; double int -&amp;gt; float long -&amp;gt; double    boolean true/false void    存储数据超过最大值会溢出</description>
     </item>
     
     <item>
@@ -309,16 +643,6 @@ Eg：a+=2 | a = a+2
       
       <guid>https://procarihana.github.io/public/posts/the-second-test/</guid>
       <description>Test Second </description>
-    </item>
-    
-    <item>
-      <title>TEST</title>
-      <link>https://procarihana.github.io/public/posts/test/</link>
-      <pubDate>Sat, 25 Apr 2020 23:50:04 +0800</pubDate>
-      
-      <guid>https://procarihana.github.io/public/posts/test/</guid>
-      <description>TEST &amp;ndash; OK? ???
-I am fine</description>
     </item>
     
   </channel>

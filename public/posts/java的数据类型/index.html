@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Hana ">
-<meta name="description" content="数据类型  两种数据类型   原生数据 赋值的是值本身     原生数据 字节 最小值 最大值     byte 1     short 2  0*7fffffff(21亿)   int 4     long 8  2^63-1   float 4     double 8     char 2       boolean true/false void     存储数据超过最大值会溢出" />
+<meta name="description" content="数据类型  Java一律采用Unicode编码方式，每个字符无论中文还是英文字符都占用2个字节。 两种数据类型   原生数据 赋值的是值本身 引用数据类型 对象 本质上就都是地址 赋值的是地址     原生数据 字节 最小值 最大值     byte 1     short 2  0*7fffffff(21亿)   int 4     long 8  2^63-1   float 4     double 8     char 2        基本数据类型的运算，会自动向上转型。 boolean不可以和其他基本数据类型相互转换。 byte-&amp;gt;short,char -&amp;gt; int -&amp;gt; long float -&amp;gt; double int -&amp;gt; float long -&amp;gt; double    boolean true/false void    存储数据超过最大值会溢出" />
 <meta name="keywords" content="" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -33,10 +33,10 @@
 
 
 <meta itemprop="name" content="Java的数据类型">
-<meta itemprop="description" content="数据类型  两种数据类型   原生数据 赋值的是值本身     原生数据 字节 最小值 最大值     byte 1     short 2  0*7fffffff(21亿)   int 4     long 8  2^63-1   float 4     double 8     char 2       boolean true/false void     存储数据超过最大值会溢出">
+<meta itemprop="description" content="数据类型  Java一律采用Unicode编码方式，每个字符无论中文还是英文字符都占用2个字节。 两种数据类型   原生数据 赋值的是值本身 引用数据类型 对象 本质上就都是地址 赋值的是地址     原生数据 字节 最小值 最大值     byte 1     short 2  0*7fffffff(21亿)   int 4     long 8  2^63-1   float 4     double 8     char 2        基本数据类型的运算，会自动向上转型。 boolean不可以和其他基本数据类型相互转换。 byte-&gt;short,char -&gt; int -&gt; long float -&gt; double int -&gt; float long -&gt; double    boolean true/false void    存储数据超过最大值会溢出">
 <meta itemprop="datePublished" content="2020-04-29T15:16:54&#43;08:00" />
 <meta itemprop="dateModified" content="2020-04-29T15:16:54&#43;08:00" />
-<meta itemprop="wordCount" content="166">
+<meta itemprop="wordCount" content="214">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -46,7 +46,7 @@
 <meta name="twitter:image" content="https://procarihana.github.io/public/"/>
 
 <meta name="twitter:title" content="Java的数据类型"/>
-<meta name="twitter:description" content="数据类型  两种数据类型   原生数据 赋值的是值本身     原生数据 字节 最小值 最大值     byte 1     short 2  0*7fffffff(21亿)   int 4     long 8  2^63-1   float 4     double 8     char 2       boolean true/false void     存储数据超过最大值会溢出"/>
+<meta name="twitter:description" content="数据类型  Java一律采用Unicode编码方式，每个字符无论中文还是英文字符都占用2个字节。 两种数据类型   原生数据 赋值的是值本身 引用数据类型 对象 本质上就都是地址 赋值的是地址     原生数据 字节 最小值 最大值     byte 1     short 2  0*7fffffff(21亿)   int 4     long 8  2^63-1   float 4     double 8     char 2        基本数据类型的运算，会自动向上转型。 boolean不可以和其他基本数据类型相互转换。 byte-&gt;short,char -&gt; int -&gt; long float -&gt; double int -&gt; float long -&gt; double    boolean true/false void    存储数据超过最大值会溢出"/>
 
 
 
@@ -87,7 +87,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li><li><a href="https://procarihana.github.io/public/exerciseproblems">EProblems</a></li>
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
     </ul>
 </nav>
 
@@ -120,7 +120,7 @@
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
-        One minute
+        2 minutes
 
         
       </p>
@@ -136,10 +136,12 @@
       <div class="post-content">
         <h4 id="数据类型">数据类型</h4>
 <ul>
+<li>Java一律采用Unicode编码方式，每个字符无论中文还是英文字符都占用2个字节。</li>
 <li>两种数据类型</li>
 </ul>
 <ol>
 <li>原生数据 赋值的是值本身</li>
+<li>引用数据类型 对象 本质上就都是地址 赋值的是地址</li>
 </ol>
 <table>
 <thead>
@@ -195,30 +197,39 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<ul>
+<li>基本数据类型的运算，会自动向上转型。</li>
+<li>boolean不可以和其他基本数据类型相互转换。</li>
+<li>byte-&gt;short,char -&gt; int -&gt; long</li>
+<li>float -&gt; double</li>
+<li>int -&gt; float</li>
+<li>long -&gt; double</li>
+</ul>
+</blockquote>
 <ul>
 <li>boolean true/false</li>
 <li>void</li>
 </ul>
 <hr>
 <ul>
-<li>
-<p>存储数据超过最大值会溢出<br>
-<em>Eg：（byte）127+1=-128</em></p>
-</li>
-<li>
-<p>float 浮点数 是小数，在计算机中<strong>近似表示</strong><br>
-<em>Eg：0.1+0.2=0.300000000004</em></p>
-</li>
-<li>
-<p>double 双精浮点数</p>
-</li>
-<li>
-<p>浮点数判断大小，不可以比较相等<br>
-<code>==</code>可能可以工作，但是不安全</p>
-<pre><code>  Math.abc(d-0.0)&lt;0.0000001
-  //通过绝对值判断浮点数d是否为0
-</code></pre>
-</li>
+<li>存储数据超过最大值会溢出<br>
+<em>Eg：（byte）127+1=-128</em></li>
+<li>float 浮点数 是小数，在计算机中<strong>近似表示</strong><br>
+<em>Eg：0.1+0.2=0.300000000004</em>
+*1 - 0.9f = 0.099999……8 *</li>
+<li>double 双精浮点数</li>
+<li>浮点数判断大小，不可以比较相等  <code>==</code>可能可以工作，但是不安全
+Math.abc(d-0.0)&lt;0.0000001
+//通过绝对值判断浮点数d是否为0</li>
+</ul>
+<blockquote>
+<ul>
+<li>浮点数0.1在计算机中就无法精确表示，因为十进制的0.1换算成二进制是一个无限循环小数，很显然，无论使用float还是double，都只能存储一个0.1的近似值。但是，0.5这个浮点数又可以精确地表示。</li>
+</ul>
+</blockquote>
+<p>因为浮点数常常无法精确表示，因此，浮点数运算会产生误差：</p>
+<ul>
 <li>
 <p>long、float、double 声明值</p>
 <pre><code>  long l = 0L;
@@ -228,9 +239,6 @@
 </code></pre>
 </li>
 </ul>
-<ol start="2">
-<li>引用数据类型 对象 本质上就都是地址 赋值的是地址</li>
-</ol>
 <h4 id="二进制">二进制</h4>
 <ol>
 <li>字节：计算机内存能够寻址的最小单位</li>
@@ -319,6 +327,26 @@ Integer integer = i 这个过程</strong></li>
 <li>只有⼀个length属性</li>
 <li>可以使⽤for循环迭代</li>
 </ol>
+<h2 id="包装类的运算在不遇到算术运算的情况下不会自动拆箱">包装类的“==”运算在不遇到算术运算的情况下不会自动拆箱</h2>
+<p>包装类的equals()方法不处理数据转型</p>
+<h2 id="gbk----utf-8">“GBK” &ndash;&gt; &ldquo;UTF-8&rdquo;</h2>
+<p>dst=new String(src，&ldquo;GBK&rdquo;).getBytes(&ldquo;UTF-8&rdquo;)</p>
+<h2 id="tostring-和-new-string-区别">toString 和 New String 区别</h2>
+<ul>
+<li>
+<p>一个对象toString()方法如果没有被重写，那么默认调用它的父类Object的toString()方法。Object类的toString()方法返回一个能够代表该对象的字符串，由类名（对象是该类的一个实例）、“@”和此对象哈希码的无符号十六进制表示组成，即
+<code>getClass().getName() + '@' + Integer.toHexString(hashCode())</code></p>
+</li>
+<li>
+<p>而new String()的接受的参数（这里仅仅指首个参数）类型包括byte[]、char[]、StringBuffer、StringBuilder、String、int[]（ASCII码），将这些类型的字符数组或字符串或相似类型转化为String类型。</p>
+</li>
+<li>
+<p>警告正是基于两者的区别，将byte[]或char[]转化为String时不能使用toString()方法，而应使用new String()。</p>
+</li>
+<li>
+<p>(String)转型和toString()区别的问题。前者是将对象直接转型为String，而后者是调用了toString()方法。所以对于可达到同样目的不影响前后使用时，应优先使用前者，因为其没有外部方法调用，效率更高。</p>
+</li>
+</ul>
 
       </div>
     </article>
@@ -335,7 +363,7 @@ Integer integer = i 这个过程</strong></li>
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        166 Words
+        214 Words
       </p>
 
       <p>

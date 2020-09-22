@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Hana ">
-<meta name="description" content="应用开发流程  产品调研 产品设计 系统设计 -&amp;gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    exec:exec -&amp;gt; 在一个独立的进程中执行一个程序 exec:java -&amp;gt; 在同一个JVM里执行java  &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org." />
+<meta name="description" content="应用开发流程  产品调研 产品设计 系统设计 -&amp;gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    自动运行的部分记得不要加生命周期！！！不然就会卡在那里的！ configuration 要放在 execution 外面，否则会识别不到executable exec:exec -&amp;gt; 在一个独立的进程中执行一个程序 exec:java -&amp;gt; 在同一个JVM里执行java  &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org." />
 <meta name="keywords" content=", 开发, 部署, socker, 分布式" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -33,10 +33,10 @@
 
 
 <meta itemprop="name" content="Java 部署">
-<meta itemprop="description" content="应用开发流程  产品调研 产品设计 系统设计 -&gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    exec:exec -&gt; 在一个独立的进程中执行一个程序 exec:java -&gt; 在同一个JVM里执行java  &lt;plugin&gt; &lt;groupId&gt;org.">
+<meta itemprop="description" content="应用开发流程  产品调研 产品设计 系统设计 -&gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    自动运行的部分记得不要加生命周期！！！不然就会卡在那里的！ configuration 要放在 execution 外面，否则会识别不到executable exec:exec -&gt; 在一个独立的进程中执行一个程序 exec:java -&gt; 在同一个JVM里执行java  &lt;plugin&gt; &lt;groupId&gt;org.">
 <meta itemprop="datePublished" content="2020-08-30T17:47:43&#43;08:00" />
 <meta itemprop="dateModified" content="2020-08-30T17:47:43&#43;08:00" />
-<meta itemprop="wordCount" content="151">
+<meta itemprop="wordCount" content="415">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -46,7 +46,7 @@
 <meta name="twitter:image" content="https://procarihana.github.io/public/"/>
 
 <meta name="twitter:title" content="Java 部署"/>
-<meta name="twitter:description" content="应用开发流程  产品调研 产品设计 系统设计 -&gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    exec:exec -&gt; 在一个独立的进程中执行一个程序 exec:java -&gt; 在同一个JVM里执行java  &lt;plugin&gt; &lt;groupId&gt;org."/>
+<meta name="twitter:description" content="应用开发流程  产品调研 产品设计 系统设计 -&gt; 全后端文档等 开发 测试 部署  Web应用是怎么工作的  默认443端口 每个HTTP请求背后都是一台主机  分布式  解决用户量大的问题   垂直扩展 ：购入更好的机器     水平扩展 ： 购入更多的机器（分布式）      负载均衡器 Load Balance   负载均衡 容灾（单点故障）：一个服务器故障也不会影响到业务    如何保持数据一致性   让负载均衡器保证同一个用户的请求都发到同一台机器上，但是HTTP是无状态的，同一个用户的不同请求是没有先后顺序的，没有用户标识，都是HTTP请求，即使有Cookie也不行     单一数据源：数据都存在同一个数据库，即使服务器杀死重启复原数据都不会改变，但是不能够避免单点故障的问题，数据库会出问题      大多数情况下，数据库都是稳定的。 数据库会有备份   部署  将开发好的程序放在服务器上   监听端口     相应HTTP请求     进行预定义的业务逻辑处理   产品不停迭代   灰度发布：部分停止服务器进行更新。剩余的服务器有可能承受不了业务请求的数量而垮掉，即使停止的重新工作也不一定能够解决。 半夜更新     部署的版本需要不停进行更新     分布式更新   环境问题   开发环境（测试环境）     预发布环境（预生产环境，可能是生产环境的副本）     生产魂晶（正式环境）   环境的兼容性问题   硬件、软件      开发的软件、运行的软件、服务器系统      数据库等      数据库版本、内容、结构   发布和部署程序  如何在生产环境下运行 解决   编写的代码     依赖的第三方库     依赖的特殊环境配置（数据库、缓存）     稳定性     升级和回滚    使用Maven exec plugin  自动将所有的传递性依赖加入   优点：简单     缺点： 不适用与自动化的场景      运行的时候需要把代码都下载下来，才能够运行。不能够把代码编译成字节码，所以需要绑定到编译后的阶段才能够运行    自动运行的部分记得不要加生命周期！！！不然就会卡在那里的！ configuration 要放在 execution 外面，否则会识别不到executable exec:exec -&gt; 在一个独立的进程中执行一个程序 exec:java -&gt; 在同一个JVM里执行java  &lt;plugin&gt; &lt;groupId&gt;org."/>
 
 
 
@@ -87,7 +87,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li><li><a href="https://procarihana.github.io/public/exerciseproblems">EProblems</a></li>
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
     </ul>
 </nav>
 
@@ -120,7 +120,7 @@
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
-        One minute
+        2 minutes
 
         
       </p>
@@ -315,6 +315,8 @@
 </ul>
 </blockquote>
 <ul>
+<li>自动运行的部分记得不要加生命周期！！！不然就会卡在那里的！</li>
+<li>configuration 要放在 execution 外面，否则会识别不到executable</li>
 <li>exec:exec -&gt; 在一个独立的进程中执行一个程序</li>
 <li>exec:java -&gt; 在同一个JVM里执行java</li>
 </ul>
@@ -343,13 +345,115 @@
 <li>mvn exec:exec 执行java</li>
 </ul>
 </li>
+</ul>
+<blockquote>
+<ul>
+<li>mvn compile exec:exec</li>
+</ul>
+</blockquote>
+<ul>
 <li>
 <ul>
 <li>mvn exec:exex -x 打印出执行的信息</li>
 </ul>
 </li>
 </ul>
-<h2 id="jar包">jar包</h2>
+<h2 id="附">附</h2>
+<ul>
+<li>启动jar包</li>
+<li>自动启动docker，启动数据库Mysql,测试完毕后自动销毁</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#f92672">&lt;</span>plugin<span style="color:#f92672">&gt;</span>
+                <span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org<span style="color:#f92672">.</span><span style="color:#a6e22e">codehaus</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mojo</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+                <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>exec<span style="color:#f92672">-</span>maven<span style="color:#f92672">-</span>plugin<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+                <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>3<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+                <span style="color:#f92672">&lt;</span>executions<span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;</span>execution<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>id<span style="color:#f92672">&gt;</span>start java<span style="color:#f92672">&lt;/</span>id<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;!--</span>executable <span style="color:#f92672">:</span>要运行什么程序 <span style="color:#f92672">--&gt;</span>
+                        <span style="color:#f92672">&lt;</span>goals<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>goal<span style="color:#f92672">&gt;</span>exec<span style="color:#f92672">&lt;/</span>goal<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;/</span>goals<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>configuration<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>executable<span style="color:#f92672">&gt;</span>java<span style="color:#f92672">&lt;/</span>executable<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>arguments<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;-</span>classpath<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;!--</span> automatically creates the classpath using all project dependencies<span style="color:#f92672">,</span>
+                                     also adding the project build directory
+                                     自动给jvm运行的class生成classpath<span style="color:#960050;background-color:#1e0010">（</span>全地址<span style="color:#960050;background-color:#1e0010">），</span>避免填写的麻烦<span style="color:#f92672">--&gt;</span>
+                                <span style="color:#f92672">&lt;</span>classpath<span style="color:#f92672">/&gt;</span>
+                                <span style="color:#f92672">&lt;!--</span> argument运行程序是用的参数<span style="color:#960050;background-color:#1e0010">（</span>jvm要启动的类名<span style="color:#960050;background-color:#1e0010">）</span> <span style="color:#f92672">--&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">Application</span><span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;/</span>arguments<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;/</span>configuration<span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;/</span>execution<span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;</span>execution<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;!--</span> id用于区分<span style="color:#f92672">--&gt;</span>
+                        <span style="color:#f92672">&lt;</span>id<span style="color:#f92672">&gt;</span>start<span style="color:#f92672">-</span>test<span style="color:#f92672">-</span>database<span style="color:#f92672">&lt;/</span>id<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;!--</span> 把这个maven 绑定 在某个 生命周期里运行<span style="color:#f92672">--&gt;</span>
+                        <span style="color:#f92672">&lt;</span>phase<span style="color:#f92672">&gt;</span>pre<span style="color:#f92672">-</span>integration<span style="color:#f92672">-</span>test<span style="color:#f92672">&lt;/</span>phase<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>goals<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;!--</span> goal为java表示在java里运行<span style="color:#960050;background-color:#1e0010">，</span>而为exec则是在外部运行<span style="color:#f92672">--&gt;</span>
+                            <span style="color:#f92672">&lt;</span>goal<span style="color:#f92672">&gt;</span>exec<span style="color:#f92672">&lt;/</span>goal<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;/</span>goals<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>configuration<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>longModulepath<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">false</span><span style="color:#f92672">&lt;/</span>longModulepath<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;!--</span>executable 用于运行的程序<span style="color:#f92672">--&gt;</span>
+                            <span style="color:#f92672">&lt;</span>executable<span style="color:#f92672">&gt;</span>docker<span style="color:#f92672">&lt;/</span>executable<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;!--</span> argument用于docker运行测试数据库 <span style="color:#f92672">--&gt;</span>
+                            <span style="color:#f92672">&lt;</span>arguments<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>run<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;--</span>name<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>test<span style="color:#f92672">-</span>mysql<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;-</span>e<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span>hana<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;-</span>e<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>MYSQL_DATABASE<span style="color:#f92672">=</span>test_user<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;-</span>p<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>3307<span style="color:#f92672">:</span>3306<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;-</span>d<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>mysql<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;/</span>arguments<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;/</span>configuration<span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;/</span>execution<span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;</span>execution<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;!--</span>因为docker运行后<span style="color:#960050;background-color:#1e0010">，</span>数据库的启动还是需要一点时间的<span style="color:#960050;background-color:#1e0010">，</span>并不能够马上运行起来<span style="color:#960050;background-color:#1e0010">，</span>
+                         所以需要等待<span style="color:#960050;background-color:#1e0010">。</span>而且execution的执行顺序是按照声明的顺序执行的<span style="color:#f92672">--&gt;</span>
+                        <span style="color:#f92672">&lt;</span>id<span style="color:#f92672">&gt;</span>wait<span style="color:#f92672">-</span>test<span style="color:#f92672">-</span>database<span style="color:#f92672">&lt;/</span>id<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>phase<span style="color:#f92672">&gt;</span>pre<span style="color:#f92672">-</span>integration<span style="color:#f92672">-</span>test<span style="color:#f92672">&lt;/</span>phase<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>goals<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>goal<span style="color:#f92672">&gt;</span>exec<span style="color:#f92672">&lt;/</span>goal<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;/</span>goals<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>configuration<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>longModulepath<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">false</span><span style="color:#f92672">&lt;/</span>longModulepath<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>executable<span style="color:#f92672">&gt;</span>sleep<span style="color:#f92672">&lt;/</span>executable<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>arguments<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>30<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;/</span>arguments<span style="color:#f92672">&gt;</span>
+
+                        <span style="color:#f92672">&lt;/</span>configuration<span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;/</span>execution<span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;</span>execution<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;!--</span> 用于销毁测试数据库<span style="color:#f92672">--&gt;</span>
+                        <span style="color:#f92672">&lt;</span>id<span style="color:#f92672">&gt;</span>teardown<span style="color:#f92672">-</span>test<span style="color:#f92672">-</span>database<span style="color:#f92672">&lt;/</span>id<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>phase<span style="color:#f92672">&gt;</span>post<span style="color:#f92672">-</span>integration<span style="color:#f92672">-</span>test<span style="color:#f92672">&lt;/</span>phase<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>goals<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>goal<span style="color:#f92672">&gt;</span>exec<span style="color:#f92672">&lt;/</span>goal<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;/</span>goals<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;</span>configuration<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>longModulepath<span style="color:#f92672">&gt;</span><span style="color:#66d9ef">false</span><span style="color:#f92672">&lt;/</span>longModulepath<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>executable<span style="color:#f92672">&gt;</span>docker<span style="color:#f92672">&lt;/</span>executable<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;</span>arguments<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>rm<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;-</span>f<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                                <span style="color:#f92672">&lt;</span>argument<span style="color:#f92672">&gt;</span>test<span style="color:#f92672">-</span>mysql<span style="color:#f92672">&lt;/</span>argument<span style="color:#f92672">&gt;</span>
+                            <span style="color:#f92672">&lt;/</span>arguments<span style="color:#f92672">&gt;</span>
+                        <span style="color:#f92672">&lt;/</span>configuration<span style="color:#f92672">&gt;</span>
+                    <span style="color:#f92672">&lt;/</span>execution<span style="color:#f92672">&gt;</span>
+                <span style="color:#f92672">&lt;/</span>executions<span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;/</span>plugin<span style="color:#f92672">&gt;</span>
+
+</code></pre></div><h2 id="jar包">jar包</h2>
 <ul>
 <li>编译后的代码打包</li>
 <li>
@@ -392,11 +496,152 @@
 <code>spring.datasource.url = jdbc:mysql://localhost:3306/user</code></li>
 </ul>
 </li>
-<li>NGINX 监听80端口</li>
+</ul>
+<h4 id="nginx-监听80端口负载均衡器">NGINX 监听80端口，负载均衡器</h4>
+<ul>
+<li>
+<ul>
+<li>流量均分到三个服务器上</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>NGINX如果出现问题能够在两秒内迅速启动</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>docker 启动NGINX</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>docker run &ndash;name springboot-nginx restart=always -v <code>pwd</code>/nginx/nginx.conf:/etc/nginx/nginx.conf:ro -d -p 8085:80 nginx</li>
+<li>&ndash;restart=always 碰到问题时自动重启</li>
+</ul>
+</blockquote>
+<h4 id="redis-进行缓存">redis 进行缓存</h4>
+<ul>
+<li>
+<ul>
+<li>通过docker 启动redis</li>
+</ul>
+</li>
+</ul>
+<h4 id="jenkins">jenkins</h4>
+<ul>
+<li>
+<ul>
+<li>通过docker 启动 jenkins
+<code>docker run -p 8080:8080 -v </code>pwd<code>/jenkins:/var/jenkins_home jenkins/jenkins</code>
+``</li>
+</ul>
+</li>
 </ul>
 <h4 id="maven-直接运行源代码">maven 直接运行源代码</h4>
+<ul>
+<li>mvn compile exec:exec</li>
+</ul>
 <h4 id="jar方式">jar方式</h4>
+<ul>
+<li>[×] java -jar jarname -Dserver.port=8081</li>
+<li>java -Dserver.port=8081 -jar jarName</li>
+</ul>
+<blockquote>
+<ul>
+<li>java -Dserver.port=8081 -jar target/spring-boot-0.0.1-SNAPSHOT.jar</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>java -jar 后面程序运行的内容会被传递到jar 包运行的main里面，所以传递port是数据应用成语的参数，-jar 属于java 程序的参数</li>
+</ul>
+</li>
+</ul>
 <h4 id="docker-方式">Docker 方式</h4>
+<ul>
+<li>建立dockerfile</li>
+</ul>
+<pre><code>FROM openjdk:8u265-slim-buster
+
+RUN mkdir /dockerworkdir
+
+WORKDIR /dockerworkdir
+
+COPY  target/spring-boot-0.0.1-SNAPSHOT.jar /dockerworkdir
+
+EXPOSE 8080
+
+CMD [&quot;java&quot;,&quot;-jar&quot;,&quot;spring-boot-0.0.1-SNAPSHOT.jar&quot;]
+</code></pre><ul>
+<li><code>docker build .</code></li>
+<li>
+<ul>
+<li>如何修改已经bulid 的镜像</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>可以把需要更改的配置文件映射给docker 容器</li>
+</ul>
+</li>
+<li>docker run</li>
+</ul>
+<h2 id="nginx-分布式部署">NGINX 分布式部署</h2>
+<ul>
+<li>本地nginx.conf 配置分布式</li>
+<li>流量的配置取决于nginx，默认的是轮流分配</li>
+<li>nginx 能够自动检测没有启动到的服务器，并停止给这个没有启动的服务器分配流量</li>
+<li>
+<ul>
+<li>nginx 监听 80 端口， 所有流量都转发<code>proxy_pass</code></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>但是docker 和 宿主机是完全隔离的，所以流量直接在docker 里面转是无效的。所以nginx 需要通过局域网来访问（服务器IP地址）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ifconfig 可以获得本机局域网IP地址 -&gt; 本机：192.168.1.7</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>server  192.168.1.7:port;</li>
+</ul>
+</blockquote>
+<ul>
+<li>更改过nginx 后需要重启生效</li>
+</ul>
+<pre><code>events{}
+http {
+    upstream backend {
+        server backend1.example.com;
+        server backend2.example.com;
+        server 192.0.0.1 backup;
+    }
+    
+    server {
+      listen 80;
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+}
+</code></pre><p><a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/">https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/</a></p>
+<ul>
+<li>docker 启动 nginx</li>
+<li>
+<ul>
+<li>增加<code>--restart=always</code>防止 NGINX 挂掉（重启速度很快，所以不用担心）</li>
+</ul>
+</li>
+</ul>
 
       </div>
     </article>
@@ -419,7 +664,7 @@
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        151 Words
+        415 Words
       </p>
 
       <p>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="Session 一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话，二者不能混淆。
+Session 和 cookie  会话（Session）跟踪是Web程序中常用的技术，用来跟踪用户的整个会话。常用的会话跟踪技术是Cookie与Session。Cookie通过在客户端记录信息确定用户身份，Session通过在服务器端记录信息确定用户身份。 Cookie就是这样的一种机制。它可以弥补HTTP协议无状态的不足。在Session出现之前，基本上所有的网站都采用Cookie来跟踪会话。  Session 和 cookie 区别  Cookie与Session的区别cookie数据存放在客户的浏览器（客户端）上，session数据放在服务器上，但是服务端的session的实现对客户端的cookie有依赖关系的； cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗，考虑到安全应当使用session； session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能。考虑到减轻服务器性能方面，应当使用COOKIE；单个cookie在客户端的限制是3K，就是说一个站点在客户端存放的COOKIE不能超过3K；  什么是 Cookie？   Cookie 是浏览器访问服务器后，服务器传给浏览器的一段数据。 浏览器需要保存这段数据，不得轻易删除。 此后每次浏览器访问该服务器，都必须带上这段数据。    Cookie 是一些数据, 存储于你电脑上的文本文件中。   当 web 服务器向浏览器发送 web 页面时，在连接关闭后，服务端不会记录用户的信息。   Cookie 的作用就是用于解决 &amp;ldquo;如何记录客户端的用户信息&amp;rdquo;:   当用户访问 web 页面时，他的名字可以记录在 cookie 中。 在用户下一次访问该页面时，可以在 cookie 中读取用户访问记录。   设置了新的 cookie，旧的 cookie 不会被覆盖。 Cookies提供了一种在服务器和浏览器之间交换信息的方法，以管理会话（登录，购物车，游戏得分），记住用户首选项（主题，隐私策略接受）以及跟踪整个站点的用户行为。Cookies在一定程度上解放了服务器端的压力，因为将一部分数据放在浏览器端存储，所以这部分数据不能是涉及应用安全的数据。  Cookie 作用   第一个作用是识别用户身份。
+   比如用户 A 用浏览器访问了 http://a." />
+<meta name="keywords" content=", Cookie, Session" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/notes/cookie/" />
+
+
+    <title>
+        
+            Cookie and Session :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Cookie and Session">
+<meta itemprop="description" content="Session 一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话，二者不能混淆。
+Session 和 cookie  会话（Session）跟踪是Web程序中常用的技术，用来跟踪用户的整个会话。常用的会话跟踪技术是Cookie与Session。Cookie通过在客户端记录信息确定用户身份，Session通过在服务器端记录信息确定用户身份。 Cookie就是这样的一种机制。它可以弥补HTTP协议无状态的不足。在Session出现之前，基本上所有的网站都采用Cookie来跟踪会话。  Session 和 cookie 区别  Cookie与Session的区别cookie数据存放在客户的浏览器（客户端）上，session数据放在服务器上，但是服务端的session的实现对客户端的cookie有依赖关系的； cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗，考虑到安全应当使用session； session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能。考虑到减轻服务器性能方面，应当使用COOKIE；单个cookie在客户端的限制是3K，就是说一个站点在客户端存放的COOKIE不能超过3K；  什么是 Cookie？   Cookie 是浏览器访问服务器后，服务器传给浏览器的一段数据。 浏览器需要保存这段数据，不得轻易删除。 此后每次浏览器访问该服务器，都必须带上这段数据。    Cookie 是一些数据, 存储于你电脑上的文本文件中。   当 web 服务器向浏览器发送 web 页面时，在连接关闭后，服务端不会记录用户的信息。   Cookie 的作用就是用于解决 &ldquo;如何记录客户端的用户信息&rdquo;:   当用户访问 web 页面时，他的名字可以记录在 cookie 中。 在用户下一次访问该页面时，可以在 cookie 中读取用户访问记录。   设置了新的 cookie，旧的 cookie 不会被覆盖。 Cookies提供了一种在服务器和浏览器之间交换信息的方法，以管理会话（登录，购物车，游戏得分），记住用户首选项（主题，隐私策略接受）以及跟踪整个站点的用户行为。Cookies在一定程度上解放了服务器端的压力，因为将一部分数据放在浏览器端存储，所以这部分数据不能是涉及应用安全的数据。  Cookie 作用   第一个作用是识别用户身份。
+   比如用户 A 用浏览器访问了 http://a.">
+<meta itemprop="datePublished" content="2020-09-12T16:08:36&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-12T16:08:36&#43;08:00" />
+<meta itemprop="wordCount" content="116">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="Cookie,Session," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="Cookie and Session"/>
+<meta name="twitter:description" content="Session 一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话，二者不能混淆。
+Session 和 cookie  会话（Session）跟踪是Web程序中常用的技术，用来跟踪用户的整个会话。常用的会话跟踪技术是Cookie与Session。Cookie通过在客户端记录信息确定用户身份，Session通过在服务器端记录信息确定用户身份。 Cookie就是这样的一种机制。它可以弥补HTTP协议无状态的不足。在Session出现之前，基本上所有的网站都采用Cookie来跟踪会话。  Session 和 cookie 区别  Cookie与Session的区别cookie数据存放在客户的浏览器（客户端）上，session数据放在服务器上，但是服务端的session的实现对客户端的cookie有依赖关系的； cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗，考虑到安全应当使用session； session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能。考虑到减轻服务器性能方面，应当使用COOKIE；单个cookie在客户端的限制是3K，就是说一个站点在客户端存放的COOKIE不能超过3K；  什么是 Cookie？   Cookie 是浏览器访问服务器后，服务器传给浏览器的一段数据。 浏览器需要保存这段数据，不得轻易删除。 此后每次浏览器访问该服务器，都必须带上这段数据。    Cookie 是一些数据, 存储于你电脑上的文本文件中。   当 web 服务器向浏览器发送 web 页面时，在连接关闭后，服务端不会记录用户的信息。   Cookie 的作用就是用于解决 &ldquo;如何记录客户端的用户信息&rdquo;:   当用户访问 web 页面时，他的名字可以记录在 cookie 中。 在用户下一次访问该页面时，可以在 cookie 中读取用户访问记录。   设置了新的 cookie，旧的 cookie 不会被覆盖。 Cookies提供了一种在服务器和浏览器之间交换信息的方法，以管理会话（登录，购物车，游戏得分），记住用户首选项（主题，隐私策略接受）以及跟踪整个站点的用户行为。Cookies在一定程度上解放了服务器端的压力，因为将一部分数据放在浏览器端存储，所以这部分数据不能是涉及应用安全的数据。  Cookie 作用   第一个作用是识别用户身份。
+   比如用户 A 用浏览器访问了 http://a."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-12 16:08:36 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://procarihana.github.io/public/notes/cookie/">Cookie and Session</a></h2>
+
+            
+
+            <div class="post-content">
+                <h2 id="session">Session</h2>
+<p>一个用户的所有请求操作都应该属于同一个会话，而另一个用户的所有请求操作则应该属于另一个会话，二者不能混淆。</p>
+<h2 id="session-和-cookie">Session 和 cookie</h2>
+<ul>
+<li>会话（Session）跟踪是Web程序中常用的技术，用来跟踪用户的整个会话。常用的会话跟踪技术是Cookie与Session。Cookie通过在客户端记录信息确定用户身份，Session通过在服务器端记录信息确定用户身份。</li>
+<li>Cookie就是这样的一种机制。它可以弥补HTTP协议无状态的不足。在Session出现之前，基本上所有的网站都采用Cookie来跟踪会话。</li>
+</ul>
+<h4 id="session-和-cookie-区别">Session 和 cookie 区别</h4>
+<ol>
+<li>Cookie与Session的区别cookie数据存放在客户的浏览器（客户端）上，session数据放在服务器上，但是服务端的session的实现对客户端的cookie有依赖关系的；</li>
+<li>cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗，考虑到安全应当使用session；</li>
+<li>session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能。考虑到减轻服务器性能方面，应当使用COOKIE；单个cookie在客户端的限制是3K，就是说一个站点在客户端存放的COOKIE不能超过3K；</li>
+</ol>
+<h2 id="什么是-cookie">什么是 Cookie？</h2>
+<blockquote>
+<ol>
+<li>Cookie 是浏览器访问服务器后，服务器传给浏览器的一段数据。</li>
+<li>浏览器需要保存这段数据，不得轻易删除。</li>
+<li>此后每次浏览器访问该服务器，都必须带上这段数据。</li>
+</ol>
+</blockquote>
+<ul>
+<li>Cookie 是一些数据, 存储于你电脑上的文本文件中。</li>
+<li>
+<ul>
+<li>当 web 服务器向浏览器发送 web 页面时，在连接关闭后，服务端不会记录用户的信息。</li>
+</ul>
+</li>
+<li>Cookie 的作用就是用于解决 &ldquo;如何记录客户端的用户信息&rdquo;:</li>
+<li>
+<ul>
+<li>当用户访问 web 页面时，他的名字可以记录在 cookie 中。
+在用户下一次访问该页面时，可以在 cookie 中读取用户访问记录。</li>
+</ul>
+</li>
+<li>设置了新的 cookie，旧的 cookie 不会被覆盖。</li>
+<li>Cookies提供了一种在服务器和浏览器之间交换信息的方法，以管理会话（登录，购物车，游戏得分），记住用户首选项（主题，隐私策略接受）以及跟踪整个站点的用户行为。Cookies在一定程度上解放了服务器端的压力，因为将一部分数据放在浏览器端存储，所以这部分数据不能是涉及应用安全的数据。</li>
+</ul>
+<h2 id="cookie-作用">Cookie 作用</h2>
+<ul>
+<li>
+<p>第一个作用是识别用户身份。</p>
+</li>
+<li>
+<ul>
+<li>比如用户 A 用浏览器访问了 http://a.com，那么 http://a.com 的服务器就会立刻给 A 返回一段数据「uid=1」（这就是 Cookie）。当 A 再次访问 http://a.com 的其他页面时，就会附带上「uid=1」这段数据。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>同理，用户 B 用浏览器访问 http://a.com 时，http://a.com 发现 B 没有附带 uid 数据，就给 B 分配了一个新的 uid，为2，然后返回给 B 一段数据「uid=2」。B 之后访问 http://a.com 的时候，就会一直带上「uid=2」这段数据。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>借此，http://a.com 的服务器就能区分 A 和 B 两个用户了。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>第二个作用是记录历史。</p>
+</li>
+<li>
+<ul>
+<li>假设 http://a.com 是一个购物网站，当 A 在上面将商品 A1 、A2 加入购物车时，JS 可以改写 Cookie，改为「uid=1; cart=A1,A2」，表示购物车里有 A1 和 A2 两样商品了。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>这样一来，当用户关闭网页，过三天再打开网页的时候，依然可以看到 A1、A2 躺在购物车里，因为浏览器并不会无缘无故地删除这个 Cookie。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>借此，就达到里记录用户操作历史的目的了。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="cookie-基础-http-rfc">cookie 基础 （http rfc）</h2>
+<ul>
+<li>HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的，通过Cookie维持状态</li>
+<li>浏览器看到服务器在ResponseHeader响应中返回set-cookie的时候，就会在之后的每一次请求都把cookie的内容放在RequestHeader里面</li>
+<li>用户信息保存在cookie，所以 cookie的内容包含用户信息，每一次包含cookie的请求都表示是该用户的行为</li>
+<li>cookie和浏览器域名是相绑定的，cookie会规定在相应的域名<code>/path</code>请求才能够携带cookie</li>
+<li>cookie的httpOnly 表示cookie只有能够被浏览器发送</li>
+</ul>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  				<p>
+  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://procarihana.github.io/public/tags/cookie">Cookie</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/session">Session</a></span>
+  				</p>
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

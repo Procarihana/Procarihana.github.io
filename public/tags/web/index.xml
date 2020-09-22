@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/web/</link>
+    <description>Recent content in Web on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 07 Sep 2020 14:59:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Web页面  前后端渲染</title>
+      <link>https://procarihana.github.io/public/posts/web%E9%A1%B5%E9%9D%A2-%E5%89%8D%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93/</link>
+      <pubDate>Mon, 07 Sep 2020 14:59:13 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/web%E9%A1%B5%E9%9D%A2-%E5%89%8D%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93/</guid>
+      <description>前端渲染：前端发送静态的html数据 后端渲染：后端发送htlm数据  渲染模板  index.html -&amp;gt; 静态模板  &amp;lt;!DOCTYPE heml&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;商品排行榜&amp;lt;/h2&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;1&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;西瓜&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;400&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;2&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;香蕉&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;200&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;3&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  动态模板引擎 -&amp;gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &amp;lt;!-- spring-boot-starter-freemarker --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt;  文件结构 (View) resources/templaes/~.ftl -&amp;gt; 存放动态模板   其中list 为结果集 name-&amp;gt;items    &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;#list items as item&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;${item.</description>
+    </item>
+    
+  </channel>
+</rss>

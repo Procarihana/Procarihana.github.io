@@ -4,17 +4,39 @@ date: 2020-09-01T08:01:27+08:00
 draft: false
 toc: false
 images:
-tags: [SpringBoot,Tomcat,Filter]
+tags: [SpringBoot,Tomcat,Filter,SpringSecurity,cookie]
 ---
-## Servlet
 
+Spring Security
+ - 就是一个Spring生态中关于安全方面的框架,是一个基于Spring AOP和Servlet过滤器的安全框架,充分利用了依赖注入（DI，Dependency Injection）和面向切面技术
+- SecurityContextHolder用于存储安全上下文（security context）的信息。当前操作的用户是谁，该用户是否已经被认证，他拥有哪些角色权限…这些都被保存在SecurityContextHolder中。SecurityContextHolder默认使用ThreadLocal 策略来存储认证信息。看到ThreadLocal 也就意味着，这是一种与线程绑定的策略。Spring Security在用户登录时自动绑定认证信息到当前线程，在用户退出时，自动清除当前线程的认证信息。
+- 通过 `@EnableWebSecurity`注解开启Spring Security的功能
+- Authentication是spring security包中的接口，直接继承自Principal类，而Principal是位于java.security包中的。
+- - Authentication在spring security中是最高级别的身份/认证的抽象。
+- - 由这个顶级接口，我们可以得到用户拥有的权限信息列表，密码，用户细节信息，用户身份信息，认证信息。
+一个简单的使用Spring Security来进行验证用户名字密码的登录
+- Maven 
+```
+```
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+    <version>2.3.1.RELEASE</version>
+</dependency>
+```
+
+```
+## Servlet
+#### HTTP 超文本传输协议
+- 能够给任何人传送任何类型的文件
 #### Tomcat 
 - servlet容器
 - catalina 
 
 #### Filter 过滤器
 - 是一个执行过滤任务的对象，
-- doFilter 请求响应，也能够通过FilterChain抽根烟·传给下一个filter，实现过滤的功能
+- doFilter 请求响应，也能够通过FilterChain传给下一个filter，实现过滤的功能
 
 #### listerner
 - Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动
@@ -77,7 +99,8 @@ $ mkdir -p src/main/java/hello
 ```
 $ vi pom.xml
 ```
-```
+
+```java
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -93,17 +116,14 @@ $ vi pom.xml
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot</name>
 	<description>Demo project for Spring Boot</description>
-
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -116,7 +136,6 @@ $ vi pom.xml
 			</exclusions>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -125,9 +144,10 @@ $ vi pom.xml
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
+
 ```
+
 - 新建一个Controller和Application（根据示例文档）
 ##### 完成依赖
 - 通过构造器完成，而非`@Resourc`、`@Autowired`等依赖注入的方式
@@ -257,7 +277,7 @@ public interface CityMapper {
 - userMapper 无法创建实例，因为UserMapper是一个接口，但是SpringBoot能够自动管理，直接装配成Bean
 ```java
     public class UserService {
-        
+        UserMapper userMapper;
         @Inject
         public UserService(UserMapper usermapper) {
             this.userMapper = userMapper;
@@ -337,9 +357,7 @@ public class UserController {
 }
 ```
 
-## 登录模块（Controller）
-
-#### Spring MVC
+## Spring MVC
 -  模型model(javabean),  视图view(jsp/img)   控制器Controller(Action/servlet)  
 - C存在的目的就是为了保证M和V的一致性
    当M发生改变时,C可以把M中的新内容更新到V中.
@@ -392,15 +410,23 @@ Servlet.service() for servlet [dispatcherServlet] in context with path [] threw 
         return new Result();
     }
 ```
-##### 用户登录接口
+## 用户登录接口
+- WebSecurityConfigAdapter
+- - `configure(HttpSecurity)`定义了哪些URL路径应该被拦截，如字面意思所描述：”/“, “/home”允许所有人访问.
 - 完成这个配置后，就建立安全框架，所有的请求都会进行拦截，都会进行安全处理
+- - configure（HTTPSecurity http）给URL权限
+- - AuthenticationManager 通过创建出Bean 来完成鉴权
+- - 在configureGlobal（AuthenticationManagerBuilder）进行user和passwoed的鉴权
+- WebSecurityConfigurerAdapter
+适配器模式在spring中被广泛的使用，在配置中使用Adapter的好处便是，我们可以选择性的配置想要修改的那一部分配置，而不用覆盖其他不相关的配置。WebSecurityConfigurerAdapter中我们可以选择自己想要修改的内容，来进行重写，而其提供了三个configure重载方法
+-
 ```java
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
-- 访问根目录和`/home`的请求都全部通过
+#### 访问根目录和`/home`的请求都全部通过
 ```java
 @Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -412,95 +438,52 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 ```java
                 .antMatchers("/", "/auth/**").permitAll();
 ```
-- SRCF 关闭. 对POST请求生效，关闭后才能够完成请求
+#### CSRF 关闭. 对POST请求生效，关闭后才能够完成请求
 ```java
  protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 ```
-- 建立虚拟用户框架，使得除了建立的用户以外其他都是不合法的
-```java
-@Configuration
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
- @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
-                        .roles("USER")
-                        .build();
 
-        return new InMemoryUserDetailsManager(user);
-    }
-}
-```
+## 建立用户框架
+- 用户框架需要使用的BCryptPasswordEncoder 的Bean进行密码的加密和UserMapper 存储和获得用户信息
+- userSrtvice 建立用户框架，继承`UserDetailService`这个接口
+>- UserDetailService 里面只有一个有用户登录的方法`loadUserByUsername`
+>- ` WebSecurityConfigurerAdapter`里面的实现是通过代理来完成的，从而能够获得log
+- 用户的名字和密码需要用currentHashMap来存储保证线程安全
+- UserDetails 里面有提到说提供了一个`org.springframework.security.core.userdetails.User`的方法作为模板，便于生成用于鉴权的User（里面包括username，password和一个collection），colection里面包含用户的权限配置（true、false），且规定不能为空
+#### demo
+- 通过重写`loadUserByUsername`，使得user的信息是从userMapper里面获得的,且通过设置权力List 为空，为了简化demo啦。
+>- User 里面会自动判断uername 是否为空，是否为空字符串，密码是否为空
 
-
-- - ` User.withDefaultPasswordEncoder()`存在不安全的情况，只能在简单示例里使用
-- - `UserDetailsService`
-```
- * Locates the user based on the username.
-  @param username the username identifying the user whose data is required.
-```
-```java
-  public interface UserDetailsService {
-  UserDetails loadUserByUsername(String username) throws UsernameNotFoundException; //输入用户名，就能够获得用户信息
-}
- ```
- 
----
-- - 建立真实的用户框架
-```java
+ ```java
 @Service
 public class UserService implements UserDetailsService {
-    private Map<String, String> userPasswords = new ConcurrentHashMap<>(); //为了安全起见最好使用线程安全
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Inject
-    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        save("Gigi", "111");
-    }
-
-    public void save(String username, String password) {
-        userPasswords.put(username, bCryptPasswordEncoder.encode(password));
-    }
-
-    public String getPassword(String username) {
-        return userPasswords.get(username);
-    }
-```
- 
-  Error : `PasswordEncode`
-- - 密码需要加密：在用户使用的密码里面添加固定的密码加密，避免密码外泄
-- - 加密是不可逆的
-- - 加密必须是一致的
-- - 不要自己设置加密算法
-```
- * Implementation of PasswordEncoder that uses the BCrypt strong hashing function. Clients
-```
-在userService提供密码登录服务处，进行密码加密后再把密码写入数据库，下一次用户登录进行鉴权的时候，鉴权的是加密后的密码
-```java
-@Service
-public class UserService implements UserDetailsService {
-    private Map<String, String> userPasswords = new ConcurrentHashMap<>(); //为了安全起见最好使用线程安全
-    
     private BCryptPasswordEncoder bCryptPasswordEncoder;//配置密码加密器
 
+   @Service
+public class UserService implements UserDetailsService {
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private UserMapper userMapper;
+
+
     @Inject
-    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder, UserMapper userMapper) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        save("Gigi", "111");
+        this.userMapper = userMapper;
     }
 
     public void save(String username, String password) {
-        userPasswords.put(username, bCryptPasswordEncoder.encode(password));//把用户名和加密后的密码存储在UserMapper里面
+        userMapper.save(username, bCryptPasswordEncoder.encode(password));
     }
 
-    public String getPassword(String username) {
-        return userPasswords.get(username);
+    public User getUserByUsername(String username) {
+        return userMapper.findUserByUsername(username);
+    }
+
+    public User getUserById(Integer userId) {
+        return this.userMapper.getUserById((userId));
     }
 
     @Override
@@ -515,58 +498,130 @@ public class UserService implements UserDetailsService {
     }
 }
 ```
+#### `UserDetailsService`
+```
+ * Locates the user based on the username.
+  @param username the username identifying the user whose data is required.
+```
+```java
+  public interface UserDetailsService {
+  UserDetails loadUserByUsername(String username) throws UsernameNotFoundException; //输入用户名，就能够获得用户信息
+}
+ ```
 
+## 完成鉴权
+- 鉴权的配置 在webSecrityConfigure 里面完成配置
+#### 在userService提供密码登录服务处，进行密码加密后再把密码写入数据库，下一次用户登录进行鉴权的时候，鉴权的是加密后的密码
+- 鉴权 `AuthenticationManager`是一个接口（处理鉴权的请求），`WebSecuityConfigurerAdaPter`实现了这个接口
+>- `AuthenticationManager authenticationManagerBean()`方法原本只是返回一个鉴权管理的代理，包含代理器里生成的代理builder和ApplicationContext 的内容`AuthenticationManagerDelegator(authenticationBuilder, context)`
+>- - 重写后使用的是`authenticationManager()`--> 如果不能够初始化鉴权管理器，就把配置改变成禁止从本地配置里面加载鉴权管理器，禁止后就从`WebSecurityfigurerAdapter`注入的鉴权配置里面获得管理器。否则就通过注入的本地鉴权管理生成器里面生成。
+>- 默认情况下如果有重写`configure(AuthenticationManagerBuilder auth)`的话，就会优先使用这个配置生成鉴权管理器之后会忽视注入的本地配置，否则就是使用注入的本地鉴权管理器生成配置。
+>- 无论builder是如何实现的，只要有了就把把鉴权管理器初始化`authenticationManagerInitialized = true;`,然后把管理器返回。
+#### 通过BCryptPasswordEncoder
+  Error : `PasswordEncode`
+  >和其他加密方式相比，BCryptPasswordEncoder有着它自己的优势所在，首先加密的hash值每次都不同，就像md5的盐值加密一样，只不过盐值加密用到了随机数，前者用到的是其内置的算法规则，毕竟随机数没有设合适的话还是有一定几率被攻破的。其次BCryptPasswordEncoder的生成加密存储串也有60位之多。最重要的一点是，md5的加密不是spring security所推崇的加密方式了
+- `bCryptPasswordEncoder.encode(password)`
+- - 密码需要加密：在用户使用的密码里面添加固定的密码加密，避免密码外泄
+- - 加密是不可逆的
+- - 加密必须是一致的
+- - 不要自己设置加密算法
+```
+ * Implementation of PasswordEncoder that uses the BCrypt strong hashing function. Clients
+```
+
+#### demo
+- 重写到`configure(HttpSecurity http)`,管理访问URL权限
+而是直接注入了AuthenticationManagerBuilder的实例（里面包含userDetailsService 和
+- 重写`AutehenticationManager authenticatinoManagerBean();`使得原本是有代理器完成管理器builder --> 根据注入的AuthenticationManagerBuilder 完成，实现动态生成管理器
+- 给WebSecurity配置增加了一个`BCryptPasswordEncoder()`
 ```java
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetailsService;
-    
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());  
-        //在全局的环境下，让所有的密码都通过 `bCryptPasswordEncoder()` 进行加密
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+        http.authorizeRequests()
+            .antMatchers("/", "/auth/**").permitAll()
+            .antMatchers("/", "/create").permitAll()
+            .anyRequest().authenticated();
+    }
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception { //鉴权
+        return authenticationManager();
     }
 
-    @Bean
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(bCryptPasswordEncoder());
+    }
+     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
 ```
 
----
+
+#### 实现鉴权
 - 用户框架建立并提供通过用户名读取用户信息的服务后，注入控制，使得鉴权的方法可以完成用户信息的核对。
+- - 
+#### Demo
+- 判断用户是否有登录的页面
+- 通过`SecurityContextHolder`获得当前用户的Authentication
+- - 如果为空判断为没有登录，不为空则从里面获取用户的名字，并返回。
 ```java
 @Controller
 public class AutoController {
-    private UserDetailsService userDetailIsService;
+    private AuthenticationManager authenticationManager;//管理鉴权
+    private UserService userService;
 
     @Inject
-    public AutoController(UserDetailsService userDetailIsService) {
-        this.userDetailIsService = userDetailIsService;
+    public AutoController(AuthenticationManager authenticationManager, UserService userService) {
+        this.authenticationManager = authenticationManager;
+        this.userService = userService;
     }
-     UserDetails userDetails = userDetailIsService.loadUserByUsername(username);
-      UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken
-                (userDetails, password, userDetails.getAuthorities());  //鉴权，检验密码是否匹配该用户
 
+
+    @GetMapping(value = "/auth", produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public Object auth(ModelMap map) {
+        //String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        //User loggedInUser = userService.getUserByUsername(userName);
+        // 在没有登录的时候，Authentication(）会出现控制正异常的行为，导致test无法进行
+        // cookie
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User loggedInUser = userService.getUserByUsername(authentication == null ?
+            null : authentication.getName());
+
+        if (loggedInUser == null) {
+            return LoginResult.failure("ok", null);
+        } else {
+            return LoginResult.success(null, loggedInUser);
+        }
     }
 ```
-
-
 - 鉴权：判断信息和用户的信息是否一致,证明自己是自己
-```java
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
- @Bean
- @Override
- public AuthenticationManager authenticationManagerBean() throws Exception {
-        return authenticationManager();
-    }
-}
-```
 
-```
+#### 登录模块
+- `UsernamePasswordAuthenticaionToken`是一个继承抽象的`AbstractAuthenticationToken`方法。属于SpringSecutity里 Authentication的方法。
+>- 调用生成实例时，就会生成一个Authentication
+>- getCredentials() 、 getPrincipal()、setAuthenticated()
+>- 有擦除Credentials(）的方法
+
+#### Demo
+- 把RequestBody 设置为Map<>,存放usernameAndPassword
+- 从请求body里面获取`username`和`password`key里获得的值并转换为字符串
+- 调用`UserDetail`这个接口里面的`loadUserByUsername(String username)`的方法进行用户名字的加载，如果抛出`UsernameNotFoundException`的话，就返回用户不存在的信息
+- 加载成功后，就进一步通过`UsernamePasswordAuthenticationToken()`获得一个Authentication，通过AuthenticationManager对鉴权后就要把数据保存到SctuityContextHolder里面
+- 成功后就返回登录成功的信息，并返回用户的信息，否则就返回密码不成功的消息。
+```java
 @Controller
 public class AutoController {
   private AuthenticationManager authenticationManager;//管理鉴权
@@ -578,26 +633,15 @@ public class AutoController {
 
         try {
             authenticationManager.authenticate(token); //完成鉴权的管理
-            SecurityContextHolder.getContext().setAuthentication(token); //鉴别完成后，进行数据处理
+            SecurityContextHolder.getContext().setAuthentication(token); //鉴别完成后，进行数据处理、cookie！
 
         }catch (BadCredentialsException e){
 
         }
     }
 ```
-- - `authenticationManager.authenticate();`出现鉴权失败
-**添加` @Autowired`**解决
+- `AuthenticationManager`简介
 ```java
-public class AutoController {
- 
-  private AuthenticationManager authenticationManager;
-    @Inject
-    public AutoController( AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-        }
-  ```
-- - `AuthenticationManager`简介
-```
 /*
 * Override this method to expose the {@link AuthenticationManager} from
 	 * {@link #configure(AuthenticationManagerBuilder)} to be exposed as a Bean.
@@ -609,91 +653,77 @@ public class AutoController {
 		return new AuthenticationManagerDelegator(authenticationBuilder, context);
 	}
 ```
-- - 管理鉴权，鉴权成功后处理信息
-```
- @PostMapping("/auth/login")
-    @ResponseBody
-        public Object login(@RequestBody Map<String, Object> usernameAndPassword) {
-        String username = usernameAndPassword.get("user").toString();
-        String password = usernameAndPassword.get("password").toString();
-
-        UserDetails userDetails = userDetailIsService.loadUserByUsername(username);
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken
-                (userDetails, password, userDetails.getAuthorities());  //鉴权，检验密码是否匹配该用户
-        try {
-            authenticationManager.authenticate(token); //完成鉴权的管理
-            SecurityContextHolder.getContext().setAuthentication(token); //鉴别完成后，进行数据处理
-            //登录成功后
-            User loggedInUser = new User(1, "Gigi");
-            return new Result("ok", "登录成功", true, loggedInUser);
-        } catch (BadCredentialsException e) {
-            return new Result("fail", "密码不正确", false);
-        }
-    }
-- - 验权：Authozation 证明自己是不是管理员
-
-
-
-- PS 
-1. SpringBoot 默认的pom.xml读取不到
-`org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;`
-
-添加
-```
-<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-security</artifactId>
-    <version>2.3.1.RELEASE</version>
-</dependency>
-```
-
-打包（不去确定是否需要）`mvn package`
-
-###### Java对象（Bean）
-- private 
-- - message
-- - status
-- 如果一个Bean有一个`getStatus()`，就会认为这个Bean有一个`Status`属性
-###### Jason 显示
-```java
- private static class Result {
-        String status;
-        String msg;
-        boolean isLogin;
-        Object Data;
-
-        public String getStatus() {
-            return status;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public boolean isLogin() {
-            return isLogin;
-        }
-```
-
-- 网页jason显示出的内容，取决于getter和setter，而非`String status`、`boolean isLogin`等字段
 
 ## 维持登录状态
-##### cookie 基础 （http rfc）
+#### cookie 基础 （http rfc）
 - HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的，通过Cookie维持状态
-- 浏览器看到服务器在ResponseHeader响应中返回set-cookie的时候，就会在之后的每一次请求都把cookie的内容放在RequestHeader里面 
+- 浏览器看到服务器在ResponseHeader响应中返回set-cookie的时候，就会在之后的每一次同域名的请求都把cookie的内容放在RequestHeader里面 
+>- response Header -> HTTP/1.1 200 \r …… 里面包含set-cookie
+>- 浏览器application 里的cookies 里面能查看到
 - 用户信息保存在cookie，所以 cookie的内容包含用户信息，每一次包含cookie的请求都表示是该用户的行为
 - cookie和浏览器域名是相绑定的，cookie会规定在相应的域名`/path`请求才能够携带cookie 
-- cookie的httponly 表示cookie只有能够被浏览器发送 
-##### cookie 维持登录状态
-- 当没有登录的时候，  
-`String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-`userName 就会得到  
-`anonymousUser`
+- cookie的httpOnly 表示cookie只有在浏览器主动发出请求的时候才会被携带上 
+#### cookie 维持登录状态
+- 当没有登录的时候，    
+`String userName = SecurityContextHolder.getContext().getAuthentication().getName();`  userName 就会得到  `anonymousUser`匿名用户
+- 登录后就能够获得userName
+#### Demo
+- 登录后-->`SecurityContextHolder.getContext().setAuthentication(token); `-->cookie
+- 没有使用SecurityContextHolder 里面 匿名用户身份验证token，而是通过判断`SecurityContextHolder.getContext().getAuthentication`获得的authentication 是否为空来判断用户是否用登录
 
-## 用户登录与信息储存
-- Database
+#### 注销 
+#### Demo
+- `SecurityContextHolder.getContext().getAuthentication().getName();`获得username
+- 从 mapper 里面获得密码
+- 使用`SecurityContextHolder.clearContext();`来注销用户并返回注销成功的消息
+```java
+@GetMapping("/auth/logout")
+    @ResponseBody
+    public Result logout() {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        User loggedInUser = userService.getUserByUsername(userName);
+
+        if (loggedInUser == null) {
+            return LoginResult.failure("fail", "用户尚未登录");
+        } else {
+            SecurityContextHolder.clearContext();
+            return LoginResult.failure("ok", "注销成功");
+        }
+    }
+```
+#### 注册
+#### Demo
+- 从requestBody 的Map 里面获得username 和 password
+- 通过if 来先对用户名和密码进行非法的处理，同时防止注入
+- try/catch 的方式来捕获向mapper 存入 username和password 的异常。存入成功后就进行登录并返回注册成功（这里要实现事务哟！！！！）
+```java
+ @PostMapping("/auth/register")
+    @ResponseBody
+    public Result register(@RequestBody Map<String, String> usernameAndPassword) {
+        String username = usernameAndPassword.get("username");
+        String password = usernameAndPassword.get("password");
+        if (username == null || password == null) {
+            return LoginResult.failure("fail", "错误原因：注册用户没有输入名字或密码");
+        }
+        if (username.length() < 1 || username.length() > 15) {
+            return LoginResult.failure("fail", "错误原因：用户名字不符合'长度1到15个字符，只能是字母数字下划线中'的规定");
+        }
+        if (password.length() < 1 || password.length() > 15) {
+            return LoginResult.failure("fail", "错误原因：用户密码不符合'长度6到16个任意字符'的规定");
+        }
+        try {
+            userService.save(username, password);
+            //这里在并发的过程中，如果有人同时申请两个同样的用户名字，就会出现数据库重复的情况，可以通过数据库约束完成事务
+            User loggedInUser = userService.getUserByUsername(username);
+            return LoginResult.success("注册成功", loggedInUser);
+        } catch (DuplicateKeyException e) {
+            e.printStackTrace();
+            return LoginResult.failure("fail", "错误原因:用户已存在");
+        }
+    }
+```
+## 用户登录与信息储存 (Mybatis+Mapper)
+#### Database
 - - id 为主键,且自动生成数据，从`1`开始
 - - avatar 头像为Url，所以长度比较长
 ```
@@ -716,83 +746,25 @@ public interface UserMapper {
     void save(@Param("username") String username, @Param("encrypted_password") String encryptedPassword);
 }
 ```
-- Mybatis 的配置（位于application）
-
+#### Mybatis 对应Spring的配置（位于application）
+- 当连接上服务器时，数据库的配置就要改变成服务器IP地址！！
 ```
+# spring.datasource.url=jdbc:mysql://192.168.1.7:3306/user
+```
+- 数据库创建时没有使用加上驼峰的value 且 mapper 映射的时候不想使用results逐个变量和数据一一对应的话。但是使用感觉不太好，不一定能够发挥作用！
+- - 需要添加`mybatis.configuration.mapUnderscoreToCamelCase = true` -->使得数据库能够识别到Java的驼峰命名，从而避免数据库和浏览器数据出现不一致的问题
+#### Demo
+```SQL
 spring.datasource.url = jdbc:mysql://localhost:3306/user
 spring.datasource.username = root
 spring.datasource.password = hana
-dbpass spring.datasource.driver-class-username = com.mysql.cj.jdbc.Driver
+spring.datasource.driver-class-username = com.mysql.cj.jdbc.Driver
 mybatis.configuration.mapUnderscoreToCamelCase = true
 ```
-- - 需要添加`mybatis.configuration.mapUnderscoreToCamelCase = true
-`使得数据库能够识别到Java的驼峰命名，从而避免数据库和浏览器数据出现不一致的问题
-----
-- - userMapper 代替了userDetailServical的功能，同样是给一个username就获得用户的信息
-```java
-@Service
-public class UserService implements UserDetailsService {
-   private UserMapper userMapper;
-    @Inject
-    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder,UserMapper userMapper) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userMapper = userMapper;
-          save("Gigi","111");
-    }
 
-    public void save(String username, String password) {
-        userMapper.save(username,bCryptPasswordEncoder.encode(password));
-    }
-  public User getUserByUsername(String username) {
-        return userMapper.findUserByUsername(username);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = getUserByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(username + "不存在");
-
-        }
-        return new org.springframework.security.core.userdetails.User(username, user.getEncryptedPassword(), Collections.emptyList());
-    }
-}
-```
-
-```java
-@Controller
-public class AutoController {
-    private AuthenticationManager authenticationManager;//管理鉴权
-    private UserService userSe
-    
-  @PostMapping("/auth/login")
-    @ResponseBody
-    public Object login(@RequestBody Map<String, Object> usernameAndPassword) {
-        String username = usernameAndPassword.get("username").toString();
-        String password = usernameAndPassword.get("password").toString();
-
-        UserDetails userDetails;
-        try {
-            userDetails = userService.loadUserByUsername(username);
-        } catch (UsernameNotFoundException e) {
-            return new Result("fail", "用户不存在", false);
-        }
-
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken
-                (userDetails, password, userDetails.getAuthorities());  //鉴权，检验密码是否匹配该用户
-        try {
-            authenticationManager.authenticate(token); //完成鉴权的管理
-            SecurityContextHolder.getContext().setAuthentication(token); //鉴别完成后，进行数据处理并保存
-            //登录成功后
-            return new Result("ok", "登录成功", true, userService.getUserByUsername(username));
-        } catch (BadCredentialsException e) {
-            return new Result("fail", "密码不正确", false);
-        }
-    }
-}
-```
-
-## 序列化返回时不返回某些信息
+## Entity(Moudle)
+- 用于……
+#### 序列化返回时不返回某些信息
 - 序列化：
 - Spring 序列化方法：jackson
 - 使用`@JsonIgnore`
@@ -807,10 +779,6 @@ public class User {
     Instant createdAt;
     Instant updatedAt;
 ```
-
-## 登录退出接口
-- 通过`SecurityContextHolder.clearContext();` 完成
-
 
 ## 测试
 - 自动化
@@ -881,6 +849,11 @@ public class SmokeTest {
 - 代码出错的可能减少，趋于稳定
 
 
+#### Mokito
+- `@Mock`识别为用于模拟的对象
+- - MockSetting:
+- `@InjectMock` : 识别这个模拟的对象需要其他模拟的对象注入依赖进行。InjectMocks实例之前没有初始化，并且有一个无参数的构造函数，然后用这个构造函数初始化。
+- 测试使用的是Mock对象，没有真正执行 
 #### Maven
  - 单元测试
  ```
@@ -896,10 +869,7 @@ public class SmokeTest {
             <version>2.22.2</version>
         </plugin>
 ```
-- - 只想单独运行单元测试或集成测试
-1. verify 运行检查确保代码有效
-2. integretion-test  相比于 verify位于maven生命周期的前几个（运行maven 的范围比 verify少）
-3. 单独运行单元测试
+## 单独运行单元测试
 
 ```java       
             <plugin>
@@ -936,8 +906,75 @@ mvn clean test
 mvn clean verify
 ```
 
-#### @Before、@Test
-- 理解
+#### Mockito Demo
+- 使用`@ExtendWith` 
+```java
+@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+    @Mock
+    BCryptPasswordEncoder mockEncoder;
+    @Mock
+    UserMapper mockMapper;
+    @InjectMocks
+    UserService userService;
+
+    @Test
+    public void testSave() {
+        //调用userService
+        //验证userService将请求转发给userMapper
+
+
+        //BCryptPasswordEncoder会因为输入的是Mock，所以加密后返回的回是null，需要额外给条件
+        //given
+        Mockito.when(mockEncoder.encode("MockPassword")).thenReturn("MockEncodedPassword");
+        //when:
+        userService.save("MockUser", "MockPassword");
+        //then:
+        Mockito.verify(mockMapper).save("MockUser", "MockEncodedPassword");
+    }
+
+    @Test
+    public void testGetUserByUsername() {
+        userService.getUserByUsername("MockUser");
+        Mockito.verify(mockMapper).findUserByUsername("MockUser");
+    }
+
+    @Test
+    public void throwExceptionWhenUserNoFount() {
+        Mockito.when(mockMapper.findUserByUsername("MockUser")).thenReturn(null);
+//        try {
+//            userService.loadUserByUsername("MockUser");
+//            Assertions.assertFalse(false);
+//        } catch (UsernameNotFoundException e) {
+//        }
+
+
+        Assertions.assertThrows(UsernameNotFoundException.class, new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                userService.loadUserByUsername("MockUser");
+            }
+        });
+        // 断言 userService.loadUserByUsername("MockUser") 调用 一定会丢出  UsernameNotFoundException.class异常，
+
+    }
+
+    @Test
+    public void returnUserDetailWhenUserFound() {
+        Mockito.when(mockMapper.findUserByUsername("MockUser"))
+            .thenReturn(new User(1212, "MockUser", "MockEncodedPassword"));
+
+        UserDetails userDetails = userService.loadUserByUsername("MockUser");
+        Assertions.assertEquals("MockUser", userDetails.getUsername());
+        Assertions.assertEquals("MockEncodedPassword", userDetails.getPassword());
+    }
+
+}
+```
+## @Before、@Test
+#### @Before
+- 用于测试的实例方法需要使用一个实例来调用，为了保证测试方法的准确性，不同的测试需要用不同的实例对象进行调用测试，就需要new出大量的对象
+- 而使用`BeforEach`使用方法清空后就能够重复使用。
 ```java
     @BeforeEach
     void setUp() {}
@@ -950,7 +987,7 @@ mvn clean verify
     //要想调用teat1这个实例方法，就要有一个实例来调用
     AutoControllerTest testInstance = new AutoControllerTest() ;
     testInstance.test1();
-    //没调用一个实例方法，就会自动创建一个实例对象来调用 。因为在两个实例测试的过程中，如果共享一个实例，可能会共享一些状态、数据导致偏差。
+    //没调用一个实例方法，就会自动创建一个实例对象来调用。因为在两个实例测试的过程中，如果共享一个实例，可能会共享一些状态、数据导致偏差。
     // 而两个不同的实例能够保证数据状态的独立
     //EG
     AutoControllerTest testInstance1 = new AutoControllerTest() ;
@@ -967,16 +1004,23 @@ mvn clean verify
     testInstance1.setUp();
     testInstance2.test2();
 ```
-
-- @BeforeEcah
- ```
+#### BeforeEach Demo
+- MockMvc 虚拟MVC
+- - 使用BeforEach 完成MVC的构建，通过MvcBuilder.standaloneSetup(new Controller(moudle))完成MVC的Controller以及相应的配置（moudle）**MC**
+- - 在beforeEach 里面先装配好moudle 和 controller，在test 出装配号view 模板，每次测试完后都重新装配MVC，使得一个MVC能够完成多个测试
+- - 执行mvc.peform(requestBuilder) 
+>- RequestBuilder接口 用于 build the request 。生成的request类型是`MockHttpServletRequest`
+>- MockHttpServletRequestBuilder.get(urlTemplate) **V**
+>- - .andExcpect(ResultMatcher matcher) --> matcher.match(mvcResult)
+>- - 通过覆盖andExcept里面的match方法来完成判断，判断Get返回的信息是否正确
+ ```java
  @BeforeEach
     void setUp() {
             mockMvc = MockMvcBuilders
                  .standaloneSetup(new AutoController(authenticationManager,userService))
                  .build();//测试的是`AutoController()`这个方法
     }
-        @Test
+    @Test
     void returnNotLoginByDefault() throws Exception {
         mockMvc.perform(get("/auth"))
                 .andExpect(status().isOk())
@@ -992,7 +1036,7 @@ mvn clean verify
 ```
 
 
-#### 实现
+#### 实现继承测试
 - `test/java/hello/service`和`main/java/hello/service` 的类都会处于`pavkage hello.service`里面，里面的包级私有`private`的方法就能够共用，从而测试出非public的方法，且不被包外的方法访问到
 1. 引入Junit5 mokito 的Maven
 2. 构建测试需要用到的虚拟对象
@@ -1044,6 +1088,11 @@ class UserServiceTest {
         Assertions.assertEquals("MockEncodedPassword",userDetails.getPassword());
     }
 ```
+#### Controller登录 单元测试Demo
+- 没有登录时的状态
+- 登录
+- 登录后再次查看状态
+- - 因为测试登录的时候没有使用鉴权进行登录，所以没有获得cookie，所以使用session来访问查看状态
 ## Question
 1. Post 和 Get 的区别
 - HTTPRequest 请求前几个字符 是POST 还是GET
@@ -1162,6 +1211,9 @@ https://www.mojohaus.org/exec-maven-plugin/exec-mojo.html
 - - Controller（参数验证）控制service（处理业务），service控制Dao（访问数据库）
 
 ## 博客
+#### TDD 模式
+- 先写测试再写代码-->测试驱动代码
+- 先写一个肯定会失败的代码，定义想要执行的业务，通过这些测试
 #### 数据库设置
 - Mapper 不能够完成复杂的SQL，需要Mybatis 通过配置来完成动态SQL完成
 ##### Mybatis
@@ -1316,3 +1368,151 @@ r=4，w=2，x=1
 ```
 更改为只剩下"//"
 ```
+
+
+- 业务类使用类型注入，注入的是父类接口的类型，因为父类类型可以指向子类
+[http://blog.didispace.com/xjf-spring-security-5/]
+## 虚拟用户版本
+#### 虚拟用户框架
+```java
+@Service
+public class UserService implements UserDetailsService {
+    private Map<String, String> userPasswords = new ConcurrentHashMap<>(); //为了安全起见最好使用线程安全
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Inject
+    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        save("Gigi", "111");
+    }
+
+    public void save(String username, String password) {
+        userPasswords.put(username, bCryptPasswordEncoder.encode(password));
+    }
+
+    public String getPassword(String username) {
+        return userPasswords.get(username);
+    }
+```
+#### 建立虚拟用户框架，使得除了建立的用户以外其他都是不合法的（用于初步测试）
+```java
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+ @Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+        UserDetails user =
+                User.withDefaultPasswordEncoder()
+                        .username("user")
+                        .password("password")
+                        .roles("USER")
+                        .build();
+
+        return new InMemoryUserDetailsManager(user);
+    }
+}
+```
+- - ` User.withDefaultPasswordEncoder()`存在不安全的情况，只能在简单示例里使用
+
+## Java对象（Bean）
+- private 
+- - 用`@Lombok`的`@Data`可以代替 getter 和 setter；`@Lombok`里面也有全参数构造器和无参数构造器提供哟
+
+```java
+ private static class Result {
+        String status;
+        String msg;
+        boolean isLogin;
+        Object Data;
+
+        public String getStatus() {
+            return status;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public boolean isLogin() {
+            return isLogin;
+        }
+```
+
+#### Jason 显示
+- 如果一个Bean有一个`getStatus()`，就会认为这个Bean有一个`Status`属性
+
+
+
+- 网页jason显示出的内容，取决于getter和setter，而非`String status`、`boolean isLogin`等字段
+## 虚拟用户鉴权
+```java
+ @PostMapping("/auth/login")
+    @ResponseBody
+        public Object login(@RequestBody Map<String, Object> usernameAndPassword) {
+        String username = usernameAndPassword.get("user").toString();
+        String password = usernameAndPassword.get("password").toString();
+
+        UserDetails userDetails = userDetailIsService.loadUserByUsername(username);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken
+                (userDetails, password, userDetails.getAuthorities());  //鉴权，检验密码是否匹配该用户
+        try {
+            authenticationManager.authenticate(token); //完成鉴权的管理
+            SecurityContextHolder.getContext().setAuthentication(token); //鉴别完成后，进行数据处理
+            //登录成功后
+            User loggedInUser = new User(1, "Gigi");
+            return new Result("ok", "登录成功", true, loggedInUser);
+        } catch (BadCredentialsException e) {
+            return new Result("fail", "密码不正确", false);
+        }
+    }
+```
+- - 验权：Authozation 证明自己是不是管理员
+## 虚拟用户注册
+```java
+        User user = userService.getUserByUsername(username); 
+         //这里在并发的过程中，如果有人同时申请两个同样的用户名字，就会出现数据库重复的情况，可以通过数据库约束完成事务
+        if (user == null) {
+            userService.save(username, password);
+            return new Result("ok", "success!", false);
+            //查看用户是否在数据库
+        } else {
+            return new Result("fail", "user already exists", false);
+        }
+```
+## 用户数据
+- userMapper 代替了userDetailServical的功能，同样是给一个username就获得用户的信息
+
+```java
+@Service
+public class UserService implements UserDetailsService {
+   private UserMapper userMapper;
+    @Inject
+    public UserService(BCryptPasswordEncoder bCryptPasswordEncoder,UserMapper userMapper) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userMapper = userMapper;
+          save("Gigi","111");
+    }
+
+    public void save(String username, String password) {
+        userMapper.save(username,bCryptPasswordEncoder.encode(password));
+    }
+  public User getUserByUsername(String username) {
+        return userMapper.findUserByUsername(username);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = getUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(username + "不存在");
+
+        }
+        return new org.springframework.security.core.userdetails.User(username, user.getEncryptedPassword(), Collections.emptyList());
+    }
+}
+```
+
+
+## Q
+1. UsernamePasswordAuthenticationToken serialVersionUID  序列化号的作用

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>题目 on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/%E9%A2%98%E7%9B%AE/</link>
+    <description>Recent content in 题目 on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 08 Sep 2020 20:10:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/%E9%A2%98%E7%9B%AE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>题目</title>
+      <link>https://procarihana.github.io/public/posts/%E9%A2%98%E7%9B%AE/</link>
+      <pubDate>Tue, 08 Sep 2020 20:10:37 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E9%A2%98%E7%9B%AE/</guid>
+      <description>基础 Java程序的运行原理  编译过程.java -编译器Compiler（编译）-&amp;gt; .class[字节码]   编译的结果存放在tarket、classes 里面   字节码通过JVM识别后解析成不同系统的调用，从而实现java 的跨平台   Object 里面有native()是一个空白的类,jvm里native实现能够让运行平台决定如何实现，    JDK/JRE 有什么区别  JDK = JRE + javac   JDK 完成java源代码到字节码的编译和运行过程，包含JRE   JRE 完成字节码到底层调用的解析和运行过程，如果只是运行java 程序，只安装JRE就可以了，不需要安装JDK。其中JVM就是完成java 实现跨平台的核心部分。  Java 的基础类型  char/string/short/byte/long/int/boolean/float   String 是基本数据类型？         Java 的参数传递是传值还是传引用  在Java里所有的对象都只是一个指针，传递的时候只是传递地址的拷贝，所以是传引用   一切对象都是指针（地址）     函数调用永远是传值。函数调用的过程中，把对象作为参数传递到函数里面的时候，传递的是一个复制的地址，地址里面包含对象的数据。这个传送复制的地址的过程就是传值。    引用数据类型(Reference data type)如一个对象(object)的传递，是以值的形式传进方法(are also passed into methods by value)。这意味着当函数执行完（when the method returns），传进去的引用（the passed-in reference）仍然参考(指向)之前的对象(still references the same object as before)。但是，对象的值(字段)可以在方法中被改变。</description>
+    </item>
+    
+  </channel>
+</rss>

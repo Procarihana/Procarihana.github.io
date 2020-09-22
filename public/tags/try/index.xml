@@ -14,10 +14,10 @@
     
     <item>
       <title>Try/catch</title>
-      <link>https://procarihana.github.io/public/exerciseproblems/catch/</link>
+      <link>https://procarihana.github.io/public/notes/catch/</link>
       <pubDate>Tue, 01 Sep 2020 07:07:27 +0800</pubDate>
       
-      <guid>https://procarihana.github.io/public/exerciseproblems/catch/</guid>
+      <guid>https://procarihana.github.io/public/notes/catch/</guid>
       <description>Try/catch    try { int i = 10 / 0; } finally { System.out.println(&amp;#34;last&amp;#34;); }  能够成功执行，并且会返回last，同时也会返回Exeception 提示：: / by zero  finally 不一定都会被执行   try里面包含System.exit() finally 里包含异常就会抛出异常并终止执行  try { System.out.println(&amp;#34;try&amp;#34;); } catch (Exception e) { System.out.println(&amp;#34;catch&amp;#34;); } finally { int k = 3 / 0; System.out.println(&amp;#34;finally&amp;#34;); } System.out.println(&amp;#34;main&amp;#34;); </description>
     </item>
     

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AOP on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/aop/</link>
+    <description>Recent content in AOP on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 04 Sep 2020 16:40:35 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/aop/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AOP和装饰器模式以及Redis</title>
+      <link>https://procarihana.github.io/public/posts/aop%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8Aredis/</link>
+      <pubDate>Fri, 04 Sep 2020 16:40:35 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/aop%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8Aredis/</guid>
+      <description>AOP  Aspect-Oriented Programming 面向切面编程 相当于OOP（面向对象编程） AOP是面向切面变成，关注一个统一的切面   切面并不是对象和方法，而是执行方法的和方法之间的一瞬间、一个面   AOP和Spring是不同的东西   没有Spring容器AOP也是能够工作的     Spring 通过AOP来完成一些请求    AOP 适用的场景  需要统一处理的场景   日志     缓存     鉴权    AOP的实现  JDK动态代理（Proxy）   优点：⽅便，不需要依赖任何第三⽅库     缺点：功能受限，只适⽤于接⼝     OOP完成这些需求的话，需要使用到装饰器模型   CGLIB/ByteBuddy字节码⽣成   优点：强⼤，不受接⼝的限制     缺点：需要引⽤额外的第三⽅类库     不能增强final类/final/private⽅法    AOP与Spring  在Spring中使⽤AOP实现Redis缓存 Spring是如何切换JDK动态代理和CGLIB的？   spring.</description>
+    </item>
+    
+  </channel>
+</rss>

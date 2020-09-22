@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="初始容量为 10  之后每超过10就添加16个  有设置容量  意义在于先准备一个空间，避免以后不断地扩容造成空间浪费 如果指定初始容量a，数组的容量就为a 如果初始容量为0或者没有指定，就为0 负数就抛出异常  public ArrayList(int initialCapacity) { if (initialCapacity &amp;gt; 0) { this.elementData = new Object[initialCapacity]; } else if (initialCapacity == 0) { this.elementData = EMPTY_ELEMENTDATA; } else { throw new IllegalArgumentException(&amp;#34;Illegal Capacity: &amp;#34;&#43; initialCapacity); } } 扩容的时候自动调整大小  ArrayList 里面有一个Object[] elementData 用于存储实际的元素   包含size   扩容过程    执行add（）的时候会先判断当前未添加前的elementDate.length 是否会等于初始容量 size，如果等于就执行grow()扩容，并把扩容后的新对象组size 赋值到 elementData 里面 Object[]grow（） 增长的最小的目标容量（minCapacity）是当前的目标容量&#43;1   之后执行Object[] grow(int minCapacity) 。先复制就的Array，然后加入扩充好的新容量的数组（newCapacity（int minCapacity））里，复制给elementData并返回这个新的数组       newCapacity(int minCapacity) 新容量的目标容量为旧容量的1." />
+<meta name="keywords" content=", ArryList, " />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/notes/arrylist/" />
+
+
+    <title>
+        
+            ArryList :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="ArryList">
+<meta itemprop="description" content="初始容量为 10  之后每超过10就添加16个  有设置容量  意义在于先准备一个空间，避免以后不断地扩容造成空间浪费 如果指定初始容量a，数组的容量就为a 如果初始容量为0或者没有指定，就为0 负数就抛出异常  public ArrayList(int initialCapacity) { if (initialCapacity &gt; 0) { this.elementData = new Object[initialCapacity]; } else if (initialCapacity == 0) { this.elementData = EMPTY_ELEMENTDATA; } else { throw new IllegalArgumentException(&#34;Illegal Capacity: &#34;&#43; initialCapacity); } } 扩容的时候自动调整大小  ArrayList 里面有一个Object[] elementData 用于存储实际的元素   包含size   扩容过程    执行add（）的时候会先判断当前未添加前的elementDate.length 是否会等于初始容量 size，如果等于就执行grow()扩容，并把扩容后的新对象组size 赋值到 elementData 里面 Object[]grow（） 增长的最小的目标容量（minCapacity）是当前的目标容量&#43;1   之后执行Object[] grow(int minCapacity) 。先复制就的Array，然后加入扩充好的新容量的数组（newCapacity（int minCapacity））里，复制给elementData并返回这个新的数组       newCapacity(int minCapacity) 新容量的目标容量为旧容量的1.">
+<meta itemprop="datePublished" content="2020-09-16T23:52:09&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-16T23:52:09&#43;08:00" />
+<meta itemprop="wordCount" content="96">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="ArryList,," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="ArryList"/>
+<meta name="twitter:description" content="初始容量为 10  之后每超过10就添加16个  有设置容量  意义在于先准备一个空间，避免以后不断地扩容造成空间浪费 如果指定初始容量a，数组的容量就为a 如果初始容量为0或者没有指定，就为0 负数就抛出异常  public ArrayList(int initialCapacity) { if (initialCapacity &gt; 0) { this.elementData = new Object[initialCapacity]; } else if (initialCapacity == 0) { this.elementData = EMPTY_ELEMENTDATA; } else { throw new IllegalArgumentException(&#34;Illegal Capacity: &#34;&#43; initialCapacity); } } 扩容的时候自动调整大小  ArrayList 里面有一个Object[] elementData 用于存储实际的元素   包含size   扩容过程    执行add（）的时候会先判断当前未添加前的elementDate.length 是否会等于初始容量 size，如果等于就执行grow()扩容，并把扩容后的新对象组size 赋值到 elementData 里面 Object[]grow（） 增长的最小的目标容量（minCapacity）是当前的目标容量&#43;1   之后执行Object[] grow(int minCapacity) 。先复制就的Array，然后加入扩充好的新容量的数组（newCapacity（int minCapacity））里，复制给elementData并返回这个新的数组       newCapacity(int minCapacity) 新容量的目标容量为旧容量的1."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-16 23:52:09 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://procarihana.github.io/public/notes/arrylist/">ArryList</a></h2>
+
+            
+
+            <div class="post-content">
+                <h4 id="初始容量为-10">初始容量为 10</h4>
+<ul>
+<li>之后每超过10就添加16个</li>
+</ul>
+<h4 id="有设置容量">有设置容量</h4>
+<ul>
+<li>意义在于先准备一个空间，避免以后不断地扩容造成空间浪费</li>
+<li>如果指定初始容量a，数组的容量就为a</li>
+<li>如果初始容量为0或者没有指定，就为0</li>
+<li>负数就抛出异常</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ArrayList</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> initialCapacity<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>initialCapacity <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">elementData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">[</span>initialCapacity<span style="color:#f92672">];</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>initialCapacity <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">elementData</span> <span style="color:#f92672">=</span> EMPTY_ELEMENTDATA<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Illegal Capacity: &#34;</span><span style="color:#f92672">+</span>
+                                               initialCapacity<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h4 id="扩容的时候自动调整大小">扩容的时候自动调整大小</h4>
+<ul>
+<li>ArrayList 里面有一个Object[] elementData 用于存储实际的元素</li>
+<li>
+<ul>
+<li>包含size</li>
+</ul>
+</li>
+<li>扩容过程</li>
+</ul>
+<blockquote>
+<ul>
+<li>执行add（）的时候会先判断当前未添加前的elementDate.length 是否会等于初始容量 size，如果等于就执行grow()扩容，并把扩容后的新对象组size 赋值到 elementData 里面</li>
+<li>Object[]grow（） 增长的最小的目标容量（minCapacity）是当前的目标容量+1</li>
+<li>
+<ul>
+<li>之后执行Object[] grow(int minCapacity) 。先复制就的Array，然后加入扩充好的新容量的数组（newCapacity（int minCapacity））里，复制给elementData并返回这个新的数组</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>newCapacity(int minCapacity) 新容量的目标容量为旧容量的1.5倍，然后把最小目标容量和新容量做对比，如果新容量小的话</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="array-随机访问-查询都是o1">Array 随机访问 查询都是O(1)</h4>
+<p><code>Constructs an empty list with an initial capacity of ten.</code></p>
+<h4 id="一个包含指定元素的list通过迭代的方式返回元素的顺序">一个包含指定元素的List，通过迭代的方式返回元素的顺序</h4>
+<h4 id="如果为空则返回nollpointexception">如果为空则返回NollPointException</h4>
+<h4 id="boolean-add">boolean Add</h4>
+<ul>
+<li>添加在 list 的尾部</li>
+<li>如果能够成功加入 return true</li>
+</ul>
+<h4 id="setint-index-e-element">set(int index, E element)</h4>
+<ul>
+<li>更新。</li>
+<li>
+<ul>
+<li>更新指定下标位置的值</li>
+</ul>
+</li>
+</ul>
+<h4 id="remove">remove</h4>
+<ul>
+<li>size-1</li>
+</ul>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  				<p>
+  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://procarihana.github.io/public/tags/arrylist">ArryList</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/"></a></span>
+  				</p>
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

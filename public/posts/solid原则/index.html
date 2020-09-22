@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="面向对象设计基本原则：SOLID原则 单一责任原则  定义：一个类只应承担一种责任 让一个类只做一件事。如果需要承担更多的工作，那么分解这个类  开放封闭原则  定义：实体应该对扩展是开放的，对修改是封闭的 类应该无需改类本身但是却容易扩展 例子： 继承 可以通过继承来扩展，但是不能够修改父类  里氏替换原则  定义：一个 对象在其出现的任何地方，都可以用子类实例做替换 当一个子类可以在任意地方替换基类，且短剑功能不受影响时，不会导致程序的错误 Eg： 多个数据源（SQL与NoSQL）获取用户信息  接口分离原则  定义：多个专门接口比单一的总体接口要好 客户不应被强迫依赖他是不用的方法。即，一个类实现的接口中，包含了他不需要的方法。将接口拆分成更小和更具体的接口，有助于解耦，从而更容易重构与更改  依赖倒置原则  定义：   高层次的模块不应该依赖低层次的模块，他们都应该依赖于抽象。     抽象不应该依赖于具体方法实现，具体实现应该依赖抽象   依赖倒置是实现开闭原则的方法 扩展 IOC DI?  " />
+<meta name="keywords" content=", , " />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/solid%E5%8E%9F%E5%88%99/" />
+
+
+    <title>
+        
+            SOLID原则 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="SOLID原则">
+<meta itemprop="description" content="面向对象设计基本原则：SOLID原则 单一责任原则  定义：一个类只应承担一种责任 让一个类只做一件事。如果需要承担更多的工作，那么分解这个类  开放封闭原则  定义：实体应该对扩展是开放的，对修改是封闭的 类应该无需改类本身但是却容易扩展 例子： 继承 可以通过继承来扩展，但是不能够修改父类  里氏替换原则  定义：一个 对象在其出现的任何地方，都可以用子类实例做替换 当一个子类可以在任意地方替换基类，且短剑功能不受影响时，不会导致程序的错误 Eg： 多个数据源（SQL与NoSQL）获取用户信息  接口分离原则  定义：多个专门接口比单一的总体接口要好 客户不应被强迫依赖他是不用的方法。即，一个类实现的接口中，包含了他不需要的方法。将接口拆分成更小和更具体的接口，有助于解耦，从而更容易重构与更改  依赖倒置原则  定义：   高层次的模块不应该依赖低层次的模块，他们都应该依赖于抽象。     抽象不应该依赖于具体方法实现，具体实现应该依赖抽象   依赖倒置是实现开闭原则的方法 扩展 IOC DI?  ">
+<meta itemprop="datePublished" content="2020-09-20T15:53:38&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-20T15:53:38&#43;08:00" />
+<meta itemprop="wordCount" content="27">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content=",," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="SOLID原则"/>
+<meta name="twitter:description" content="面向对象设计基本原则：SOLID原则 单一责任原则  定义：一个类只应承担一种责任 让一个类只做一件事。如果需要承担更多的工作，那么分解这个类  开放封闭原则  定义：实体应该对扩展是开放的，对修改是封闭的 类应该无需改类本身但是却容易扩展 例子： 继承 可以通过继承来扩展，但是不能够修改父类  里氏替换原则  定义：一个 对象在其出现的任何地方，都可以用子类实例做替换 当一个子类可以在任意地方替换基类，且短剑功能不受影响时，不会导致程序的错误 Eg： 多个数据源（SQL与NoSQL）获取用户信息  接口分离原则  定义：多个专门接口比单一的总体接口要好 客户不应被强迫依赖他是不用的方法。即，一个类实现的接口中，包含了他不需要的方法。将接口拆分成更小和更具体的接口，有助于解耦，从而更容易重构与更改  依赖倒置原则  定义：   高层次的模块不应该依赖低层次的模块，他们都应该依赖于抽象。     抽象不应该依赖于具体方法实现，具体实现应该依赖抽象   依赖倒置是实现开闭原则的方法 扩展 IOC DI?  "/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-20 15:53:38 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/solid%E5%8E%9F%E5%88%99/">SOLID原则</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h1 id="面向对象设计基本原则solid原则">面向对象设计基本原则：SOLID原则</h1>
+<h2 id="单一责任原则">单一责任原则</h2>
+<ul>
+<li>定义：一个类只应承担一种责任</li>
+<li>让一个类只做一件事。如果需要承担更多的工作，那么分解这个类</li>
+</ul>
+<h2 id="开放封闭原则">开放封闭原则</h2>
+<ul>
+<li>定义：实体应该对扩展是开放的，对修改是封闭的</li>
+<li>类应该无需改类本身但是却容易扩展</li>
+<li>例子： 继承 可以通过继承来扩展，但是不能够修改父类</li>
+</ul>
+<h2 id="里氏替换原则">里氏替换原则</h2>
+<ul>
+<li>定义：一个 对象在其出现的任何地方，都可以用子类实例做替换</li>
+<li>当一个子类可以在任意地方替换基类，且短剑功能不受影响时，不会导致程序的错误</li>
+<li>Eg： 多个数据源（SQL与NoSQL）获取用户信息</li>
+</ul>
+<h2 id="接口分离原则">接口分离原则</h2>
+<ul>
+<li>定义：多个专门接口比单一的总体接口要好</li>
+<li>客户不应被强迫依赖他是不用的方法。即，一个类实现的接口中，包含了他不需要的方法。将接口拆分成更小和更具体的接口，有助于解耦，从而更容易重构与更改</li>
+</ul>
+<h2 id="依赖倒置原则">依赖倒置原则</h2>
+<ul>
+<li>定义：</li>
+<li>
+<ul>
+<li>高层次的模块不应该依赖低层次的模块，他们都应该依赖于抽象。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>抽象不应该依赖于具体方法实现，具体实现应该依赖抽象</li>
+</ul>
+</li>
+<li>依赖倒置是实现开闭原则的方法</li>
+<li>扩展 IOC DI?</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        27 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-09-20 15:53 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/">
+                <span class="button__icon">←</span>
+                <span class="button__text">工厂方法</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+                <span class="button__text">单例模式</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SpringSecurity on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/springsecurity/</link>
+    <description>Recent content in SpringSecurity on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 01 Sep 2020 08:01:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/springsecurity/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SpringBoot Blog</title>
+      <link>https://procarihana.github.io/public/projects/springboot-blog/</link>
+      <pubDate>Tue, 01 Sep 2020 08:01:27 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/projects/springboot-blog/</guid>
+      <description>Spring Security
+ 就是一个Spring生态中关于安全方面的框架,是一个基于Spring AOP和Servlet过滤器的安全框架,充分利用了依赖注入（DI，Dependency Injection）和面向切面技术 SecurityContextHolder用于存储安全上下文（security context）的信息。当前操作的用户是谁，该用户是否已经被认证，他拥有哪些角色权限…这些都被保存在SecurityContextHolder中。SecurityContextHolder默认使用ThreadLocal 策略来存储认证信息。看到ThreadLocal 也就意味着，这是一种与线程绑定的策略。Spring Security在用户登录时自动绑定认证信息到当前线程，在用户退出时，自动清除当前线程的认证信息。 通过 @EnableWebSecurity注解开启Spring Security的功能 Authentication是spring security包中的接口，直接继承自Principal类，而Principal是位于java.security包中的。   Authentication在spring security中是最高级别的身份/认证的抽象。     由这个顶级接口，我们可以得到用户拥有的权限信息列表，密码，用户细节信息，用户身份信息，认证信息。 一个简单的使用Spring Security来进行验证用户名字密码的登录   Maven  ## Servlet #### HTTP 超文本传输协议 - 能够给任何人传送任何类型的文件 #### Tomcat - servlet容器 - catalina #### Filter 过滤器 - 是一个执行过滤任务的对象， - doFilter 请求响应，也能够通过FilterChain传给下一个filter，实现过滤的功能 #### listerner - Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 - 用于启动和关闭Spring容器的本体 #### Docker - 用统一的环境处理软件交互，运行速度比虚拟机要快 - Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 - docker的端口和本机的端口没有关系，除非绑定 #### index.html ##### 渲染 - 后端渲染:根据用户请求的内容的不同，决定返回的内容 - 前端渲染：把后端返回的内容填充到页面上面 - 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的 ##### 浏览器 - 浏览器栏发出的请求都是GET - 要调试post请求需要用到其他工具，例如postman - HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的 #### JVM - Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.</description>
+    </item>
+    
+  </channel>
+</rss>

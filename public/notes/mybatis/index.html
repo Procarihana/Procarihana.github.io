@@ -40,7 +40,7 @@
    UNPOOLED– 这个数据源的实现会每次请求时打开和关闭连接。虽然有点慢，但对那些数据库连接可用性要求不高的简单应用程序来说，是一个很好的选择。 性能表现则依赖于使用的数据库，对某些数据库来说，使用连接池并不重要，这个配置就很适合这种情形。UNPOOLED 类型的数据源仅仅需要配置以下 5 种属性：      driver – 这是 JDBC 驱动的 Java 类全限定名（并不是 JDBC 驱动中可能包含的数据源类）。 url – 这是数据库的 JDBC URL 地址。 username – 登录数据库的用户名。 password – 登录数据库的密码。 defaultTransactionIsolationLevel – 默认的连接事务隔离级别。 defaultNetworkTimeout – 等待数据库操作完成的默认网络超时时间（单位：毫秒）。查看 java.sql.Connection#setNetworkTimeout() 的 API 文档以获取更多信息。 作为可选项，你也可以传递属性给数据库驱动。只需在属性名加上“driver.”前缀即可，例如：driver.encoding=UTF8这将通过 DriverManager.getConnection(url, driverProperties) 方法传递值为 UTF8 的 encoding 属性给数据库驱动。      POOLED– 这种数据源的实现利用“池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间。 这种处理方式很流行，能使并发 Web 应用快速响应请求。    除了上述提到 UNPOOLED 下的属性外，还有更多属性用来配置 POOLED 的数据源：">
 <meta itemprop="datePublished" content="2020-09-01T10:57:12&#43;08:00" />
 <meta itemprop="dateModified" content="2020-09-01T10:57:12&#43;08:00" />
-<meta itemprop="wordCount" content="249">
+<meta itemprop="wordCount" content="458">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -93,7 +93,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li><li><a href="https://procarihana.github.io/public/exerciseproblems">EProblems</a></li>
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
     </ul>
 </nav>
 
@@ -230,6 +230,9 @@ poolPingQuery – 发送到数据库的侦测查询，用来检验连接是否�
  mybatis<span style="color:#f92672">.</span><span style="color:#a6e22e">config</span><span style="color:#f92672">-</span>location <span style="color:#f92672">=</span>  classpath<span style="color:#f92672">:</span>db<span style="color:#f92672">/</span>mybatis<span style="color:#f92672">/</span>Mybatis<span style="color:#f92672">-</span>config<span style="color:#f92672">.</span><span style="color:#a6e22e">xml</span>
 
 </code></pre></div><h4 id="mybatis-配置">Mybatis 配置</h4>
+<ul>
+<li>MybatisConfig.xml</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">&lt;?</span>xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span> <span style="color:#f92672">?&gt;</span>
 <span style="color:#f92672">&lt;!</span>DOCTYPE configuration
         PUBLIC <span style="color:#e6db74">&#34;-//mybatis.org//DTD Config 3.0//EN&#34;</span>
@@ -260,6 +263,123 @@ poolPingQuery – 发送到数据库的侦测查询，用来检验连接是否�
 
 <span style="color:#f92672">&lt;/</span>configuration<span style="color:#f92672">&gt;</span>
 
+</code></pre></div><h4 id="spring-处-mybatisconfig-配置">Spring 处 mybatisConfig 配置</h4>
+<pre><code>mybatis.config-location =  classpath:db/mybatis/Mybatis-config.xml
+</code></pre><h4 id="mapperxml">mapper.xml</h4>
+<ul>
+<li>
+<ul>
+<li>注意<code>resultMap</code>和<code>resultType</code>的区别！</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">&lt;!</span>DOCTYPE mapper
+        PUBLIC <span style="color:#e6db74">&#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;</span>
+        <span style="color:#e6db74">&#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;</span><span style="color:#f92672">&gt;</span>
+
+<span style="color:#f92672">&lt;</span>mapper namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;db.mybatis.mapper.rankItemsMapper&#34;</span><span style="color:#f92672">&gt;</span>
+ <span style="color:#f92672">&lt;</span>select id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;getRank&#34;</span> resultMap<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;RankMap&#34;</span><span style="color:#f92672">&gt;</span>
+</code></pre></div><h4 id="dao">Dao</h4>
+<ul>
+<li>
+<ul>
+<li>sqlSession.setLest/setOne(&ldquo;select id&rdquo;)</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Repository</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GoodsRankDaoImpl</span> <span style="color:#66d9ef">implements</span> goodsRankDao <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Autowired</span>
+    SqlSession sqlSession<span style="color:#f92672">;</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>RankItem<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getGoodsRank</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> sqlSession<span style="color:#f92672">.</span><span style="color:#a6e22e">selectList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;db.mybatis.mapper.rankItemsMapper.getRank&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="整理">整理</h2>
+<ol>
+<li>select 出来的多组数据，可暂时在mybatis 里新建一个map 储存</li>
+</ol>
+<pre><code>&lt;select id=&quot;getRank&quot; resultMap=&quot;RankMap&quot;&gt;
+        select goods.name as goods_name,
+        (case when sum(o.price * o .quantity) is null then 0 else sum(o.price * o .quantity) end) as total_price
+        from `order` o right
+        join goods
+        on goods.id = o.goods_id
+        group by goods.id order by total_price desc
+
+    &lt;/select&gt;
+
+    &lt;resultMap id=&quot;RankMap&quot; type=&quot;com.github.hcsp.Moudle.RankItem&quot;&gt;
+        &lt;result property=&quot;goodsName&quot; column=&quot;goods_name&quot;/&gt;
+        &lt;result property=&quot;totalPrice&quot; column=&quot;total_price&quot;/&gt;
+    &lt;/resultMap&gt;
+</code></pre><ul>
+<li>再通过<code>sqlsession. selectList()</code>来得到这组数据</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>column</td>
+<td>数据库中的列名，或者是列的别名。一般情况下，这和传递给 resultSet.getString(columnName) 方法的参数一样。</td>
+<td></td>
+</tr>
+<tr>
+<td>javaType</td>
+<td>一个 Java 类的完全限定名，或一个类型别名（关于内置的类型别名，可以参考上面的表格）。 如果你映射到一个 JavaBean，MyBatis 通常可以推断类型。然而，如果你映射到的是 HashMap，那么你应该明确地指定 javaType 来保证行为与期望的相一致。</td>
+<td></td>
+</tr>
+<tr>
+<td>jdbcType</td>
+<td>JDBC 类型，所支持的 JDBC 类型参见这个表格之前的“支持的 JDBC 类型”。 只需要在可能执行插入、更新和删除的且允许空值的列上指定 JDBC 类型。这是 JDBC 的要求而非 MyBatis 的要求。如果你直接面向 JDBC 编程，你需要对可能存在空值的列指定这个类型。</td>
+<td></td>
+</tr>
+<tr>
+<td>typeHandler</td>
+<td>我们在前面讨论过默认的类型处理器。使用这个属性，你可以覆盖默认的类型处理器。 这个属性值是一个类型处理器实现类的完全限定名，或者是类型别名。</td>
+<td></td>
+</tr>
+<tr>
+<td>select</td>
+<td>用于加载复杂类型属性的映射语句的 ID，它会从 column 属性中指定的列检索数据，作为参数传递给此 select 语句。具体请参考关联元素。</td>
+<td></td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>结果映射的 ID，可以将嵌套的结果集映射到一个合适的对象树中。 它可以作为使用额外 select 语句的替代方案。它可以将多表连接操作的结果映射成一个单一的 ResultSet。这样的 ResultSet 将会将包含重复或部分数据重复的结果集。为了将结果集正确地映射到嵌套的对象树中，MyBatis 允许你 “串联”结果映射，以便解决嵌套结果集的问题。想了解更多内容，请参考下面的关联元素。</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>构造方法形参的名字。从 3.4.3 版本开始，通过指定具体的参数名，你可以以任意顺序写入 arg 元素。参看上面的解释。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="问题">问题</h2>
+<ol>
+<li>在select join 的时候，select 出来的列最好as出别名，方便之后和对象数据交互的时候容易写出property</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">&lt;</span>mapper namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;db.mybatis.mapper.rankItemsMapper&#34;</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span>select id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;getRank&#34;</span> resultMap<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;RankMap&#34;</span><span style="color:#f92672">&gt;</span>
+      select goods<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> as goods_name<span style="color:#f92672">,</span> sum<span style="color:#f92672">(</span>o<span style="color:#f92672">.</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">*</span> o <span style="color:#f92672">.</span><span style="color:#a6e22e">quantity</span><span style="color:#f92672">)</span>as total_price from
+      <span style="color:#960050;background-color:#1e0010">`</span>order<span style="color:#960050;background-color:#1e0010">`</span> o right join goods
+      on goods<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> o<span style="color:#f92672">.</span><span style="color:#a6e22e">goods_id</span>
+      group by goods<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> order by total_price desc
+  <span style="color:#f92672">&lt;/</span>select<span style="color:#f92672">&gt;</span>
+
+  <span style="color:#f92672">&lt;</span>resultMap id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;RankMap&#34;</span> type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;com.github.hcsp.Moudle.RankItem&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;</span>result property<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;goodsName&#34;</span> column<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;goods_name&#34;</span><span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;</span>result property<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;totalPrice&#34;</span> column<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;total_price&#34;</span><span style="color:#f92672">/&gt;</span>
+  <span style="color:#f92672">&lt;/</span>resultMap<span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;/</span>mapper<span style="color:#f92672">&gt;</span>
 </code></pre></div>
             </div>
         </article>

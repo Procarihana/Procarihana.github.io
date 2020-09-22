@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>flyaway on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/flyaway/</link>
+    <description>Recent content in flyaway on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sun, 06 Sep 2020 11:42:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/flyaway/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Flyaway and Flyway</title>
+      <link>https://procarihana.github.io/public/notes/flyaway-and-flyway/</link>
+      <pubDate>Sun, 06 Sep 2020 11:42:45 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/flyaway-and-flyway/</guid>
+      <description>Docker mysal 迁移h2 的数据库  建立一个储存数据库的目录（datadir） mkdir   mkdir mysql-data  在docker 上面开设mysql的数据库   docker run --name mockNews-mysql -v `pwd`/mysql-mockNewsData:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=hana -e MYSQL_DATABSE=databasename -p 3306:3306 -d mysql    pwd只要MAC能够，Windows要用全路径名   更改有flyway的连接（用户名为root，密码为docker run 上面设置的密码）和Mybatis的config.xml里面的url，    config
+    flyway 数据库自动化管理 pom.xml
+ &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.flywaydb&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;flyway-maven-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;5.2.4&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;url&amp;gt;jdbc:mysql://localhost:3306/NEWS&amp;lt;/url&amp;gt; &amp;lt;user&amp;gt;root&amp;lt;/user&amp;gt; &amp;lt;password&amp;gt;hana&amp;lt;/password&amp;gt; &amp;lt;/configuration&amp;gt; or  &amp;lt;configuration&amp;gt; &amp;lt;url&amp;gt;jdbc:mysql://localhost:3306/news&amp;lt;/url&amp;gt; &amp;lt;user&amp;gt;root&amp;lt;/user&amp;gt; &amp;lt;password&amp;gt;hana&amp;lt;/password&amp;gt; &amp;lt;property name=&amp;quot;url&amp;quot;value=&amp;quot;jdbc:mysql://localhost:3306/news?characterEncoding=utf-8&amp;quot;/&amp;gt; 在src/main/resources/db/migration添加数据库需要重置的内容</description>
+    </item>
+    
+  </channel>
+</rss>
