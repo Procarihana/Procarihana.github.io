@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lambda on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/lambda/</link>
+    <description>Recent content in Lambda on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 28 Sep 2020 16:28:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Java 8 函数式编程</title>
+      <link>https://procarihana.github.io/public/posts/java-8-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Mon, 28 Sep 2020 16:28:56 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/java-8-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid>
+      <description>函数式编程 1、减少工作量 2、提高效率 3、减少Bug
+ Java8的新引入，包含函数式的设计，接口都有@FunctionalInterface的注解。注解在接口层面，且注解的接口要有且仅有一个抽象方法。&amp;ndash;&amp;gt;
+ Lambada 表达式 Lambda允许把函数作为一个方法的参数（函数）作为参数传递进方法中
+ Filter Pradicate 判断，用来判断一个东西是否满足条件    （user -&amp;gt; user.id%2==0）// 方法列表-&amp;gt;方法体，如果方法体太多要加括号，但一般精简. 满足 方法列表能够映射成布尔值，就能够转化成函数接口 方法应用有名字能够解释方法的用处，函数接口简单，但是没有任何注释；    满足类名::静态方法名字，且方法为布尔函数的时候，可以使用::     接口 输入 -&amp;gt; 输出  接口 输入 -&amp;gt; 输出     Supplier &amp;lt;Object&amp;gt; 虚无 -&amp;gt; Object  Function&amp;lt;User,String&amp;gt; User -&amp;gt; String   Lambad() -&amp;gt; new Object() void -&amp;gt; Object  Lambda user -&amp;gt; user.getName() User -&amp;gt; String   static Object create() void -&amp;gt; Object  static String getName(User user) User -&amp;gt; String   Object :: new void -&amp;gt; Object  User::getName User -&amp;gt; String      任何只包含一个抽象方法的接口都可以被自动转换为函数接口 抽象类：没有方法体    Supplier :从虚空里获得一个对象 &amp;ndash;&amp;gt; void -&amp;gt; OBject new 也同样是从虚空获得一个对象  public static void main (String [] agrs){ create(() -&amp;gt; new Object()); create(() -&amp;gt; &amp;#34;&amp;#34;); create(() -&amp;gt; new User(1,&amp;#34;A&amp;#34;)); create(Object :: new); } private static Object create(Supplier&amp;lt;Object&amp;gt; supplier){ return supplier.</description>
+    </item>
+    
+  </channel>
+</rss>

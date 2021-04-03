@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Server on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/server/</link>
+    <description>Recent content in Server on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 24 Sep 2020 19:46:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/server/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>多人聊天室</title>
+      <link>https://procarihana.github.io/public/projects/%E5%A4%9A%E4%BA%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/</link>
+      <pubDate>Thu, 24 Sep 2020 19:46:15 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/projects/%E5%A4%9A%E4%BA%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/</guid>
+      <description>使用多线程是因为信息收发IO是非常慢的
+Socket 插座 套接字  使用java自带的java.net.ServerSocket 双向的可以收发数据的东西 server.accept()等待一个连接连入，直到有链接连入，否则就会一直阻塞   返回一个Socket 能够用于收发数据     链接后就能够通过Socket读取数据。使用的是inputstream 速度很慢。而且这个Socket只能够单独地进行读取数据或者链接，在读取数据的过程中就不能够通过这个Socket处理链接 &amp;ndash;&amp;gt; 数据读写不能够放在主线程里面，不然就会出现阻塞。需要建立新的线程完成   socket 会缓存IO 所以传递完一次消息后就要flash 清空  用户协议  用来识别用户    userid user name    规定每个客户端连上的时候要先上报自己的名字，如果是空话就吧stream得到的为用户的名字  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>正则表达式 on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+    <description>Recent content in 正则表达式 on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 02 Sep 2020 23:44:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>正则表达式</title>
+      <link>https://procarihana.github.io/public/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+      <pubDate>Wed, 02 Sep 2020 23:44:15 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+      <description>正则表达式  ⽤于描述⽂本/字符串的⼀组规则   你可以使⽤⼀些强⼤的规则来：   处理⽂本 提取信息  常⽤的元字符          ^ 开始位置   $ 结束位置   . 单个任意字符（不⼀定包含换⾏符）   \w 单个“word”字符 字⺟/数字/下划线/汉字   \s 单个空⽩字符（\n\r\t）   \d 单个数字字符   \b 单词的开始或结束    重复          |0次或多次   |1次或多次 ? |0次或1次 {n} |n次 {n,} |&amp;gt;=n次 {n,m} |n到m次  选择          [aeiou] 单个的a/e/i/o/u字符之⼀   [0-9] 单个数字字符   [A-Z] 单个⼤写字⺟   [A-Z0-9_] ⼤写字⺟或者数字或者下划线   Hi hi 等价于    反义          [^aeiou] 单个的除a/e/i/o/u之外的字符   [^A] 单个⾮x字符   \W 单个⾮\w（字⺟/数字/下划线/汉字）   \S 单个⾮\s（空⽩）   \D 单个⾮\d（数字）字符   \B ⾮开头/结束位置    Java中的正则表达式  String split() 划分的标准   line 为”\n“   replaceAll/replaceFirst matches    尽量少⽤或者少编译，因为效率低 Java中的正则表达式是⽐较昂贵的 正则表达式需要解析，代码⾮常昂贵 匹配过程⾮常昂贵   分组与捕获  想要将所有符合正则表达式的⽂本抓出来处理 使⽤括号来指定⼀个被捕获的分组 分组的编号从1开始 分组的编号计算只看左括号 (?</description>
+    </item>
+    
+  </channel>
+</rss>

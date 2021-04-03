@@ -52,7 +52,7 @@ public class Light { @Deprecated public void turnOn(){//接口 打开电路1(); 
 public class Light { @Deprecated public void turnOn(){//接口 打开电路1(); 打开电路2(); 打开电路3();//细节 } public static void main(String[] args) { Light light = new Light();  light.">
 <meta itemprop="datePublished" content="2020-05-11T17:18:01&#43;08:00" />
 <meta itemprop="dateModified" content="2020-05-11T17:18:01&#43;08:00" />
-<meta itemprop="wordCount" content="137">
+<meta itemprop="wordCount" content="148">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -111,7 +111,7 @@ public class Light { @Deprecated public void turnOn(){//接口 打开电路1(); 
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li><li><a href="https://procarihana.github.io/public/exerciseproblems">EProblems</a></li>
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
     </ul>
 </nav>
 
@@ -255,6 +255,11 @@ return &ldquo;M&rdquo;.equals(grnder);</p>
 </li>
 <li>（包之间没有任何关系）</li>
 <li>private inner class 只能在同一个类中访问</li>
+<li>
+<ul>
+<li>static修饰的成员属于类成员，父类字段或方法只能被子类同名字段或方法遮蔽，public也不能被继承覆盖，</li>
+</ul>
+</li>
 <li>了解Java Platform Module System</li>
 </ul>
 <h3 id="用中间类绕过包级私有的限制">用中间类绕过包级私有的限制</h3>
@@ -267,6 +272,23 @@ return &ldquo;M&rdquo;.equals(grnder);</p>
 <li>JSON序列化/反序列化与JavaBean约定</li>
 <li>setter的链式调用</li>
 <li>builder 模式</li>
+</ul>
+<p>（1）父类静态成员和静态初始化块，按在代码中出现的顺序依次执行。
+（2）子类静态成员和静态初始化块，按在代码中出现的顺序依次执行。
+（3）父类实例成员和实例初始化块，按在代码中出现的顺序依次执行。
+（4）执行父类构造方法。
+（5）子类实例成员和实例初始化块，按在代码中出现的顺序依次执行。
+（6）执行子类构造方法。</p>
+<h4 id="对象的相等性">对象的相等性</h4>
+<ul>
+<li>
+<p>引用到堆上同一个对象的两个引用是相等的。如果对两个引用调用hashCode方法，会得到相同的结果，如果对象所属的类没有覆盖Object的hashCode方法的话，hashCode会返回每个对象特有的序号（java是依据对象的内存地址计算出的此序号），所以两个不同的对象的hashCode值是不可能相等的。</p>
+</li>
+<li>
+<ul>
+<li>如果想要让两个不同的Person对象视为相等的，就必须覆盖Object继下来的hashCode方法和equals方法，因为Object  hashCode方法返回的是该对象的内存地址，所以必须重写hashCode方法，才能保证两个不同的对象具有相同的hashCode，同时也需要两个不同对象比较equals方法会返回true</li>
+</ul>
+</li>
 </ul>
 
       </div>
@@ -284,7 +306,7 @@ return &ldquo;M&rdquo;.equals(grnder);</p>
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        137 Words
+        148 Words
       </p>
 
       <p>

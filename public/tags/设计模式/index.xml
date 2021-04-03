@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 21 Sep 2020 18:23:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>工厂方法</title>
+      <link>https://procarihana.github.io/public/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Mon, 21 Sep 2020 18:23:42 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95/</guid>
+      <description>对象创建模式  避免用new创建过程中需要依赖具体类，从而支持对象创建的稳定 避免紧耦合，对拓展是开放的，对修改是封闭的 典型： Factory Method Absttact Factory Builder Prototype（原型）   Clone   Singleton  简单工厂模式 例  处理从文件里面读出的数据 设计：DataManager类，FileReader类   从不同的去到读取数据，一开始需要每渠道都写一种实现 processDataFromRest 、processDataFromDatabase 等等的方法，而这些方法都要需要相应的dataReader对象去实现。 为了减少  工厂方法 - 目的  定义一个用于创建对象的接口，让子类决定实例化哪一个具体的类 FactoryMethod 使一个类的实例化延迟到其子类 目的：解耦  动机  框架使用抽象类定义和维护对象之间的关系 对象的创建通常也由此框架负责  适用  当一个类不知道它锁必须创建的对象的类的时候 当一个类希望由他的子类来指定它所创建的对象的时候 当类将创建对象的指责委托给多个帮助子类中的某一个，并且希望将哪一个帮助子类是代理者这一信息局部化的时候  结构组成  Produce（DataReader） 定义工厂方法锁创建的对象的接口 ContreteProduct（FileDatareader) :实现Product接口 Creator（DataReaderFactory）：声明工厂方法，该方法返回一个Product类型的对象 ConcreteCreator：重定义工厂方法以创建一个Product对象  总结   Factory Method 主要目的是为了解耦对象使用者和具体类型之间的紧耦合关系
+  Factory Method 是一个类的实例化延迟到其子类</description>
+    </item>
+    
+  </channel>
+</rss>

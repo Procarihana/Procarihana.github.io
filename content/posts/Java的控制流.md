@@ -72,16 +72,17 @@ draft: false
     }
 }
 ## 改变循环的流程：break/continue
-- braek;立即结束包裹当前braek的第一层循环
+- braek;立即结束包裹当前braek第一层循环
 - 找到结果后，打破当前循环，结束循环。
 
-
+```java
         public static boolean find(List<Integer> list,int value){
         boolean exist = false;
         for (Integer element :list){
             if(element == value){
                 exist = true;
-                break;     //break 包裹这 for 的循环 --> 结束的是for循环
+                break;    
+                 //break 包裹这 if 的循环 --> 结束的是if循环
             }
         }
         return exist;
@@ -93,15 +94,18 @@ draft: false
         find(list1,2);
 
        }
-- continue;跳过包裹当前continue的第一层循环中的其余语句，继续下一次循环
+```
+
+- continue;跳过包裹当前continue第一层循环中的其余语句，继续下一次循环
 - 如果if里面的语句满足，则跳过for剩下的未执行的语句，直接调回for的循环条件执行循环
 
-
+```java
       //只打印list重的奇数元素
       public static void printOdd(List<Integer> list){
         for (int i= 0; i< list.size();i++){
              if (list.get(i) % 2 ==0 ){
-                 continue;//continue包裹的第一层循环是for --> 执行完第一次循环之后，就进入if
+                 continue;
+                 //continue包裹的第一层循环是for --> 执行完第一次循环之后，就进入if
              } System.out.println(list.get(i));
         }
          }
@@ -135,6 +139,8 @@ draft: false
         printOddNumbersBetween(-2, 2);
         }
        }
+
+```
 - break label
 
 label：标签，在程序的某得地方设置标签，然后跳转到标签处，实现程序控制流程转移

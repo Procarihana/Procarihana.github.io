@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RadomAccess on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/radomaccess/</link>
+    <description>Recent content in RadomAccess on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 11 Sep 2020 20:17:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/radomaccess/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>List</title>
+      <link>https://procarihana.github.io/public/notes/list/</link>
+      <pubDate>Fri, 11 Sep 2020 20:17:55 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/list/</guid>
+      <description>List add  添加元素在右边（最后）  LinkedList 和 ArrayList 区别 ArrayList  继承 AbstraciList （实现List接口中除了size()和get（int location）之外的方法和Collection接口）  public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomAccess, Cloneable, java.io.Serializable{ LinkdeList  继承 AbstractSequentialList（继承 AbstractCollectionm,实现了“链表中，根据index索引值操作链表的全部方法”）Deque接口） 双端 &amp;ndash;&amp;gt; 可以被当做站、队列或者双端队列使用  public class LinkedList&amp;lt;E&amp;gt; extends AbstractSequentialList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, Deque&amp;lt;E&amp;gt;, Cloneable, java.io.Serializable { transient int size = 0; /** * Pointer to first node. * Invariant: (first == null &amp;amp;&amp;amp; last == null) || * (first.prev == null &amp;amp;&amp;amp; first.</description>
+    </item>
+    
+  </channel>
+</rss>

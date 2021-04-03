@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Servlet on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/servlet/</link>
+    <description>Recent content in Servlet on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sun, 04 Oct 2020 14:18:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/servlet/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Servlet</title>
+      <link>https://procarihana.github.io/public/posts/servlet/</link>
+      <pubDate>Sun, 04 Oct 2020 14:18:34 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/servlet/</guid>
+      <description>Socket 从客户端到服务器的四元组，能够读写数据（IntOutputStream） Servlet 不需要手动通过socket写符合http协议的字节流给服务器，一套规范，但本质上是Java 的接口，避免手工处理http的内容，是web应用的基石
+ Java Servlet api maven   HttpServerRequest 能够完成getCookie()、getConrectTtpe()、header等等，能够读取能够生成，状态码也可以   全是接口，不需要具体实现    Socket 把字节流封装成HttpServletRequest对象 和 HtppServletResponse 对象， ServletRequest 可以直接强制类型转换成HttpServletRequest request.getParameter(&amp;quot;&amp;quot;) 设置Servlet对象 设置Json = &amp;quot;{\&amp;quot;requestParameter\&amp;quot;+&amp;quot;:&amp;quot;+ }&amp;quot; response.setContentType() response.getOutputStream().write(Json.getByte()) 把outputStream flush（）    Servlet 容器 为Servlet 提供运行   Servlet 不能够独立运行，必须依赖容器     bin 目录下面存放着可运行的程序       bat 是windows sh 是Mac     Tomcat 的可执行程序同样是放在bin目录里面 核心为 catalina   运行tomcat 就需要把 运行的Servlet 存放在 catalina_base/webapps/.</description>
+    </item>
+    
+    <item>
+      <title>Servlet</title>
+      <link>https://procarihana.github.io/public/notes/servlet/</link>
+      <pubDate>Thu, 17 Sep 2020 20:02:18 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/servlet/</guid>
+      <description>Servlet的生命周期分为5个阶段：加载、创建、初始化、处理客户请求、卸载。 (1)加载：容器通过类加载器使用servlet类对应的文件加载servlet (2)创建：通过调用servlet构造函数创建一个servlet对象 (3)初始化：调用init方法初始化 (4)处理客户请求：每当有一个客户请求，容器会创建一个线程来处理客户请求 (5)卸载：调用destroy方法让servlet自己释放其占用的资源</description>
+    </item>
+    
+  </channel>
+</rss>

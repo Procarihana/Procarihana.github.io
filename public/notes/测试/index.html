@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="白盒测试——把测试对象看作一个打开的盒子，程序内部的逻辑结构和其他信息对测试人员是公开的。 黑盒测试——已知产品的功能设计规格，不考虑程序内部结构，进行测试证明每个实现了的功能是否符合要求 灰盒测试——介于白盒和黑盒测试之间，即关注输出对输入的正确性，也关注程序内部表现。 回归测试——软件或环境的修复或更正后的“再测试”，自动测试工具对这类测试尤其有用。 单元测试——是最小粒度的测试，以测试某个功能或代码块。一般由程序员来做，因为它需要知道内部程序设计和编码的细节。
+JUnit JUnit中提供了很多断言方法用来测试不同的条件， assertEquals(a, b) 测试a是否等于b（a和b是原始类型数值(primitive value) 或者必须为实现比较而具有equal方法） assertFalse(a) 测试a是否为false （假），a是一个Boolean数值 。 assertTrue(a) 测试a是否为true （真），a是一个Boolean 数值 assertNotNull(a) 测试a是否非空，a是一个对象或者null 。 assertNull(a) 测试a是否为null，a是一个对象或者null 。 assertNotSame(a, b) 测试a和b是否没有都引用同一个对象 。 assertSame(a, b) 测试a和b是否都引用同一个对象 。  Unit 提供了6大类31组断言方法，包括基础断言、数字断言、字符断言、布尔断言、对象断言。   assertEquals（Object expcted,Object actual)内部逻辑判断使用equals()方法，这表明断言两个实例的内部哈希值是否相等时，最好使用该方法对相应类实例的值进行比较。     而assertSame（Object expected,Object actual）内部逻辑判断使用了Java运算符“==”，这表明该断言判断两个实例是否来自于同一个引用（Reference），最好使用该方法对不同类的实例的值进行比对。     asserEquals(String message,String expected,String actual)该方法对两个字符串进行逻辑比对，如果不匹配则显示着两个字符串有差异的地方。     ComparisonFailure类提供两个字符串的比对，不匹配则给出详细的差异字符。 [https://www.cnblogs.com/bnuvincent/archive/2004/01/13/2079550.html]    Mockito  Mockito并非不是通过代理调用真实实例，而是创建它的一个副本。 默认情况下，对于所有返回值的方法，mock将返回null， 一旦存根，该方法将始终返回一个存根值  Mock Spy  Spy使用真实的实例副本来进行，不会和实例进行交互 所以如果你保留真实的实例并与之交互，不要期望被间谍知道那些交互 及其对实际实例状态的影响。 推论是，当 unstustub 方法被称为on spy，而不在实际实例时， *你不会看到对实际实例的任何影响  MockitoUnit  Mockito使用JUnit运行器使测试保持整洁并改进调试体验。   自动检测存根参数，并设置为默认（Mockito 3." />
+<meta name="keywords" content=", , " />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/notes/%E6%B5%8B%E8%AF%95/" />
+
+
+    <title>
+        
+            测试 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="测试">
+<meta itemprop="description" content="白盒测试——把测试对象看作一个打开的盒子，程序内部的逻辑结构和其他信息对测试人员是公开的。 黑盒测试——已知产品的功能设计规格，不考虑程序内部结构，进行测试证明每个实现了的功能是否符合要求 灰盒测试——介于白盒和黑盒测试之间，即关注输出对输入的正确性，也关注程序内部表现。 回归测试——软件或环境的修复或更正后的“再测试”，自动测试工具对这类测试尤其有用。 单元测试——是最小粒度的测试，以测试某个功能或代码块。一般由程序员来做，因为它需要知道内部程序设计和编码的细节。
+JUnit JUnit中提供了很多断言方法用来测试不同的条件， assertEquals(a, b) 测试a是否等于b（a和b是原始类型数值(primitive value) 或者必须为实现比较而具有equal方法） assertFalse(a) 测试a是否为false （假），a是一个Boolean数值 。 assertTrue(a) 测试a是否为true （真），a是一个Boolean 数值 assertNotNull(a) 测试a是否非空，a是一个对象或者null 。 assertNull(a) 测试a是否为null，a是一个对象或者null 。 assertNotSame(a, b) 测试a和b是否没有都引用同一个对象 。 assertSame(a, b) 测试a和b是否都引用同一个对象 。  Unit 提供了6大类31组断言方法，包括基础断言、数字断言、字符断言、布尔断言、对象断言。   assertEquals（Object expcted,Object actual)内部逻辑判断使用equals()方法，这表明断言两个实例的内部哈希值是否相等时，最好使用该方法对相应类实例的值进行比较。     而assertSame（Object expected,Object actual）内部逻辑判断使用了Java运算符“==”，这表明该断言判断两个实例是否来自于同一个引用（Reference），最好使用该方法对不同类的实例的值进行比对。     asserEquals(String message,String expected,String actual)该方法对两个字符串进行逻辑比对，如果不匹配则显示着两个字符串有差异的地方。     ComparisonFailure类提供两个字符串的比对，不匹配则给出详细的差异字符。 [https://www.cnblogs.com/bnuvincent/archive/2004/01/13/2079550.html]    Mockito  Mockito并非不是通过代理调用真实实例，而是创建它的一个副本。 默认情况下，对于所有返回值的方法，mock将返回null， 一旦存根，该方法将始终返回一个存根值  Mock Spy  Spy使用真实的实例副本来进行，不会和实例进行交互 所以如果你保留真实的实例并与之交互，不要期望被间谍知道那些交互 及其对实际实例状态的影响。 推论是，当 unstustub 方法被称为on spy，而不在实际实例时， *你不会看到对实际实例的任何影响  MockitoUnit  Mockito使用JUnit运行器使测试保持整洁并改进调试体验。   自动检测存根参数，并设置为默认（Mockito 3.">
+<meta itemprop="datePublished" content="2020-09-15T20:31:34&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-15T20:31:34&#43;08:00" />
+<meta itemprop="wordCount" content="68">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content=",," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="测试"/>
+<meta name="twitter:description" content="白盒测试——把测试对象看作一个打开的盒子，程序内部的逻辑结构和其他信息对测试人员是公开的。 黑盒测试——已知产品的功能设计规格，不考虑程序内部结构，进行测试证明每个实现了的功能是否符合要求 灰盒测试——介于白盒和黑盒测试之间，即关注输出对输入的正确性，也关注程序内部表现。 回归测试——软件或环境的修复或更正后的“再测试”，自动测试工具对这类测试尤其有用。 单元测试——是最小粒度的测试，以测试某个功能或代码块。一般由程序员来做，因为它需要知道内部程序设计和编码的细节。
+JUnit JUnit中提供了很多断言方法用来测试不同的条件， assertEquals(a, b) 测试a是否等于b（a和b是原始类型数值(primitive value) 或者必须为实现比较而具有equal方法） assertFalse(a) 测试a是否为false （假），a是一个Boolean数值 。 assertTrue(a) 测试a是否为true （真），a是一个Boolean 数值 assertNotNull(a) 测试a是否非空，a是一个对象或者null 。 assertNull(a) 测试a是否为null，a是一个对象或者null 。 assertNotSame(a, b) 测试a和b是否没有都引用同一个对象 。 assertSame(a, b) 测试a和b是否都引用同一个对象 。  Unit 提供了6大类31组断言方法，包括基础断言、数字断言、字符断言、布尔断言、对象断言。   assertEquals（Object expcted,Object actual)内部逻辑判断使用equals()方法，这表明断言两个实例的内部哈希值是否相等时，最好使用该方法对相应类实例的值进行比较。     而assertSame（Object expected,Object actual）内部逻辑判断使用了Java运算符“==”，这表明该断言判断两个实例是否来自于同一个引用（Reference），最好使用该方法对不同类的实例的值进行比对。     asserEquals(String message,String expected,String actual)该方法对两个字符串进行逻辑比对，如果不匹配则显示着两个字符串有差异的地方。     ComparisonFailure类提供两个字符串的比对，不匹配则给出详细的差异字符。 [https://www.cnblogs.com/bnuvincent/archive/2004/01/13/2079550.html]    Mockito  Mockito并非不是通过代理调用真实实例，而是创建它的一个副本。 默认情况下，对于所有返回值的方法，mock将返回null， 一旦存根，该方法将始终返回一个存根值  Mock Spy  Spy使用真实的实例副本来进行，不会和实例进行交互 所以如果你保留真实的实例并与之交互，不要期望被间谍知道那些交互 及其对实际实例状态的影响。 推论是，当 unstustub 方法被称为on spy，而不在实际实例时， *你不会看到对实际实例的任何影响  MockitoUnit  Mockito使用JUnit运行器使测试保持整洁并改进调试体验。   自动检测存根参数，并设置为默认（Mockito 3."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-15 20:31:34 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://procarihana.github.io/public/notes/%E6%B5%8B%E8%AF%95/">测试</a></h2>
+
+            
+
+            <div class="post-content">
+                <p>白盒测试——把测试对象看作一个打开的盒子，程序内部的逻辑结构和其他信息对测试人员是公开的。
+黑盒测试——已知产品的功能设计规格，不考虑程序内部结构，进行测试证明每个实现了的功能是否符合要求
+灰盒测试——介于白盒和黑盒测试之间，即关注输出对输入的正确性，也关注程序内部表现。
+回归测试——软件或环境的修复或更正后的“再测试”，自动测试工具对这类测试尤其有用。
+单元测试——是最小粒度的测试，以测试某个功能或代码块。一般由程序员来做，因为它需要知道内部程序设计和编码的细节。</p>
+<h2 id="junit">JUnit</h2>
+<h4 id="junit中提供了很多断言方法用来测试不同的条件">JUnit中提供了很多断言方法用来测试不同的条件，</h4>
+<pre><code>assertEquals(a, b)
+      测试a是否等于b（a和b是原始类型数值(primitive value) 或者必须为实现比较而具有equal方法）
+assertFalse(a)
+      测试a是否为false （假），a是一个Boolean数值 。
+assertTrue(a)
+      测试a是否为true （真），a是一个Boolean 数值
+assertNotNull(a)
+      测试a是否非空，a是一个对象或者null 。
+assertNull(a)
+      测试a是否为null，a是一个对象或者null 。
+assertNotSame(a, b)
+      测试a和b是否没有都引用同一个对象 。
+assertSame(a, b)
+      测试a和b是否都引用同一个对象 。
+</code></pre><ul>
+<li>Unit 提供了6大类31组断言方法，包括基础断言、数字断言、字符断言、布尔断言、对象断言。</li>
+<li>
+<ul>
+<li>assertEquals（Object expcted,Object actual)内部逻辑判断使用equals()方法，这表明断言两个实例的内部哈希值是否相等时，最好使用该方法对相应类实例的值进行比较。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>而assertSame（Object expected,Object actual）内部逻辑判断使用了Java运算符“==”，这表明该断言判断两个实例是否来自于同一个引用（Reference），最好使用该方法对不同类的实例的值进行比对。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>asserEquals(String message,String expected,String actual)该方法对两个字符串进行逻辑比对，如果不匹配则显示着两个字符串有差异的地方。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>ComparisonFailure类提供两个字符串的比对，不匹配则给出详细的差异字符。
+[https://www.cnblogs.com/bnuvincent/archive/2004/01/13/2079550.html]</li>
+</ul>
+</li>
+</ul>
+<h2 id="mockito">Mockito</h2>
+<ul>
+<li>Mockito并非不是通过代理调用真实实例，而是创建它的一个副本。</li>
+<li>默认情况下，对于所有返回值的方法，mock将返回null，</li>
+<li>一旦存根，该方法将始终返回一个存根值</li>
+</ul>
+<h4 id="mock">Mock</h4>
+<h4 id="spy">Spy</h4>
+<ul>
+<li>Spy使用真实的实例副本来进行，不会和实例进行交互
+所以如果你保留真实的实例并与之交互，不要期望被间谍知道那些交互
+<em>及其对实际实例状态的影响。
+<em>推论是，当<!-- raw HTML omitted --></em> unstustub <em><!-- raw HTML omitted -->方法被称为<!-- raw HTML omitted --></em>on spy</em><!-- raw HTML omitted -->，而<!-- raw HTML omitted --><em>不在实际实例</em><!-- raw HTML omitted -->时，
+*你不会看到对实际实例的任何影响</li>
+</ul>
+<h4 id="mockitounit">MockitoUnit</h4>
+<ul>
+<li>Mockito使用JUnit运行器使测试保持整洁并改进调试体验。</li>
+<li>
+<ul>
+<li>自动检测存根参数，并设置为默认（Mockito 3.0）</li>
+</ul>
+</li>
+<li>Runner兼容JUnit 4.4+</li>
+</ul>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  				<p>
+  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://procarihana.github.io/public/tags/"></a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/"></a></span>
+  				</p>
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

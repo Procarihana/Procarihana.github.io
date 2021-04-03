@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="上界通配符（Upper Bounds Wildcards）&amp;lt; ? extends T &amp;gt; 下界通配符（Lower Bouds Wildcards） &amp;lt;? super T&amp;gt;  通配符和边界的作用 边界让不同泛型转换更加容易，但是部分容易功能容易失效  上界通配符 : 一个能放水果以及其子类的盘子    苹果继承水果，但是能放水果的盘子不能够放苹果，因为能放苹果的盘子并非继承能放水果的盘子，他们之间没有继承关系 为了能够让盘子放苹果，需要一个Plate&amp;lt;? extend Fruit&amp;gt;的盘子，这个盘子能够放Fruit 的所有子类    下界通配符 ：一个能放水果Fruit 以及其父类的盘子    Fruit 继承 Food， 所以Plate&amp;lt;? super Fruit&amp;gt; 的盘子可以放 Plate&amp;lt; Food&amp;gt;, 因为 Fruit 作为下界限，所以 Apple 就不能放进去了     上界不能往里存，只能往外去   因为编译器只知道容器内是Fruit 或者其子类，但具体类型是不知道的，所以用 Plate&amp;lt;Apple&amp;gt; 赋值之后，plate 并没有标上Apple，而是标上一个占位符CAP#1,表示捕获一个Fruit或Fruit子类，具体是什么类并不知道，只用代号代替。所以之后无论添加什么类型都无法判断是否和apple 是统一类型，因为只有代号。    Plate&amp;lt;? extends super Fruit&amp;gt; p = new Plate&amp;lt;Fruit&amp;gt;(new Apple()); //不能存入任何元素  p." />
+<meta name="keywords" content=", , " />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/java-%E6%B3%9B%E5%9E%8B/" />
+
+
+    <title>
+        
+            Java 泛型 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Java 泛型">
+<meta itemprop="description" content="上界通配符（Upper Bounds Wildcards）&lt; ? extends T &gt; 下界通配符（Lower Bouds Wildcards） &lt;? super T&gt;  通配符和边界的作用 边界让不同泛型转换更加容易，但是部分容易功能容易失效  上界通配符 : 一个能放水果以及其子类的盘子    苹果继承水果，但是能放水果的盘子不能够放苹果，因为能放苹果的盘子并非继承能放水果的盘子，他们之间没有继承关系 为了能够让盘子放苹果，需要一个Plate&lt;? extend Fruit&gt;的盘子，这个盘子能够放Fruit 的所有子类    下界通配符 ：一个能放水果Fruit 以及其父类的盘子    Fruit 继承 Food， 所以Plate&lt;? super Fruit&gt; 的盘子可以放 Plate&lt; Food&gt;, 因为 Fruit 作为下界限，所以 Apple 就不能放进去了     上界不能往里存，只能往外去   因为编译器只知道容器内是Fruit 或者其子类，但具体类型是不知道的，所以用 Plate&lt;Apple&gt; 赋值之后，plate 并没有标上Apple，而是标上一个占位符CAP#1,表示捕获一个Fruit或Fruit子类，具体是什么类并不知道，只用代号代替。所以之后无论添加什么类型都无法判断是否和apple 是统一类型，因为只有代号。    Plate&lt;? extends super Fruit&gt; p = new Plate&lt;Fruit&gt;(new Apple()); //不能存入任何元素  p.">
+<meta itemprop="datePublished" content="2020-09-28T19:12:01&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-28T19:12:01&#43;08:00" />
+<meta itemprop="wordCount" content="111">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content=",," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="Java 泛型"/>
+<meta name="twitter:description" content="上界通配符（Upper Bounds Wildcards）&lt; ? extends T &gt; 下界通配符（Lower Bouds Wildcards） &lt;? super T&gt;  通配符和边界的作用 边界让不同泛型转换更加容易，但是部分容易功能容易失效  上界通配符 : 一个能放水果以及其子类的盘子    苹果继承水果，但是能放水果的盘子不能够放苹果，因为能放苹果的盘子并非继承能放水果的盘子，他们之间没有继承关系 为了能够让盘子放苹果，需要一个Plate&lt;? extend Fruit&gt;的盘子，这个盘子能够放Fruit 的所有子类    下界通配符 ：一个能放水果Fruit 以及其父类的盘子    Fruit 继承 Food， 所以Plate&lt;? super Fruit&gt; 的盘子可以放 Plate&lt; Food&gt;, 因为 Fruit 作为下界限，所以 Apple 就不能放进去了     上界不能往里存，只能往外去   因为编译器只知道容器内是Fruit 或者其子类，但具体类型是不知道的，所以用 Plate&lt;Apple&gt; 赋值之后，plate 并没有标上Apple，而是标上一个占位符CAP#1,表示捕获一个Fruit或Fruit子类，具体是什么类并不知道，只用代号代替。所以之后无论添加什么类型都无法判断是否和apple 是统一类型，因为只有代号。    Plate&lt;? extends super Fruit&gt; p = new Plate&lt;Fruit&gt;(new Apple()); //不能存入任何元素  p."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-28 19:12:01 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/java-%E6%B3%9B%E5%9E%8B/">Java 泛型</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <ul>
+<li>上界通配符（Upper Bounds Wildcards）&lt; ? extends T &gt;</li>
+<li>下界通配符（Lower Bouds Wildcards） &lt;? super T&gt;</li>
+</ul>
+<h4 id="通配符和边界的作用">通配符和边界的作用</h4>
+<h5 id="边界让不同泛型转换更加容易但是部分容易功能容易失效">边界让不同泛型转换更加容易，但是部分容易功能容易失效</h5>
+<ul>
+<li>上界通配符 : 一个能放水果以及其子类的盘子</li>
+</ul>
+<blockquote>
+<ul>
+<li>苹果继承水果，但是能放水果的盘子不能够放苹果，因为能放苹果的盘子并非继承能放水果的盘子，他们之间没有继承关系</li>
+<li>为了能够让盘子放苹果，需要一个<code>Plate&lt;? extend Fruit&gt;</code>的盘子，这个盘子能够放Fruit 的所有子类</li>
+</ul>
+</blockquote>
+<ul>
+<li>下界通配符 ：一个能放水果Fruit 以及其父类的盘子</li>
+</ul>
+<blockquote>
+<ul>
+<li>Fruit 继承 Food， 所以<code>Plate&lt;? super Fruit&gt;</code> 的盘子可以放 <code>Plate&lt; Food&gt;</code>, 因为 Fruit 作为下界限，所以 Apple 就不能放进去了</li>
+</ul>
+</blockquote>
+<hr>
+<ul>
+<li>上界不能往里存，只能往外去</li>
+<li>
+<ul>
+<li>因为编译器只知道容器内是Fruit 或者其子类，但具体类型是不知道的，所以用
+<code>Plate&lt;Apple&gt;</code> 赋值之后，plate 并没有标上Apple，而是标上一个占位符<code>CAP#1</code>,表示捕获一个Fruit或Fruit子类，具体是什么类并不知道，只用代号代替。所以之后无论添加什么类型都无法判断是否和apple 是统一类型，因为只有代号。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Plate<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> <span style="color:#66d9ef">super</span> Fruit<span style="color:#f92672">&gt;</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Plate<span style="color:#f92672">&lt;</span>Fruit<span style="color:#f92672">&gt;(</span><span style="color:#66d9ef">new</span> Apple<span style="color:#f92672">());</span>
+ <span style="color:#75715e">//不能存入任何元素
+</span><span style="color:#75715e"></span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Fruit<span style="color:#f92672">());</span> <span style="color:#75715e">//ERROR
+</span><span style="color:#75715e"></span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Apple<span style="color:#f92672">());</span> <span style="color:#75715e">//ERROR
+</span><span style="color:#75715e"></span> <span style="color:#75715e">//可以读出且能放在FRUIT和其父类
+</span><span style="color:#75715e"></span> Apple newFruit1 <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span> <span style="color:#75715e">//ERROR
+</span><span style="color:#75715e"></span> Fruit newFruit2 <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+ Object newFruit3 <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</code></pre></div><ul>
+<li>下界不影响往里存，但往外去只能够放在Object对象里</li>
+<li>
+<ul>
+<li>因为下界规定了元素的最小粒度的下限，实际上是放松了容器元素的类型控制。既然元素Fruit的基类，那往里存粒度比Fruit小的都可以。但是往外读取元素就只能所有类的基类Object对象才能装下，这样的话元素类型信息就全部丢失</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Plate<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> Fruit<span style="color:#f92672">&gt;</span> p <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Plate<span style="color:#f92672">&lt;</span>Fruit<span style="color:#f92672">&gt;(</span><span style="color:#66d9ef">new</span> Fruit<span style="color:#f92672">()));</span>
+ <span style="color:#75715e">//往里存元素正常
+</span><span style="color:#75715e"></span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Fruit<span style="color:#f92672">());</span>
+ p<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Apple<span style="color:#f92672">());</span>
+ <span style="color:#75715e">//往外拿只能够放在Object里面
+</span><span style="color:#75715e"></span> Apple newFruit1 <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span> <span style="color:#75715e">//ERROR
+</span><span style="color:#75715e"></span> Fruit newFruit2 <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span><span style="color:#75715e">//ERROR
+</span><span style="color:#75715e"></span> Object newFruit3 <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</code></pre></div><h4 id="通配符和t区别">通配符<code>&lt;?&gt;</code>和<code>&lt;T&gt;</code>区别</h4>
+<ul>
+<li><code>&lt;?&gt;</code> 没有约束，只是表示有一个东西，但是不知道是什么</li>
+<li><code>&lt;T&gt;</code> 表示T代表一种类型，可以使String，Integer等等，一旦规定了就确定了T是这个类型</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        111 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-09-28 19:12 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/servlet/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Servlet</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/java-8-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">
+                <span class="button__text">Java 8 函数式编程</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="基础 Java程序的运行原理  编译过程.java -编译器Compiler（编译）-&amp;gt; .class[字节码]   编译的结果存放在tarket、classes 里面   字节码通过JVM识别后解析成不同系统的调用，从而实现java 的跨平台   Object 里面有native()是一个空白的类,jvm里native实现能够让运行平台决定如何实现，    JDK/JRE 有什么区别  JDK = JRE &#43; javac   JDK 完成java源代码到字节码的编译和运行过程，包含JRE   JRE 完成字节码到底层调用的解析和运行过程，如果只是运行java 程序，只安装JRE就可以了，不需要安装JDK。其中JVM就是完成java 实现跨平台的核心部分。  Java 的基础类型  char/string/short/byte/long/int/boolean/float   String 是基本数据类型？         Java 的参数传递是传值还是传引用  在Java里所有的对象都只是一个指针，传递的时候只是传递地址的拷贝，所以是传引用   一切对象都是指针（地址）     函数调用永远是传值。函数调用的过程中，把对象作为参数传递到函数里面的时候，传递的是一个复制的地址，地址里面包含对象的数据。这个传送复制的地址的过程就是传值。    引用数据类型(Reference data type)如一个对象(object)的传递，是以值的形式传进方法(are also passed into methods by value)。这意味着当函数执行完（when the method returns），传进去的引用（the passed-in reference）仍然参考(指向)之前的对象(still references the same object as before)。但是，对象的值(字段)可以在方法中被改变。" />
+<meta name="keywords" content=", 题目" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/%E9%A2%98%E7%9B%AE/" />
+
+
+    <title>
+        
+            题目 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="题目">
+<meta itemprop="description" content="基础 Java程序的运行原理  编译过程.java -编译器Compiler（编译）-&gt; .class[字节码]   编译的结果存放在tarket、classes 里面   字节码通过JVM识别后解析成不同系统的调用，从而实现java 的跨平台   Object 里面有native()是一个空白的类,jvm里native实现能够让运行平台决定如何实现，    JDK/JRE 有什么区别  JDK = JRE &#43; javac   JDK 完成java源代码到字节码的编译和运行过程，包含JRE   JRE 完成字节码到底层调用的解析和运行过程，如果只是运行java 程序，只安装JRE就可以了，不需要安装JDK。其中JVM就是完成java 实现跨平台的核心部分。  Java 的基础类型  char/string/short/byte/long/int/boolean/float   String 是基本数据类型？         Java 的参数传递是传值还是传引用  在Java里所有的对象都只是一个指针，传递的时候只是传递地址的拷贝，所以是传引用   一切对象都是指针（地址）     函数调用永远是传值。函数调用的过程中，把对象作为参数传递到函数里面的时候，传递的是一个复制的地址，地址里面包含对象的数据。这个传送复制的地址的过程就是传值。    引用数据类型(Reference data type)如一个对象(object)的传递，是以值的形式传进方法(are also passed into methods by value)。这意味着当函数执行完（when the method returns），传进去的引用（the passed-in reference）仍然参考(指向)之前的对象(still references the same object as before)。但是，对象的值(字段)可以在方法中被改变。">
+<meta itemprop="datePublished" content="2020-09-08T20:10:37&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-08T20:10:37&#43;08:00" />
+<meta itemprop="wordCount" content="559">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="题目," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="题目"/>
+<meta name="twitter:description" content="基础 Java程序的运行原理  编译过程.java -编译器Compiler（编译）-&gt; .class[字节码]   编译的结果存放在tarket、classes 里面   字节码通过JVM识别后解析成不同系统的调用，从而实现java 的跨平台   Object 里面有native()是一个空白的类,jvm里native实现能够让运行平台决定如何实现，    JDK/JRE 有什么区别  JDK = JRE &#43; javac   JDK 完成java源代码到字节码的编译和运行过程，包含JRE   JRE 完成字节码到底层调用的解析和运行过程，如果只是运行java 程序，只安装JRE就可以了，不需要安装JDK。其中JVM就是完成java 实现跨平台的核心部分。  Java 的基础类型  char/string/short/byte/long/int/boolean/float   String 是基本数据类型？         Java 的参数传递是传值还是传引用  在Java里所有的对象都只是一个指针，传递的时候只是传递地址的拷贝，所以是传引用   一切对象都是指针（地址）     函数调用永远是传值。函数调用的过程中，把对象作为参数传递到函数里面的时候，传递的是一个复制的地址，地址里面包含对象的数据。这个传送复制的地址的过程就是传值。    引用数据类型(Reference data type)如一个对象(object)的传递，是以值的形式传进方法(are also passed into methods by value)。这意味着当函数执行完（when the method returns），传进去的引用（the passed-in reference）仍然参考(指向)之前的对象(still references the same object as before)。但是，对象的值(字段)可以在方法中被改变。"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-08 20:10:37 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        3 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/%E9%A2%98%E7%9B%AE/">题目</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="基础">基础</h2>
+<h4 id="java程序的运行原理">Java程序的运行原理</h4>
+<ul>
+<li>编译过程<code>.java</code> -编译器Compiler（编译）-&gt; <code>.class</code>[字节码]</li>
+<li>
+<ul>
+<li>编译的结果存放在<code>tarket、classes</code> 里面</li>
+</ul>
+</li>
+<li>字节码通过JVM识别后解析成不同系统的调用，从而实现java 的跨平台</li>
+<li>
+<ul>
+<li>Object 里面有native()是一个空白的类,jvm里native实现能够让运行平台决定如何实现，</li>
+</ul>
+</li>
+</ul>
+<h4 id="jdkjre-有什么区别">JDK/JRE 有什么区别</h4>
+<ul>
+<li>JDK = JRE + javac</li>
+<li>
+<ul>
+<li>JDK 完成java源代码到字节码的编译和运行过程，包含JRE</li>
+</ul>
+</li>
+<li>JRE 完成字节码到底层调用的解析和运行过程，如果只是运行java 程序，只安装JRE就可以了，不需要安装JDK。其中JVM就是完成java 实现跨平台的核心部分。</li>
+</ul>
+<h4 id="java-的基础类型">Java 的基础类型</h4>
+<ul>
+<li>char/string/short/byte/long/int/boolean/float</li>
+<li>
+<ul>
+<li>String 是基本数据类型？</li>
+</ul>
+</li>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<h4 id="java-的参数传递是传值还是传引用">Java 的参数传递是传值还是传引用</h4>
+<ul>
+<li>在Java里所有的对象都只是一个指针，传递的时候只是传递地址的拷贝，所以是传引用</li>
+<li>
+<ul>
+<li>一切对象都是指针（地址）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>函数调用永远是传值。函数调用的过程中，把对象作为参数传递到函数里面的时候，传递的是一个复制的地址，地址里面包含对象的数据。这个传送复制的地址的过程就是传值。</li>
+</ul>
+</li>
+</ul>
+<p>引用数据类型(Reference data type)如一个对象(object)的传递，是以值的形式传进方法(are also passed into methods by value)。这意味着当函数执行完（when the method   returns），传进去的引用（the passed-in reference）仍然参考(指向)之前的对象(still references the same object as before)。但是，对象的值(字段)可以在方法中被改变。</p>
+<h4 id="stringbuffer-和stringbuilder">StringBuffer 和StringBuilder</h4>
+<ul>
+<li>如果没有额外声明，所有的类默认都是线程不安全的</li>
+<li>StringBuilder 更快，但是线程不安全，更加常用</li>
+<li>StringBuffer稍慢，但是线程安全</li>
+</ul>
+<h3 id="object">Object</h3>
+<ul>
+<li>clone（）不常用</li>
+</ul>
+<h4 id="equal">equal</h4>
+<ul>
+<li>判断两个数据是否相同的时候用<code>==</code></li>
+<li>判断两个对象是否相同的时候用<code>equal</code></li>
+<li>
+<ul>
+<li>自反性：自己必须等于自己</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>对称性：a ==b ，b==a</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>传递性：a==b,b==c,a==c</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>持久性：多次调用都能保证结果一直</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>任何非空对象和null都要为false</li>
+</ul>
+</li>
+<li>覆盖：例 如果是Object 是String 的话，就会覆盖成比较String的每个字符是否相等的方法，里面因为有循环，所以非常耗时</li>
+<li>扩展:intern()能够解决这个问题</li>
+<li>覆盖2 如果Object 是Integer 的话，就会比较两个数据是否相等</li>
+</ul>
+<h3 id="string">String</h3>
+<ul>
+<li>toString（） &ndash;&gt; [,,]</li>
+<li>
+<ul>
+<li>List<!-- raw HTML omitted --> s = Arrays.toString(&ldquo;A,&ldquo;B&rdquo;,&ldquo;C&rdquo;);</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>如果直接print（s）的话，就会通过重载成Object，变成了object.toString() &ndash;&gt; print(s.toString)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>如果一个String[]{&ldquo;A&rdquo;,&ldquo;B&rdquo;,&ldquo;C&rdquo;} 不适用 toString(),就会变成[L 类名；@Object地址</li>
+</ul>
+</li>
+<li>compareTo 比较大小，被treemap 处理</li>
+<li>charAt byte和String 的互换</li>
+<li>getBytes</li>
+<li>indexOf（String）：int 检查字符在第几个位置出现</li>
+<li>isEmpty 是否为空字符串</li>
+<li>length（）</li>
+<li>split（）用字符切割 （正则表达）</li>
+</ul>
+<h2 id="面向对象">面向对象</h2>
+<h4 id="equal-">equal ==</h4>
+<h4 id="浅拷贝-和深拷贝">浅拷贝 和深拷贝</h4>
+<ul>
+<li>浅：只是把对象的地址拷贝</li>
+<li>
+<ul>
+<li>深：把整个引用类都拷贝，包括类里面的变量、地址都拷贝</li>
+</ul>
+</li>
+</ul>
+<h4 id="接口和抽象的区别">接口和抽象的区别</h4>
+<ul>
+<li>interface 是一种功能一种合约，只是定义一种功能，java8 之前是不能够包含方法体的，之后能够通过default 的方式写入实现，但是不能包含成员变量</li>
+<li>抽象类 提供抽象的骨架实现，通过继承能够实现骨架实现，可以包含抽象方法或这具体实现，也可以包含成员变量</li>
+<li>
+<ul>
+<li>Java 是单根继承的只能够继承一个父类，但是能够实现多个接口</li>
+</ul>
+</li>
+<li>如果类里需要成员变量，就用抽象类，否则就用接口。但是类只能够单根继承</li>
+</ul>
+<h4 id="final">final</h4>
+<ul>
+<li>final类是不能够被继承的，不能覆盖</li>
+<li>final对象不能被修改变量</li>
+</ul>
+<h4 id="overwrite-和-overload">overwrite 和 overload</h4>
+<ul>
+<li>overwrite 重写 把继承的方法覆盖重写</li>
+<li>overload 方法能够有同样的名字不同的变量，方法被引用继承的时候能够根据实际来实现</li>
+</ul>
+<h2 id="集合框架">集合框架</h2>
+<h4 id="hashmap-集合框架">HashMap 集合框架</h4>
+<ul>
+<li>扩容/并发</li>
+</ul>
+<h4 id="listsetmap区别">List/Set/Map区别</h4>
+<ul>
+<li>List &ndash;&gt; 有序的集合，队列， 所以List 的get(int i)获取List（排列位置i）的值</li>
+<li>Set 元素之间是没有顺序，且元素不能重复【集合】，可以用来去重</li>
+<li>Map</li>
+</ul>
+<h4 id="hashmap-和-hashtable-的区别">HashMap 和 HashTable 的区别</h4>
+<ul>
+<li>数据结构都是基于哈希表的</li>
+<li>HashMap 可以接受为null的对象，但是HashTable不能</li>
+<li>HashTable 是线程安全的，HashMap不是</li>
+</ul>
+<blockquote>
+<ul>
+<li>把所有的方法都添加线程安全的锁（sychronized）</li>
+</ul>
+</blockquote>
+<h4 id="concurrenthashmap-原理">ConcurrentHashMap 原理</h4>
+<ul>
+<li>HashMap是不安全的 &ndash;&gt;</li>
+<li>CHM  里面的hash桶是分区域管理（Segment）的，当用到一个hash桶的时候就可以获得这个区域的锁，不同于这个区域的hash桶就能够被使用</li>
+</ul>
+<h4 id="hashset">HashSet</h4>
+<ul>
+<li>包含一个HashMap，使用add()也只是把数据put（）到map里面，所以实际是HashMap</li>
+</ul>
+<h4 id="treeset">TreeSet</h4>
+<ul>
+<li>NavigableSet(可导航)，基于TreeMap</li>
+</ul>
+<blockquote>
+<ul>
+<li>TreeMap 基于红黑树的可以当行的实现</li>
+</ul>
+</blockquote>
+<ol>
+<li>实现元素有序 &ndash;&gt; ArrayList、二叉查找树</li>
+</ol>
+<blockquote>
+<ul>
+<li>HashSet 插入删除几乎都是O(1)，但是无序</li>
+<li>LinkerHashSet 顺序只是插入的顺序，但是并不能根据数据进行排序</li>
+</ul>
+</blockquote>
+<ul>
+<li>二叉查找树每一个节点都有能有两个子节点，左节点比右节点大，左边比右边大，所以查找的时候能够很快地排除一般的数据，所以查找插入几乎是O(logn)</li>
+<li>
+<ul>
+<li>但是如果通过设计，会出现退化成链表的情况出现，而避免这种情况就是红黑树，从而保证红黑树在任何情况下都能够几乎保持平衡（左子树和右子树都接近于相等，在变更后仍然能够保持）
+&mdash;&gt; Tree（红黑树），可导航就是可以从小到大排列的 &ndash;&gt; TreeMap 从小到大拍好的，且能够保持平衡的，能够实现高效</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>实现插入删除都高效</li>
+</ol>
+<blockquote>
+<ul>
+<li>ArrayList 插入删除后后面的元素都需要移动，</li>
+<li>LinkedList 插入为O(1)速度很快，但是查找为O(n),需要一个个地进行查找</li>
+</ul>
+</blockquote>
+<h4 id="equa-lshashcode-区别何时使用">equa ls/hashCode 区别、何时使用</h4>
+<ul>
+<li>equals 同于判断两个对象是否相等</li>
+</ul>
+<blockquote>
+<ul>
+<li>三个约定</li>
+</ul>
+<ol>
+<li>一个对象无论何时被调用多于一次的时候，这个对象的HashCode 必须返回相同如一的整数</li>
+<li>两个对象equals 相等的话，hashCode一定相等</li>
+<li>两个对象equals不相等的话，hashCode也有可能是相等的
+&ndash;&gt; 两个对象hashCode 是相等的，equals 不相等的情况发生【Hash桶碰撞】</li>
+</ol>
+</blockquote>
+<h4 id="arraylist和linkedlist-区别">ArrayList和LinkedList 区别</h4>
+<ul>
+<li>ArrayList 是基于数组（Object[] elementData）的实现</li>
+</ul>
+<blockquote>
+<ul>
+<li>动态扩容  把原来的数据复制到新的容量更大的数组里面，然后继续添加新的数据</li>
+<li>数据查找都是O(1)</li>
+</ul>
+</blockquote>
+<ul>
+<li>LinkedList 双向列表结构
+**使用到队列的时候就使用LinkedList，因为ArrayList对头元素进行修改的时候后面的所有元素都要发生移动 **</li>
+</ul>
+<h4 id="线程安全的集合类">线程安全的集合类</h4>
+<p>HashTable（但是非常少用）、ConcurrentHashSet</p>
+<h4 id="如何保证一个集合类不被修改">如何保证一个集合类不被修改</h4>
+<ul>
+<li>通过Collections/.unmodifiable~()生成的也是不可变的，因为里面set（）、remove（）等修改集合的方法都是全都会返回异常</li>
+<li>Guava <code>ImmutableSet&lt;&gt;</code>抽象类，继承后能够生成不可变的Set集合</li>
+</ul>
+<h4 id="arraylistvector">ArrayList/Vector</h4>
+<ul>
+<li>Vector java1.0引入，但是1.2就被废弃</li>
+</ul>
+<blockquote>
+<ul>
+<li>和ArrayList 功能完全相同。都能够实现一个能够增长的Object。（基于数组的自动扩容实现）</li>
+<li>Vector 线程安全，但是慢，被废弃了</li>
+<li>ArrayList 不安全。但是速度高</li>
+</ul>
+</blockquote>
+<h4 id="collection和collections-区别">Collection和Collections 区别</h4>
+<ul>
+<li>Collection 是一个类名</li>
+<li>Collections 是和Collection相关的集合</li>
+</ul>
+<p>Vector &amp; ArrayList 的主要区别
+1） 同步性:Vector是线程安全的，也就是说是同步的 ，而ArrayList 是线程序不安全的，不是同步的 数2。
+2）数据增长:当需要增长时,Vector默认增长为原来一倍 ，而ArrayList却是原来的50%  ，这样,ArrayList就有利于节约内存空间。
+如果涉及到堆栈，队列等操作，应该考虑用Vector，如果需要快速随机访问元素，应该使用ArrayList 。</p>
+<p>扩展知识：</p>
+<ol>
+<li>
+<p>Hashtable &amp; HashMap
+Hashtable和HashMap它们的性能方面的比较类似 Vector和ArrayList，比如Hashtable的方法是同步的,而HashMap的不是。</p>
+</li>
+<li>
+<p>ArrayList &amp; LinkedList</p>
+</li>
+</ol>
+<p>ArrayList的内部实现是基于内部数组Object[],所以从概念上讲,它更象数组，但LinkedList的内部实现是基于一组连接的记录，所以，它更象一个链表结构，所以，它们在性能上有很大的差别：<br>
+从上面的分析可知,在ArrayList的前面或中间插入数据时,你必须将其后的所有数据相应的后移,这样必然要花费较多时间，所以,当你的操作是在一列数据的后面添加数据而不是在前面或中间,并且需要随机地访问其中的元素时,使用ArrayList会提供比较好的性能； 而访问链表中的某个元素时,就必须从链表的一端开始沿着连接方向一个一个元素地去查找,直到找到所需的元素为止，所以,当你的操作是在一列数据的前面或中间添加或删除数据，并且按照顺序访问其中的元素时，就应该使用LinkedList了。</p>
+<h4 id="listsetmap实现">List/Set/Map实现</h4>
+<h2 id="异常">异常</h2>
+<h4 id="java-的异常体系结构">Java 的异常体系结构</h4>
+<ul>
+<li>Throwable 任何异常。错误的祖先类</li>
+</ul>
+<blockquote>
+<ul>
+<li>Exception 异常，可以从异常状态中恢复</li>
+<li>
+<ul>
+<li>RuntimeException 预料之外的异常， unchecked ，通常代表一个Bug</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>其他 Exception 预料之中的异常，checked ， 代表编程中预期的异常状态</li>
+</ul>
+</li>
+<li>Error  无法回复的异常状态 unchecked</li>
+</ul>
+</blockquote>
+<h4 id="checkeduncheckedruntime-exeception">checked/unchecked/runtime exeception</h4>
+<h4 id="trychtchfinally">try/chtch/finally</h4>
+<ul>
+<li>try 执行语句，如果没有异常 后面的catch 会跳过。而出现异常之后，try里面没有执行的语句就会跳过，直接到catch里面</li>
+<li>catch（） 里面可以放任何的Throwable 后代。一旦try 出现异常，就会被后面的catch 捕获。catch 的异常按顺序匹配，匹配到后就按catch 的方法处理异常</li>
+<li>catch 中return了，finally 还会执行</li>
+<li>finally 里return</li>
+</ul>
+<blockquote>
+<ul>
+<li>finally 里 的return 会替代掉原本的return值（生产中不能够用！！）</li>
+</ul>
+</blockquote>
+<h4 id="throwthrows-区别">throw/throws 区别</h4>
+<ul>
+<li>throw 一个普通的语句，用于抛出异常，阻止当前的方法执行。</li>
+<li>throws 用于方法声明异常。声明调用这个方法的时候会有可能出现这个异常</li>
+</ul>
+<h4 id="final-1">final/</h4>
+<ul>
+<li>final 用于类或者方法是不能够被继承，覆盖的，变量的话是指针指向的对象不能够更改</li>
+<li>finally try/catch 过程中执行保险开关或者垃圾清理</li>
+<li>finalize 被标注废弃的一个方法。 一个对象调用这个方法后就能够逃脱被垃圾回收，但是不推荐使用，而且垃圾回收什么时候进行是没有人知道的</li>
+</ul>
+<h2 id="计算机体系原理">计算机体系原理</h2>
+<h4 id="进程和线程的区别">进程和线程的区别</h4>
+<ul>
+<li>独享一块内存空间的基本的单元，进程和进程是独立的，不能够互相访问。一个进程奔溃后不会干扰到另一个进程</li>
+<li>
+<ul>
+<li>进程 ：进程占用独享的隔离的内存，文件等资源。是系统进行资源分配和调度的基本单位，是操作系统结构的基础</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>线程： 同一个进程内的线程共享内存/文件等资源。是系统进行资源分配和调度的基本单位，是操作系统结构的基础。。是系统进行资源分配和调度的基本单位，是操作系统结构的基础。</li>
+</ul>
+</li>
+</ul>
+<h4 id="进程和线程是如何调度的">进程和线程是如何调度的</h4>
+<ul>
+<li>通过时间片轮转，每个时间片cpu单独运行一个线程，下一个时间片就运行下一个线程</li>
+</ul>
+<h4 id="java中的线程和操作系统线程是什么关系">Java中的线程和操作系统线程是什么关系？</h4>
+<p>Java中线程的本质，其实就是操作系统中的线程</p>
+<ul>
+<li>JVM的线程和OS的线程是一一对应的</li>
+</ul>
+<blockquote>
+<ul>
+<li>JVM :虚拟机中的线程状态，不反应任何操作系统线程状态
+Java调用start()方法,在JVM中创建新的线程,再通过JVM调用 run() 方法
+而调用 run() 方法, 实际上并没有创建线程,只是在当前线程中执行了一个叫 run()的方法而已,别无它意</li>
+</ul>
+</blockquote>
+<ul>
+<li>OS负责调度线程</li>
+<li>因此Java的线程模型饱受诟病</li>
+</ul>
+<blockquote>
+<ul>
+<li>操作系统不知道线程的存在，因此当一个进程中的某一个线程进行系统调用时，比如缺页中断而导致线程阻塞，此时操作系统会阻塞整个进程，即使这个进程中其它线程还在工作。还有一个问题是假如进程中一个线程长时间不释放CPU，因为用户空间并没有时钟中断机制，会导致此进程中的其它线程得不到CPU而持续等待。</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>JVM 就是一个进程</li>
+</ul>
+</li>
+<li>在Linxu 里面 线程被叫做轻量级进程，和进程一样拥有一个ID，同样占用CPU的资源，cpu决定执行的顺讯
+缺点 ：</li>
+</ul>
+<ol>
+<li>慢、占用资源。因为cpu 是时间片执行的，时间一到就需要切换到下一个线程执行，所以出现上下文切换的情况出现，占据资源。</li>
+</ol>
+<ul>
+<li>协程：轻量用户态线程，创造出大量的轻量小东西？用完就能够丢弃，从而避免上下文切换，占用资源小，速度快，且能够决定线程执行的顺序而不是CPU决定</li>
+</ul>
+<blockquote>
+<ul>
+<li>协程只是解决运行速度，但是并发问题的死锁、竞争、临界条件还是不能解决</li>
+</ul>
+</blockquote>
+<h2 id="计算机网络">计算机网络</h2>
+<ul>
+<li>TCP Transmssion Control Protocal</li>
+<li>UDP User Data gram Portoed</li>
+</ul>
+<h4 id="基石-tcpip-协议">基石 TCP/IP 协议</h4>
+<ul>
+<li>由路由器决定TCP传递报文给哪个基站直目标服务器</li>
+<li>TCP 稳定可靠，因为有错误控制的纠错并修改错误，但是比较慢</li>
+<li>计算校验和，等待对方确认，校验和失败或者没有收到对方的回应，就会重新发送。对质量要求很高</li>
+<li>保证交互</li>
+<li>UDP: 非常快，质量低（视频聊天）</li>
+<li>
+<ul>
+<li>数据可能会被丢掉</li>
+</ul>
+</li>
+<li>尽最大可能交互</li>
+</ul>
+<h4 id="三次握手四次挥手">三次握手四次挥手</h4>
+<ul>
+<li>避免在数据传送的未完成的时候，有一方提出断开连接导致数据未成功传送完
+客户端 &ndash;请求同步SYN报文&ndash;&gt; 对方 &ndash;SYN+ACK&ndash;&gt; 客户端 &ndash;ACK&ndash;&gt; 服务器</li>
+<li>断开的时候任何一方都可以发送，</li>
+<li>只要发送出去，传送失败就会返回给上一层，直到返回给发出源的一方在进行重新发送</li>
+</ul>
+<h4 id="从浏览器发出请求到接受请求过程">从浏览器发出请求到接受请求过程</h4>
+<ul>
+<li>输入网址发送<code>https://taobao.com</code>的时候，浏览器或者发出请求的软件就会到<code>/ect/hosts</code>这个文件里查找主机名（host）对应的IP地址</li>
+<li>如果没找到就去DNS （Domain Name Service）查找该主机的IP地址</li>
+<li>成功后就建立TCP链接（源IP地址、源端口、目标IP地址、目标端口）</li>
+</ul>
+<h4 id="域名解析-dns-靠服务器托管完成">域名解析 DNS 靠服务器托管完成</h4>
+<h2 id="基本数据结构和算法">基本数据结构和算法</h2>
+<h4 id="集合类中常见的数据结构">集合类中常见的数据结构</h4>
+<ul>
+<li>ArrayList：自动扩容的数组，随机查找是常数时间</li>
+<li>LinkedList： 双链表，可当作队列和栈</li>
+<li>HashSet、HashMap： 哈希表</li>
+<li>TreeSet、TreeMap： 红黑树</li>
+<li>ConcurrentHashMap： 分段+哈希表</li>
+<li>LinkedHashMap：链表+哈希表</li>
+</ul>
+<h4 id="链表和二叉树的时间复杂度去表">链表和二叉树的时间复杂度去表</h4>
+<ul>
+<li>ArrayList：寻址O(1)/更新O(n)/二分查找O(lgn)</li>
+<li>LinkerList： 寻址O(n)/更新O(n)/查找O(n)</li>
+<li>哈希表： 都是O(1)</li>
+<li>红黑树：都是O(lgn)</li>
+<li>二叉树查找： 都是O（lgn）</li>
+</ul>
+<h4 id="队列和栈分别是什么">队列和栈分别是什么</h4>
+<h2 id="wbe">Wbe</h2>
+<h4 id="常见的http状态码">常见的HTTP状态码</h4>
+<ul>
+<li>2XX 一切正常/3XX 跳转 / 4XX 客户端异常 / 5XX 服务端异常</li>
+<li>
+<ul>
+<li>200</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>201</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>301</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>302</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>403</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>404</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>501</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>502</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>503</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>504</li>
+</ul>
+</li>
+</ul>
+<h4 id="getpost区别">GET/POST区别</h4>
+<ul>
+<li>
+<ul>
+<li>Get和post 都是HTTP的方法</li>
+</ul>
+</li>
+<li>Get 获取资源的请求 ，参数放在path 里面，历史记录就能看到。不能用于密码的登录，容易被看到</li>
+<li>Post 用于发送数据（登录） 参数放在body里面</li>
+<li>Get查询、获取资源</li>
+<li>Get 是幂等的（多次发送和一次发送的结果完全相同）</li>
+</ul>
+<h4 id="cooike-和session的区别">Cooike 和Session的区别</h4>
+<ul>
+<li>Cookie: 包含一小段信息，给服务器用于识别用户身份。随着HTTP请求一起发送的一小段标识用户身份的信息。</li>
+<li>session 会话：服务器存储用户的信息，用于检查cookie对应信息的数据 。放在服务端的，用于通过Cookie和用户身份对应关系来鉴权的数据</li>
+<li>同源策略：向特定的HTTP（同一个域名的同一个端口号 ）发送请求的时候浏览器才会携带这个Cookie，不同域名就不会带这个，保证用户信息安全。防止引入恶意的javascrip泄露数据</li>
+<li>
+<ul>
+<li>任何需要程序去访问其他域名下的数据的场景都会被同源策略阻碍到。一个网站想提供一个 JavaScript 程序来检验、测试或者仅仅访问另一个网页，那么它没法访问那个网站上的数据，也就没法达到它的设计目的。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>数据融合。当政府开始公开大量的开放公共数据时，有一些网站会开始涌现，这些网站从许多不同的开放数据站点加载数据并提供数据的「融合」—— 组合许多不同来源的数据，并提供可视化，从而让用户享受到单一数据源所不能提供的洞察力。但实际上，典型的纯前端的数据融合网站现在已经无法工作了。</li>
+</ul>
+</li>
+</ul>
+<h4 id="什么是跨越如何解决">什么是跨越，如何解决</h4>
+<ul>
+<li>在同一个域名能够访问不同的网站（不同的域之间相互请求资源）</li>
+</ul>
+<h4 id="解决">解决</h4>
+<ul>
+<li>JSONP 只支持GET请求</li>
+<li>javascrip加载是不受同源策略的限制的，只是javascrip脚执行发送的HTTP请求受到同源策略的限制</li>
+<li>
+<ul>
+<li>src 标签可以携带其他网站的地址，通过动态的jsonp加载，把接口伪装成动态的javascrip标签，使得浏览器在加载的时候就能够自动向标签里的地址发起请求</li>
+</ul>
+</li>
+<li>CORS（跨域资源共享）支持所有HTTP类型请求 IE10+</li>
+<li>
+<ul>
+<li>浏览器制造商实现了一些钩子以允许数据在不同的源上共享，并称之为跨域资源共享（CORS）。要求开放数据发布者在 HTTP 响应中为任何完全开放的数据添加特殊的 CORS 头：
+<code>Access-control-allow-Origin: *</code></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>同时他们添加了一项功能，允许数据发布者指定有限的其他可信来源，这些来源将被允许访问数据发布者产生的数据。（其他服务器添加一份允许不同域访问的白名单）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>简单请求</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>在head信息里面加入<code>Origin</code>字段。用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。</li>
+</ul>
+</blockquote>
+<pre><code>GET /cors HTTP/1.1
+Origin: http://api.bob.com
+</code></pre><p>[https://www.ruanyifeng.com/blog/2016/04/cors.html]</p>
+<ul>
+<li>Nginx  反向代理</li>
+<li>
+<ul>
+<li>在部署的服务器上 设置Nginx，请求的时候根据需要自动访问其他的网页并获得数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="域名地址的组成">域名地址的组成：</h3>
+<p><code>http:// www . google : 8080 / script/jquery.js</code></p>
+<ul>
+<li>http:// （协议号）</li>
+<li>www  （子域名）</li>
+<li>google （主域名）</li>
+<li>8080 （端口号）</li>
+<li>script/jquery.js （请求的地址）</li>
+<li>
+<ul>
+<li>当协议、子域名、主域名、端口号中任意一各不相同时，都算不同的“域”。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>不同的域之间相互请求资源，就叫“跨域”。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>比如：http://www.a.com/index.html 请求 <a href="http://www.b.com/index.html">http://www.b.com/index.html</a>的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="为什么要跨越">为什么要跨越</h3>
+<ul>
+<li>域名和后端接口的域名不一样 是不可避免的</li>
+</ul>
+<h2 id="类型与反射">类型与反射</h2>
+<h4 id="反射">反射</h4>
+<ul>
+<li>运行时行为，动态调用</li>
+</ul>
+<h4 id="动态代理的原理">动态代理的原理</h4>
+<ul>
+<li>动态生成字节码完成一些动能扩展</li>
+<li>
+<ul>
+<li>JDK 动态代理：方便，受限制（只能代理接口）</li>
+</ul>
+</li>
+</ul>
+<h4 id="反射为什么性能差">反射为什么性能差</h4>
+<ul>
+<li>JDK无法预测被调用的方法，因此无法实施优化</li>
+</ul>
+<h4 id="序列化">序列化</h4>
+<ul>
+<li>序列化：Java对象 &ndash;&gt; 字节流 serizlize</li>
+<li>反序列化： 字节流 &ndash;&gt; Java 对象 deserialize</li>
+<li>可读： JSON、XML</li>
+<li>不可读: Java 自带的系列化</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/%E9%A2%98%E7%9B%AE/">题目</a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        559 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-09-08 20:10 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+                <span class="button__icon">←</span>
+                <span class="button__text">单例模式</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/web%E9%A1%B5%E9%9D%A2-%E5%89%8D%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93/">
+                <span class="button__text">Web页面  前后端渲染</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

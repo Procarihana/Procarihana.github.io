@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="保证一个类只有一个实例，并提供一个访问它的全局访问点   常见的单例模式   Hibernate、Mybatis SessionFactory Spring Bean 每个Bean 都是单例的（依赖倒置原则） Java Runtime  动机  在软件工程里经常有一些特殊类，必须保证他们在系统里有且只有一个实例 绕开 new，提供一种方式来确保一个类只有一个实例 需要由类设计者来考虑实现，而不是类使用者来保证  优势  提供了对唯一实例的受控访问 对频繁使用的对象，可以省略创建对象所花费的时间，对于那些重量级对象而言，是非常可观的一笔系统开销 对于Java语言，额外的好处：由于new操作的次数减少，因而对系统内存的使用频率也会降低。这将减轻GC压力，缩短GC停顿时间  使用场景  当只能有一个实例而且客户可以从一个众所周知的访问点访问 当这个唯一实例应该是通过子类化可拓展，并且客户应该无须更改代码就能使用一个拓展的实例  结构  Singgleton ： 定义一个Instacne操作，允许客户访问的唯一实例  单例模式七种方式 饿汉式 静态常量    当构造器是public的时候，这个类都能通过new()实现新的实例 &amp;ndash;&amp;gt; 构造器使用private     为了让外面能够使用到这个类，直接在创建的时候new出来    public class Singleton{ public static final Singleton INSTANCE = new Singleton(); //private constructor  private Singleton(){} public void doSomething(){……} }   改进模式：使用一个静态工厂，通过调用这个类的方法从而能够使用到这个实例   public class Singleton{ public static final Singleton INSTANCE = new Singleton(); //private constructor  private Singleton(){} public static Singleton getInstance(){ return INSTANCE;} public void doSomething(){……} }  饿汉式 静态代码块  public class Singleton{ private Singleton(){} private static Singleton instance; static{ instance = new Singleton(); } public static Singleton getInstance(){ return instance; } } 懒汉式 线程不安全  只在第一次new(),其余时间通过判断是否为null，不是的话就直接返回，是的话就new一个新的 如果多个线程同时执行if(instance == null),一个线程来不及创建完，就被另一个线程访问，会创建出多个实例来   可以懒加载。但是线程不安全，只能在单线程使用   不能在实际环境中使用  public class Singleton{ private static Singleton instacne; private Singleton(){ public static Singleton getInstance(){ if(instance == null){ instance = new Singleton(); } return instance; } } } 懒汉式 线程安全 同步安全  加锁 能懒加载   加锁导致效率低（程序串行化），每个线程在获得实例时都要进行同步，哪怕已经是读的操作     加锁是有性能开销的     不推荐使用    双重检查 double-check  懒汉式不安全,主要是判断是否为空   双重检查就是通过加锁，获得锁后把判断实例是否为空，如果是的话就new出实例，不是的话就返回已经new出的实例     在new的过程中，因为锁已经被拿走了，所以不会有其他的线程new实例    public class Singleton{ private static Singleton instacne; private Singleton(){ public static Singleton getInstance(){ if(instance == null){ synchrondized(Singleton." />
+<meta name="keywords" content=", , " />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" />
+
+
+    <title>
+        
+            单例模式 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="单例模式">
+<meta itemprop="description" content="保证一个类只有一个实例，并提供一个访问它的全局访问点   常见的单例模式   Hibernate、Mybatis SessionFactory Spring Bean 每个Bean 都是单例的（依赖倒置原则） Java Runtime  动机  在软件工程里经常有一些特殊类，必须保证他们在系统里有且只有一个实例 绕开 new，提供一种方式来确保一个类只有一个实例 需要由类设计者来考虑实现，而不是类使用者来保证  优势  提供了对唯一实例的受控访问 对频繁使用的对象，可以省略创建对象所花费的时间，对于那些重量级对象而言，是非常可观的一笔系统开销 对于Java语言，额外的好处：由于new操作的次数减少，因而对系统内存的使用频率也会降低。这将减轻GC压力，缩短GC停顿时间  使用场景  当只能有一个实例而且客户可以从一个众所周知的访问点访问 当这个唯一实例应该是通过子类化可拓展，并且客户应该无须更改代码就能使用一个拓展的实例  结构  Singgleton ： 定义一个Instacne操作，允许客户访问的唯一实例  单例模式七种方式 饿汉式 静态常量    当构造器是public的时候，这个类都能通过new()实现新的实例 &ndash;&gt; 构造器使用private     为了让外面能够使用到这个类，直接在创建的时候new出来    public class Singleton{ public static final Singleton INSTANCE = new Singleton(); //private constructor  private Singleton(){} public void doSomething(){……} }   改进模式：使用一个静态工厂，通过调用这个类的方法从而能够使用到这个实例   public class Singleton{ public static final Singleton INSTANCE = new Singleton(); //private constructor  private Singleton(){} public static Singleton getInstance(){ return INSTANCE;} public void doSomething(){……} }  饿汉式 静态代码块  public class Singleton{ private Singleton(){} private static Singleton instance; static{ instance = new Singleton(); } public static Singleton getInstance(){ return instance; } } 懒汉式 线程不安全  只在第一次new(),其余时间通过判断是否为null，不是的话就直接返回，是的话就new一个新的 如果多个线程同时执行if(instance == null),一个线程来不及创建完，就被另一个线程访问，会创建出多个实例来   可以懒加载。但是线程不安全，只能在单线程使用   不能在实际环境中使用  public class Singleton{ private static Singleton instacne; private Singleton(){ public static Singleton getInstance(){ if(instance == null){ instance = new Singleton(); } return instance; } } } 懒汉式 线程安全 同步安全  加锁 能懒加载   加锁导致效率低（程序串行化），每个线程在获得实例时都要进行同步，哪怕已经是读的操作     加锁是有性能开销的     不推荐使用    双重检查 double-check  懒汉式不安全,主要是判断是否为空   双重检查就是通过加锁，获得锁后把判断实例是否为空，如果是的话就new出实例，不是的话就返回已经new出的实例     在new的过程中，因为锁已经被拿走了，所以不会有其他的线程new实例    public class Singleton{ private static Singleton instacne; private Singleton(){ public static Singleton getInstance(){ if(instance == null){ synchrondized(Singleton.">
+<meta itemprop="datePublished" content="2020-09-16T18:13:34&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-16T18:13:34&#43;08:00" />
+<meta itemprop="wordCount" content="291">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content=",," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="单例模式"/>
+<meta name="twitter:description" content="保证一个类只有一个实例，并提供一个访问它的全局访问点   常见的单例模式   Hibernate、Mybatis SessionFactory Spring Bean 每个Bean 都是单例的（依赖倒置原则） Java Runtime  动机  在软件工程里经常有一些特殊类，必须保证他们在系统里有且只有一个实例 绕开 new，提供一种方式来确保一个类只有一个实例 需要由类设计者来考虑实现，而不是类使用者来保证  优势  提供了对唯一实例的受控访问 对频繁使用的对象，可以省略创建对象所花费的时间，对于那些重量级对象而言，是非常可观的一笔系统开销 对于Java语言，额外的好处：由于new操作的次数减少，因而对系统内存的使用频率也会降低。这将减轻GC压力，缩短GC停顿时间  使用场景  当只能有一个实例而且客户可以从一个众所周知的访问点访问 当这个唯一实例应该是通过子类化可拓展，并且客户应该无须更改代码就能使用一个拓展的实例  结构  Singgleton ： 定义一个Instacne操作，允许客户访问的唯一实例  单例模式七种方式 饿汉式 静态常量    当构造器是public的时候，这个类都能通过new()实现新的实例 &ndash;&gt; 构造器使用private     为了让外面能够使用到这个类，直接在创建的时候new出来    public class Singleton{ public static final Singleton INSTANCE = new Singleton(); //private constructor  private Singleton(){} public void doSomething(){……} }   改进模式：使用一个静态工厂，通过调用这个类的方法从而能够使用到这个实例   public class Singleton{ public static final Singleton INSTANCE = new Singleton(); //private constructor  private Singleton(){} public static Singleton getInstance(){ return INSTANCE;} public void doSomething(){……} }  饿汉式 静态代码块  public class Singleton{ private Singleton(){} private static Singleton instance; static{ instance = new Singleton(); } public static Singleton getInstance(){ return instance; } } 懒汉式 线程不安全  只在第一次new(),其余时间通过判断是否为null，不是的话就直接返回，是的话就new一个新的 如果多个线程同时执行if(instance == null),一个线程来不及创建完，就被另一个线程访问，会创建出多个实例来   可以懒加载。但是线程不安全，只能在单线程使用   不能在实际环境中使用  public class Singleton{ private static Singleton instacne; private Singleton(){ public static Singleton getInstance(){ if(instance == null){ instance = new Singleton(); } return instance; } } } 懒汉式 线程安全 同步安全  加锁 能懒加载   加锁导致效率低（程序串行化），每个线程在获得实例时都要进行同步，哪怕已经是读的操作     加锁是有性能开销的     不推荐使用    双重检查 double-check  懒汉式不安全,主要是判断是否为空   双重检查就是通过加锁，获得锁后把判断实例是否为空，如果是的话就new出实例，不是的话就返回已经new出的实例     在new的过程中，因为锁已经被拿走了，所以不会有其他的线程new实例    public class Singleton{ private static Singleton instacne; private Singleton(){ public static Singleton getInstance(){ if(instance == null){ synchrondized(Singleton."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-16 18:13:34 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        2 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <ul>
+<li>保证一个类只有一个实例，并提供一个访问它的全局访问点</li>
+<li>
+<ul>
+<li>常见的单例模式</li>
+</ul>
+</li>
+<li>Hibernate、Mybatis SessionFactory</li>
+<li>Spring Bean 每个Bean 都是单例的（依赖倒置原则）</li>
+<li>Java Runtime</li>
+</ul>
+<h2 id="动机">动机</h2>
+<ul>
+<li>在软件工程里经常有一些特殊类，必须保证他们在系统里有且只有一个实例</li>
+<li>绕开 new，提供一种方式来确保一个类只有一个实例</li>
+<li>需要由类设计者来考虑实现，而不是类使用者来保证</li>
+</ul>
+<h2 id="优势">优势</h2>
+<ul>
+<li>提供了对唯一实例的受控访问</li>
+<li>对频繁使用的对象，可以省略创建对象所花费的时间，对于那些重量级对象而言，是非常可观的一笔系统开销</li>
+<li>对于Java语言，额外的好处：由于new操作的次数减少，因而对系统内存的使用频率也会降低。这将减轻GC压力，缩短GC停顿时间</li>
+</ul>
+<h2 id="使用场景">使用场景</h2>
+<ul>
+<li>当只能有一个实例而且客户可以从一个众所周知的访问点访问</li>
+<li>当这个唯一实例应该是通过子类化可拓展，并且客户应该无须更改代码就能使用一个拓展的实例</li>
+</ul>
+<h2 id="结构">结构</h2>
+<ul>
+<li>Singgleton ： 定义一个Instacne操作，允许客户访问的唯一实例</li>
+</ul>
+<h2 id="单例模式七种方式">单例模式七种方式</h2>
+<h4 id="饿汉式-静态常量">饿汉式 静态常量</h4>
+<ul>
+<li>
+<ul>
+<li>当构造器是public的时候，这个类都能通过new()实现新的实例 &ndash;&gt; 构造器使用private</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>为了让外面能够使用到这个类，直接在创建的时候new出来</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Singleton INSTANCE <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton<span style="color:#f92672">();</span>
+    <span style="color:#75715e">//private constructor
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">(){}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSomething</span><span style="color:#f92672">(){</span><span style="color:#960050;background-color:#1e0010">……</span><span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><blockquote>
+<ul>
+<li>改进模式：使用一个静态工厂，通过调用这个类的方法从而能够使用到这个实例</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Singleton INSTANCE <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton<span style="color:#f92672">();</span>
+    <span style="color:#75715e">//private constructor
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">(){}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Singleton <span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(){</span> <span style="color:#66d9ef">return</span> INSTANCE<span style="color:#f92672">;}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSomething</span><span style="color:#f92672">(){</span><span style="color:#960050;background-color:#1e0010">……</span><span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>饿汉式 静态代码块</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">(){}</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Singleton instance<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">static</span><span style="color:#f92672">{</span>
+        instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Singleton <span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">return</span> instance<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="懒汉式-线程不安全">懒汉式 线程不安全</h4>
+<ul>
+<li>只在第一次new(),其余时间通过判断是否为null，不是的话就直接返回，是的话就new一个新的</li>
+<li>如果多个线程同时执行if(instance == null),一个线程来不及创建完，就被另一个线程访问，会创建出多个实例来</li>
+<li>
+<ul>
+<li>可以懒加载。但是线程不安全，只能在单线程使用</li>
+</ul>
+</li>
+<li>不能在实际环境中使用</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Singleton instacne<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Singleton <span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(){</span>
+            <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+                instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton<span style="color:#f92672">();</span>
+            <span style="color:#f92672">}</span>
+            <span style="color:#66d9ef">return</span> instance<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="懒汉式-线程安全-同步安全">懒汉式 线程安全 同步安全</h4>
+<ul>
+<li>加锁</li>
+<li>能懒加载</li>
+<li>
+<ul>
+<li>加锁导致效率低（程序串行化），每个线程在获得实例时都要进行同步，哪怕已经是读的操作</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>加锁是有性能开销的</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>不推荐使用</li>
+</ul>
+</li>
+</ul>
+<h4 id="双重检查-double-check">双重检查 double-check</h4>
+<ul>
+<li>懒汉式不安全,主要是判断是否为空</li>
+<li>
+<ul>
+<li>双重检查就是通过加锁，获得锁后把判断实例是否为空，如果是的话就new出实例，不是的话就返回已经new出的实例</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>在new的过程中，因为锁已经被拿走了，所以不会有其他的线程new实例</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Singleton instacne<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Singleton <span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(){</span>
+            <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+                synchrondized<span style="color:#f92672">(</span>Singleton<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">){</span>
+                    <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>instance <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+                        instance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton<span style="color:#f92672">();</span>
+                    <span style="color:#f92672">}</span>
+                <span style="color:#f92672">}</span>
+            <span style="color:#f92672">}</span>
+            <span style="color:#66d9ef">return</span> instance<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="静态内部类推荐">静态内部类（推荐！）</h4>
+<ul>
+<li>静态内部了在Singleton类被装载时并不会立即实例化</li>
+<li>类的静态属性只会在第一次在家类的时候初始化，保证了线程安全性</li>
+<li>避免了线程不安全，利用静态内部类特点实现延迟加载</li>
+</ul>
+<blockquote>
+<ul>
+<li>静态常量 final ，确保不会被改变</li>
+<li>在工厂方法里面直接返回new 出的实例对象</li>
+<li>先new出对象，就不用考虑多线程的问题</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Singleton</span><span style="color:#f92672">(){}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SingletonInstance</span><span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Singleton INSTANCE <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Singleton<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Singleton <span style="color:#a6e22e">getInstance</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">return</span> SingletonInstance<span style="color:#f92672">.</span><span style="color:#a6e22e">INSTANCE</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="枚举">枚举</h4>
+<ul>
+<li>单元素的枚举类型</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> Singleton<span style="color:#f92672">{</span>
+    INSTANCE<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSomething</span><span style="color:#f92672">(){}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="饿汉式懒汉式">饿汉式、懒汉式</h4>
+<ul>
+<li>区别在于创建对象的时间</li>
+<li>懒汉式 是等到整整使用的时候才会建立这个单例对象</li>
+<li>饿汉式 是不管你用不用一开始都给创建上
+是否是lazy loading</li>
+</ul>
+<h2 id="饿汉式总结">饿汉式总结</h2>
+<blockquote>
+<ul>
+<li>构造器private，防止new</li>
+<li>类的内部创建对象，对外暴露一个静态公共方法getInstacne</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>优点</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>简单明了</li>
+<li>依赖JVM类加载机制，保证单例只会被创建一次，即线程安全</li>
+<li>在类装载时就完成了实例化，避免了线程同步问题</li>
+</ol>
+<ul>
+<li>
+<ul>
+<li>缺点</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>不能懒加载，有可能会造成内存浪费</li>
+<li>可以在工程代码中使用</li>
+</ol>
+<h2 id="双重检查-double-check总结">双重检查 Double-Check总结</h2>
+<ul>
+<li>通过两次检查保证线程安全</li>
+<li>问题：可能会导致空指针异常（重排序reorder）</li>
+<li>
+<ul>
+<li>空排序：一个类里面的属性顺序可能被编译器作出调整，顺序不一样，导致一下属性获得Instance，一些没有</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>编译器</li>
+</ul>
+</li>
+<li>实例化只执行一次</li>
+<li>线程安全，延迟加载</li>
+</ul>
+<h4 id="双重检查改进">双重检查改进</h4>
+<ul>
+<li>在原来的基础上为构造器添加
+<code>volatile</code>&ndash;&gt;<code>private static volatile Singleton instance;</code></li>
+</ul>
+<h2 id="volatile">volatile</h2>
+<ul>
+<li>保证可见性</li>
+<li>
+<ul>
+<li>确保将变量的更新操作通知到其他线程</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>变量声明为volatile后，编译器与运行时会注意到这个变量是共享的</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>读到volatile类型的变量总会返回最新写入的值</li>
+</ul>
+</li>
+<li>防止指令重新排序</li>
+<li>
+<ul>
+<li>被volatile修饰的写变量不能和之前的读写代码调整</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>读变量不能和之后逇读写代码调整</li>
+</ul>
+</li>
+<li>因此，只要我们简单的吧instance添加上volatile关键字就可以了</li>
+</ul>
+<h2 id="实例介绍">实例介绍</h2>
+<ul>
+<li>Runtime class</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Runtime</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Runtime currentRuntime <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Runtime<span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Runtime <span style="color:#a6e22e">getRuntiem</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">return</span> currntRuntimel<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div>
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        291 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-09-16 18:13 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/solid%E5%8E%9F%E5%88%99/">
+                <span class="button__icon">←</span>
+                <span class="button__text">SOLID原则</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/%E9%A2%98%E7%9B%AE/">
+                <span class="button__text">题目</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

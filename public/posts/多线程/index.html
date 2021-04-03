@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="多线程  Java 的执行模型是同步/阻塞的&amp;ndash;&amp;gt;默认情况下只有一个线程,虽然处理问题非常自然，但是具有严重的性能问题。   同步与异步同步     同步：一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。 异步：不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。 用打电话（同步）和发短信（异步）     阻塞和非阻塞     阻塞与非阻塞主要是从 CPU 的消耗上来说的 阻塞就是 CPU 停下来等待一个慢的操作完成 CPU 才接着完成其它的事。 非阻塞就是在这个慢的操作在执行时 CPU 去干其它别的事，等这个慢的操作完成时，CPU 再接着完成后续的操作。 虽然表面上看非阻塞的方式可以明显的提高 CPU 的利用率，但是也带了另外一种后果就是系统的线程切换增加。增加的 CPU使用时间能不能补偿系统的切换成本需要好好评估。  为什么需要多线程  CPU 运行速度快，现代CPU是多核的&amp;ndash;&amp;gt; 不浪费CPU的资源。通过并发的操作，减少工作时间，提高效率。（为了解决负载均衡问题,充分利用CPU资源。为了提高CPU的使用率,采用多线程的方式去同时完成几件事情而不互相干扰） 为了处理大量的IO操作时或处理的情况需要花费大量的时间,比如:读写文件,视频图像的采集,处理,显示,保存等  多线程缺点
+1.如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换.
+2.更多的线程需要更多的内存空间
+3.线程中止需要考虑对程序运行的影响.
+4.通常块模型数据是在多个线程间共享的,需要防止线程死锁情况的发生
+一个简单新的线程 new Thread(new Runnable() {/** do something **/}).start()  Java虚拟机允许一个程序有多个线程在同时运行——性能来源
+ Java 中只有Thread一种东西代表线程 Start 方法才能并发执行   start 和 run 的区别     在同样的工作量情况下start的执行速度大于run start（）方法来启动线程，真正实现了多线程运行。这时无需等待run()代码执行完毕，可以直接继续执行下面的代码； 通过调用Thread类的start()方法来启动一个线程， 这时此线程是处于就绪状态，并没有运行。    接着通过此Thread类调用方法run()来完成其运行操作的，这里方法run()称为线程体，它包含了要执行的这个线程的内容（业务），Run方法运行结束，此线程终止。然后CPU再调度其它线程。   run（）方法当作普通方法的方式调用。程序还是要顺序执行，要等待run方法体执行完毕后，才可继续执行下面的代码； 程序中只有主线程——这一个线程，其程序执行路径还是只有一条，这样就没有达到写线程的目的。  多线程就是分时利用CPU，宏观上让所有线程一起执行 ，也叫并发" />
+<meta name="keywords" content=", JUC, 多线程, 并发工具包" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" />
+
+
+    <title>
+        
+            多线程 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="多线程">
+<meta itemprop="description" content="多线程  Java 的执行模型是同步/阻塞的&ndash;&gt;默认情况下只有一个线程,虽然处理问题非常自然，但是具有严重的性能问题。   同步与异步同步     同步：一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。 异步：不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。 用打电话（同步）和发短信（异步）     阻塞和非阻塞     阻塞与非阻塞主要是从 CPU 的消耗上来说的 阻塞就是 CPU 停下来等待一个慢的操作完成 CPU 才接着完成其它的事。 非阻塞就是在这个慢的操作在执行时 CPU 去干其它别的事，等这个慢的操作完成时，CPU 再接着完成后续的操作。 虽然表面上看非阻塞的方式可以明显的提高 CPU 的利用率，但是也带了另外一种后果就是系统的线程切换增加。增加的 CPU使用时间能不能补偿系统的切换成本需要好好评估。  为什么需要多线程  CPU 运行速度快，现代CPU是多核的&ndash;&gt; 不浪费CPU的资源。通过并发的操作，减少工作时间，提高效率。（为了解决负载均衡问题,充分利用CPU资源。为了提高CPU的使用率,采用多线程的方式去同时完成几件事情而不互相干扰） 为了处理大量的IO操作时或处理的情况需要花费大量的时间,比如:读写文件,视频图像的采集,处理,显示,保存等  多线程缺点
+1.如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换.
+2.更多的线程需要更多的内存空间
+3.线程中止需要考虑对程序运行的影响.
+4.通常块模型数据是在多个线程间共享的,需要防止线程死锁情况的发生
+一个简单新的线程 new Thread(new Runnable() {/** do something **/}).start()  Java虚拟机允许一个程序有多个线程在同时运行——性能来源
+ Java 中只有Thread一种东西代表线程 Start 方法才能并发执行   start 和 run 的区别     在同样的工作量情况下start的执行速度大于run start（）方法来启动线程，真正实现了多线程运行。这时无需等待run()代码执行完毕，可以直接继续执行下面的代码； 通过调用Thread类的start()方法来启动一个线程， 这时此线程是处于就绪状态，并没有运行。    接着通过此Thread类调用方法run()来完成其运行操作的，这里方法run()称为线程体，它包含了要执行的这个线程的内容（业务），Run方法运行结束，此线程终止。然后CPU再调度其它线程。   run（）方法当作普通方法的方式调用。程序还是要顺序执行，要等待run方法体执行完毕后，才可继续执行下面的代码； 程序中只有主线程——这一个线程，其程序执行路径还是只有一条，这样就没有达到写线程的目的。  多线程就是分时利用CPU，宏观上让所有线程一起执行 ，也叫并发">
+<meta itemprop="datePublished" content="2020-09-22T10:20:53&#43;08:00" />
+<meta itemprop="dateModified" content="2020-09-22T10:20:53&#43;08:00" />
+<meta itemprop="wordCount" content="1300">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="JUC,多线程,并发工具包," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="多线程"/>
+<meta name="twitter:description" content="多线程  Java 的执行模型是同步/阻塞的&ndash;&gt;默认情况下只有一个线程,虽然处理问题非常自然，但是具有严重的性能问题。   同步与异步同步     同步：一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。 异步：不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。 用打电话（同步）和发短信（异步）     阻塞和非阻塞     阻塞与非阻塞主要是从 CPU 的消耗上来说的 阻塞就是 CPU 停下来等待一个慢的操作完成 CPU 才接着完成其它的事。 非阻塞就是在这个慢的操作在执行时 CPU 去干其它别的事，等这个慢的操作完成时，CPU 再接着完成后续的操作。 虽然表面上看非阻塞的方式可以明显的提高 CPU 的利用率，但是也带了另外一种后果就是系统的线程切换增加。增加的 CPU使用时间能不能补偿系统的切换成本需要好好评估。  为什么需要多线程  CPU 运行速度快，现代CPU是多核的&ndash;&gt; 不浪费CPU的资源。通过并发的操作，减少工作时间，提高效率。（为了解决负载均衡问题,充分利用CPU资源。为了提高CPU的使用率,采用多线程的方式去同时完成几件事情而不互相干扰） 为了处理大量的IO操作时或处理的情况需要花费大量的时间,比如:读写文件,视频图像的采集,处理,显示,保存等  多线程缺点
+1.如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换.
+2.更多的线程需要更多的内存空间
+3.线程中止需要考虑对程序运行的影响.
+4.通常块模型数据是在多个线程间共享的,需要防止线程死锁情况的发生
+一个简单新的线程 new Thread(new Runnable() {/** do something **/}).start()  Java虚拟机允许一个程序有多个线程在同时运行——性能来源
+ Java 中只有Thread一种东西代表线程 Start 方法才能并发执行   start 和 run 的区别     在同样的工作量情况下start的执行速度大于run start（）方法来启动线程，真正实现了多线程运行。这时无需等待run()代码执行完毕，可以直接继续执行下面的代码； 通过调用Thread类的start()方法来启动一个线程， 这时此线程是处于就绪状态，并没有运行。    接着通过此Thread类调用方法run()来完成其运行操作的，这里方法run()称为线程体，它包含了要执行的这个线程的内容（业务），Run方法运行结束，此线程终止。然后CPU再调度其它线程。   run（）方法当作普通方法的方式调用。程序还是要顺序执行，要等待run方法体执行完毕后，才可继续执行下面的代码； 程序中只有主线程——这一个线程，其程序执行路径还是只有一条，这样就没有达到写线程的目的。  多线程就是分时利用CPU，宏观上让所有线程一起执行 ，也叫并发"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-22 10:20:53 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        7 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="多线程">多线程</h2>
+<ul>
+<li>Java 的执行模型是同步/阻塞的&ndash;&gt;默认情况下只有一个线程,虽然处理问题非常自然，但是具有严重的性能问题。</li>
+<li>
+<ul>
+<li>同步与异步同步</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>同步：一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。</li>
+<li>异步：不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。</li>
+<li>用打电话（同步）和发短信（异步）</li>
+</ol>
+<ul>
+<li>
+<ul>
+<li>阻塞和非阻塞</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>阻塞与非阻塞主要是从 CPU 的消耗上来说的</li>
+<li>阻塞就是 CPU 停下来等待一个慢的操作完成 CPU 才接着完成其它的事。</li>
+<li>非阻塞就是在这个慢的操作在执行时 CPU 去干其它别的事，等这个慢的操作完成时，CPU 再接着完成后续的操作。</li>
+<li>虽然表面上看非阻塞的方式可以明显的提高 CPU 的利用率，但是也带了另外一种后果就是系统的线程切换增加。增加的 CPU使用时间能不能补偿系统的切换成本需要好好评估。</li>
+</ol>
+<h2 id="为什么需要多线程">为什么需要多线程</h2>
+<ul>
+<li>CPU 运行速度快，现代CPU是多核的&ndash;&gt; 不浪费CPU的资源。通过并发的操作，减少工作时间，提高效率。（为了解决负载均衡问题,充分利用CPU资源。为了提高CPU的使用率,采用多线程的方式去同时完成几件事情而不互相干扰）</li>
+<li>为了处理大量的IO操作时或处理的情况需要花费大量的时间,比如:读写文件,视频图像的采集,处理,显示,保存等</li>
+</ul>
+<p><strong>多线程缺点</strong></p>
+<p>1.如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换.</p>
+<p>2.更多的线程需要更多的内存空间</p>
+<p>3.线程中止需要考虑对程序运行的影响.</p>
+<p>4.通常块模型数据是在多个线程间共享的,需要防止线程死锁情况的发生</p>
+<h2 id="一个简单新的线程">一个简单新的线程</h2>
+<pre><code>new Thread(new Runnable() {/** do something **/}).start()
+</code></pre>
+<p><strong>Java虚拟机允许一个程序有多个线程在同时运行——性能来源</strong></p>
+<ul>
+<li>Java 中只有Thread一种东西代表线程</li>
+<li>Start 方法才能并发执行</li>
+<li>
+<ul>
+<li>start 和 run 的区别</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>在同样的工作量情况下start的执行速度大于run</li>
+<li>start（）方法来启动线程，真正实现了多线程运行。这时无需等待run()代码执行完毕，可以直接继续执行下面的代码；  <code>通过调用Thread类的start()方法来启动一个线程， 这时此线程是处于就绪状态，并没有运行。</code></li>
+</ol>
+<blockquote>
+<ul>
+<li>接着通过此Thread类调用方法run()来完成其运行操作的，这里方法run()称为线程体，它包含了要执行的这个线程的内容（业务），Run方法运行结束，此线程终止。然后CPU再调度其它线程。</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>run（）方法当作普通方法的方式调用。程序还是要顺序执行，要等待run方法体执行完毕后，才可继续执行下面的代码； 程序中只有主线程——这一个线程，其程序执行路径还是只有一条，这样就没有达到写线程的目的。</li>
+</ol>
+<p><strong>多线程就是分时利用CPU，宏观上让所有线程一起执行 ，也叫并发</strong></p>
+<ul>
+<li>每多开⼀个线程（start），就多⼀个执⾏流</li>
+<li>调试器也是一个方法栈 &ndash;&gt; 一个线程的方法栈是从thread开始的。</li>
+</ul>
+<h6 id="线程私有和公有">线程私有和公有</h6>
+<ul>
+<li>⽅法栈(局部变量)是线程私有的</li>
+<li>
+<ul>
+<li>栈里面的局部变量都是局部私有的</li>
+</ul>
+</li>
+<li>静态变量/类变量是被所有线程共享的</li>
+<li>
+<ul>
+<li>通过共享的变量把不同线程的结果收集</li>
+</ul>
+</li>
+<li>栈是私有的，堆是公有的</li>
+</ul>
+<h2 id="线程的不安全性原因">线程的不安全性原因</h2>
+<p><em>线程的执行的多个人无序地疯狂执行</em></p>
+<ol>
+<li>线程的交叉执行(原子性)<br>
+同时有多于一个线程在修改数据，只读是不会出现问题的</li>
+</ol>
+<ul>
+<li>i++ 非原子操作</li>
+<li>If-then-do  &ndash;&gt; HashMap
+【两个例子】</li>
+</ul>
+<ol start="2">
+<li>重排序结合线程的交叉执行(可见性)</li>
+<li>共享变量更新后的值没有在工作内存中与主内存之间及时更新(可见性)</li>
+</ol>
+<ul>
+<li>共享变量：如果一个变量在多个线程的工作内存中都存在副本，那么这个变量就是这几个线程的共享变量。</li>
+<li>可见性：一个线程对共享变量值的修改，能够及时地被其他线程看到。</li>
+<li>原子性: 一段指令像原子一样不可分割，在执行结束之前，其他线程不可打断。</li>
+</ul>
+<h2 id="多线程带来的性能提升">多线程带来的性能提升</h2>
+<ul>
+<li>对于IO密集型应用极其有用</li>
+<li>
+<ul>
+<li>网络IO（通常包括数据库）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>文件IO</li>
+</ul>
+</li>
+<li>对于CPU密集型应用稍有折扣</li>
+<li>
+<ul>
+<li>性能提升上限</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>单核CPU被占满 100%</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>多核CPU N*100%</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程六种状态">线程六种状态</h2>
+<h4 id="创建就绪运行阻塞和死亡">创建、就绪、运行、阻塞和死亡。</h4>
+<ol>
+<li>创建状态。在生成线程对象，并没有调用该对象的start方法，这是线程处于创建状态。</li>
+<li>就绪状态。当调用了线程对象的start方法之后，该线程就进入了就绪状态，但是此时线程调度程序还没有把该线程设置为当前线程，此时处于就绪状态。在线程运行之后，从等待或者睡眠中回来之后，也会处于就绪状态。</li>
+<li>运行状态。线程调度程序将处于就绪状态的线程设置为当前线程，此时线程就进入了运行状态，开始运行run函数当中的代码。</li>
+<li>阻塞状态。</li>
+<li>线程正在运行的时候，被暂停，通常是为了等待某个时间的发生(比如说某项资源就绪)之后再继续运行。sleep,suspend，wait等方法都可以导致线程阻塞。</li>
+<li>超时等待
+处于这种状态的线程不会被分配CPU执行时间，不过无须无限期等待被其他线程显示地唤醒，在达到一定时间后它们会自动唤醒。</li>
+<li>第六是死亡状态。如果一个线程的run方法执行结束或者调用stop方法后，该线程就会死亡。对于已经死亡的线程，无法再使用start方法令其进入就绪。
+<a href="https://blog.csdn.net/pange1991/article/details/53860651">https://blog.csdn.net/pange1991/article/details/53860651</a></li>
+</ol>
+<h2 id="hashmap-死循环">HashMap 死循环</h2>
+<p><a href="https://coolshell.cn/articles/9606.html">https://coolshell.cn/articles/9606.html</a></p>
+<h2 id="死锁排查">死锁排查</h2>
+<p><strong>同样能够排查运行缓慢的进程</strong></p>
+<ol>
+<li>ps &ndash;&gt; 列出所有的进程</li>
+<li>jps 同上作用  ==&gt;都会显示出进程名字+对应编号</li>
+<li>Jstack + 进程编号 （打印进程的所有栈信息） &gt; 需要保存到.txt 重定向到一个文件里面查看</li>
+</ol>
+<p>同样能够排查运行缓慢的进程
+【NP】
+文档里面找到死锁
+如果一个对象把当作锁的用途，放在↓，就被称为monitor监视器</p>
+<pre><code>synchronized（lock1）
+</code></pre>
+<h2 id="实现线程安全的基本手段">实现线程安全的基本手段</h2>
+<p><strong>1. 使用同步方法</strong><br>
+java允许多线程并发控制，当多个线程同时操作一个可共享的资源变量时（如数据的增删改查），将会导致数据不准确，相互之间产生冲突，因此加入同步锁以避免在该线程没有完成操作之前，被其他线程的调用，<br>
+从而保证了该变量的唯一性和准确性。
+缺点：在方法编写的时候先添加synchronized（锁），但是时间会变慢</p>
+<h4 id="a-同步方法">A. 同步方法</h4>
+<ul>
+<li>
+<p>Static synchronized方法，把Class对象当成锁<br>
+等价于                       <br>
+实例的synchronnized方法把该实例当成锁（同步块）</p>
+</li>
+<li>
+<ul>
+<li>PS：同步是一种高开销的操作，因此应该尽量减少同步的内容。 整个方法同步就会使得方法的每一步都是同步的，导致速度非常慢
+通常没有必要同步整个方法，使用synchronized代码块同步关键代码即可。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> synchronzied <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">modifyShareVariable</span><span style="color:#f92672">(){</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="b-同步代码块---有synchronized关键字修饰的语句块">B. 同步代码块 &ndash;&gt;有synchronized关键字修饰的语句块。</h4>
+<p><code>synchronized(object){  }</code></p>
+<ul>
+<li>
+<p>synchronized（一个对象）把这个对象当成锁，把对象变成同步。只有拿到这个对象，才能执行对象需要调用的方法。</p>
+</li>
+<li>
+<p>缺点：不能够把跨方法的对象（非原子）变成同步，这种情况只能够通过全局的synchronized解决
+解决：通过JUC包的ReentrantLock （可重复使用的锁，同一个锁可以在不同的方法使用）</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Object lock<span style="color:#f92672">;</span>
+synchronzied<span style="color:#f92672">(</span>lock<span style="color:#f92672">){</span>
+    
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h4 id="实例的-synchronized-方法把该实例当成锁">实例的 synchronized 方法把该实例当成锁</h4>
+<ul>
+<li>
+<p>EG：</p>
+</li>
+<li>
+<ul>
+<li>
+<p>HashMap通过Collections.synchronizedMap解决线程不安全（实质就是给map的每一个方法添加上synchronized块）</p>
+<pre><code>    synchronizedHashMap = Collections.synchronizedMap(new HashMap&lt;String, String&gt;());
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>但是遍历随机数r的过程中是非原子的，所以线程还是不安全的</p>
+</li>
+<li>
+<ul>
+<li>
+<p>map 执行的方法是同步的，但是例子里的循环i并不是map的方法，不会同步，所以就会出现问题</p>
+<pre><code>    private static final Map&lt;Integer,Integer&gt; map = Collections.synchronizedMap(new HashMap&lt;&gt;());
+        
+    main
+
+    for (int j = 0 ; j &lt; 1000; j++){
+        new Thread(Main::concurrentlyAccess).start();
+    }
+    private static void concurrentlyAccess(){
+        try{
+            Thread.sleep(1);
+        }catch (InterruptedException e){
+            e.printStacjTrace();
+        }
+        Integer r = new Random().nextInt();
+        map.put(r,r);
+        for(Integer i : map.ketSet()){
+            System.out.println(i);
+        }
+                
+    }
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 使用不可变类</strong><br>
+Integer/String/……
+（只是把地址赋值，字符串本身没有改变）</p>
+<ul>
+<li>s 是改变了字符串地址，但是&quot;a&quot;是没有改变的</li>
+</ul>
+<pre><code>Stirng s = &quot;a&quot;;
+s =&quot;b&quot;; 
+</code></pre><p><strong>3. JUC 包</strong></p>
+<h4 id="javautilconcurrent">java.util.concurrent</h4>
+<ul>
+<li>降低资源消耗：通过重复利用已创建的线程降低线程创建和销毁造成的消耗；</li>
+<li>提高响应速度：当任务到达时，任务可以不需要等到线程创建就立即执行；</li>
+<li>提高线程的可管理性：线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以统一的分配、调优和监控；</li>
+<li>Locks &amp; Condition（锁和条件变量），比 synchronized、wait、notify 更细粒度的锁机制；</li>
+<li>Executor 框架（线程池、Callable、Future），任务的执行和调度框架；</li>
+<li>Atomic Variables（原子变量），方便程序员在多线程环境下，无锁的进行原子操作，核心操作是 CAS 原子操作，所谓的 CAS 操作，即 compare and swap，指的是将预期值与当前变量的值比较(compare)，如果相等则使用新值替换(swap)当前变量，否则不作操作；</li>
+<li>Executor 框架（线程池、Callable、Future），任务的执行和调度框架；</li>
+</ul>
+<h2 id="httpswwwzfl9comjava-juc-frameworkhtml">[https://segmentfault.com/a/1190000015558984]
+[https://www.zfl9.com/java-juc-framework.html]</h2>
+<h4 id="int-aotomiclnteger-原子性不会被分割">int Aotomiclnteger 原子性，不会被分割</h4>
+<ul>
+<li>addAndGet(int delta)</li>
+<li>
+<ul>
+<li>可以原子地进行</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> AtomicIntefer b <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AtomicInteger<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> value<span style="color:#f92672">)</span>
+
+b<span style="color:#f92672">.</span><span style="color:#a6e22e">addAnGet</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+</code></pre></div><ul>
+<li>
+<ul>
+<li>非原子</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#960050;background-color:#1e0010">`</span>a <span style="color:#f92672">+=</span>1<span style="color:#960050;background-color:#1e0010">`</span> 不是原子的<span style="color:#960050;background-color:#1e0010">，</span>因为整个过程就是从内存中取a<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#f92672">+</span>1 后把结果写回内存里面<span style="color:#960050;background-color:#1e0010">。</span>a就会出现多次被改写<span style="color:#960050;background-color:#1e0010">，</span>且线程取得到的a 并非是按顺序的<span style="color:#960050;background-color:#1e0010">，</span>写回去的结果也是随机的
+</code></pre></div><p>如果相等则使用新值替换(swap)当前变量，否则不作操作；</p>
+<h4 id="concurrenthashmap-并发hashmap">ConcurrentHashMap 并发HashMap</h4>
+<pre><code>        concurrentHashMap = new ConcurrentHashMap&lt;String, String&gt;();
+</code></pre>
+<ul>
+<li>
+<p>无条件的线程安全Hashmap</p>
+</li>
+<li>
+<p>任何使用HashMap有线程安全问题的地方都可以使用ConrrentHashMao替换就可</p>
+</li>
+<li>
+<p>ReentrantLock 可重入的排它锁</p>
+</li>
+<li>
+<ul>
+<li>synchronnized<br>
+不在同一个地方加锁解锁，在一个方法放，另一个方法解锁也是可以的</li>
+</ul>
+</li>
+<li>
+<p>BloockingQureue</p>
+</li>
+<li>
+<ul>
+<li>阻塞队列提供了可阻塞的入队和出对操作</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>take<br>
+队列空的时候，方法会等待，直到队列有一个可用的元素为止</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>put<br>
+队列满的时候，方法会等待，直到队列有空间再添加元素</li>
+</ul>
+</li>
+</ul>
+<h4 id="reentrantlock-可重入锁">ReentrantLock 可重入锁</h4>
+<ul>
+<li>ReentrantLock 就是一个普通的类，它是基于 AQS(AbstractQueuedSynchronizer)来实现的。</li>
+<li>
+<ul>
+<li>ReentrantLock主要利用CAS+AQS队列来实现。它支持公平锁和非公平锁，两者的实现类似。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>ReentrantLock的基本实现可以概括为：先通过CAS尝试获取锁。如果此时已经有线程占据了锁，那就加入AQS队列并且被挂起。当锁被释放之后，排在CLH队列队首的线程会被唤醒，然后CAS再次尝试获取锁。</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>CAS：Compare and Swap，比较并交换。CAS有3个操作数：内存值V、预期值A、要修改的新值B。当且仅当预期值A和内存值V相同时，将内存值V修改为B，否则什么都不做。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>AQS:是一个用于构建锁和同步容器的框架。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>AQS使用一个FIFO的队列表示排队等待锁的线程，队列头节点称作“哨兵节点”或者“哑节点”，它不与任何线程关联。其他的节点与等待线程关联，每个节点维护一个等待状态waitStatus</li>
+</ul>
+</blockquote>
+<ul>
+<li>重入锁：可重入锁是指同一个线程可以多次获取同一把锁。不会出现自己阻塞自己的情况。</li>
+</ul>
+<blockquote>
+<ul>
+<li>ReentrantLock和synchronized都是可重入锁。</li>
+</ul>
+</blockquote>
+<ul>
+<li>中断锁：可中断锁是指线程尝试获取锁的过程中，是否可以响应中断。synchronized是不可中断锁，而ReentrantLock则提供了中断功能。 &ndash;&gt; 使用<code>ReentrantLock</code>比直接使用<code>synchronized</code>更安全，线程在<code>tryLock()</code>失败的时候不会导致死锁。</li>
+</ul>
+<blockquote>
+<ul>
+<li>ReebtrantLock 可以尝试获取锁</li>
+<li>例子里最多等待一毛，如果一秒后仍未获得锁，就会<code>tryLock()</code>返回<code>false</code>。程序可以做一些额外的处理，而不是无限地等待下去。</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>lock<span style="color:#f92672">.</span><span style="color:#a6e22e">tryLock</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+        <span style="color:#f92672">...</span>
+    <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+        lock<span style="color:#f92672">.</span><span style="color:#a6e22e">unlock</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>锁的类型</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<ul>
+<li>公平锁:如果同时还有另一个线程进来尝试获取，当它发现自己不是在队首的话，就会排到队尾，由队首的线程获取到锁。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>非公平锁：插队。默认一般使用非公平锁，它的效率和吞吐量都比公平锁高的多.如果同时还有另一个线程进来尝试获取，那么有可能会让这个线程抢先获取；</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>ReetrantLock 两个构造器无参就是非公平/false（默认），有参(true)就是公平</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//默认非公平锁
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ReentrantLock</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        sync <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NonfairSync<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#75715e">//公平锁
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ReentrantLock</span><span style="color:#f92672">(</span><span style="color:#66d9ef">boolean</span> fair<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        sync <span style="color:#f92672">=</span> fair <span style="color:#f92672">?</span> <span style="color:#66d9ef">new</span> FairSync<span style="color:#f92672">()</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> NonfairSync<span style="color:#f92672">();</span>
+</code></pre></div><ul>
+<li>ReentranLock 获取锁</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">X</span> <span style="color:#f92672">{</span>
+ <span style="color:#f92672">*</span>   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ReentrantLock lock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ReentrantLock<span style="color:#f92672">();</span>
+ <span style="color:#f92672">*</span>   <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span> <span style="color:#f92672">*</span>
+ <span style="color:#f92672">*</span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+ <span style="color:#f92672">*</span>     lock<span style="color:#f92672">.</span><span style="color:#a6e22e">lock</span><span style="color:#f92672">();</span>  <span style="color:#75715e">// block until condition holds
+</span><span style="color:#75715e"></span> <span style="color:#f92672">*</span>     <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+ <span style="color:#f92672">*</span>       <span style="color:#75715e">// ... method body
+</span><span style="color:#75715e"></span> <span style="color:#f92672">*</span>     <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+ <span style="color:#f92672">*</span>       lock<span style="color:#f92672">.</span><span style="color:#a6e22e">unlock</span><span style="color:#f92672">()</span>
+ <span style="color:#f92672">*</span>     <span style="color:#f92672">}</span>
+ <span style="color:#f92672">*</span>   <span style="color:#f92672">}</span>
+ <span style="color:#f92672">*</span> <span style="color:#f92672">}}&lt;/</span>pre<span style="color:#f92672">&gt;</span>
+</code></pre></div><ul>
+<li>
+<ul>
+<li>lock（）:使用 sync的方法，而这个方法是一个抽象方法，具体是由其子类(FairSync)来实现的，以下是公平锁的实现:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">lock</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        sync<span style="color:#f92672">.</span><span style="color:#a6e22e">lock</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>synv.lock()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+        <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">lock</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            acquire<span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        
+        <span style="color:#75715e">//AbstractQueuedSynchronizer 中的 acquire()
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">acquire</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> arg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>tryAcquire<span style="color:#f92672">(</span>arg<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span>
+            acquireQueued<span style="color:#f92672">(</span>addWaiter<span style="color:#f92672">(</span>Node<span style="color:#f92672">.</span><span style="color:#a6e22e">EXCLUSIVE</span><span style="color:#f92672">),</span> arg<span style="color:#f92672">))</span>
+            selfInterrupt<span style="color:#f92672">();</span>
+    	<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>sync.lock():第一步是尝试获取锁(tryAcquire(arg)),这个也是由其子类实现</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>首先会判断 AQS 中的 state 是否等于 0，0 表示目前没有其他线程获得锁，当前线程就可以尝试获取锁。</li>
+<li>注意:尝试之前会利用 hasQueuedPredecessors() 方法来判断 AQS 的队列中中是否有其他线程，如果有则不会尝试获取锁(这是公平锁特有的情况)</li>
+<li>如果队列中没有线程就利用 CAS 来将 AQS 中的 state 修改为1，也就是获取锁，获取成功则将当前线程置为获得锁的独占线程(setExclusiveOwnerThread(current))。</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>NonfairSync().lock()</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>首先用一个CAS操作，判断state是否是0（表示当前锁未被占用），如果是0则把它置为1，并且设置当前线程为该锁的独占线程，表示获取锁成功。当多个线程同时尝试占用同一个锁时，CAS操作只能保证一个线程操作成功，剩下的只能乖乖的去排队啦。</li>
+<li>“非公平”即体现在这里，如果占用锁的线程刚释放锁，state置为0，而排队等待锁的线程还未唤醒时，新来的线程就直接抢占了该锁，那么就“插队”了。</li>
+<li>若当前有三个线程去竞争锁，假设线程A的CAS操作成功了，拿到了锁开开心心的返回了，那么线程B和C则设置state失败，走到了else里面。我们往下看acquire。</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">lock</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>compareAndSetState<span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> 1<span style="color:#f92672">))</span>
+        setExclusiveOwnerThread<span style="color:#f92672">(</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">());</span>
+    <span style="color:#66d9ef">else</span>
+        acquire<span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>acquire()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>第一步。尝试去获取锁。如果尝试获取锁成功，方法直接返回。</li>
+</ul>
+</blockquote>
+<h2 id="object类里的线程方法">Object类里的线程方法</h2>
+<ul>
+<li>线程历史<br>
+Java从一开始就把线程作为语言特性，提供语言级的支持
+Java所有对象都继承object 单根继承</li>
+<li>为什么Java 中的所有对象都可以成为锁  ?</li>
+<li>Object.wait()/notify()/notifyAll()方法</li>
+<li>
+<ul>
+<li>Wait :</li>
+</ul>
+<ol>
+<li>释放锁，让当前线程等待，等待的过程中<code>锁已经被释放</code>，能够被其他线程所使用</li>
+<li>直到另一个线程通知才能重新竞争获得锁获得锁，获得锁后就执行wait 后面的方法,如果没有方法notify 的话，就一直等待
+-&gt; 如果是notifyAll 的话，就是随机唤醒，没有特权和优先</li>
+<li>当前线程必须持有monitor，wait() 才不会有异常</li>
+</ol>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">        class<span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Object lock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">;</span>
+            main<span style="color:#f92672">{</span>
+                lock<span style="color:#f92672">.</span><span style="color:#a6e22e">wait</span><span style="color:#f92672">;</span> <span style="color:#75715e">//没有持有monitor，会出现异常
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#f92672">===&gt;</span>
+        main<span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">synchronized</span><span style="color:#f92672">(</span>lock<span style="color:#f92672">){</span>
+                lock<span style="color:#f92672">.</span><span style="color:#a6e22e">wait</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>
+<ul>
+<li>Notify  vs NotifyAll
+<ol>
+<li>Notify 任意唤醒一个线程，</li>
+<li>NotifyAll 唤醒所有正在等待监视器的线程，被唤醒的线程会竞争获得锁（不公平），所有线程无条件开始竞争锁</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>公平锁和非公平锁</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>公平锁</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>在注释1的位置，有个!hasQueuedPredecessors()条件，意思是说当前同步队列没有前驱节点（也就是没有线程在等待）时才会去compareAndSetState(0, acquires)使用CAS修改同步状态变量。所以就实现了公平锁，根据线程发出请求的顺序获取锁。</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FairSync</span> <span style="color:#66d9ef">extends</span> Sync <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">lock</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        acquire<span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// AbstractQueuedSynchronizer.acquire(int arg)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">acquire</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> arg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>tryAcquire<span style="color:#f92672">(</span>arg<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span>
+            acquireQueued<span style="color:#f92672">(</span>addWaiter<span style="color:#f92672">(</span>Node<span style="color:#f92672">.</span><span style="color:#a6e22e">EXCLUSIVE</span><span style="color:#f92672">),</span> arg<span style="color:#f92672">))</span>
+            selfInterrupt<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">tryAcquire</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> acquires<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">final</span> Thread current <span style="color:#f92672">=</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> getState<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>c <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">// 1. 和非公平锁相比，这里多了一个判断：是否有线程在等待
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>hasQueuedPredecessors<span style="color:#f92672">()</span> <span style="color:#f92672">&amp;&amp;</span>
+                compareAndSetState<span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> acquires<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+                setExclusiveOwnerThread<span style="color:#f92672">(</span>current<span style="color:#f92672">);</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>current <span style="color:#f92672">==</span> getExclusiveOwnerThread<span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">int</span> nextc <span style="color:#f92672">=</span> c <span style="color:#f92672">+</span> acquires<span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nextc <span style="color:#f92672">&lt;</span> 0<span style="color:#f92672">)</span>
+                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Maximum lock count exceeded&#34;</span><span style="color:#f92672">);</span>
+            setState<span style="color:#f92672">(</span>nextc<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>非公平锁</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NonfairSync</span> <span style="color:#66d9ef">extends</span> Sync <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">lock</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">// 2. 和公平锁相比，这里会直接先进行一次CAS，成功就返回了
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>compareAndSetState<span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> 1<span style="color:#f92672">))</span>
+            setExclusiveOwnerThread<span style="color:#f92672">(</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">());</span>
+        <span style="color:#66d9ef">else</span>
+            acquire<span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">// AbstractQueuedSynchronizer.acquire(int arg)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">acquire</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> arg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>tryAcquire<span style="color:#f92672">(</span>arg<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span>
+            acquireQueued<span style="color:#f92672">(</span>addWaiter<span style="color:#f92672">(</span>Node<span style="color:#f92672">.</span><span style="color:#a6e22e">EXCLUSIVE</span><span style="color:#f92672">),</span> arg<span style="color:#f92672">))</span>
+            selfInterrupt<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">tryAcquire</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> acquires<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> nonfairTryAcquire<span style="color:#f92672">(</span>acquires<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * Performs non-fair tryLock.  tryAcquire is implemented in
+</span><span style="color:#75715e"> * subclasses, but both need nonfair try for trylock method.
+</span><span style="color:#75715e"> */</span>
+<span style="color:#66d9ef">final</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">nonfairTryAcquire</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> acquires<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">final</span> Thread current <span style="color:#f92672">=</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> getState<span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>c <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//3.这里也是直接CAS，没有判断前面是否还有节点。
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>compareAndSetState<span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> acquires<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+            setExclusiveOwnerThread<span style="color:#f92672">(</span>current<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>current <span style="color:#f92672">==</span> getExclusiveOwnerThread<span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> nextc <span style="color:#f92672">=</span> c <span style="color:#f92672">+</span> acquires<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nextc <span style="color:#f92672">&lt;</span> 0<span style="color:#f92672">)</span> <span style="color:#75715e">// overflow
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Maximum lock count exceeded&#34;</span><span style="color:#f92672">);</span>
+        setState<span style="color:#f92672">(</span>nextc<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>
+<p>非公平锁和公平锁的两处不同： 1. 非公平锁在调用 lock 后，首先就会调用 CAS 进行一次抢锁，如果这个时候恰巧锁没有被占用，那么直接就获取到锁返回了。</p>
+</li>
+<li>
+<p>非公平锁在 CAS 失败后，和公平锁一样都会进入到 tryAcquire 方法，在 tryAcquire 方法中，如果发现锁这个时候被释放了（state == 0），非公平锁会直接 CAS 抢锁，但是公平锁会判断等待队列是否有线程处于等待状态，如果有则不去抢锁，乖乖排到后面。</p>
+</li>
+<li>
+<p>公平锁和非公平锁就这两点区别，如果这两次 CAS 都不成功，那么后面非公平锁和公平锁是一样的，都要进入到阻塞队列等待唤醒。</p>
+</li>
+<li>
+<p>相对来说，非公平锁会有更好的性能，因为它的吞吐量比较大。当然，非公平锁让获取锁的时间变得更加不确定，可能会导致在阻塞队列中的线程长期处于饥饿状态。</p>
+</li>
+</ul>
+<h6 id="wait-方法文档">Wait 方法文档</h6>
+<h2 id="optional">Optional</h2>
+<ul>
+<li>一个可以为null特殊容器，是一个不可改变的对象；</li>
+<li>
+<ul>
+<li>通过<code>isPresent()</code> 可以判断是否为空,如果值存在则isPresent()方法会返回true</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>调用<code>get()</code>方法会返回该对象。不为空的时候后就必须等待</li>
+</ul>
+</li>
+<li>Optional 类的引入很好的解决空指针异常。</li>
+<li>Optional 没有添加的方法，只能够通过别的类属性的方式 用getter和setter 完成数据的添加</li>
+</ul>
+<p>[https://www.runoob.com/java/java8-optional-class.html]</p>
+<h2 id="生产者和消费者模型">生产者和消费者模型</h2>
+<ul>
+<li>
+<ul>
+<li>Lock/Condition</li>
+</ul>
+</li>
+<li>
+<p>Reentrant Lock</p>
+</li>
+<li>
+<ul>
+<li>进入的地方枷锁，finally解锁
+扩展：为什么说Java的线程</li>
+</ul>
+</li>
+<li>
+<p>BlockQueue</p>
+</li>
+</ul>
+<h2 id="signalqueue">SignalQueue</h2>
+<ul>
+<li>传递信号</li>
+</ul>
+<h2 id="线程池与callablefuture">线程池与Callable/Future</h2>
+<ul>
+<li>什么是线程池</li>
+<li>
+<ul>
+<li>线程是昂贵的（Java线程模型的缺陷）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>线程池是预先预定好的若干个线程</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>Java中的线程池
+threadPool.sumit() 【把任务随机给线程池里面的线程】
+和Thread.start()差不多，但是前者能够立刻返回</li>
+</ul>
+</li>
+</ul>
+<h4 id="excutor">Excutor</h4>
+<ul>
+<li>
+<p>Callable/Future</p>
+</li>
+<li>
+<ul>
+<li>Java5 之前，只有一个 Runnable 接口，用来定义任务，将它交给一个 Thread 对象去执行；<br>
+但是 Runnable 接口的 run() 方法是没有返回值的，也不能抛出任何检查性异常，有些时候不方便。<br>
+（Runnable没有返回值，需要使用共享变量，没有声明返回的异常，需要把异常吞掉）</li>
+</ul>
+</li>
+<li>
+<p>Callable 接口，定义有返回值并且可抛出检查异常的任务，将它交给 ExecutorService 去执行；
+ExecutorService.submit() 方法将返回一个</p>
+</li>
+<li>
+<ul>
+<li>但是Callable可以，还能通过.cancle把不想等待的线程删除掉</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Callable 接口（函数式接口），call() 方法；</p>
+<pre><code>    @FunctionalInterface
+    public interface Callable&lt;V&gt; {
+    /**
+    * Computes a result, or throws an exception if unable to do so.
+     *
+    * @return computed result
+     * @throws Exception if unable to compute a result
+     */
+    V call() throws Exception;
+    }
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Future 对象（待完成的任务结果对象），Future.get() 方法可获取结果。</p>
+</li>
+<li>
+<ul>
+<li>Future代表一个“未来才会返回的结果”</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>Future 表示异步任务的结果，Future 提供了任务查询、任务取消、获取任务结果等实用方法；</p>
+<pre><code>    public interface Future&lt;V&gt; {
+    /**
+     * 用于尝试取消当前任务.
+     * 如果任务已开始，并且 mayInterruptIfRunning 为 true，则给任务发送中断信号，否则务将继续执行
+     * 此调用返回后，后续的 isDone() 始终返回 true；如果此调用返回 true，则后续的 isCancelled() 始终返回 true
+   * @param mayInterruptIfRunning 如果任务已运行，定义是否中断任务的执行
+     * @return boolean              如果任务取消失败则返回 false，否则返回 true
+  */
+ boolean cancel(boolean mayInterruptIfRunning);
+
+    /* 任务是否已被取消 */
+      boolean isCancelled();
+
+      /* 任务是否已完成 */
+      boolean isDone();
+
+  /* 获取任务结果，该调用将阻塞 */
+ V get() throws InterruptedException, ExecutionException;
+
+ /* 获取任务结果，该调用将阻塞给定时间 */
+ V get(long timeout, TimeUnit unit)
+throws InterruptedException, ExecutionException, TimeoutException;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.zfl9.com/java-juc-framework.html">https://www.zfl9.com/java-juc-framework.html</a></p>
+<ul>
+<li>实战：多线程的WordCount</li>
+</ul>
+<h2 id="多线程加锁">多线程加锁</h2>
+<p>线程同步是指当大家共用同一个东西的时候才有必要，使用资源一般只是在程序执行流程的某个环节，多数时间它们是在处理而不是操作资源，比如程序处理完数据后保存到磁盘就只是在保存时使用资源，而处理的时候不使用资源，我们同步仅对使用资源加锁，处理数据的部分是可以同时并行的，所以我们的桌面型操作系统允许多个任务同时运行，只是在访问磁盘时内部细节中加锁轮，当磁盘机械装置转到哪个扇区时就允许哪个程序来访问。
+我们不能对所有的东西都用 synchronized，仅对有可能1653导致冲突和状态不一致的代码加 synchonized 来锁定这块区域，版就是说进入这个块区域之前必须申请锁而且得到锁后运行权时其它线程在它释放锁之前不能访问，如果其它线程当前还在处理数据并没有打算使用这个资源的时候就可以在另一个线程中并行运行。</p>
+<h2 id="other">other</h2>
+<p>一、概念：</p>
+<p>线程安全：就是当多线程访问时，采用了加锁的机制；即当一个线程访问该类的某个数据时，会对这个数据进行保护，其他线程不能对其访问，直到该线程读取完之后，其他线程才可以使用。防止出现数据不一致或者数据被污染的情况。
+线程不安全：就是不提供数据访问时的数据保护，多个线程能够同时操作某个数据，从而出现数据不一致或者数据污染的情况。
+对于线程不安全的问题，一般会使用synchronized关键字加锁同步控制。
+线程安全 工作原理： jvm中有一个main memory对象，每一个线程也有自己的working memory，一个线程对于一个变量variable进行操作的时候， 都需要在自己的working memory里创建一个copy,操作完之后再写入main memory。
+当多个线程操作同一个变量variable，就可能出现不可预知的结果。
+而用synchronized的关键是建立一个监控monitor，这个monitor可以是要修改的变量，也可以是其他自己认为合适的对象(方法)，然后通过给这个monitor加锁来实现线程安全，每个线程在获得这个锁之后，要执行完加载load到working memory 到 use &amp;&amp; 指派assign 到 存储store 再到 main memory的过程。才会释放它得到的锁。这样就实现了所谓的线程安全。
+二、线程安全(Thread-safe)的集合对象：</p>
+<p>Vector 线程安全：
+HashTable 线程安全：
+StringBuffer 线程安全：
+三、非线程安全的集合对象：</p>
+<p>ArrayList ：
+LinkedList：
+HashMap：
+HashSet：
+TreeMap：
+TreeSet：
+StringBulider：
+四、相关集合对象比较：</p>
+<p>Vector、ArrayList、LinkedList：
+1、Vector：
+Vector与ArrayList一样，也是通过数组实现的，不同的是它支持线程的同步，即某一时刻只有一个线程能够写Vector，避免多线程同时写而引起的不一致性，但实现同步需要很高的花费，因此，访问它比访问ArrayList慢。
+2、ArrayList：
+a. 当操作是在一列数据的后面添加数据而不是在前面或者中间，并需要随机地访问其中的元素时，使用ArrayList性能比较好。
+b. ArrayList是最常用的List实现类，内部是通过数组实现的，它允许对元素进行快速随机访问。数组的缺点是每个元素之间不能有间隔，当数组大小不满足时需要增加存储能力，就要讲已经有数组的数据复制到新的存储空间中。当从ArrayList的中间位置插入或者删除元素时，需要对数组进行复制、移动、代价比较高。因此，它适合随机查找和遍历，不适合插入和删除。
+3、LinkedList：
+a. 当对一列数据的前面或者中间执行添加或者删除操作时，并且按照顺序访问其中的元素时，要使用LinkedList。
+b. LinkedList是用链表结构存储数据的，很适合数据的动态插入和删除，随机访问和遍历速度比较慢。另外，他还提供了List接口中没有定义的方法，专门用于操作表头和表尾元素，可以当作堆栈、队列和双向队列使用。
+Vector和ArrayList在使用上非常相似，都可以用来表示一组数量可变的对象应用的集合，并且可以随机的访问其中的元素。</p>
+<p>ArryList和LinkedList的区别：
+在处理一列数据项时，Java提供了两个类ArrayList和LinkedList，ArrayList的内部实现是基于内部数组Object[]，所以从概念上说它更像数组；然而LinkedList的内部实现是基于一组连接的记录，所以，它更像一个链表结构；所以它们在性能上有很大的差别。
+由上可知，在ArrayList的前面或者中间插入数据的时候，必须将其后的所有数据相应的后移，这样要花费较多的时间；所以，当操作是在一列数据的后面添加数据而不是在前面或者中间，并需要随机地访问其中的元素时，使用ArrayList性能比较好。
+然而访问链表中的某个元素的时候，就必须从链表的一端开始，沿着连接的方向一个一个元素的去查找，直到找到所需的元素为止，所以，当对一列数据的前面或者中间执行添加或者删除操作时，并且按照顺序访问其中的元素时，要使用LinkedList。
+如果在实际的操作中，前面两种情况交替出现，可以考虑使用List这样的通用接口，而不用关心具体的实现，再具体的情况下，它的性能由具体的实现来保证。</p>
+<p>HashTable、HashMap、HashSet：
+HashTable和HashMap采用的存储机制是一样的，不同的是：
+1、HashMap：
+a. 采用数组方式存储key-value构成的Entry对象，无容量限制；
+b. 基于key hash查找Entry对象存放到数组的位置，对于hash冲突采用链表的方式去解决；
+c. 在插入元素时，可能会扩大数组的容量，在扩大容量时须要重新计算hash，并复制对象到新的数组中；
+d. 是非线程安全的；
+e. 遍历使用的是Iterator迭代器；</p>
+<p>2、HashTable：
+a. 是线程安全的；
+b. 无论是key还是value都不允许有null值的存在；在HashTable中调用Put方法时，如果key为null，直接抛出NullPointerException异常；
+c. 遍历使用的是Enumeration列举；</p>
+<p>3、HashSet：
+a. 基于HashMap实现，无容量限制；
+b. 是非线程安全的；
+c. 不保证数据的有序；</p>
+<p>TreeSet、TreeMap：
+TreeSet和TreeMap都是完全基于Map来实现的，并且都不支持get(index)来获取指定位置的元素，需要遍历来获取。另外，TreeSet还提供了一些排序方面的支持，例如传入Comparator实现、descendingSet以及descendingIterator等。
+1、TreeSet：
+a. 基于TreeMap实现的，支持排序；
+b. 是非线程安全的；</p>
+<p>2、TreeMap：
+a. 典型的基于红黑树的Map实现，因此它要求一定要有key比较的方法，要么传入Comparator比较器实现，要么key对象实现Comparator接口；
+b. 是非线程安全的；</p>
+<p>StringBuffer和StringBulider：
+StringBuilder与StringBuffer都继承自AbstractStringBuilder类，在AbstractStringBuilder中也是使用字符数组保存字符串。</p>
+<p>1、在执行速度方面的比较：StringBuilder &gt; StringBuffer ；
+2、StringBuffer与StringBuilder，他们是字符串变量，是可改变的对象，每当我们用它们对字符串做操作时，实际上是在一个对象上操作的，不像String一样创建一些对象进行操作，所以速度就快了；
+3、 StringBuilder：线程非安全的；
+4、StringBuffer：线程安全的；
+　
+对于String、StringBuffer和StringBulider三者使用的总结：
+1.如果要操作少量的数据用 = String
+2.单线程操作字符串缓冲区 下操作大量数据 = StringBuilder
+3.多线程操作字符串缓冲区 下操作大量数据 = StringBuffer
+<a href="https://blog.csdn.net/u011389474/article/details/54602812/">https://blog.csdn.net/u011389474/article/details/54602812/</a></p>
+<h2 id="并发与并行">并发与并行</h2>
+<p>并发是指一个很短的时间间隔内，执行了多个任务。
+并行是指在同一个时刻，执行了多个任务。
+并发也称为伪并行，也就是说，并发，就好像同一时刻，可以执行多个任务。那是因为时间间隔足够短让你以为多个任务是在同一时刻发生了。</p>
+<p>谈到并发，默认前提都是单核 CPU。由于只有一个核，所以同一时刻，只能有处理一件事情。又由于多线程的存在以及 CPU 的效率极高，结果就造就了并发——看起来好像同一时刻 CPU 可以处理多件事情。
+而并行，默认前提则是多核多线程。
+<a href="https://blog.csdn.net/weixin_30531261/article/details/78567219">https://blog.csdn.net/weixin_30531261/article/details/78567219</a></p>
+<h2 id="concurrenthashmap-和synchronizedhashmap对比">ConcurrentHashMap 和SynchronizedHashMap对比</h2>
+<ul>
+<li>ConcurrentHashMap<br>
+当你程序需要高度的并行化的时候，你应该使用ConcurrentHashMap
+尽管没有同步整个Map，但是它仍然是线程安全的
+读操作非常快，而写操作则是通过加锁完成的
+在对象层次上不存在锁（即不会阻塞线程）
+锁的粒度设置的非常好，只对哈希表的某一个key加锁
+ConcurrentHashMap不会抛出ConcurrentModificationException，即使一个线程在遍历的同时，另一个线程尝试进行修改。
+ConcurrentHashMap会使用多个锁</li>
+<li>SynchronizedHashMap<br>
+会同步整个对象
+每一次的读写操作都需要加锁
+对整个对象加锁会极大降低性能
+这相当于只允许同一时间内至多一个线程操作整个Map，而其他线程必须等待
+它有可能造成资源冲突（某些线程等待较长时间）
+SynchronizedHashMap会返回Iterator，当遍历时进行修改会抛出异常
+<a href="https://blog.csdn.net/hwz2311245/article/details/51454686">https://blog.csdn.net/hwz2311245/article/details/51454686</a></li>
+</ul>
+<hr>
+<ul>
+<li>为什么wait()需要在同步代码块中实现，而sleep不需要</li>
+</ul>
+<p>wait设计是针对多个线程的，如果多个线程运行的时候，在执行wait前就切换到了另外一个线程，恰好把notify执行掉了，那么就会形成死锁。
+而sleep则是针对单个线程本身，不涉及到其他线程。</p>
+<ul>
+<li>为什么线程通信的方法wait(),notify()和notifyAll()被定义在Object类里面？而Sleep定义在Thread类里面？</li>
+</ul>
+<p>wait(),notify(),notifyAll()属于锁级别的操作，而锁一般是针对某个对象的，所以就定义在了Object中。每一个对象，在对象头中，都是有几位来表示当前锁的状态的，所以这个锁是绑定到某个对象上面，而并不是线程中。
+如果把这些方法放在了Thread中，那么如果一个线程中持有了多把锁，就没有办法灵活的实现这样的多锁逻辑，也会增加编程难度。</p>
+<ul>
+<li>wait()方法属于Object对象，那如果调用Thread.wait方法会怎样？</li>
+</ul>
+<p>对于Thread类特别特殊，因为在JVM中，线程在退出的现实中，它会自己去执行notify，这样会使我们设计的程序受到干扰。</p>
+<hr>
+<hr>
+<h1 id="juc">JUC</h1>
+<ul>
+<li>java.util.concurrent JAVA 并发工具包</li>
+</ul>
+<h1 id="java-为多线程提供了语言级-的支持">JAVA 为多线程提供了语言级 的支持</h1>
+<ul>
+<li>synchronized 关键字</li>
+<li>Thread类</li>
+<li>同步原语：Object.wait/notify/notifyAll</li>
+</ul>
+<h1 id="多线程的问题">多线程的问题</h1>
+<ul>
+<li>正确性</li>
+<li>
+<ul>
+<li>安全：竞争条件、死锁</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>协同：同时、随机执行的线程，如何协同工作</li>
+</ul>
+</li>
+<li>效率与易用性：</li>
+<li>
+<ul>
+<li>执行地越快越好</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>用起来越不容易出错越好</li>
+</ul>
+</li>
+</ul>
+<h2 id="java-原生实现">Java 原生实现</h2>
+<ul>
+<li>synchroized(Object)&ndash;&gt;锁住一个对象，等价于 synchornized void methon（） 锁住当前对象</li>
+<li>
+<ul>
+<li>static synchronized methon（） 锁住一个方法</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>每个线程排他享有这个代码块</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>线程需要获得锁，才能够调用使用wait 等等的线程方法</li>
+</ul>
+</li>
+<li>new Thread（() -&gt; methon ()）.start（）</li>
+<li>除了锁里面的内容，其他的都是全局共享的。</li>
+<li>协同：wait（）、notify（）、notifyAll()、sleep()，完成协同是需要获得锁才可以进行的否则会出现异常</li>
+<li>
+<ul>
+<li>wait 使得当前线程被等待，直到其他线程唤醒或者被打断</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>notify 唤醒一个被选中的线程，选择是任意的</li>
+</ul>
+</li>
+<li>缺点：必须等所有线程完成操作后，把数据汇合</li>
+</ul>
+<h2 id="synchronized">synchronized</h2>
+<p>• Java语⾔级的⽀持，1.6之后性能极⼤提⾼
+• 字节码层⾯的实现：monitorenter/monitorexit
+• 锁住的是什么？</p>
+<ul>
+<li>缺点：</li>
+<li>
+<ul>
+<li>死板：只能够等待或者获得两种状态，也不能够查看线程的装袋</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>只有悲观锁、排它锁，没有乐观锁、共享锁</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>性能相对稍差</li>
+</ul>
+</li>
+</ul>
+<h2 id="lockcondition">Lock/Condition</h2>
+<ul>
+<li>允许不同的方法和云秀condition</li>
+<li>Lock （Reenchronlock）</li>
+<li>
+<ul>
+<li>可重入，可以多次获得这个锁，但是获得多少次就要unlock多少次</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>读写分离</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>tryLock</li>
+</ul>
+</li>
+</ul>
+<h2 id="countdownlock-倒计时闭锁">CountDownLock 倒计时闭锁</h2>
+<ul>
+<li>完成一次就倒计时-1，直到为0</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CountDownLatch latch <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CountDownLatch<span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+<span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> o <span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 10 <span style="color:#f92672">;</span>i<span style="color:#f92672">++){</span>
+    <span style="color:#66d9ef">int</span> finalI <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+       <span style="color:#75715e">// do something
+</span><span style="color:#75715e"></span>        latch<span style="color:#f92672">.</span><span style="color:#a6e22e">countDown</span><span style="color:#f92672">();</span><span style="color:#75715e">//完成后倒计时减一
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+    latch<span style="color:#f92672">.</span><span style="color:#a6e22e">await</span><span style="color:#f92672">();</span> <span style="color:#75715e">//完成倒计时后就继续下一个任务，如果没有的话，就可能执行某个线程，在没有完成倒计时的时候完成下面的工作
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><h2 id="cyclicbarry">CyclicBarry</h2>
+<ul>
+<li>所有的线程都完成后才执行下面的任务</li>
+<li>new出一次就可以重复使用</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">CyclicBarry barry <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CyclicBarry<span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+<span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> o <span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 10 <span style="color:#f92672">;</span>i<span style="color:#f92672">++){</span>
+    <span style="color:#66d9ef">int</span> finalI <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+       <span style="color:#75715e">// do something
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">try</span><span style="color:#f92672">{</span>
+            batty<span style="color:#f92672">.</span><span style="color:#a6e22e">await</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">catch</span><span style="color:#f92672">{</span>
+
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">do</span> something <span style="color:#66d9ef">else</span>
+    <span style="color:#f92672">}).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+    latch<span style="color:#f92672">.</span><span style="color:#a6e22e">await</span><span style="color:#f92672">();</span> <span style="color:#75715e">//完成倒计时后就继续下一个任务，如果没有的话，就可能执行某个线程，在没有完成倒计时的时候完成下面的工作
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><h2 id="semaphore">Semaphore</h2>
+<ul>
+<li>信号量</li>
+<li>信号量的获取和释放</li>
+</ul>
+<h2 id="blockingqueue-blockingdeque">BlockingQueue BlockingDeque</h2>
+<ul>
+<li>在队列中插入限定元素，当队列有空位的时候就进去，否则就等有空位的时候才进去（生产消费）</li>
+<li>传统的集合框的操作要么就正常返回要么就丢出异常</li>
+<li>BlockingQueue 则可以提供等待的可能</li>
+<li>阻塞操作：put、take</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">BlockingQueue<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> queue <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayBlockingQueue<span style="color:#f92672">&lt;&gt;(</span>2<span style="color:#f92672">);</span>
+
+</code></pre></div><h2 id="future与executorservice">Future与ExecutorService</h2>
+<ul>
+<li>ExecutorService  实现 Executor &ndash;&gt; 只有个方法：runable ，从而执行任务</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">executorService threadPool <span style="color:#f92672">=</span> Excutors<span style="color:#f92672">.</span><span style="color:#a6e22e">newFixedThreadPool</span><span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+<span style="color:#66d9ef">final</span> Future<span style="color:#f92672">&lt;?&gt;</span>future <span style="color:#f92672">=</span> threadPool<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//Runable --&gt; do something
+</span><span style="color:#75715e"></span><span style="color:#f92672">});</span>
+<span style="color:#f92672">-</span> future 异步线程
+</code></pre></div><h2 id="线程池">线程池</h2>
+<ul>
+<li>corePoolSize 指定线程的数量，即使线程空闲也不会被kill</li>
+<li>max 最多可以拥有的线程</li>
+<li>workQueue 任务被执行前保存任务</li>
+<li>threadFactory 创建一个新的线程</li>
+<li>rejected 如果一个任务处理不了 有不同的处理策略</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags/juc/">JUC</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E5%8C%85/">并发工具包</a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        1300 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-09-22 10:20 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Java面向对象  接口和抽象类</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%9F%E7%90%86/">
+                <span class="button__text">操作系统与计算机原理</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

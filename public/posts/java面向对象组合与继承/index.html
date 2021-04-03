@@ -38,7 +38,7 @@ public Animal(String name) { this.name = name; } public void sayMyName() { Syste
 public Animal(String name) { this.name = name; } public void sayMyName() { System.out.println(&quot;我的名字是&quot; &#43; name); } public class Cat extends Animal{ public Cat(String name) { super(name); } public void meow() { System.out.println(&quot;喵&quot; &#43; name); } } public class Main { public static void main(String[] args) { Cat cat = new Cat(&quot;ABC&quot;); cat.meow(); cat.sayMyName(); }  多态 继承 DRY（Donot Repeat Yourself）  事不过三，三则重构  继承的本质是提炼出公用代码，避免重复 继承一个类就会自动继承类的行为">
 <meta itemprop="datePublished" content="2020-05-11T17:19:33&#43;08:00" />
 <meta itemprop="dateModified" content="2020-05-11T17:19:33&#43;08:00" />
-<meta itemprop="wordCount" content="545">
+<meta itemprop="wordCount" content="573">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -90,7 +90,7 @@ public Animal(String name) { this.name = name; } public void sayMyName() { Syste
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li><li><a href="https://procarihana.github.io/public/exerciseproblems">EProblems</a></li>
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
     </ul>
 </nav>
 
@@ -290,12 +290,55 @@ C先被创造出来，接着到B，最后到A</li>
 </ul>
 <h2 id="模版方法">模版方法</h2>
 <ul>
-<li>提供一个“模版”，实现可以覆盖模版的全部或者部分
-子类可以调用父类的方法，在调用的过程中通过覆盖达到完成需求的目的，其他不改动的沿用父类的模版执行
-！！！ 图*2</li>
-<li>通过@Override可以模板中的一个流程，实现自定义的功能</li>
-<li>在Override里面通过super.父类的方法，从而实现先执行父类的模板再实现自定义</li>
+<li>
+<p>提供一个“模版”，实现可以覆盖模版的全部或者部分
+子类可以调用父类的方法，在调用的过程中通过覆盖达到完成需求的目的，其他不改动的沿用父类的模版执行</p>
+</li>
+<li>
+<p>通过@Override可以模板中的一个流程，实现自定义的功能</p>
+</li>
+<li>
+<p>在Override里面通过super.父类的方法，从而实现先执行父类的模板再实现自定义</p>
+</li>
 </ul>
+<blockquote>
+<ul>
+<li>
+<ol>
+<li>什么是类加载器？</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>把类加载的过程放到Java虚拟机外部去实现，让应用程序决定如何去获取所需要的类。实现这个动作的代码模块称为“类加载器”。</li>
+</ul>
+<ol start="2">
+<li>有哪些类加载器，分别加载哪些类</li>
+</ol>
+<ul>
+<li>类加载器按照层次，从顶层到底层，分为以下三种：
+(1)启动类加载器 : 它用来加载 Java 的核心库，比如String、System这些类
+(2)扩展类加载器 : 它用来加载 Java 的扩展库。
+(3) 应用程序类加载器 : 负责加载用户类路径上所指定的类库，一般来说，Java 应用的类都是由它来完成加载的。</li>
+</ul>
+<ol start="3">
+<li>双亲委派模型</li>
+</ol>
+<ul>
+<li>我们应用程序都是由以上三种类加载器互相配合进行加载的，还可以加入自己定义的类加载器。称为 类加载器的双亲委派模型 ，这里类加载器之间的父子关系一般不会以继承的关系来实现，而是都使用 组合关系 来复用父加载器的。</li>
+</ul>
+<ol start="4">
+<li>双亲委托模型的工作原理</li>
+</ol>
+<ul>
+<li>是当一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法加载这个加载请求的时候，子加载器才会尝试自己去加载。</li>
+</ul>
+<ol start="5">
+<li>使用双亲委派模型好处？（原因）</li>
+</ol>
+<p>第一：可以避免重复加载，当父亲已经加载了该类的时候，子类不需要再次加载。</p>
+<p>第二：考虑到安全因素，如果不使用这种委托模式，那我们就可以随时使用自定义的String来动态替代java核心api中定义类型，这样会存在非常大的安全隐患，而双亲委托的方式，就可以避免这种情况，因为String已经在启动时被加载，所以用户自定义类是无法加载一个自定义的类装载器。</p>
 <h2 id="向上向下转型">向上/向下转型</h2>
 <h4 id="一个子类类型的对象永远是一个父类类型的对象">一个子类类型的对象永远是一个父类类型的对象</h4>
 <ul>
@@ -504,7 +547,7 @@ git clone <a href="https://github.com/victoriadrake/hugo-theme-sam.git">https://
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        545 Words
+        573 Words
       </p>
 
       <p>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ArryList on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/arrylist/</link>
+    <description>Recent content in ArryList on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 16 Sep 2020 23:52:09 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/arrylist/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ArryList</title>
+      <link>https://procarihana.github.io/public/notes/arrylist/</link>
+      <pubDate>Wed, 16 Sep 2020 23:52:09 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/arrylist/</guid>
+      <description>初始容量为 10  之后每超过10就添加16个  有设置容量  意义在于先准备一个空间，避免以后不断地扩容造成空间浪费 如果指定初始容量a，数组的容量就为a 如果初始容量为0或者没有指定，就为0 负数就抛出异常  public ArrayList(int initialCapacity) { if (initialCapacity &amp;gt; 0) { this.elementData = new Object[initialCapacity]; } else if (initialCapacity == 0) { this.elementData = EMPTY_ELEMENTDATA; } else { throw new IllegalArgumentException(&amp;#34;Illegal Capacity: &amp;#34;+ initialCapacity); } } 扩容的时候自动调整大小  ArrayList 里面有一个Object[] elementData 用于存储实际的元素   包含size   扩容过程    执行add（）的时候会先判断当前未添加前的elementDate.length 是否会等于初始容量 size，如果等于就执行grow()扩容，并把扩容后的新对象组size 赋值到 elementData 里面 Object[]grow（） 增长的最小的目标容量（minCapacity）是当前的目标容量+1   之后执行Object[] grow(int minCapacity) 。先复制就的Array，然后加入扩充好的新容量的数组（newCapacity（int minCapacity））里，复制给elementData并返回这个新的数组       newCapacity(int minCapacity) 新容量的目标容量为旧容量的1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Hana ">
 <meta name="description" content="空接口:只是说明有这个功能，使用这个框架，但是不提供实现
-例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  先行时间复杂度与链表 递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!" />
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）       Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  时间复杂度算法  O(1)=O(2)=O(3)/常数 - 哈希桶/数组随机寻址（常数）   O(n) - 遍历（线性）     O(lg(n)) - 二分查找，二叉树（对数）     O(n*lg(n))- 基于比较的排序算法下限     O(n^2) - 冒泡排序（平方）     O(n^3) 普通的没有优化过的二维矩阵的乘法   时间复杂度的计算是忽略常数的   O(n)=O(2n)   时间复杂度的计算中，高阶复杂度会吞并低阶复杂度   O(n^2)&#43;O(n)=O(n^2)    时间复杂度的合并与乘方  基于比较的排序时间复杂度的上限是O(Nlg(n))[所有基于比较算法最好的时间复杂度都是nlg(n)]  线性时间复杂度与链表  求问题解的时间和问题的规模成正比 示例   求数组、链表的最大值     寻找数组中的重复元素     判断链表是否存在环（快慢指针）      快指针每次移动2步，慢指针每次移动1步 快慢指针相遇的时候就能够测出有闭环      求阶乘     合并两个链表     翻转链表 解决：   先把数据遍历一遍 排序（O(n*log(n))）比遍历慢  对数时间复杂度  二叉树、N叉数（B树、B&#43;树）   在二叉树中查找某个值      二叉树： node left， node right      二叉树遍历（深度优先遍历）Depth first Search      深度优先会在最底层的节点返回 前序遍历 123 根-&amp;gt;子 中（根）序 213 子-&amp;gt;根-&amp;gt;子 后序 231 子-&amp;gt;子-&amp;gt;根      广度优先遍历 （ 队列 -&amp;gt; 先进先出）Broadth first Search      123456 1—&amp;gt;queue queue-&amp;gt;1;2,3-&amp;gt;queue queue-&amp;gt;2;4,5-&amp;gt;queue /queue:3、4、5 queue-&amp;gt;3;6-&amp;gt;queue /queue:4、5、6 直到队列为空，循环结束 queue." />
 <meta name="keywords" content=", 算法, 数据结构" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -35,10 +35,10 @@
 
 <meta itemprop="name" content="算法和数据结构">
 <meta itemprop="description" content="空接口:只是说明有这个功能，使用这个框架，但是不提供实现
-例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  先行时间复杂度与链表 递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!">
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）       Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  时间复杂度算法  O(1)=O(2)=O(3)/常数 - 哈希桶/数组随机寻址（常数）   O(n) - 遍历（线性）     O(lg(n)) - 二分查找，二叉树（对数）     O(n*lg(n))- 基于比较的排序算法下限     O(n^2) - 冒泡排序（平方）     O(n^3) 普通的没有优化过的二维矩阵的乘法   时间复杂度的计算是忽略常数的   O(n)=O(2n)   时间复杂度的计算中，高阶复杂度会吞并低阶复杂度   O(n^2)&#43;O(n)=O(n^2)    时间复杂度的合并与乘方  基于比较的排序时间复杂度的上限是O(Nlg(n))[所有基于比较算法最好的时间复杂度都是nlg(n)]  线性时间复杂度与链表  求问题解的时间和问题的规模成正比 示例   求数组、链表的最大值     寻找数组中的重复元素     判断链表是否存在环（快慢指针）      快指针每次移动2步，慢指针每次移动1步 快慢指针相遇的时候就能够测出有闭环      求阶乘     合并两个链表     翻转链表 解决：   先把数据遍历一遍 排序（O(n*log(n))）比遍历慢  对数时间复杂度  二叉树、N叉数（B树、B&#43;树）   在二叉树中查找某个值      二叉树： node left， node right      二叉树遍历（深度优先遍历）Depth first Search      深度优先会在最底层的节点返回 前序遍历 123 根-&gt;子 中（根）序 213 子-&gt;根-&gt;子 后序 231 子-&gt;子-&gt;根      广度优先遍历 （ 队列 -&gt; 先进先出）Broadth first Search      123456 1—&gt;queue queue-&gt;1;2,3-&gt;queue queue-&gt;2;4,5-&gt;queue /queue:3、4、5 queue-&gt;3;6-&gt;queue /queue:4、5、6 直到队列为空，循环结束 queue.">
 <meta itemprop="datePublished" content="2020-08-31T20:15:50&#43;08:00" />
 <meta itemprop="dateModified" content="2020-08-31T20:15:50&#43;08:00" />
-<meta itemprop="wordCount" content="181">
+<meta itemprop="wordCount" content="1025">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -49,7 +49,7 @@
 
 <meta name="twitter:title" content="算法和数据结构"/>
 <meta name="twitter:description" content="空接口:只是说明有这个功能，使用这个框架，但是不提供实现
-例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）          O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n^2) -    Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  先行时间复杂度与链表 递归  把一个大问题分解成小问题 假设小问题已经解决 对分解的小问题进行求解   要完成递归就需要完成递归本身 把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。 一定要有返回条件（退出条件），否则就会发生栈溢出  阶乘  当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。   1！= 1 2!"/>
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）       Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  时间复杂度算法  O(1)=O(2)=O(3)/常数 - 哈希桶/数组随机寻址（常数）   O(n) - 遍历（线性）     O(lg(n)) - 二分查找，二叉树（对数）     O(n*lg(n))- 基于比较的排序算法下限     O(n^2) - 冒泡排序（平方）     O(n^3) 普通的没有优化过的二维矩阵的乘法   时间复杂度的计算是忽略常数的   O(n)=O(2n)   时间复杂度的计算中，高阶复杂度会吞并低阶复杂度   O(n^2)&#43;O(n)=O(n^2)    时间复杂度的合并与乘方  基于比较的排序时间复杂度的上限是O(Nlg(n))[所有基于比较算法最好的时间复杂度都是nlg(n)]  线性时间复杂度与链表  求问题解的时间和问题的规模成正比 示例   求数组、链表的最大值     寻找数组中的重复元素     判断链表是否存在环（快慢指针）      快指针每次移动2步，慢指针每次移动1步 快慢指针相遇的时候就能够测出有闭环      求阶乘     合并两个链表     翻转链表 解决：   先把数据遍历一遍 排序（O(n*log(n))）比遍历慢  对数时间复杂度  二叉树、N叉数（B树、B&#43;树）   在二叉树中查找某个值      二叉树： node left， node right      二叉树遍历（深度优先遍历）Depth first Search      深度优先会在最底层的节点返回 前序遍历 123 根-&gt;子 中（根）序 213 子-&gt;根-&gt;子 后序 231 子-&gt;子-&gt;根      广度优先遍历 （ 队列 -&gt; 先进先出）Broadth first Search      123456 1—&gt;queue queue-&gt;1;2,3-&gt;queue queue-&gt;2;4,5-&gt;queue /queue:3、4、5 queue-&gt;3;6-&gt;queue /queue:4、5、6 直到队列为空，循环结束 queue."/>
 
 
 
@@ -90,7 +90,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li><li><a href="https://procarihana.github.io/public/exerciseproblems">EProblems</a></li>
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
     </ul>
 </nav>
 
@@ -123,7 +123,7 @@
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
-        One minute
+        5 minutes
 
         
       </p>
@@ -203,7 +203,14 @@
 </li>
 </ul>
 </blockquote>
+<h4 id="hashmap-如何扩容">Hashmap 如何扩容……</h4>
 <ul>
+<li>indexFor</li>
+<li>当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树</li>
+</ul>
+<h2 id="时间复杂度算法">时间复杂度算法</h2>
+<ul>
+<li>O(1)=O(2)=O(3)/常数 - 哈希桶/数组随机寻址（常数）</li>
 <li>
 <ul>
 <li>O(n) - 遍历（线性）</li>
@@ -211,21 +218,197 @@
 </li>
 <li>
 <ul>
-<li>O(log(n)) - 二分查找，二叉树（对数）</li>
+<li>O(lg(n)) - 二分查找，二叉树（对数）</li>
 </ul>
 </li>
 <li>
 <ul>
-<li>O(n^2) -</li>
+<li>O(n*lg(n))- 基于比较的排序算法下限</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>O(n^2) - 冒泡排序（平方）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>O(n^3) 普通的没有优化过的二维矩阵的乘法</li>
+</ul>
+</li>
+<li>时间复杂度的计算是忽略常数的</li>
+<li>
+<ul>
+<li>O(n)=O(2n)</li>
+</ul>
+</li>
+<li>时间复杂度的计算中，高阶复杂度会吞并低阶复杂度</li>
+<li>
+<ul>
+<li>O(n^2)+O(n)=O(n^2)</li>
 </ul>
 </li>
 </ul>
-<h4 id="hashmap-如何扩容">Hashmap 如何扩容……</h4>
+<h2 id="时间复杂度的合并与乘方">时间复杂度的合并与乘方</h2>
 <ul>
-<li>indexFor</li>
-<li>当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树</li>
+<li>基于比较的排序时间复杂度的上限是O(N<em>lg(n))[所有基于比较算法最好的时间复杂度都是n</em>lg(n)]</li>
 </ul>
-<h2 id="先行时间复杂度与链表">先行时间复杂度与链表</h2>
+<h2 id="线性时间复杂度与链表">线性时间复杂度与链表</h2>
+<ul>
+<li>求问题解的时间和问题的规模成正比</li>
+<li>示例</li>
+<li>
+<ul>
+<li>求数组、链表的最大值</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>寻找数组中的重复元素</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>判断链表是否存在环（快慢指针）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>快指针每次移动2步，慢指针每次移动1步</li>
+<li>快慢指针相遇的时候就能够测出有闭环</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>求阶乘</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>合并两个链表</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>翻转链表
+解决：</li>
+</ul>
+</li>
+<li>先把数据遍历一遍</li>
+<li>排序（O(n*log(n))）比遍历慢</li>
+</ul>
+<h2 id="对数时间复杂度">对数时间复杂度</h2>
+<ul>
+<li>二叉树、N叉数（B树、B+树）</li>
+<li>
+<ul>
+<li>在二叉树中查找某个值</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>二叉树： node left， node right</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>二叉树遍历（深度优先遍历）Depth first Search</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>深度优先会在最底层的节点返回</li>
+<li>前序遍历 123 根-&gt;子</li>
+<li>中（根）序 213 子-&gt;根-&gt;子</li>
+<li>后序 231 子-&gt;子-&gt;根</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>广度优先遍历 （ 队列 -&gt; 先进先出）Broadth first Search</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>123456</li>
+<li>1—&gt;queue</li>
+<li>queue-&gt;1;2,3-&gt;queue</li>
+<li>queue-&gt;2;4,5-&gt;queue /queue:3、4、5</li>
+<li>queue-&gt;3;6-&gt;queue /queue:4、5、6</li>
+<li>直到队列为空，循环结束</li>
+<li>queue.poll</li>
+</ul>
+</blockquote>
+<h2 id="空间复杂度">空间复杂度</h2>
+<ul>
+<li>解决问题所需要的辅助空间的大小</li>
+<li>
+<ul>
+<li>常数空间复杂度O(1):只需要固定大小的辅助空间</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>寻找最大值</li>
+<li>求数组所有元素的和</li>
+<li>非递归计算阶乘</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>线性 空间复杂度O(n):需要的辅助空间和问题规模成正比</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>递归计算阶乘</li>
+<li>带缓存（备忘录）的斐波那契数列求值 &ndash;&gt; 0 1 1 2 3 5 8 13 21 34 每一项都是前面两项的和</li>
+</ul>
+</blockquote>
+<h4 id="算法的优化">算法的优化</h4>
+<ul>
+<li>查表法（空间换时间） 通过缓存来优化算法</li>
+<li>
+<ul>
+<li>缓存</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>搜索引擎</li>
+</ul>
+</li>
+</ul>
+<h2 id="二叉树中序遍历">二叉树中序遍历</h2>
+<ul>
+<li>二叉树解决需要结合递归完成</li>
+<li>需要先判断左右点是否为空</li>
+</ul>
+<h3 id="判断存在环线性">判断存在环（线性）</h3>
+<ul>
+<li>声明p ,q 指针</li>
+<li>
+<ul>
+<li>死循环： p -&gt; 1： 若无法前进 return false 已经到达链表的末尾。<br>
+q -&gt; 2:无无法前进 return false</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>若 p == q返回 true ，这个时候是有环的链表</li>
+</ul>
+</li>
+</ul>
 <h2 id="递归">递归</h2>
 <ol>
 <li>把一个大问题分解成小问题</li>
@@ -235,9 +418,366 @@
 <ul>
 <li>要完成递归就需要完成递归本身</li>
 <li>把传进来的参数经过规定的计算方法完成计算，不需要了解如何如何进行。需要执行的方法就会存放在方法栈（先进后出）里面，运行后就会被销毁，知道所有栈运行完成。</li>
-<li>一定要有返回条件（退出条件），否则就会发生栈溢出</li>
+<li>一定要有返回条件（退出条件），否则就会发生栈溢出
+解决：</li>
+<li>先找出特殊情况</li>
+<li>再找出结束的条件</li>
+<li>完成1从2到三</li>
 </ul>
-<h4 id="阶乘">阶乘</h4>
+<hr>
+<h2 id="基本数据结构---数组线性表">基本数据结构 - 数组/线性表</h2>
+<ul>
+<li>随机寻址Randmaccess &ndash;&gt; 常数时间</li>
+<li>插入/删除 &ndash;&gt; 线性时间</li>
+<li>查找</li>
+<li>
+<ul>
+<li>无序：线性时间</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>有序： 对数时间（二分查找）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>二分查找</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>非递归方法</li>
+<li>
+<ul>
+<li>三个数 right mid left &ndash;&gt; right = 0 ，left = nums.length-1 这种情况下就是[left,right]</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>循环（left&lt;=right）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>mid =（left - right）/2+ left（这里一定要记得加left!）|| mid = （right+left）/2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>target == nums[mid] &ndash;&gt; 返回mid（这种情况里包含target ==left|| target == right）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>target&lt; &ndash;&gt; 左半区里，right要移动的 mid-1 的位置（因为mid已经检测过）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>target&gt; &ndash;&gt; 右半区，left右移到mid+1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>循环跳出就是证明没有这个数，返回-1</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<ul>
+<li>递归 （效率低，站的空间比较大）</li>
+<li>
+<ul>
+<li>left = 0 ,right = nums.length -a</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="链表双向链表">链表/双向链表</h2>
+<ul>
+<li>寻址</li>
+<li>
+<ul>
+<li>线性时间</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>无论链表是否有序，寻址的时间都是O(n)</li>
+</ul>
+</li>
+<li>插入/删除</li>
+<li>
+<ul>
+<li>常数时间</li>
+</ul>
+</li>
+<li>查找</li>
+<li>
+<ul>
+<li>线性时间</li>
+</ul>
+</li>
+<li>要求：</li>
+<li>
+<ul>
+<li>手写翻转链表</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>判断链表是否成环：双指针</li>
+</ul>
+</li>
+</ul>
+<h2 id="基本数据结构---栈">基本数据结构 - 栈</h2>
+<ul>
+<li>FILO</li>
+<li>方法栈</li>
+</ul>
+<blockquote>
+<ul>
+<li>Stack</li>
+</ul>
+</blockquote>
+<ul>
+<li>手写栈实现</li>
+<li>pudh（Object objcet）将一个元素推入栈中</li>
+<li>Object pop（） 将一个元素从栈顶弹出</li>
+<li>peek（） 查看栈的顶元素，不做任何操作</li>
+<li>Stack 继承Vector（）
+但是Stack 并不推荐，更优秀的是双端队列Deque</li>
+</ul>
+<h2 id="数据基本结构--队列-queue">数据基本结构- 队列 Queue</h2>
+<ul>
+<li>FIFO</li>
+<li>线程池</li>
+<li>
+<ul>
+<li>BlockingQueue（Runnable）workQueue</li>
+</ul>
+</li>
+<li>手写队列</li>
+</ul>
+<blockquote>
+<ul>
+<li>add() 队列有容量限制，可能会把元素丢掉，或者抛出异常，根据具体实现</li>
+<li>remove() 队列头出队列</li>
+<li>offer() 队列满后添加也不会抛出异常</li>
+</ul>
+</blockquote>
+<ul>
+<li>二叉树的广度优先遍历</li>
+</ul>
+<h2 id="基本数据结构---哈希表">基本数据结构 - 哈希表</h2>
+<ul>
+<li>查找、插入、删除操作都是O(1)</li>
+<li>哈希算法与碰撞</li>
+<li>
+<ul>
+<li>哈希表+ 链表（Java8之前）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>红黑树</li>
+</ul>
+</li>
+</ul>
+<h2 id="arraylist">ArrayList</h2>
+<ul>
+<li>扩容实现（add）</li>
+<li>remove</li>
+</ul>
+<h2 id="linkerlist">LinkerList</h2>
+<ul>
+<li>双端链表</li>
+<li>初始容量为0</li>
+<li>构造器</li>
+<li>
+<ul>
+<li>空的构造器</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>包含collection 的构造器，通过addAll（）</li>
+</ul>
+</li>
+</ul>
+<h2 id="基本数据结构---二叉树">基本数据结构 &ndash;二叉树</h2>
+<h3 id="搜索二叉树">搜索二叉树</h3>
+<ul>
+<li>左子树比根节点小，右节点比根节点大</li>
+<li>搜索的时间 O(Lgn)</li>
+<li>可以进行范围的搜索</li>
+<li>有可能退化成链表</li>
+</ul>
+<h3 id="红黑树f">红黑树f</h3>
+<ul>
+<li>能够保持左右节点保持平衡</li>
+<li>通过旋转完成</li>
+</ul>
+<h4 id="平衡二叉树会出现线程问题因为每次添加都要保持平衡treeset">平衡二叉树会出现线程问题，因为每次添加都要保持平衡（TreeSet）</h4>
+<ul>
+<li>NavigbleSet<!-- raw HTML omitted --> 可导航</li>
+<li>
+<ul>
+<li>可以返回比给定袁旭小于、等于、大于的元素（实现范围查找）</li>
+</ul>
+</li>
+<li>TreeMap，有一个分界点，一个比较器（自定义对象进行比较）</li>
+</ul>
+<h4 id="add">add</h4>
+<ul>
+<li>
+<ul>
+<li>先进行一次 put 保证根节点不是null</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>通过比较器或者原本数值进行比较的方法进行 根节点和当前目标进行比较</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>大于就右节点，小于就左节点 再次进行比较null就set
+之后会进行复杂的旋转操作</li>
+</ul>
+</blockquote>
+<h4 id="remove">remove</h4>
+<hr>
+<hr>
+<hr>
+<h2 id="排序算法">排序算法</h2>
+<ul>
+<li>稳定和不稳定排序：能保证排序前2个相等的数其在序列的前后位置顺序和排序后它们两个的前后位置顺序相同。</li>
+<li>基于比较的排序算法的复杂度下界是O(nlog(n))</li>
+<li>Java 默认</li>
+<li>
+<ul>
+<li>Arrays.sort()</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>双基准的快速排序</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>Collections.sort()</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>stream().sorted(Compoarted)</li>
+</ul>
+</li>
+</ul>
+<h2 id="冒泡">冒泡</h2>
+<ul>
+<li>第一个循环是把最大的数都放在最右边，确定第二次循环里最右边的界限在哪里，所以长度是小于collection.size()</li>
+<li>第二个循环是决定每一次找出最大的数的时候，需要进行多少次比较，既要考虑第一次循环的极限，又要记得-1（树之间的位置有多少个）所以范围是size-i-1</li>
+</ul>
+<blockquote>
+<ul>
+<li>循环内完成 j 和 j+1 的比较，记得加一个中间数来完成两个数调换的工作呀!</li>
+</ul>
+</blockquote>
+<h2 id="快速排序">快速排序</h2>
+<h4 id="需要辅助空间非最优">需要辅助空间（非最优）</h4>
+<ul>
+<li>递归结束的条件 如果 size &lt;= 1 就能够返回list</li>
+<li>pivot 基准， 为list。get（0）第一个数</li>
+<li>
+<ul>
+<li>如果队列里的数比基小，就放在小队列，否则就放在大队列里面（），如果相等就放在一个queallist里面。三个list</li>
+</ul>
+</li>
+</ul>
+<h4 id="原地分割">原地分割</h4>
+<blockquote>
+<ul>
+<li>如果是选用随机的基准值，要先把基准值移到最右，而一开始就选择基准值是最右的话就可以省下这一步</li>
+</ul>
+</blockquote>
+<ul>
+<li>只完成分区，不完成排序。之后通过递归完成排序</li>
+<li>确定一个基准值</li>
+<li>比基准小的放在最左边，大的放在最右边</li>
+<li>完成比较之后，给一个指针，范围界限为小于基准值，从而最左边是只之前已经经历过一次比较的左边</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> test <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> <span style="color:#f92672">{</span>2<span style="color:#f92672">,</span> 1<span style="color:#f92672">,</span> 5<span style="color:#f92672">,</span> 8<span style="color:#f92672">,</span> 9<span style="color:#f92672">,</span> 0<span style="color:#f92672">};</span>
+        quickSortInPlace<span style="color:#f92672">(</span>test<span style="color:#f92672">);</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span>test<span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">partition</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> left<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> right<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> pivot <span style="color:#f92672">=</span> array<span style="color:#f92672">[</span>right<span style="color:#f92672">];</span>
+        <span style="color:#66d9ef">int</span> storeIndex <span style="color:#f92672">=</span> left<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> left<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> right<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>array<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">&lt;=</span> pivot<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                swap<span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> storeIndex<span style="color:#f92672">,</span> i<span style="color:#f92672">);</span>   <span style="color:#75715e">//比基准小的换到左边，且放在原来已经换过位置的右边
+</span><span style="color:#75715e"></span>                storeIndex<span style="color:#f92672">++;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        swap<span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> storeIndex<span style="color:#f92672">,</span> right<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">return</span> storeIndex<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">quickSortPartition</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> left<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> right<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>left <span style="color:#f92672">&gt;=</span> right<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#75715e">//[left- right] 分区的范围
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// [left - pivotIndex - 1] [pivotIndex+1 - right] 进行排爱旭
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> pivotIndex <span style="color:#f92672">=</span> partition<span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> left<span style="color:#f92672">,</span> right<span style="color:#f92672">);</span>
+        quickSortPartition<span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> left<span style="color:#f92672">,</span> pivotIndex <span style="color:#f92672">-</span> 1<span style="color:#f92672">);</span>
+        quickSortPartition<span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> pivotIndex <span style="color:#f92672">+</span> 1<span style="color:#f92672">,</span> right<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">quickSortInPlace</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        quickSortPartition<span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> array<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swap</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> curr <span style="color:#f92672">=</span> array<span style="color:#f92672">[</span>x<span style="color:#f92672">];</span>
+        array<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> array<span style="color:#f92672">[</span>y<span style="color:#f92672">];</span>
+        array<span style="color:#f92672">[</span>y<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> curr<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="阶乘">阶乘</h2>
 <ul>
 <li>当 i=1 的时候，就会返回1（满足退出条件），这是就会开始执行方法栈里面的方法栈帧，每执行一个方法栈帧，就会销毁一个直到完全执行完返回结果。</li>
 </ul>
@@ -278,7 +818,424 @@ public static int f(int i){
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sum<span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 3<span style="color:#f92672">,</span> 4<span style="color:#f92672">,</span> 5<span style="color:#f92672">,</span> 6<span style="color:#f92672">,</span> 7<span style="color:#f92672">,</span> 8<span style="color:#f92672">,</span> 9<span style="color:#f92672">)));</span>
     <span style="color:#f92672">}</span>
-</code></pre></div>
+</code></pre></div><h2 id="二叉树的中序排序">二叉树的中序排序</h2>
+<h4 id="栈">栈</h4>
+<ul>
+<li>List<!-- raw HTML omitted --> 储存 result TreeNode.val;list 有序</li>
+<li>Stack <!-- raw HTML omitted --> 存放中序遍历得到的叶子，因为栈先进后出的关系，能够使得从根节点到树最左边的叶子先进后出，使得能list 能够先获得叶节点的结果，再获得叶节点上一个根节点，再到根节点的右叶节点 2-&gt;1-&gt;3</li>
+</ul>
+<pre><code>      1
+    /   \
+  2       
+</code></pre><ul>
+<li>把root 装入一个 中间节点里</li>
+<li>第一个循环直到所有节点都遍历完毕（中间节点为Null）且栈是空的才跳出，并且返回结果</li>
+<li>
+<ul>
+<li>第二个循环是中间节点是否为空，不是的话就把中间节点放入栈里，在继续探寻中间节点的左节点，直到为空，就跳出</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>list 添加 栈返回的顶点.value（表示一个小范围的左结束）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>（此时获得的中间节点为null，所以需要把最后的节点装入节点，探寻是否有右节点）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>右节点作为中间节点继续第二个循环，如果为空，就把栈顶点跳出传入到list里（完成小范围的中且右空的遍历）</li>
+<li>如果不为空，就继续遍历右节点的左节点，直到最深也叶节点，进行同样的操作</li>
+</ul>
+</blockquote>
+<h2 id="相同的树">相同的树</h2>
+<ul>
+<li>迭代（深度）</li>
+<li>
+<ul>
+<li>特殊条件</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>不同的两棵树</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>跳出条件：如果同一位置有一个点为空，另一个点不为空就结束（如果没有这个做限定就会出现int = null 的空指针异常现象）</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>否则就会进行两个点的value 比较，返回isSameTree（right）&amp;&amp; isSameTree(left)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>如果不满足两个点都不为null，且不相同，就直接返回false 结束。</li>
+</ul>
+</li>
+</ul>
+<h2 id="对称二叉树">对称二叉树</h2>
+<h3 id="迭代深度">迭代（深度）</h3>
+<ul>
+<li>
+<ul>
+<li>特殊条件</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>根节点为null时为true</li>
+<li>根节点的左右节点都为null时为true</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>左右节点有一个为null时为 false</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>左右节点值相等时，就return 上面相同数的迭代</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>注意堆成数是 left.left == right.right;left.right == right.left &ndash;&gt; isSameTree(left.left,right.right)</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>否则就返回false</li>
+</ul>
+</li>
+</ul>
+<h3 id="递归-1">递归</h3>
+<ul>
+<li>
+<ul>
+<li>特殊条件 1223443</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>root == null</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>return check(root.left,root.right)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>check (TreeNode p, TreeNode q)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>Queue&lt;&gt; = LinkerList; 存放从root 带左右子节点出来的TreeNode （优先）</li>
+<li>把 p 和 q offer 进queue 里面</li>
+<li>队列非空作为循环的判断条件，如果队列为空时就是二叉树为空</li>
+<li>
+<ul>
+<li>把队列的头两个数拿出来(poll)作对比，如果相等则继续进行循环</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>如果其中一个为空或者TreeNode的value 不相等则 返回 false。结束循环</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>把root的左右节点的左右节点放入，注意！<br>
+先放left.left 和 right.right 再放 left.right,right.left 使得之后进行循环时，拿出来的数是处于对称的位置！</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>循环能够结束表明对称返回true</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="斐波那契数列">斐波那契数列</h2>
+<h3 id="1-迭代">1. 迭代</h3>
+<ul>
+<li>完成的方法会出现重复运算的过程，使得时间非常慢次数是（2^n）</li>
+</ul>
+<blockquote>
+<ul>
+<li>N=5</li>
+<li>f(5)=f(4)+f(3)</li>
+<li>f(5) = [f(3)+f(2)+f(1)+f(0)]+[f(2)+f(1)+f(0)]</li>
+</ul>
+</blockquote>
+<h3 id="2-缓存来优化算法时间换空间">2. 缓存来优化算法（时间换空间）</h3>
+<p><strong>查询缓存，如果缓存中有，直接返回</strong></p>
+<ul>
+<li>特殊情况 N&lt;= 1 return N；&lt;&ndash; 如果是从0开始的话, int [0] = 0 ,int[1] = 1, int[2] = 1 ，第三个数是1；如果是从1开始的话 int[0] = 1， int[1] = 1 , int[2] = 2.</li>
+<li>return memoize(N); &lt;&ndash; 进入缓存</li>
+<li>
+<ul>
+<li>memoize</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>int[] cache = new int[N+1] &ndash;&gt; N+0 所以缓存数组的个数是N+1</li>
+<li>cache[1]=1; &ndash;&gt; 新建的数组里面都是0,所以要定义int[1],否则里面怎么的搞都是0 呀！！！</li>
+<li>循环 i从2开始，因为找的是int[N]，所以i&lt;= 5。循环里完成f(n)= f(n-1)+f(n-2), 在完成递归的同时，把f（4、3、2）都放入缓存里面。</li>
+</ul>
+</blockquote>
+<ul>
+<li>返回 cache[N];</li>
+</ul>
+<h2 id="环形链表">环形链表</h2>
+<h4 id="双指针">双指针</h4>
+<ul>
+<li>判断头结点和第二个节点是否为空，为空就返回false</li>
+<li>给p和q两个指针指定为快慢指针 头结点和第二个节点</li>
+<li>循环条件为快慢节点不为同一个节点（如果为同一个节点就会出现环形链表）</li>
+<li>
+<ul>
+<li>判断快指针和下一个指针是否为空（慢指针已经是快指针走过的了）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>如果是就返回false、</li>
+<li>不是慢指针就走一步，快指针就走两步</li>
+</ul>
+</blockquote>
+<h2 id="汉诺塔">汉诺塔</h2>
+<h4 id="迭代">迭代</h4>
+<ul>
+<li>move(int,list1,list2,list3)方法</li>
+<li>
+<ul>
+<li>int -&gt; 每次移动的块位置 A</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>list 1 -&gt; 移出的柱子 remove -&gt;有return移出的value</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>list 2 -&gt; 无情工具柱，在一次move过程中暂时只是看一下</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>list 3 -&gt; 目标柱，add</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>当第一根柱子只剩下一个的时候，从 A(1) &ndash;&gt; C ,结束迭代</li>
+<li>（一定要用eles,不然就 A(n-1)-&gt;B之后 A(1)-&gt;C 然后A(0),在没有else 的加持下就会继续执行move（n-1,A,B,C）结果就是n一直为0进入死循环！！！！！ ）</li>
+<li>否则 A(n-1) -&gt; B</li>
+<li>A(1) -&gt; C</li>
+<li>B(n-1) -&gt; C</li>
+</ul>
+</blockquote>
+<ul>
+<li>hanata()</li>
+</ul>
+<blockquote>
+<ul>
+<li>move(A.size,A,B,C)</li>
+</ul>
+</blockquote>
+<h4 id="通项公式达到常数时间">通项公式达到常数时间</h4>
+<h2 id="删除排序链表中到的重复元素">删除排序链表中到的重复元素</h2>
+<h2 id="重新排列字符串">重新排列字符串</h2>
+<p>时间 O(n)，空间 O(1)</p>
+<ul>
+<li>char[] 存放结果 大小是indices.length</li>
+<li>循环 范围是 小于length</li>
+</ul>
+<blockquote>
+<ul>
+<li>结果集存放数据的顺序是根据indiced[] 数据顺序决定的 ind[i]的值就是result集合存放第一个字母的位置，value 来自于String 按顺序输出char &ndash;&gt; char[indiced[i]] = String.charAt(i);</li>
+</ul>
+</blockquote>
+<ul>
+<li>最后返回要注意结果集是char[],不能够直接使用toString，会导致class.getName@Integer.hexcode,要使用new String(result)</li>
+</ul>
+<h2 id="有效括号">有效括号</h2>
+<h4 id="栈--switch">栈 + switch</h4>
+<ul>
+<li>使用Deque<!-- raw HTML omitted --> 生成一个栈</li>
+<li>使用Map 完成右符号到左符号的映射，并放入符号</li>
+<li>foreach string，以字符char的形式输出</li>
+</ul>
+<blockquote>
+<ul>
+<li>switch(char)</li>
+<li>
+<ul>
+<li>case&rsquo;左符号&rsquo;: stack.push();</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>case&rsquo;右符号&rsquo;:判断现在栈是否为空，栈的顶元素是否能够映射匹配上，true则pop（），否则false</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>最后return 栈是否为空,如果不为空则肯定是符号数为单数，不能匹配。(size() == 0)</li>
+</ul>
+<h2 id="二叉树的层次遍历-">二叉树的层次遍历 ②</h2>
+<h4 id="广度优先">广度优先</h4>
+<ul>
+<li>List&lt;List<!-- raw HTML omitted -->&gt; 结果集使用 LinkedList 实现</li>
+<li>
+<ul>
+<li>因为 LinkerLis 增加元素的速度比ArrayList快，且要在头部增加元素</li>
+</ul>
+</li>
+<li>判断TreeNode root 是否为null ,是的话就返回空的结果集</li>
+<li>新建一个Queue<!-- raw HTML omitted --> queue 来存放TreeNode.val,用LinkedList实现</li>
+<li>
+<ul>
+<li>因为这个队列是用于遍历TreeNode后存储TreeNode的，只用于增减，不需要遍历，用LinkerList 更有利</li>
+</ul>
+</li>
+<li>把root添加到queue</li>
+<li>开始循环 条件为 queue 不为空，为空则TreeNode 遍历完成，跳出返回结果集</li>
+</ul>
+<blockquote>
+<ul>
+<li>新建List<!-- raw HTML omitted --> level ，用于存放每一层TreeNode.val,使用ArrayList 实现</li>
+<li>
+<ul>
+<li>因为这个List为结果集里面的Object，添加到结果集时需要遍历，所以用ArrayLis更有利于时间的缩短</li>
+</ul>
+</li>
+<li>增加一个成员变量int size， 为queue.size()！！！！！！！</li>
+<li>
+<ul>
+<li>queue是一层层地添加的，所以要及时记录每一层总共有多少个元素，否则之后随着queue element 的增减会发生变化</li>
+</ul>
+</li>
+<li>for 循环，范围为size</li>
+<li>
+<ul>
+<li>新建一个TreeNode 为 queue 顶元素</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>level add 记录弹出来的node.val</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>新建两个记录 这个node节点的左右节点</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>左右节点不为空的话就加入到queue里面</li>
+</ul>
+</li>
+<li>结束一层节点的遍历后，就可以把这层节点记录下来的value（level）添加到结果集的头部</li>
+<li>
+<ul>
+<li>此时queue 不为空的话， 里面存放的是下一层所包含的TreeNode，继续在记录queue.size() 后进入循环，否则为空就是TreeNode 已经遍历完毕，返回结果集</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h5 id="各集合的进出顺序">各集合的进出顺序</h5>
+<ul>
+<li>List&lt;List<!-- raw HTML omitted -->&gt; result  = new LinkedList&lt;&gt;(); <code>FILO</code></li>
+<li>
+<ul>
+<li>使用 add（0，element），都放在头部（就变成队列那样）</li>
+</ul>
+</li>
+<li>Queue<!-- raw HTML omitted --> queue  = new LinkedList&lt;&gt;(); <code>FIFO</code></li>
+<li>
+<ul>
+<li>使用 offer 添加元素在尾部</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>使用 poll 删除顶部元素</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>所以先添加left，再到right</li>
+</ul>
+</li>
+<li>Lis<!-- raw HTML omitted --> level = new ArrayList&lt;&gt;(); <code>FIFO</code></li>
+<li>
+<ul>
+<li>add 把元素添加在后面</li>
+</ul>
+</li>
+</ul>
+<h2 id="只出现一次的数字">只出现一次的数字</h2>
+<h4 id="异或">异或</h4>
+<ul>
+<li>int result = 0； &ndash;&gt; a^a==0 a^a^b==b</li>
+<li>foreach</li>
+</ul>
+<blockquote>
+<ul>
+<li>resutl ^= num</li>
+</ul>
+</blockquote>
+<h2 id="整数翻转">整数翻转</h2>
+<ul>
+<li>规定在[2^-31,2^31-11]范围内 （32位有符号整数）</li>
+<li>一个中间的int  curr为0</li>
+<li>循环x ，当 x不为〇时进入循环</li>
+</ul>
+<blockquote>
+<ul>
+<li>int pop 为 x 的最后一位数 ，通过   取余完成</li>
+<li>x 取余后 就是少一位数， 通过 /10 完成（除10后怎么也会在Integer 的限制范围内，不会越界，就可以和 同样除10后的范围界限作对比）</li>
+<li>
+<ul>
+<li>判断curr是否大于max/10||curr相等的话pop不能够大于max的个位数 （%10） 是就返回0</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>同样的判断curr 是否会小于 min/10 || 相等就判断pop是否会小于 min%10，是的话就返回0</li>
+</ul>
+</li>
+<li>不满足上面的界限就能够 让 curr = curr*10 +pop 开始反转的 个位数逐步向前挪的活动，当x == 0 时 就是完成反转 返回 curr</li>
+</ul>
+</blockquote>
+
       </div>
     </article>
 
@@ -300,7 +1257,7 @@ public static int f(int i){
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        181 Words
+        1025 Words
       </p>
 
       <p>

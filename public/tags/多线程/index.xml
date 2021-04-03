@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>多线程 on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <description>Recent content in 多线程 on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 24 Sep 2020 19:46:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>多人聊天室</title>
+      <link>https://procarihana.github.io/public/projects/%E5%A4%9A%E4%BA%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/</link>
+      <pubDate>Thu, 24 Sep 2020 19:46:15 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/projects/%E5%A4%9A%E4%BA%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/</guid>
+      <description>使用多线程是因为信息收发IO是非常慢的
+Socket 插座 套接字  使用java自带的java.net.ServerSocket 双向的可以收发数据的东西 server.accept()等待一个连接连入，直到有链接连入，否则就会一直阻塞   返回一个Socket 能够用于收发数据     链接后就能够通过Socket读取数据。使用的是inputstream 速度很慢。而且这个Socket只能够单独地进行读取数据或者链接，在读取数据的过程中就不能够通过这个Socket处理链接 &amp;ndash;&amp;gt; 数据读写不能够放在主线程里面，不然就会出现阻塞。需要建立新的线程完成   socket 会缓存IO 所以传递完一次消息后就要flash 清空  用户协议  用来识别用户    userid user name    规定每个客户端连上的时候要先上报自己的名字，如果是空话就吧stream得到的为用户的名字  </description>
+    </item>
+    
+    <item>
+      <title>多线程</title>
+      <link>https://procarihana.github.io/public/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Tue, 22 Sep 2020 10:20:53 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <description>多线程  Java 的执行模型是同步/阻塞的&amp;ndash;&amp;gt;默认情况下只有一个线程,虽然处理问题非常自然，但是具有严重的性能问题。   同步与异步同步     同步：一个任务的完成需要依赖另外一个任务时，只有等待被依赖的任务完成后，依赖的任务才能算完成，这是一种可靠的任务序列。要么成功都成功，失败都失败，两个任务的状态可以保持一致。 异步：不需要等待被依赖的任务完成，只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了。至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。 用打电话（同步）和发短信（异步）     阻塞和非阻塞     阻塞与非阻塞主要是从 CPU 的消耗上来说的 阻塞就是 CPU 停下来等待一个慢的操作完成 CPU 才接着完成其它的事。 非阻塞就是在这个慢的操作在执行时 CPU 去干其它别的事，等这个慢的操作完成时，CPU 再接着完成后续的操作。 虽然表面上看非阻塞的方式可以明显的提高 CPU 的利用率，但是也带了另外一种后果就是系统的线程切换增加。增加的 CPU使用时间能不能补偿系统的切换成本需要好好评估。  为什么需要多线程  CPU 运行速度快，现代CPU是多核的&amp;ndash;&amp;gt; 不浪费CPU的资源。通过并发的操作，减少工作时间，提高效率。（为了解决负载均衡问题,充分利用CPU资源。为了提高CPU的使用率,采用多线程的方式去同时完成几件事情而不互相干扰） 为了处理大量的IO操作时或处理的情况需要花费大量的时间,比如:读写文件,视频图像的采集,处理,显示,保存等  多线程缺点
+1.如果有大量的线程,会影响性能,因为操作系统需要在它们之间切换.
+2.更多的线程需要更多的内存空间
+3.线程中止需要考虑对程序运行的影响.
+4.通常块模型数据是在多个线程间共享的,需要防止线程死锁情况的发生
+一个简单新的线程 new Thread(new Runnable() {/** do something **/}).start()  Java虚拟机允许一个程序有多个线程在同时运行——性能来源
+ Java 中只有Thread一种东西代表线程 Start 方法才能并发执行   start 和 run 的区别     在同样的工作量情况下start的执行速度大于run start（）方法来启动线程，真正实现了多线程运行。这时无需等待run()代码执行完毕，可以直接继续执行下面的代码； 通过调用Thread类的start()方法来启动一个线程， 这时此线程是处于就绪状态，并没有运行。    接着通过此Thread类调用方法run()来完成其运行操作的，这里方法run()称为线程体，它包含了要执行的这个线程的内容（业务），Run方法运行结束，此线程终止。然后CPU再调度其它线程。   run（）方法当作普通方法的方式调用。程序还是要顺序执行，要等待run方法体执行完毕后，才可继续执行下面的代码； 程序中只有主线程——这一个线程，其程序执行路径还是只有一条，这样就没有达到写线程的目的。  多线程就是分时利用CPU，宏观上让所有线程一起执行 ，也叫并发</description>
+    </item>
+    
+  </channel>
+</rss>

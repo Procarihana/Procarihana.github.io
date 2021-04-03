@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>stack on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/stack/</link>
+    <description>Recent content in stack on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 11 Sep 2020 20:06:05 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/stack/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Stack</title>
+      <link>https://procarihana.github.io/public/notes/stack/</link>
+      <pubDate>Fri, 11 Sep 2020 20:06:05 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/notes/stack/</guid>
+      <description>stack  stack 继承Vector  Vector  Vector 是 AbstractList 子类  public class Vector&amp;lt;E&amp;gt;extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomAccess, Cloneable, java.io.Serializable{  Vector 实现了 List 接口   ArrayList 也是继承了 AbstructList&amp;lt;&amp;gt;    public class ArrayList&amp;lt;E&amp;gt; extends AbstractList&amp;lt;E&amp;gt; implements List&amp;lt;E&amp;gt;, RandomAccess, Cloneable, java.io.Serializable{ &amp;mdash;&amp;gt; Stack 和 ArrayList 都是继承 AbstructList &amp;mdash;&amp;gt; Stack 本质也是一个 List
+ List 子类实现了 RandomAccess 接口，那表示它能快速随机访问存储的元素， 这时候你想到的可能是数组，通过下标 index 访问，实现了该接口的 ArrayList 底层实现就是数组，同样是通过下标访问，只是我们需要用 get() 方法的形式， ArrayList 底层仍然是数组的访问形式。 stack 的 search 能够通过下标查找对象  Stack 方法  初始化  Stack stack = new Stack(); Stack&amp;lt;&amp;gt; stack = new Stack&amp;lt;&amp;gt;();  栈顶元素出栈，并返回  public synchronized E pop() { E obj; int len = size(); obj = peek(); removeElementAt(len - 1); return obj; }  判断是否为空  isEmpty()  添加元素   push 和 list add 实现是一样的    push(ElementItem item)  获取栈顶值，元素不出栈（栈为空时抛出异常）就喵一眼啥也不干  public synchronized E peek() { int len = size(); if (len == 0) throw new EmptyStackException(); return elementAt(len - 1); }  是否存在object   返回值为int，若存在，返回值为obj距离栈顶的位置，若不存在，返回 -1    public synchronized int search(Object o) { int i = lastIndexOf(o); if (i &amp;gt;= 0) { return size() - i; } return -1; }  stack 作为list 也具备List 常用方法  //获取stack长度 size() //下标处添加 add(int index, E element) //添加集合 addAll(Collection&amp;lt;?</description>
+    </item>
+    
+  </channel>
+</rss>

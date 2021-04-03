@@ -5,8 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Hana ">
-<meta name="description" content="Servlet Tomcat  servlet容器 catalina  Filter 过滤器  是一个执行过滤任务的对象， doFilter 请求响应，也能够通过FilterChain抽根烟·传给下一个filter，实现过滤的功能  listerner  Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 用于启动和关闭Spring容器的本体  Docker  用统一的环境处理软件交互，运行速度比虚拟机要快 Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 docker的端口和本机的端口没有关系，除非绑定  index.html 渲染  后端渲染:根据用户请求的内容的不同，决定返回的内容 前端渲染：把后端返回的内容填充到页面上面 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的  浏览器  浏览器栏发出的请求都是GET 要调试post请求需要用到其他工具，例如postman HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的  JVM  Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.classd的版本是JVM 能够运行的（JVM不能够运行比自己版本搞的字节码文件），对应版本的Java就能够运行。  SpringBoot 基础知识  对象   需要对外提供服务的需要声明Bean，例如提供鉴权、查询等服务功能       Controller对象则会通过声明@Controller从而完成Bean的声明,进行Bean装配         Service对象则会通过@Component、@Service进行声明       作为数据容器容纳数据的就不需要，一般放在entity包里面会比较容易处理    public class User { Integer id; String name; String avatar; Instant createdAt; Instant updateAt; public User(Integer id, String name) { this." />
-<meta name="keywords" content=", SpringBoot, Tomcat, Filter" />
+<meta name="description" content="Spring Security
+ 就是一个Spring生态中关于安全方面的框架,是一个基于Spring AOP和Servlet过滤器的安全框架,充分利用了依赖注入（DI，Dependency Injection）和面向切面技术 SecurityContextHolder用于存储安全上下文（security context）的信息。当前操作的用户是谁，该用户是否已经被认证，他拥有哪些角色权限…这些都被保存在SecurityContextHolder中。SecurityContextHolder默认使用ThreadLocal 策略来存储认证信息。看到ThreadLocal 也就意味着，这是一种与线程绑定的策略。Spring Security在用户登录时自动绑定认证信息到当前线程，在用户退出时，自动清除当前线程的认证信息。 通过 @EnableWebSecurity注解开启Spring Security的功能 Authentication是spring security包中的接口，直接继承自Principal类，而Principal是位于java.security包中的。   Authentication在spring security中是最高级别的身份/认证的抽象。     由这个顶级接口，我们可以得到用户拥有的权限信息列表，密码，用户细节信息，用户身份信息，认证信息。 一个简单的使用Spring Security来进行验证用户名字密码的登录   Maven  ## Servlet #### HTTP 超文本传输协议 - 能够给任何人传送任何类型的文件 #### Tomcat - servlet容器 - catalina #### Filter 过滤器 - 是一个执行过滤任务的对象， - doFilter 请求响应，也能够通过FilterChain传给下一个filter，实现过滤的功能 #### listerner - Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 - 用于启动和关闭Spring容器的本体 #### Docker - 用统一的环境处理软件交互，运行速度比虚拟机要快 - Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 - docker的端口和本机的端口没有关系，除非绑定 #### index.html ##### 渲染 - 后端渲染:根据用户请求的内容的不同，决定返回的内容 - 前端渲染：把后端返回的内容填充到页面上面 - 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的 ##### 浏览器 - 浏览器栏发出的请求都是GET - 要调试post请求需要用到其他工具，例如postman - HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的 #### JVM - Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的." />
+<meta name="keywords" content=", SpringBoot, Tomcat, Filter, SpringSecurity, cookie" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://procarihana.github.io/public/projects/springboot-blog/" />
@@ -33,20 +34,22 @@
 
 
 <meta itemprop="name" content="SpringBoot Blog">
-<meta itemprop="description" content="Servlet Tomcat  servlet容器 catalina  Filter 过滤器  是一个执行过滤任务的对象， doFilter 请求响应，也能够通过FilterChain抽根烟·传给下一个filter，实现过滤的功能  listerner  Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 用于启动和关闭Spring容器的本体  Docker  用统一的环境处理软件交互，运行速度比虚拟机要快 Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 docker的端口和本机的端口没有关系，除非绑定  index.html 渲染  后端渲染:根据用户请求的内容的不同，决定返回的内容 前端渲染：把后端返回的内容填充到页面上面 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的  浏览器  浏览器栏发出的请求都是GET 要调试post请求需要用到其他工具，例如postman HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的  JVM  Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.classd的版本是JVM 能够运行的（JVM不能够运行比自己版本搞的字节码文件），对应版本的Java就能够运行。  SpringBoot 基础知识  对象   需要对外提供服务的需要声明Bean，例如提供鉴权、查询等服务功能       Controller对象则会通过声明@Controller从而完成Bean的声明,进行Bean装配         Service对象则会通过@Component、@Service进行声明       作为数据容器容纳数据的就不需要，一般放在entity包里面会比较容易处理    public class User { Integer id; String name; String avatar; Instant createdAt; Instant updateAt; public User(Integer id, String name) { this.">
+<meta itemprop="description" content="Spring Security
+ 就是一个Spring生态中关于安全方面的框架,是一个基于Spring AOP和Servlet过滤器的安全框架,充分利用了依赖注入（DI，Dependency Injection）和面向切面技术 SecurityContextHolder用于存储安全上下文（security context）的信息。当前操作的用户是谁，该用户是否已经被认证，他拥有哪些角色权限…这些都被保存在SecurityContextHolder中。SecurityContextHolder默认使用ThreadLocal 策略来存储认证信息。看到ThreadLocal 也就意味着，这是一种与线程绑定的策略。Spring Security在用户登录时自动绑定认证信息到当前线程，在用户退出时，自动清除当前线程的认证信息。 通过 @EnableWebSecurity注解开启Spring Security的功能 Authentication是spring security包中的接口，直接继承自Principal类，而Principal是位于java.security包中的。   Authentication在spring security中是最高级别的身份/认证的抽象。     由这个顶级接口，我们可以得到用户拥有的权限信息列表，密码，用户细节信息，用户身份信息，认证信息。 一个简单的使用Spring Security来进行验证用户名字密码的登录   Maven  ## Servlet #### HTTP 超文本传输协议 - 能够给任何人传送任何类型的文件 #### Tomcat - servlet容器 - catalina #### Filter 过滤器 - 是一个执行过滤任务的对象， - doFilter 请求响应，也能够通过FilterChain传给下一个filter，实现过滤的功能 #### listerner - Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 - 用于启动和关闭Spring容器的本体 #### Docker - 用统一的环境处理软件交互，运行速度比虚拟机要快 - Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 - docker的端口和本机的端口没有关系，除非绑定 #### index.html ##### 渲染 - 后端渲染:根据用户请求的内容的不同，决定返回的内容 - 前端渲染：把后端返回的内容填充到页面上面 - 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的 ##### 浏览器 - 浏览器栏发出的请求都是GET - 要调试post请求需要用到其他工具，例如postman - HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的 #### JVM - Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.">
 <meta itemprop="datePublished" content="2020-09-01T08:01:27&#43;08:00" />
 <meta itemprop="dateModified" content="2020-09-01T08:01:27&#43;08:00" />
-<meta itemprop="wordCount" content="2250">
+<meta itemprop="wordCount" content="2698">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
 
-<meta itemprop="keywords" content="SpringBoot,Tomcat,Filter," />
+<meta itemprop="keywords" content="SpringBoot,Tomcat,Filter,SpringSecurity,cookie," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://procarihana.github.io/public/"/>
 
 <meta name="twitter:title" content="SpringBoot Blog"/>
-<meta name="twitter:description" content="Servlet Tomcat  servlet容器 catalina  Filter 过滤器  是一个执行过滤任务的对象， doFilter 请求响应，也能够通过FilterChain抽根烟·传给下一个filter，实现过滤的功能  listerner  Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 用于启动和关闭Spring容器的本体  Docker  用统一的环境处理软件交互，运行速度比虚拟机要快 Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 docker的端口和本机的端口没有关系，除非绑定  index.html 渲染  后端渲染:根据用户请求的内容的不同，决定返回的内容 前端渲染：把后端返回的内容填充到页面上面 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的  浏览器  浏览器栏发出的请求都是GET 要调试post请求需要用到其他工具，例如postman HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的  JVM  Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.classd的版本是JVM 能够运行的（JVM不能够运行比自己版本搞的字节码文件），对应版本的Java就能够运行。  SpringBoot 基础知识  对象   需要对外提供服务的需要声明Bean，例如提供鉴权、查询等服务功能       Controller对象则会通过声明@Controller从而完成Bean的声明,进行Bean装配         Service对象则会通过@Component、@Service进行声明       作为数据容器容纳数据的就不需要，一般放在entity包里面会比较容易处理    public class User { Integer id; String name; String avatar; Instant createdAt; Instant updateAt; public User(Integer id, String name) { this."/>
+<meta name="twitter:description" content="Spring Security
+ 就是一个Spring生态中关于安全方面的框架,是一个基于Spring AOP和Servlet过滤器的安全框架,充分利用了依赖注入（DI，Dependency Injection）和面向切面技术 SecurityContextHolder用于存储安全上下文（security context）的信息。当前操作的用户是谁，该用户是否已经被认证，他拥有哪些角色权限…这些都被保存在SecurityContextHolder中。SecurityContextHolder默认使用ThreadLocal 策略来存储认证信息。看到ThreadLocal 也就意味着，这是一种与线程绑定的策略。Spring Security在用户登录时自动绑定认证信息到当前线程，在用户退出时，自动清除当前线程的认证信息。 通过 @EnableWebSecurity注解开启Spring Security的功能 Authentication是spring security包中的接口，直接继承自Principal类，而Principal是位于java.security包中的。   Authentication在spring security中是最高级别的身份/认证的抽象。     由这个顶级接口，我们可以得到用户拥有的权限信息列表，密码，用户细节信息，用户身份信息，认证信息。 一个简单的使用Spring Security来进行验证用户名字密码的登录   Maven  ## Servlet #### HTTP 超文本传输协议 - 能够给任何人传送任何类型的文件 #### Tomcat - servlet容器 - catalina #### Filter 过滤器 - 是一个执行过滤任务的对象， - doFilter 请求响应，也能够通过FilterChain传给下一个filter，实现过滤的功能 #### listerner - Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 - 用于启动和关闭Spring容器的本体 #### Docker - 用统一的环境处理软件交互，运行速度比虚拟机要快 - Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 - docker的端口和本机的端口没有关系，除非绑定 #### index.html ##### 渲染 - 后端渲染:根据用户请求的内容的不同，决定返回的内容 - 前端渲染：把后端返回的内容填充到页面上面 - 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的 ##### 浏览器 - 浏览器栏发出的请求都是GET - 要调试post请求需要用到其他工具，例如postman - HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的 #### JVM - Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的."/>
 
 
 
@@ -87,7 +90,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li><li><a href="https://procarihana.github.io/public/exerciseproblems">EProblems</a></li>
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
     </ul>
 </nav>
 
@@ -125,93 +128,86 @@
             
 
             <div class="post-content">
-                <h2 id="servlet">Servlet</h2>
-<h4 id="tomcat">Tomcat</h4>
+                <p>Spring Security</p>
 <ul>
-<li>servlet容器</li>
-<li>catalina</li>
-</ul>
-<h4 id="filter-过滤器">Filter 过滤器</h4>
-<ul>
-<li>是一个执行过滤任务的对象，</li>
-<li>doFilter 请求响应，也能够通过FilterChain抽根烟·传给下一个filter，实现过滤的功能</li>
-</ul>
-<h4 id="listerner">listerner</h4>
-<ul>
-<li>Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动</li>
-<li>用于启动和关闭Spring容器的本体</li>
-</ul>
-<h4 id="docker">Docker</h4>
-<ul>
-<li>用统一的环境处理软件交互，运行速度比虚拟机要快</li>
-<li>Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系</li>
-<li>docker的端口和本机的端口没有关系，除非绑定</li>
-</ul>
-<h4 id="indexhtml">index.html</h4>
-<h5 id="渲染">渲染</h5>
-<ul>
-<li>后端渲染:根据用户请求的内容的不同，决定返回的内容</li>
-<li>前端渲染：把后端返回的内容填充到页面上面</li>
-<li>渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的</li>
-</ul>
-<h5 id="浏览器">浏览器</h5>
-<ul>
-<li>浏览器栏发出的请求都是GET</li>
-<li>要调试post请求需要用到其他工具，例如postman</li>
-<li>HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的</li>
-</ul>
-<h4 id="jvm">JVM</h4>
-<ul>
-<li>Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.classd的版本是JVM 能够运行的（JVM不能够运行比自己版本搞的字节码文件），对应版本的Java就能够运行。</li>
-</ul>
-<h2 id="springboot-基础知识">SpringBoot 基础知识</h2>
-<ul>
-<li>对象</li>
+<li>就是一个Spring生态中关于安全方面的框架,是一个基于Spring AOP和Servlet过滤器的安全框架,充分利用了依赖注入（DI，Dependency Injection）和面向切面技术</li>
+<li>SecurityContextHolder用于存储安全上下文（security context）的信息。当前操作的用户是谁，该用户是否已经被认证，他拥有哪些角色权限…这些都被保存在SecurityContextHolder中。SecurityContextHolder默认使用ThreadLocal 策略来存储认证信息。看到ThreadLocal 也就意味着，这是一种与线程绑定的策略。Spring Security在用户登录时自动绑定认证信息到当前线程，在用户退出时，自动清除当前线程的认证信息。</li>
+<li>通过 <code>@EnableWebSecurity</code>注解开启Spring Security的功能</li>
+<li>Authentication是spring security包中的接口，直接继承自Principal类，而Principal是位于java.security包中的。</li>
 <li>
 <ul>
-<li>需要对外提供服务的需要声明Bean，例如提供鉴权、查询等服务功能</li>
+<li>Authentication在spring security中是最高级别的身份/认证的抽象。</li>
 </ul>
 </li>
 <li>
 <ul>
-<li>
-<ul>
-<li><code>Controller对象</code>则会通过声明<code>@Controller</code>从而完成Bean的声明,进行Bean装配</li>
+<li>由这个顶级接口，我们可以得到用户拥有的权限信息列表，密码，用户细节信息，用户身份信息，认证信息。
+一个简单的使用Spring Security来进行验证用户名字密码的登录</li>
 </ul>
 </li>
+<li>Maven</li>
 </ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li><code>Service对象</code>则会通过<code>@Component</code>、<code>@Service</code>进行声明</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>作为数据容器容纳数据的就不需要，一般放在<code>entity包</code>里面会比较容易处理</li>
-</ul>
-</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">{</span>
-    Integer id<span style="color:#f92672">;</span>
-    String name<span style="color:#f92672">;</span>
-    String avatar<span style="color:#f92672">;</span>
-    Instant createdAt<span style="color:#f92672">;</span>
-    Instant updateAt<span style="color:#f92672">;</span>
+<pre><code></code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>## Servlet
+#### HTTP 超文本传输协议
+- 能够给任何人传送任何类型的文件
+#### Tomcat 
+- servlet容器
+- catalina 
 
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>Integer id<span style="color:#f92672">,</span> String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">avatar</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">createdAt</span> <span style="color:#f92672">=</span> Instant<span style="color:#f92672">.</span><span style="color:#a6e22e">now</span><span style="color:#f92672">();</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">updateAt</span> <span style="color:#f92672">=</span> Instant<span style="color:#f92672">.</span><span style="color:#a6e22e">now</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
+#### Filter 过滤器
+- 是一个执行过滤任务的对象，
+- doFilter 请求响应，也能够通过FilterChain传给下一个filter，实现过滤的功能
 
-</code></pre></div><h2 id="springboot应用">SpringBoot应用</h2>
+#### listerner
+- Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动
+- 用于启动和关闭Spring容器的本体
+
+#### Docker
+- 用统一的环境处理软件交互，运行速度比虚拟机要快
+- Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系
+- docker的端口和本机的端口没有关系，除非绑定
+
+#### index.html
+##### 渲染
+- 后端渲染:根据用户请求的内容的不同，决定返回的内容
+- 前端渲染：把后端返回的内容填充到页面上面
+- 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的
+
+
+##### 浏览器
+- 浏览器栏发出的请求都是GET
+- 要调试post请求需要用到其他工具，例如postman 
+- HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的
+
+#### JVM
+- Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.classd的版本是JVM 能够运行的（JVM不能够运行比自己版本搞的字节码文件），对应版本的Java就能够运行。
+
+
+## SpringBoot 基础知识
+- 对象
+- - 需要对外提供服务的需要声明Bean，例如提供鉴权、查询等服务功能
+- - - `Controller对象`则会通过声明`@Controller`从而完成Bean的声明,进行Bean装配
+- - - `Service对象`则会通过`@Component`、`@Service`进行声明
+- - 作为数据容器容纳数据的就不需要，一般放在`entity包`里面会比较容易处理
+```java
+public class User {
+    Integer id;
+    String name;
+    String avatar;
+    Instant createdAt;
+    Instant updateAt;
+
+    public User(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+        this.avatar = &quot;&quot;;
+        this.createdAt = Instant.now();
+        this.updateAt = Instant.now();
+    }
+
+</code></pre><h2 id="springboot应用">SpringBoot应用</h2>
 <h4 id="从零新建springboot">从零新建SpringBoot</h4>
 <ul>
 <li>新建一个符合需求的结构</li>
@@ -221,56 +217,52 @@
 <li>新建一个pom.xml,填充</li>
 </ul>
 <pre><code>$ vi pom.xml
-</code></pre><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
-	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-	&lt;parent&gt;
-		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-		&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-		&lt;version&gt;2.2.2.RELEASE&lt;/version&gt;
-		&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
-	&lt;/parent&gt;
-	&lt;groupId&gt;com.example&lt;/groupId&gt;
-	&lt;artifactId&gt;spring-boot&lt;/artifactId&gt;
-	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
-	&lt;name&gt;spring-boot&lt;/name&gt;
-	&lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">&lt;?</span>xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span><span style="color:#f92672">?&gt;</span>
+<span style="color:#f92672">&lt;</span>project xmlns<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://maven.apache.org/POM/4.0.0&#34;</span> xmlns<span style="color:#f92672">:</span>xsi<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+	xsi<span style="color:#f92672">:</span>schemaLocation<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>modelVersion<span style="color:#f92672">&gt;</span>4<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">&lt;/</span>modelVersion<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>parent<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>parent<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">.</span><span style="color:#a6e22e">RELEASE</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;</span>relativePath<span style="color:#f92672">/&gt;</span> <span style="color:#f92672">&lt;!--</span> lookup parent from repository <span style="color:#f92672">--&gt;</span>
+	<span style="color:#f92672">&lt;/</span>parent<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">example</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">-</span>SNAPSHOT<span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>name<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">&lt;/</span>name<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>description<span style="color:#f92672">&gt;</span>Demo project <span style="color:#66d9ef">for</span> Spring Boot<span style="color:#f92672">&lt;/</span>description<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>properties<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;</span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">version</span><span style="color:#f92672">&gt;</span>1<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">&lt;/</span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">version</span><span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;/</span>properties<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>dependencies<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+			<span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+			<span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>web<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;</span>dependency<span style="color:#f92672">&gt;</span>
+			<span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+			<span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>starter<span style="color:#f92672">-</span>test<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+			<span style="color:#f92672">&lt;</span>scope<span style="color:#f92672">&gt;</span>test<span style="color:#f92672">&lt;/</span>scope<span style="color:#f92672">&gt;</span>
+			<span style="color:#f92672">&lt;</span>exclusions<span style="color:#f92672">&gt;</span>
+				<span style="color:#f92672">&lt;</span>exclusion<span style="color:#f92672">&gt;</span>
+					<span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org<span style="color:#f92672">.</span><span style="color:#a6e22e">junit</span><span style="color:#f92672">.</span><span style="color:#a6e22e">vintage</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+					<span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>junit<span style="color:#f92672">-</span>vintage<span style="color:#f92672">-</span>engine<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+				<span style="color:#f92672">&lt;/</span>exclusion<span style="color:#f92672">&gt;</span>
+			<span style="color:#f92672">&lt;/</span>exclusions<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;/</span>dependency<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;/</span>dependencies<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;</span>build<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;</span>plugins<span style="color:#f92672">&gt;</span>
+			<span style="color:#f92672">&lt;</span>plugin<span style="color:#f92672">&gt;</span>
+				<span style="color:#f92672">&lt;</span>groupId<span style="color:#f92672">&gt;</span>org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">boot</span><span style="color:#f92672">&lt;/</span>groupId<span style="color:#f92672">&gt;</span>
+				<span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>spring<span style="color:#f92672">-</span>boot<span style="color:#f92672">-</span>maven<span style="color:#f92672">-</span>plugin<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
+			<span style="color:#f92672">&lt;/</span>plugin<span style="color:#f92672">&gt;</span>
+		<span style="color:#f92672">&lt;/</span>plugins<span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;/</span>build<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;/</span>project<span style="color:#f92672">&gt;</span>
 
-	&lt;properties&gt;
-		&lt;java.version&gt;1.8&lt;/java.version&gt;
-	&lt;/properties&gt;
-
-	&lt;dependencies&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-			&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-		&lt;/dependency&gt;
-
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-			&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-			&lt;scope&gt;test&lt;/scope&gt;
-			&lt;exclusions&gt;
-				&lt;exclusion&gt;
-					&lt;groupId&gt;org.junit.vintage&lt;/groupId&gt;
-					&lt;artifactId&gt;junit-vintage-engine&lt;/artifactId&gt;
-				&lt;/exclusion&gt;
-			&lt;/exclusions&gt;
-		&lt;/dependency&gt;
-	&lt;/dependencies&gt;
-
-	&lt;build&gt;
-		&lt;plugins&gt;
-			&lt;plugin&gt;
-				&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-				&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-			&lt;/plugin&gt;
-		&lt;/plugins&gt;
-	&lt;/build&gt;
-
-&lt;/project&gt;
-</code></pre><ul>
+</code></pre></div><ul>
 <li>新建一个Controller和Application（根据示例文档）</li>
 </ul>
 <h5 id="完成依赖">完成依赖</h5>
@@ -434,7 +426,7 @@
 <li>userMapper 无法创建实例，因为UserMapper是一个接口，但是SpringBoot能够自动管理，直接装配成Bean</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#f92672">{</span>
-        
+        UserMapper userMapper<span style="color:#f92672">;</span>
         <span style="color:#a6e22e">@Inject</span>
         <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">UserService</span><span style="color:#f92672">(</span>UserMapper usermapper<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
             <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userMapper</span> <span style="color:#f92672">=</span> userMapper<span style="color:#f92672">;</span>
@@ -521,8 +513,7 @@
     <span style="color:#f92672">}</span>
 
 <span style="color:#f92672">}</span>
-</code></pre></div><h2 id="登录模块controller">登录模块（Controller）</h2>
-<h4 id="spring-mvc">Spring MVC</h4>
+</code></pre></div><h2 id="spring-mvc">Spring MVC</h2>
 <ul>
 <li>模型model(javabean),  视图view(jsp/img)   控制器Controller(Action/servlet)</li>
 <li>C存在的目的就是为了保证M和V的一致性
@@ -579,17 +570,39 @@ MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、�
     <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">auth</span><span style="color:#f92672">(</span>ModelMap map<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// 获得返回的的数据、HTTP的HEAD 等等的数据
 </span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Result<span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
-</code></pre></div><h5 id="用户登录接口">用户登录接口</h5>
+</code></pre></div><h2 id="用户登录接口">用户登录接口</h2>
 <ul>
+<li>WebSecurityConfigAdapter</li>
+<li>
+<ul>
+<li><code>configure(HttpSecurity)</code>定义了哪些URL路径应该被拦截，如字面意思所描述：”/“, “/home”允许所有人访问.</li>
+</ul>
+</li>
 <li>完成这个配置后，就建立安全框架，所有的请求都会进行拦截，都会进行安全处理</li>
+<li>
+<ul>
+<li>configure（HTTPSecurity http）给URL权限</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>AuthenticationManager 通过创建出Bean 来完成鉴权</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>在configureGlobal（AuthenticationManagerBuilder）进行user和passwoed的鉴权</li>
+</ul>
+</li>
+<li>WebSecurityConfigurerAdapter
+适配器模式在spring中被广泛的使用，在配置中使用Adapter的好处便是，我们可以选择性的配置想要修改的那一部分配置，而不用覆盖其他不相关的配置。WebSecurityConfigurerAdapter中我们可以选择自己想要修改的内容，来进行重写，而其提供了三个configure重载方法</li>
+<li></li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
 <span style="color:#a6e22e">@EnableWebSecurity</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebSecurityConfig</span> <span style="color:#66d9ef">extends</span> WebSecurityConfigurerAdapter <span style="color:#f92672">{</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><ul>
-<li>访问根目录和<code>/home</code>的请求都全部通过</li>
-</ul>
+</code></pre></div><h4 id="访问根目录和home的请求都全部通过">访问根目录和<code>/home</code>的请求都全部通过</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
 	<span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span><span style="color:#f92672">(</span>HttpSecurity http<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
 		http
@@ -597,75 +610,107 @@ MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、�
 				<span style="color:#f92672">.</span><span style="color:#a6e22e">antMatchers</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;/home&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">permitAll</span><span style="color:#f92672">()</span>
 </code></pre></div><p>根据需要进行调整</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">                <span style="color:#f92672">.</span><span style="color:#a6e22e">antMatchers</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;/auth/**&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">permitAll</span><span style="color:#f92672">();</span>
-</code></pre></div><ul>
-<li>SRCF 关闭. 对POST请求生效，关闭后才能够完成请求</li>
-</ul>
+</code></pre></div><h4 id="csrf-关闭-对post请求生效关闭后才能够完成请求">CSRF 关闭. 对POST请求生效，关闭后才能够完成请求</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span><span style="color:#f92672">(</span>HttpSecurity http<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
         http<span style="color:#f92672">.</span><span style="color:#a6e22e">csrf</span><span style="color:#f92672">().</span><span style="color:#a6e22e">disable</span><span style="color:#f92672">();</span>
-</code></pre></div><ul>
-<li>建立虚拟用户框架，使得除了建立的用户以外其他都是不合法的</li>
+</code></pre></div><h2 id="建立用户框架">建立用户框架</h2>
+<ul>
+<li>用户框架需要使用的BCryptPasswordEncoder 的Bean进行密码的加密和UserMapper 存储和获得用户信息</li>
+<li>userSrtvice 建立用户框架，继承<code>UserDetailService</code>这个接口</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
-<span style="color:#a6e22e">@EnableWebSecurity</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebSecurityConfig</span> <span style="color:#66d9ef">extends</span> WebSecurityConfigurerAdapter <span style="color:#f92672">{</span>
- <span style="color:#a6e22e">@Bean</span>
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> UserDetailsService <span style="color:#a6e22e">userDetailsService</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        UserDetails user <span style="color:#f92672">=</span>
-                User<span style="color:#f92672">.</span><span style="color:#a6e22e">withDefaultPasswordEncoder</span><span style="color:#f92672">()</span>
-                        <span style="color:#f92672">.</span><span style="color:#a6e22e">username</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">)</span>
-                        <span style="color:#f92672">.</span><span style="color:#a6e22e">password</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">)</span>
-                        <span style="color:#f92672">.</span><span style="color:#a6e22e">roles</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;USER&#34;</span><span style="color:#f92672">)</span>
-                        <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+<blockquote>
+<ul>
+<li>UserDetailService 里面只有一个有用户登录的方法<code>loadUserByUsername</code></li>
+<li><code> WebSecurityConfigurerAdapter</code>里面的实现是通过代理来完成的，从而能够获得log</li>
+</ul>
+</blockquote>
+<ul>
+<li>用户的名字和密码需要用currentHashMap来存储保证线程安全</li>
+<li>UserDetails 里面有提到说提供了一个<code>org.springframework.security.core.userdetails.User</code>的方法作为模板，便于生成用于鉴权的User（里面包括username，password和一个collection），colection里面包含用户的权限配置（true、false），且规定不能为空</li>
+</ul>
+<h4 id="demo">demo</h4>
+<ul>
+<li>通过重写<code>loadUserByUsername</code>，使得user的信息是从userMapper里面获得的,且通过设置权力List 为空，为了简化demo啦。</li>
+</ul>
+<blockquote>
+<ul>
+<li>User 里面会自动判断uername 是否为空，是否为空字符串，密码是否为空</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">implements</span> UserDetailsService <span style="color:#f92672">{</span>
+   <span style="color:#66d9ef">private</span> BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">;</span><span style="color:#75715e">//配置密码加密器
+</span><span style="color:#75715e"></span>
+  <span style="color:#a6e22e">@Service</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">implements</span> UserDetailsService <span style="color:#f92672">{</span>
+   <span style="color:#a6e22e">@Autowired</span>
+   <span style="color:#66d9ef">private</span> BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">;</span>
+   <span style="color:#a6e22e">@Autowired</span>
+   <span style="color:#66d9ef">private</span> UserMapper userMapper<span style="color:#f92672">;</span>
 
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> InMemoryUserDetailsManager<span style="color:#f92672">(</span>user<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+
+   <span style="color:#a6e22e">@Inject</span>
+   <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">UserService</span><span style="color:#f92672">(</span>BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">,</span> UserMapper userMapper<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+       <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bCryptPasswordEncoder</span> <span style="color:#f92672">=</span> bCryptPasswordEncoder<span style="color:#f92672">;</span>
+       <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userMapper</span> <span style="color:#f92672">=</span> userMapper<span style="color:#f92672">;</span>
+   <span style="color:#f92672">}</span>
+
+   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">,</span> String password<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+       userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> bCryptPasswordEncoder<span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span><span style="color:#f92672">(</span>password<span style="color:#f92672">));</span>
+   <span style="color:#f92672">}</span>
+
+   <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+       <span style="color:#66d9ef">return</span> userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
+   <span style="color:#f92672">}</span>
+
+   <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">getUserById</span><span style="color:#f92672">(</span>Integer userId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userMapper</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getUserById</span><span style="color:#f92672">((</span>userId<span style="color:#f92672">));</span>
+   <span style="color:#f92672">}</span>
+
+   <span style="color:#a6e22e">@Override</span>
+   <span style="color:#66d9ef">public</span> UserDetails <span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> UsernameNotFoundException <span style="color:#f92672">{</span>
+       <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span>username<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+           <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> UsernameNotFoundException<span style="color:#f92672">(</span>username <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;不存在&#34;</span><span style="color:#f92672">);</span>
+       <span style="color:#f92672">}</span>
+       String encodePassword <span style="color:#f92672">=</span> userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
+
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">security</span><span style="color:#f92672">.</span><span style="color:#a6e22e">core</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userdetails</span><span style="color:#f92672">.</span><span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> encodePassword<span style="color:#f92672">,</span> Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">emptyList</span><span style="color:#f92672">());</span> 
+       <span style="color:#75715e">//当被询问用户信息的时候，就会返回用户的名字和加密后的密码
+</span><span style="color:#75715e"></span>   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><ul>
-<li>
-<ul>
-<li><code> User.withDefaultPasswordEncoder()</code>存在不安全的情况，只能在简单示例里使用</li>
-</ul>
-</li>
-<li>
-<ul>
-<li><code>UserDetailsService</code></li>
-</ul>
-</li>
-</ul>
+</code></pre></div><h4 id="userdetailsservice"><code>UserDetailsService</code></h4>
 <pre><code> * Locates the user based on the username.
   @param username the username identifying the user whose data is required.
 </code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">UserDetailsService</span> <span style="color:#f92672">{</span>
   UserDetails <span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> UsernameNotFoundException<span style="color:#f92672">;</span> <span style="color:#75715e">//输入用户名，就能够获得用户信息
 </span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</code></pre></div><hr>
+</code></pre></div><h2 id="完成鉴权">完成鉴权</h2>
 <ul>
+<li>鉴权的配置 在webSecrityConfigure 里面完成配置</li>
+</ul>
+<h4 id="在userservice提供密码登录服务处进行密码加密后再把密码写入数据库下一次用户登录进行鉴权的时候鉴权的是加密后的密码">在userService提供密码登录服务处，进行密码加密后再把密码写入数据库，下一次用户登录进行鉴权的时候，鉴权的是加密后的密码</h4>
+<ul>
+<li>鉴权 <code>AuthenticationManager</code>是一个接口（处理鉴权的请求），<code>WebSecuityConfigurerAdaPter</code>实现了这个接口</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>AuthenticationManager authenticationManagerBean()</code>方法原本只是返回一个鉴权管理的代理，包含代理器里生成的代理builder和ApplicationContext 的内容<code>AuthenticationManagerDelegator(authenticationBuilder, context)</code></li>
 <li>
 <ul>
-<li>建立真实的用户框架</li>
+<li>重写后使用的是<code>authenticationManager()</code>&ndash;&gt; 如果不能够初始化鉴权管理器，就把配置改变成禁止从本地配置里面加载鉴权管理器，禁止后就从<code>WebSecurityfigurerAdapter</code>注入的鉴权配置里面获得管理器。否则就通过注入的本地鉴权管理生成器里面生成。</li>
 </ul>
 </li>
+<li>默认情况下如果有重写<code>configure(AuthenticationManagerBuilder auth)</code>的话，就会优先使用这个配置生成鉴权管理器之后会忽视注入的本地配置，否则就是使用注入的本地鉴权管理器生成配置。</li>
+<li>无论builder是如何实现的，只要有了就把把鉴权管理器初始化<code>authenticationManagerInitialized = true;</code>,然后把管理器返回。</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">implements</span> UserDetailsService <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> userPasswords <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConcurrentHashMap<span style="color:#f92672">&lt;&gt;();</span> <span style="color:#75715e">//为了安全起见最好使用线程安全
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@Inject</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">UserService</span><span style="color:#f92672">(</span>BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bCryptPasswordEncoder</span> <span style="color:#f92672">=</span> bCryptPasswordEncoder<span style="color:#f92672">;</span>
-        save<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Gigi&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;111&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">,</span> String password<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> bCryptPasswordEncoder<span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span><span style="color:#f92672">(</span>password<span style="color:#f92672">));</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getPassword</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-</code></pre></div><p>Error : <code>PasswordEncode</code></p>
+</blockquote>
+<h4 id="通过bcryptpasswordencoder">通过BCryptPasswordEncoder</h4>
+<p>Error : <code>PasswordEncode</code></p>
+<blockquote>
+<p>和其他加密方式相比，BCryptPasswordEncoder有着它自己的优势所在，首先加密的hash值每次都不同，就像md5的盐值加密一样，只不过盐值加密用到了随机数，前者用到的是其内置的算法规则，毕竟随机数没有设合适的话还是有一定几率被攻破的。其次BCryptPasswordEncoder的生成加密存储串也有60位之多。最重要的一点是，md5的加密不是spring security所推崇的加密方式了</p>
+</blockquote>
 <ul>
+<li><code>bCryptPasswordEncoder.encode(password)</code></li>
 <li>
 <ul>
 <li>密码需要加密：在用户使用的密码里面添加固定的密码加密，避免密码外泄</li>
@@ -688,224 +733,226 @@ MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、�
 </li>
 </ul>
 <pre><code> * Implementation of PasswordEncoder that uses the BCrypt strong hashing function. Clients
-</code></pre><p>在userService提供密码登录服务处，进行密码加密后再把密码写入数据库，下一次用户登录进行鉴权的时候，鉴权的是加密后的密码</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">implements</span> UserDetailsService <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> userPasswords <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConcurrentHashMap<span style="color:#f92672">&lt;&gt;();</span> <span style="color:#75715e">//为了安全起见最好使用线程安全
-</span><span style="color:#75715e"></span>    
-    <span style="color:#66d9ef">private</span> BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">;</span><span style="color:#75715e">//配置密码加密器
-</span><span style="color:#75715e"></span>
-    <span style="color:#a6e22e">@Inject</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">UserService</span><span style="color:#f92672">(</span>BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bCryptPasswordEncoder</span> <span style="color:#f92672">=</span> bCryptPasswordEncoder<span style="color:#f92672">;</span>
-        save<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Gigi&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;111&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">,</span> String password<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> bCryptPasswordEncoder<span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span><span style="color:#f92672">(</span>password<span style="color:#f92672">));</span><span style="color:#75715e">//把用户名和加密后的密码存储在UserMapper里面
-</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getPassword</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> UserDetails <span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> UsernameNotFoundException <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span>username<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> UsernameNotFoundException<span style="color:#f92672">(</span>username <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;不存在&#34;</span><span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
-        String encodePassword <span style="color:#f92672">=</span> userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
-
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">security</span><span style="color:#f92672">.</span><span style="color:#a6e22e">core</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userdetails</span><span style="color:#f92672">.</span><span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> encodePassword<span style="color:#f92672">,</span> Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">emptyList</span><span style="color:#f92672">());</span> 
-        <span style="color:#75715e">//当被询问用户信息的时候，就会返回用户的名字和加密后的密码
-</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
+</code></pre><h4 id="demo-1">demo</h4>
+<ul>
+<li>重写到<code>configure(HttpSecurity http)</code>,管理访问URL权限
+而是直接注入了AuthenticationManagerBuilder的实例（里面包含userDetailsService 和</li>
+<li>重写<code>AutehenticationManager authenticatinoManagerBean();</code>使得原本是有代理器完成管理器builder &ndash;&gt; 根据注入的AuthenticationManagerBuilder 完成，实现动态生成管理器</li>
+<li>给WebSecurity配置增加了一个<code>BCryptPasswordEncoder()</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
 <span style="color:#a6e22e">@EnableWebSecurity</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebSecurityConfig</span> <span style="color:#66d9ef">extends</span> WebSecurityConfigurerAdapter <span style="color:#f92672">{</span>
     <span style="color:#a6e22e">@Autowired</span>
     UserDetailsService userDetailsService<span style="color:#f92672">;</span>
-    
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span><span style="color:#f92672">(</span>HttpSecurity http<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+        http<span style="color:#f92672">.</span><span style="color:#a6e22e">csrf</span><span style="color:#f92672">().</span><span style="color:#a6e22e">disable</span><span style="color:#f92672">();</span>
+        http<span style="color:#f92672">.</span><span style="color:#a6e22e">authorizeRequests</span><span style="color:#f92672">()</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">antMatchers</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;/auth/**&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">permitAll</span><span style="color:#f92672">()</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">antMatchers</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;/create&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">permitAll</span><span style="color:#f92672">()</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">anyRequest</span><span style="color:#f92672">().</span><span style="color:#a6e22e">authenticated</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#a6e22e">@Bean</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> AuthenticationManager <span style="color:#a6e22e">authenticationManagerBean</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span> <span style="color:#75715e">//鉴权
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> authenticationManager<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
     <span style="color:#a6e22e">@Autowired</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configureGlobal</span><span style="color:#f92672">(</span>AuthenticationManagerBuilder auth<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-        auth<span style="color:#f92672">.</span><span style="color:#a6e22e">userDetailsService</span><span style="color:#f92672">(</span>userDetailsService<span style="color:#f92672">).</span><span style="color:#a6e22e">passwordEncoder</span><span style="color:#f92672">(</span>bCryptPasswordEncoder<span style="color:#f92672">());</span>  
-        <span style="color:#75715e">//在全局的环境下，让所有的密码都通过 `bCryptPasswordEncoder()` 进行加密
-</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Bean</span>
+        auth
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">userDetailsService</span><span style="color:#f92672">(</span>userDetailsService<span style="color:#f92672">)</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">passwordEncoder</span><span style="color:#f92672">(</span>bCryptPasswordEncoder<span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+     <span style="color:#a6e22e">@Bean</span>
     <span style="color:#66d9ef">public</span> BCryptPasswordEncoder <span style="color:#a6e22e">bCryptPasswordEncoder</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> BCryptPasswordEncoder<span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><hr>
+</code></pre></div><h4 id="实现鉴权">实现鉴权</h4>
 <ul>
 <li>用户框架建立并提供通过用户名读取用户信息的服务后，注入控制，使得鉴权的方法可以完成用户信息的核对。</li>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<h4 id="demo-2">Demo</h4>
+<ul>
+<li>判断用户是否有登录的页面</li>
+<li>通过<code>SecurityContextHolder</code>获得当前用户的Authentication</li>
+<li>
+<ul>
+<li>如果为空判断为没有登录，不为空则从里面获取用户的名字，并返回。</li>
+</ul>
+</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Controller</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AutoController</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> UserDetailsService userDetailIsService<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> AuthenticationManager authenticationManager<span style="color:#f92672">;</span><span style="color:#75715e">//管理鉴权
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> UserService userService<span style="color:#f92672">;</span>
 
     <span style="color:#a6e22e">@Inject</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">AutoController</span><span style="color:#f92672">(</span>UserDetailsService userDetailIsService<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userDetailIsService</span> <span style="color:#f92672">=</span> userDetailIsService<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">AutoController</span><span style="color:#f92672">(</span>AuthenticationManager authenticationManager<span style="color:#f92672">,</span> UserService userService<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">authenticationManager</span> <span style="color:#f92672">=</span> authenticationManager<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userService</span> <span style="color:#f92672">=</span> userService<span style="color:#f92672">;</span>
     <span style="color:#f92672">}</span>
-     UserDetails userDetails <span style="color:#f92672">=</span> userDetailIsService<span style="color:#f92672">.</span><span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
-      UsernamePasswordAuthenticationToken token <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UsernamePasswordAuthenticationToken
-                <span style="color:#f92672">(</span>userDetails<span style="color:#f92672">,</span> password<span style="color:#f92672">,</span> userDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getAuthorities</span><span style="color:#f92672">());</span>  <span style="color:#75715e">//鉴权，检验密码是否匹配该用户
+
+
+    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span>value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/auth&#34;</span><span style="color:#f92672">,</span> produces <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;application/json; charset=utf-8&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#a6e22e">@ResponseBody</span>
+    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">auth</span><span style="color:#f92672">(</span>ModelMap map<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//User loggedInUser = userService.getUserByUsername(userName);
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 在没有登录的时候，Authentication(）会出现控制正异常的行为，导致test无法进行
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// cookie
 </span><span style="color:#75715e"></span>
+        Authentication authentication <span style="color:#f92672">=</span> SecurityContextHolder<span style="color:#f92672">.</span><span style="color:#a6e22e">getContext</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getAuthentication</span><span style="color:#f92672">();</span>
+        User loggedInUser <span style="color:#f92672">=</span> userService<span style="color:#f92672">.</span><span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span>authentication <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span>
+            <span style="color:#66d9ef">null</span> <span style="color:#f92672">:</span> authentication<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>loggedInUser <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">failure</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ok&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">success</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> loggedInUser<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
     <span style="color:#f92672">}</span>
 </code></pre></div><ul>
 <li>鉴权：判断信息和用户的信息是否一致,证明自己是自己</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebSecurityConfig</span> <span style="color:#66d9ef">extends</span> WebSecurityConfigurerAdapter <span style="color:#f92672">{</span>
- <span style="color:#a6e22e">@Bean</span>
- <span style="color:#a6e22e">@Override</span>
- <span style="color:#66d9ef">public</span> AuthenticationManager <span style="color:#a6e22e">authenticationManagerBean</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> authenticationManager<span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><pre><code>@Controller
-public class AutoController {
-  private AuthenticationManager authenticationManager;//管理鉴权
-   @PostMapping(&quot;/auth/login&quot;)
-    @ResponseBody
-    public void login(@RequestBody Map&lt;String, String&gt; usernameAndPassword) {
-     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken
-                (userDetails, password, userDetails.getAuthorities());  //鉴权，检验密码是否匹配该用户
-
-        try {
-            authenticationManager.authenticate(token); //完成鉴权的管理
-            SecurityContextHolder.getContext().setAuthentication(token); //鉴别完成后，进行数据处理
-
-        }catch (BadCredentialsException e){
-
-        }
-    }
-</code></pre><ul>
-<li>
+<h4 id="登录模块">登录模块</h4>
 <ul>
-<li><code>authenticationManager.authenticate();</code>出现鉴权失败
-<strong>添加<code> @Autowired</code></strong>解决</li>
+<li><code>UsernamePasswordAuthenticaionToken</code>是一个继承抽象的<code>AbstractAuthenticationToken</code>方法。属于SpringSecutity里 Authentication的方法。</li>
 </ul>
-</li>
+<blockquote>
+<ul>
+<li>调用生成实例时，就会生成一个Authentication</li>
+<li>getCredentials() 、 getPrincipal()、setAuthenticated()</li>
+<li>有擦除Credentials(）的方法</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AutoController</span> <span style="color:#f92672">{</span>
- 
-  <span style="color:#66d9ef">private</span> AuthenticationManager authenticationManager<span style="color:#f92672">;</span>
-    <span style="color:#a6e22e">@Inject</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">AutoController</span><span style="color:#f92672">(</span> AuthenticationManager authenticationManager<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">authenticationManager</span> <span style="color:#f92672">=</span> authenticationManager<span style="color:#f92672">;</span>
+</blockquote>
+<h4 id="demo-3">Demo</h4>
+<ul>
+<li>把RequestBody 设置为Map&lt;&gt;,存放usernameAndPassword</li>
+<li>从请求body里面获取<code>username</code>和<code>password</code>key里获得的值并转换为字符串</li>
+<li>调用<code>UserDetail</code>这个接口里面的<code>loadUserByUsername(String username)</code>的方法进行用户名字的加载，如果抛出<code>UsernameNotFoundException</code>的话，就返回用户不存在的信息</li>
+<li>加载成功后，就进一步通过<code>UsernamePasswordAuthenticationToken()</code>获得一个Authentication，通过AuthenticationManager对鉴权后就要把数据保存到SctuityContextHolder里面</li>
+<li>成功后就返回登录成功的信息，并返回用户的信息，否则就返回密码不成功的消息。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Controller</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AutoController</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">private</span> AuthenticationManager authenticationManager<span style="color:#f92672">;</span><span style="color:#75715e">//管理鉴权
+</span><span style="color:#75715e"></span>   <span style="color:#a6e22e">@PostMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/auth/login&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#a6e22e">@ResponseBody</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">login</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@RequestBody</span> Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> usernameAndPassword<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+     UsernamePasswordAuthenticationToken token <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UsernamePasswordAuthenticationToken
+                <span style="color:#f92672">(</span>userDetails<span style="color:#f92672">,</span> password<span style="color:#f92672">,</span> userDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getAuthorities</span><span style="color:#f92672">());</span>  <span style="color:#75715e">//鉴权，检验密码是否匹配该用户
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            authenticationManager<span style="color:#f92672">.</span><span style="color:#a6e22e">authenticate</span><span style="color:#f92672">(</span>token<span style="color:#f92672">);</span> <span style="color:#75715e">//完成鉴权的管理
+</span><span style="color:#75715e"></span>            SecurityContextHolder<span style="color:#f92672">.</span><span style="color:#a6e22e">getContext</span><span style="color:#f92672">().</span><span style="color:#a6e22e">setAuthentication</span><span style="color:#f92672">(</span>token<span style="color:#f92672">);</span> <span style="color:#75715e">//鉴别完成后，进行数据处理、cookie！
+</span><span style="color:#75715e"></span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>BadCredentialsException e<span style="color:#f92672">){</span>
+
         <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
 </code></pre></div><ul>
-<li>
-<ul>
 <li><code>AuthenticationManager</code>简介</li>
 </ul>
-</li>
-</ul>
-<pre><code>/*
-* Override this method to expose the {@link AuthenticationManager} from
-	 * {@link #configure(AuthenticationManagerBuilder)} to be exposed as a Bean.
-	 * @return the {@link AuthenticationManager}
-	 * @throws Exception
-	 */
-	 @Bean
-	 public AuthenticationManager authenticationManagerBean() throws Exception {
-		return new AuthenticationManagerDelegator(authenticationBuilder, context);
-	}
-</code></pre><ul>
-<li>
-<ul>
-<li>管理鉴权，鉴权成功后处理信息</li>
-</ul>
-</li>
-</ul>
-<pre><code> @PostMapping(&quot;/auth/login&quot;)
-    @ResponseBody
-        public Object login(@RequestBody Map&lt;String, Object&gt; usernameAndPassword) {
-        String username = usernameAndPassword.get(&quot;user&quot;).toString();
-        String password = usernameAndPassword.get(&quot;password&quot;).toString();
-
-        UserDetails userDetails = userDetailIsService.loadUserByUsername(username);
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken
-                (userDetails, password, userDetails.getAuthorities());  //鉴权，检验密码是否匹配该用户
-        try {
-            authenticationManager.authenticate(token); //完成鉴权的管理
-            SecurityContextHolder.getContext().setAuthentication(token); //鉴别完成后，进行数据处理
-            //登录成功后
-            User loggedInUser = new User(1, &quot;Gigi&quot;);
-            return new Result(&quot;ok&quot;, &quot;登录成功&quot;, true, loggedInUser);
-        } catch (BadCredentialsException e) {
-            return new Result(&quot;fail&quot;, &quot;密码不正确&quot;, false);
-        }
-    }
-- - 验权：Authozation 证明自己是不是管理员
-
-
-
-- PS 
-1. SpringBoot 默认的pom.xml读取不到
-`org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;`
-
-添加
-</code></pre><!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>打包（不去确定是否需要）<code>mvn package</code></p>
-<h6 id="java对象bean">Java对象（Bean）</h6>
-<ul>
-<li>private</li>
-<li>
-<ul>
-<li>message</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>status</li>
-</ul>
-</li>
-<li>如果一个Bean有一个<code>getStatus()</code>，就会认为这个Bean有一个<code>Status</code>属性</li>
-</ul>
-<h6 id="jason-显示">Jason 显示</h6>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Result</span> <span style="color:#f92672">{</span>
-        String status<span style="color:#f92672">;</span>
-        String msg<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">boolean</span> isLogin<span style="color:#f92672">;</span>
-        Object Data<span style="color:#f92672">;</span>
-
-        <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getStatus</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> status<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-
-        <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getMsg</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> msg<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isLogin</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> isLogin<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-</code></pre></div><ul>
-<li>网页jason显示出的内容，取决于getter和setter，而非<code>String status</code>、<code>boolean isLogin</code>等字段</li>
-</ul>
-<h2 id="维持登录状态">维持登录状态</h2>
-<h5 id="cookie-基础-http-rfc">cookie 基础 （http rfc）</h5>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/*
+</span><span style="color:#75715e">* Override this method to expose the {@link AuthenticationManager} from
+</span><span style="color:#75715e">	 * {@link #configure(AuthenticationManagerBuilder)} to be exposed as a Bean.
+</span><span style="color:#75715e">	 * @return the {@link AuthenticationManager}
+</span><span style="color:#75715e">	 * @throws Exception
+</span><span style="color:#75715e">	 */</span>
+	 <span style="color:#a6e22e">@Bean</span>
+	 <span style="color:#66d9ef">public</span> AuthenticationManager <span style="color:#a6e22e">authenticationManagerBean</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> AuthenticationManagerDelegator<span style="color:#f92672">(</span>authenticationBuilder<span style="color:#f92672">,</span> context<span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="维持登录状态">维持登录状态</h2>
+<h4 id="cookie-基础-http-rfc">cookie 基础 （http rfc）</h4>
 <ul>
 <li>HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的，通过Cookie维持状态</li>
-<li>浏览器看到服务器在ResponseHeader响应中返回set-cookie的时候，就会在之后的每一次请求都把cookie的内容放在RequestHeader里面</li>
+<li>浏览器看到服务器在ResponseHeader响应中返回set-cookie的时候，就会在之后的每一次同域名的请求都把cookie的内容放在RequestHeader里面</li>
+</ul>
+<blockquote>
+<ul>
+<li>response Header -&gt; HTTP/1.1 200 \r …… 里面包含set-cookie</li>
+<li>浏览器application 里的cookies 里面能查看到</li>
+</ul>
+</blockquote>
+<ul>
 <li>用户信息保存在cookie，所以 cookie的内容包含用户信息，每一次包含cookie的请求都表示是该用户的行为</li>
 <li>cookie和浏览器域名是相绑定的，cookie会规定在相应的域名<code>/path</code>请求才能够携带cookie</li>
-<li>cookie的httponly 表示cookie只有能够被浏览器发送</li>
+<li>cookie的httpOnly 表示cookie只有在浏览器主动发出请求的时候才会被携带上</li>
 </ul>
-<h5 id="cookie-维持登录状态">cookie 维持登录状态</h5>
+<h4 id="cookie-维持登录状态">cookie 维持登录状态</h4>
 <ul>
-<li>当没有登录的时候，<br>
-<code>String userName = SecurityContextHolder.getContext().getAuthentication().getName();</code>userName 就会得到<br>
-<code>anonymousUser</code></li>
+<li>当没有登录的时候， <br>
+<code>String userName = SecurityContextHolder.getContext().getAuthentication().getName();</code>  userName 就会得到  <code>anonymousUser</code>匿名用户</li>
+<li>登录后就能够获得userName</li>
 </ul>
-<h2 id="用户登录与信息储存">用户登录与信息储存</h2>
+<h4 id="demo-4">Demo</h4>
 <ul>
-<li>Database</li>
+<li>登录后&ndash;&gt;<code>SecurityContextHolder.getContext().setAuthentication(token); </code>&ndash;&gt;cookie</li>
+<li>没有使用SecurityContextHolder 里面 匿名用户身份验证token，而是通过判断<code>SecurityContextHolder.getContext().getAuthentication</code>获得的authentication 是否为空来判断用户是否用登录</li>
+</ul>
+<h4 id="注销">注销</h4>
+<h4 id="demo-5">Demo</h4>
+<ul>
+<li><code>SecurityContextHolder.getContext().getAuthentication().getName();</code>获得username</li>
+<li>从 mapper 里面获得密码</li>
+<li>使用<code>SecurityContextHolder.clearContext();</code>来注销用户并返回注销成功的消息</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/auth/logout&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#a6e22e">@ResponseBody</span>
+    <span style="color:#66d9ef">public</span> Result <span style="color:#a6e22e">logout</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        String userName <span style="color:#f92672">=</span> SecurityContextHolder<span style="color:#f92672">.</span><span style="color:#a6e22e">getContext</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getAuthentication</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
+        User loggedInUser <span style="color:#f92672">=</span> userService<span style="color:#f92672">.</span><span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span>userName<span style="color:#f92672">);</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>loggedInUser <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">failure</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;用户尚未登录&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            SecurityContextHolder<span style="color:#f92672">.</span><span style="color:#a6e22e">clearContext</span><span style="color:#f92672">();</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">failure</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ok&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;注销成功&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h4 id="注册">注册</h4>
+<h4 id="demo-6">Demo</h4>
+<ul>
+<li>从requestBody 的Map 里面获得username 和 password</li>
+<li>通过if 来先对用户名和密码进行非法的处理，同时防止注入</li>
+<li>try/catch 的方式来捕获向mapper 存入 username和password 的异常。存入成功后就进行登录并返回注册成功（这里要实现事务哟！！！！）</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#a6e22e">@PostMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/auth/register&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#a6e22e">@ResponseBody</span>
+    <span style="color:#66d9ef">public</span> Result <span style="color:#a6e22e">register</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@RequestBody</span> Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> usernameAndPassword<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        String username <span style="color:#f92672">=</span> usernameAndPassword<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">);</span>
+        String password <span style="color:#f92672">=</span> usernameAndPassword<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>username <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> password <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">failure</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;错误原因：注册用户没有输入名字或密码&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>username<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&lt;</span> 1 <span style="color:#f92672">||</span> username<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> 15<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">failure</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;错误原因：用户名字不符合&#39;长度1到15个字符，只能是字母数字下划线中&#39;的规定&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>password<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&lt;</span> 1 <span style="color:#f92672">||</span> password<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> 15<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">failure</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;错误原因：用户密码不符合&#39;长度6到16个任意字符&#39;的规定&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            userService<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> password<span style="color:#f92672">);</span>
+            <span style="color:#75715e">//这里在并发的过程中，如果有人同时申请两个同样的用户名字，就会出现数据库重复的情况，可以通过数据库约束完成事务
+</span><span style="color:#75715e"></span>            User loggedInUser <span style="color:#f92672">=</span> userService<span style="color:#f92672">.</span><span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">success</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;注册成功&#34;</span><span style="color:#f92672">,</span> loggedInUser<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>DuplicateKeyException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">failure</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;错误原因:用户已存在&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h2 id="用户登录与信息储存-mybatismapper">用户登录与信息储存 (Mybatis+Mapper)</h2>
+<h4 id="database">Database</h4>
+<ul>
 <li>
 <ul>
 <li>id 为主键,且自动生成数据，从<code>1</code>开始</li>
@@ -935,87 +982,30 @@ updated_at datetime)
             <span style="color:#e6db74">&#34;values(#{username}, #{encrypted_password}, now(),now())&#34;</span><span style="color:#f92672">)</span>
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Param</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">)</span> String username<span style="color:#f92672">,</span> <span style="color:#a6e22e">@Param</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;encrypted_password&#34;</span><span style="color:#f92672">)</span> String encryptedPassword<span style="color:#f92672">);</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><ul>
-<li>Mybatis 的配置（位于application）</li>
+</code></pre></div><h4 id="mybatis-对应spring的配置位于application">Mybatis 对应Spring的配置（位于application）</h4>
+<ul>
+<li>当连接上服务器时，数据库的配置就要改变成服务器IP地址！！</li>
 </ul>
-<pre><code>spring.datasource.url = jdbc:mysql://localhost:3306/user
-spring.datasource.username = root
-spring.datasource.password = hana
-dbpass spring.datasource.driver-class-username = com.mysql.cj.jdbc.Driver
-mybatis.configuration.mapUnderscoreToCamelCase = true
+<pre><code># spring.datasource.url=jdbc:mysql://192.168.1.7:3306/user
 </code></pre><ul>
+<li>数据库创建时没有使用加上驼峰的value 且 mapper 映射的时候不想使用results逐个变量和数据一一对应的话。但是使用感觉不太好，不一定能够发挥作用！</li>
 <li>
 <ul>
-<li>需要添加<code>mybatis.configuration.mapUnderscoreToCamelCase = true</code>使得数据库能够识别到Java的驼峰命名，从而避免数据库和浏览器数据出现不一致的问题</li>
+<li>需要添加<code>mybatis.configuration.mapUnderscoreToCamelCase = true</code> &ndash;&gt;使得数据库能够识别到Java的驼峰命名，从而避免数据库和浏览器数据出现不一致的问题</li>
 </ul>
 </li>
 </ul>
-<hr>
+<h4 id="demo-7">Demo</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL">spring.datasource.url <span style="color:#f92672">=</span> jdbc:mysql:<span style="color:#f92672">//</span>localhost:<span style="color:#ae81ff">3306</span><span style="color:#f92672">/</span><span style="color:#66d9ef">user</span>
+spring.datasource.username <span style="color:#f92672">=</span> root
+spring.datasource.password <span style="color:#f92672">=</span> hana
+spring.datasource.driver<span style="color:#f92672">-</span><span style="color:#66d9ef">class</span><span style="color:#f92672">-</span>username <span style="color:#f92672">=</span> com.mysql.cj.jdbc.Driver
+mybatis.configuration.mapUnderscoreToCamelCase <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+</code></pre></div><h2 id="entitymoudle">Entity(Moudle)</h2>
 <ul>
-<li>
-<ul>
-<li>userMapper 代替了userDetailServical的功能，同样是给一个username就获得用户的信息</li>
+<li>用于……</li>
 </ul>
-</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">implements</span> UserDetailsService <span style="color:#f92672">{</span>
-   <span style="color:#66d9ef">private</span> UserMapper userMapper<span style="color:#f92672">;</span>
-    <span style="color:#a6e22e">@Inject</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">UserService</span><span style="color:#f92672">(</span>BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">,</span>UserMapper userMapper<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bCryptPasswordEncoder</span> <span style="color:#f92672">=</span> bCryptPasswordEncoder<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userMapper</span> <span style="color:#f92672">=</span> userMapper<span style="color:#f92672">;</span>
-          save<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Gigi&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;111&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">,</span> String password<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span>bCryptPasswordEncoder<span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span><span style="color:#f92672">(</span>password<span style="color:#f92672">));</span>
-    <span style="color:#f92672">}</span>
-  <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span> userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> UserDetails <span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> UsernameNotFoundException <span style="color:#f92672">{</span>
-        User user <span style="color:#f92672">=</span> getUserByUsername<span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>user <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> UsernameNotFoundException<span style="color:#f92672">(</span>username <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;不存在&#34;</span><span style="color:#f92672">);</span>
-
-        <span style="color:#f92672">}</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">security</span><span style="color:#f92672">.</span><span style="color:#a6e22e">core</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userdetails</span><span style="color:#f92672">.</span><span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> user<span style="color:#f92672">.</span><span style="color:#a6e22e">getEncryptedPassword</span><span style="color:#f92672">(),</span> Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">emptyList</span><span style="color:#f92672">());</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Controller</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AutoController</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">private</span> AuthenticationManager authenticationManager<span style="color:#f92672">;</span><span style="color:#75715e">//管理鉴权
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> UserService userSe
-    
-  <span style="color:#a6e22e">@PostMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/auth/login&#34;</span><span style="color:#f92672">)</span>
-    <span style="color:#a6e22e">@ResponseBody</span>
-    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">login</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@RequestBody</span> Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Object<span style="color:#f92672">&gt;</span> usernameAndPassword<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        String username <span style="color:#f92672">=</span> usernameAndPassword<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
-        String password <span style="color:#f92672">=</span> usernameAndPassword<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
-
-        UserDetails userDetails<span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-            userDetails <span style="color:#f92672">=</span> userService<span style="color:#f92672">.</span><span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>UsernameNotFoundException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Result<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;用户不存在&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
-
-        UsernamePasswordAuthenticationToken token <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UsernamePasswordAuthenticationToken
-                <span style="color:#f92672">(</span>userDetails<span style="color:#f92672">,</span> password<span style="color:#f92672">,</span> userDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getAuthorities</span><span style="color:#f92672">());</span>  <span style="color:#75715e">//鉴权，检验密码是否匹配该用户
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-            authenticationManager<span style="color:#f92672">.</span><span style="color:#a6e22e">authenticate</span><span style="color:#f92672">(</span>token<span style="color:#f92672">);</span> <span style="color:#75715e">//完成鉴权的管理
-</span><span style="color:#75715e"></span>            SecurityContextHolder<span style="color:#f92672">.</span><span style="color:#a6e22e">getContext</span><span style="color:#f92672">().</span><span style="color:#a6e22e">setAuthentication</span><span style="color:#f92672">(</span>token<span style="color:#f92672">);</span> <span style="color:#75715e">//鉴别完成后，进行数据处理并保存
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">//登录成功后
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Result<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ok&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;登录成功&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> userService<span style="color:#f92672">.</span><span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">));</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>BadCredentialsException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Result<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;密码不正确&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><h2 id="序列化返回时不返回某些信息">序列化返回时不返回某些信息</h2>
+<h4 id="序列化返回时不返回某些信息">序列化返回时不返回某些信息</h4>
 <ul>
 <li>序列化：</li>
 <li>Spring 序列化方法：jackson</li>
@@ -1029,11 +1019,7 @@ mybatis.configuration.mapUnderscoreToCamelCase = true
     String avatar<span style="color:#f92672">;</span>
     Instant createdAt<span style="color:#f92672">;</span>
     Instant updatedAt<span style="color:#f92672">;</span>
-</code></pre></div><h2 id="登录退出接口">登录退出接口</h2>
-<ul>
-<li>通过<code>SecurityContextHolder.clearContext();</code> 完成</li>
-</ul>
-<h2 id="测试">测试</h2>
+</code></pre></div><h2 id="测试">测试</h2>
 <ul>
 <li>自动化</li>
 <li>节省时间</li>
@@ -1115,6 +1101,17 @@ mybatis.configuration.mapUnderscoreToCamelCase = true
 <li>开发的新功能，避免旧的功能出问题</li>
 <li>代码出错的可能减少，趋于稳定</li>
 </ul>
+<h4 id="mokito">Mokito</h4>
+<ul>
+<li><code>@Mock</code>识别为用于模拟的对象</li>
+<li>
+<ul>
+<li>MockSetting:</li>
+</ul>
+</li>
+<li><code>@InjectMock</code> : 识别这个模拟的对象需要其他模拟的对象注入依赖进行。InjectMocks实例之前没有初始化，并且有一个无参数的构造函数，然后用这个构造函数初始化。</li>
+<li>测试使用的是Mock对象，没有真正执行</li>
+</ul>
 <h4 id="maven">Maven</h4>
 <ul>
 <li>单元测试</li>
@@ -1130,18 +1127,7 @@ mybatis.configuration.mapUnderscoreToCamelCase = true
             &lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
             &lt;version&gt;2.22.2&lt;/version&gt;
         &lt;/plugin&gt;
-</code></pre><ul>
-<li>
-<ul>
-<li>只想单独运行单元测试或集成测试</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>verify 运行检查确保代码有效</li>
-<li>integretion-test  相比于 verify位于maven生命周期的前几个（运行maven 的范围比 verify少）</li>
-<li>单独运行单元测试</li>
-</ol>
+</code></pre><h2 id="单独运行单元测试">单独运行单元测试</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">            <span style="color:#f92672">&lt;</span>plugin<span style="color:#f92672">&gt;</span>
                 <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>maven<span style="color:#f92672">-</span>surefire<span style="color:#f92672">-</span>plugin<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
                 <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">22</span><span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
@@ -1168,9 +1154,76 @@ mybatis.configuration.mapUnderscoreToCamelCase = true
                 &lt;/configuration&gt;
             &lt;/plugin&gt;
 </code></pre><pre><code>mvn clean verify
-</code></pre><h4 id="beforetest">@Before、@Test</h4>
+</code></pre><h4 id="mockito-demo">Mockito Demo</h4>
 <ul>
-<li>理解</li>
+<li>使用<code>@ExtendWith</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@ExtendWith</span><span style="color:#f92672">(</span>MockitoExtension<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserServiceTest</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Mock</span>
+    BCryptPasswordEncoder mockEncoder<span style="color:#f92672">;</span>
+    <span style="color:#a6e22e">@Mock</span>
+    UserMapper mockMapper<span style="color:#f92672">;</span>
+    <span style="color:#a6e22e">@InjectMocks</span>
+    UserService userService<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSave</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">//调用userService
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//验证userService将请求转发给userMapper
+</span><span style="color:#75715e"></span>
+
+        <span style="color:#75715e">//BCryptPasswordEncoder会因为输入的是Mock，所以加密后返回的回是null，需要额外给条件
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//given
+</span><span style="color:#75715e"></span>        Mockito<span style="color:#f92672">.</span><span style="color:#a6e22e">when</span><span style="color:#f92672">(</span>mockEncoder<span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockPassword&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockEncodedPassword&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#75715e">//when:
+</span><span style="color:#75715e"></span>        userService<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;MockPassword&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#75715e">//then:
+</span><span style="color:#75715e"></span>        Mockito<span style="color:#f92672">.</span><span style="color:#a6e22e">verify</span><span style="color:#f92672">(</span>mockMapper<span style="color:#f92672">).</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;MockEncodedPassword&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testGetUserByUsername</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        userService<span style="color:#f92672">.</span><span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">);</span>
+        Mockito<span style="color:#f92672">.</span><span style="color:#a6e22e">verify</span><span style="color:#f92672">(</span>mockMapper<span style="color:#f92672">).</span><span style="color:#a6e22e">findUserByUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">throwExceptionWhenUserNoFount</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        Mockito<span style="color:#f92672">.</span><span style="color:#a6e22e">when</span><span style="color:#f92672">(</span>mockMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findUserByUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">)).</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//        try {
+</span><span style="color:#75715e">//            userService.loadUserByUsername(&#34;MockUser&#34;);
+</span><span style="color:#75715e">//            Assertions.assertFalse(false);
+</span><span style="color:#75715e">//        } catch (UsernameNotFoundException e) {
+</span><span style="color:#75715e">//        }
+</span><span style="color:#75715e"></span>
+
+        Assertions<span style="color:#f92672">.</span><span style="color:#a6e22e">assertThrows</span><span style="color:#f92672">(</span>UsernameNotFoundException<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Executable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">execute</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Throwable <span style="color:#f92672">{</span>
+                userService<span style="color:#f92672">.</span><span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+        <span style="color:#75715e">// 断言 userService.loadUserByUsername(&#34;MockUser&#34;) 调用 一定会丢出  UsernameNotFoundException.class异常，
+</span><span style="color:#75715e"></span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Test</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">returnUserDetailWhenUserFound</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        Mockito<span style="color:#f92672">.</span><span style="color:#a6e22e">when</span><span style="color:#f92672">(</span>mockMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findUserByUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">))</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">thenReturn</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> User<span style="color:#f92672">(</span>1212<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;MockEncodedPassword&#34;</span><span style="color:#f92672">));</span>
+
+        UserDetails userDetails <span style="color:#f92672">=</span> userService<span style="color:#f92672">.</span><span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">);</span>
+        Assertions<span style="color:#f92672">.</span><span style="color:#a6e22e">assertEquals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">,</span> userDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">());</span>
+        Assertions<span style="color:#f92672">.</span><span style="color:#a6e22e">assertEquals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockEncodedPassword&#34;</span><span style="color:#f92672">,</span> userDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getPassword</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="beforetest">@Before、@Test</h2>
+<h4 id="before">@Before</h4>
+<ul>
+<li>用于测试的实例方法需要使用一个实例来调用，为了保证测试方法的准确性，不同的测试需要用不同的实例对象进行调用测试，就需要new出大量的对象</li>
+<li>而使用<code>BeforEach</code>使用方法清空后就能够重复使用。</li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#a6e22e">@BeforeEach</span>
     <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{}</span>
@@ -1183,7 +1236,7 @@ mybatis.configuration.mapUnderscoreToCamelCase = true
     <span style="color:#75715e">//要想调用teat1这个实例方法，就要有一个实例来调用
 </span><span style="color:#75715e"></span>    AutoControllerTest testInstance <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AutoControllerTest<span style="color:#f92672">()</span> <span style="color:#f92672">;</span>
     testInstance<span style="color:#f92672">.</span><span style="color:#a6e22e">test1</span><span style="color:#f92672">();</span>
-    <span style="color:#75715e">//没调用一个实例方法，就会自动创建一个实例对象来调用 。因为在两个实例测试的过程中，如果共享一个实例，可能会共享一些状态、数据导致偏差。
+    <span style="color:#75715e">//没调用一个实例方法，就会自动创建一个实例对象来调用。因为在两个实例测试的过程中，如果共享一个实例，可能会共享一些状态、数据导致偏差。
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">// 而两个不同的实例能够保证数据状态的独立
 </span><span style="color:#75715e"></span>    <span style="color:#75715e">//EG
 </span><span style="color:#75715e"></span>    AutoControllerTest testInstance1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AutoControllerTest<span style="color:#f92672">()</span> <span style="color:#f92672">;</span>
@@ -1199,29 +1252,61 @@ mybatis.configuration.mapUnderscoreToCamelCase = true
     AutoControllerTest testInstance2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AutoControllerTest<span style="color:#f92672">()</span> <span style="color:#f92672">;</span>
     testInstance1<span style="color:#f92672">.</span><span style="color:#a6e22e">setUp</span><span style="color:#f92672">();</span>
     testInstance2<span style="color:#f92672">.</span><span style="color:#a6e22e">test2</span><span style="color:#f92672">();</span>
-</code></pre></div><ul>
-<li>@BeforeEcah</li>
+</code></pre></div><h4 id="beforeeach-demo">BeforeEach Demo</h4>
+<ul>
+<li>MockMvc 虚拟MVC</li>
+<li>
+<ul>
+<li>使用BeforEach 完成MVC的构建，通过MvcBuilder.standaloneSetup(new Controller(moudle))完成MVC的Controller以及相应的配置（moudle）<strong>MC</strong></li>
 </ul>
-<pre><code>@BeforeEach
-   void setUp() {
-           mockMvc = MockMvcBuilders
-                .standaloneSetup(new AutoController(authenticationManager,userService))
-                .build();//测试的是`AutoController()`这个方法
-   }
-       @Test
-   void returnNotLoginByDefault() throws Exception {
-       mockMvc.perform(get(&quot;/auth&quot;))
-               .andExpect(status().isOk())
-               .andExpect(new ResultMatcher() {
-                   @Override
-                   public void match(MvcResult mvcResult) throws Exception {
-                       Assertions.assertTrue(mvcResult.getResponse().getContentAsString().contains(&quot;用户没有登录&quot;));
-                       //System.out.println(mvcResult.getResponse().getContentAsString()); //用于查看返回内容
-                   }
-               });
-   }
+</li>
+<li>
+<ul>
+<li>在beforeEach 里面先装配好moudle 和 controller，在test 出装配号view 模板，每次测试完后都重新装配MVC，使得一个MVC能够完成多个测试</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>执行mvc.peform(requestBuilder)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>RequestBuilder接口 用于 build the request 。生成的request类型是<code>MockHttpServletRequest</code></li>
+<li>MockHttpServletRequestBuilder.get(urlTemplate) <strong>V</strong></li>
+<li>
+<ul>
+<li>.andExcpect(ResultMatcher matcher) &ndash;&gt; matcher.match(mvcResult)</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>通过覆盖andExcept里面的match方法来完成判断，判断Get返回的信息是否正确</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@BeforeEach</span>
+   <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUp</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+           mockMvc <span style="color:#f92672">=</span> MockMvcBuilders
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">standaloneSetup</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> AutoController<span style="color:#f92672">(</span>authenticationManager<span style="color:#f92672">,</span>userService<span style="color:#f92672">))</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span><span style="color:#75715e">//测试的是`AutoController()`这个方法
+</span><span style="color:#75715e"></span>   <span style="color:#f92672">}</span>
+   <span style="color:#a6e22e">@Test</span>
+   <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">returnNotLoginByDefault</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+       mockMvc<span style="color:#f92672">.</span><span style="color:#a6e22e">perform</span><span style="color:#f92672">(</span>get<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/auth&#34;</span><span style="color:#f92672">))</span>
+               <span style="color:#f92672">.</span><span style="color:#a6e22e">andExpect</span><span style="color:#f92672">(</span>status<span style="color:#f92672">().</span><span style="color:#a6e22e">isOk</span><span style="color:#f92672">())</span>
+               <span style="color:#f92672">.</span><span style="color:#a6e22e">andExpect</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ResultMatcher<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+                   <span style="color:#a6e22e">@Override</span>
+                   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">match</span><span style="color:#f92672">(</span>MvcResult mvcResult<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+                       Assertions<span style="color:#f92672">.</span><span style="color:#a6e22e">assertTrue</span><span style="color:#f92672">(</span>mvcResult<span style="color:#f92672">.</span><span style="color:#a6e22e">getResponse</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getContentAsString</span><span style="color:#f92672">().</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;用户没有登录&#34;</span><span style="color:#f92672">));</span>
+                       <span style="color:#75715e">//System.out.println(mvcResult.getResponse().getContentAsString()); //用于查看返回内容
+</span><span style="color:#75715e"></span>                   <span style="color:#f92672">}</span>
+               <span style="color:#f92672">});</span>
+   <span style="color:#f92672">}</span>
 
-</code></pre><h4 id="实现">实现</h4>
+</code></pre></div><h4 id="实现继承测试">实现继承测试</h4>
 <ul>
 <li><code>test/java/hello/service</code>和<code>main/java/hello/service</code> 的类都会处于<code>pavkage hello.service</code>里面，里面的包级私有<code>private</code>的方法就能够共用，从而测试出非public的方法，且不被包外的方法访问到</li>
 </ul>
@@ -1272,7 +1357,18 @@ mybatis.configuration.mapUnderscoreToCamelCase = true
         Assertions<span style="color:#f92672">.</span><span style="color:#a6e22e">assertEquals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockUser&#34;</span><span style="color:#f92672">,</span>userDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">());</span>
         Assertions<span style="color:#f92672">.</span><span style="color:#a6e22e">assertEquals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MockEncodedPassword&#34;</span><span style="color:#f92672">,</span>userDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getPassword</span><span style="color:#f92672">());</span>
     <span style="color:#f92672">}</span>
-</code></pre></div><h2 id="question">Question</h2>
+</code></pre></div><h4 id="controller登录-单元测试demo">Controller登录 单元测试Demo</h4>
+<ul>
+<li>没有登录时的状态</li>
+<li>登录</li>
+<li>登录后再次查看状态</li>
+<li>
+<ul>
+<li>因为测试登录的时候没有使用鉴权进行登录，所以没有获得cookie，所以使用session来访问查看状态</li>
+</ul>
+</li>
+</ul>
+<h2 id="question">Question</h2>
 <ol>
 <li>Post 和 Get 的区别</li>
 </ol>
@@ -1463,6 +1559,11 @@ mvn -N io.takari:maven:0.7.7:wrapper
 </li>
 </ul>
 <h2 id="博客">博客</h2>
+<h4 id="tdd-模式">TDD 模式</h4>
+<ul>
+<li>先写测试再写代码&ndash;&gt;测试驱动代码</li>
+<li>先写一个肯定会失败的代码，定义想要执行的业务，通过这些测试</li>
+</ul>
 <h4 id="数据库设置">数据库设置</h4>
 <ul>
 <li>Mapper 不能够完成复杂的SQL，需要Mybatis 通过配置来完成动态SQL完成</li>
@@ -1481,7 +1582,7 @@ mvn -N io.takari:maven:0.7.7:wrapper
 </ul>
 <pre><code>位于:reasource/db/mybatis/mapper/BolgMapper
 路径为:db/mybatis/mapper/BlogMapper.xml
-</code></pre><h2 id="docker-1">Docker</h2>
+</code></pre><h2 id="docker">Docker</h2>
 <ul>
 <li>docker是一个独立的运行容器，区别于host宿主机，两者是不互通的（端口即使相同，也不能访问）。</li>
 <li><code>-p</code>(port) 80:8080 <code>host p:docker p</code> 用于两者互通</li>
@@ -1591,7 +1692,7 @@ unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat
 改为
 spring.datasource.url=jdbc:mysql://000.000.0.0:3306/user
 </code></pre><h2 id="阿里云云台">阿里云云台</h2>
-<h4 id="购买服务器并步置">购买服务器并步置</h4>
+<h4 id="购买服务器并布置">购买服务器并布置</h4>
 <ul>
 <li>大多数都可以默认设置，选择好SSH和地区就好</li>
 <li>创建成功后，复制pub的地址</li>
@@ -1749,7 +1850,162 @@ r=4，w=2，x=1
 <li>clone 前端代码后，要检查baseURL进行清空更改，否则链接上后返回请求的是原来的服务器，而非本机。</li>
 </ul>
 <pre><code>更改为只剩下&quot;//&quot;
-</code></pre>
+</code></pre><ul>
+<li>业务类使用类型注入，注入的是父类接口的类型，因为父类类型可以指向子类
+[http://blog.didispace.com/xjf-spring-security-5/]</li>
+</ul>
+<h2 id="虚拟用户版本">虚拟用户版本</h2>
+<h4 id="虚拟用户框架">虚拟用户框架</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">implements</span> UserDetailsService <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> userPasswords <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConcurrentHashMap<span style="color:#f92672">&lt;&gt;();</span> <span style="color:#75715e">//为了安全起见最好使用线程安全
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Inject</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">UserService</span><span style="color:#f92672">(</span>BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bCryptPasswordEncoder</span> <span style="color:#f92672">=</span> bCryptPasswordEncoder<span style="color:#f92672">;</span>
+        save<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Gigi&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;111&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">,</span> String password<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> bCryptPasswordEncoder<span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span><span style="color:#f92672">(</span>password<span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getPassword</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> userPasswords<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h4 id="建立虚拟用户框架使得除了建立的用户以外其他都是不合法的用于初步测试">建立虚拟用户框架，使得除了建立的用户以外其他都是不合法的（用于初步测试）</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
+<span style="color:#a6e22e">@EnableWebSecurity</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebSecurityConfig</span> <span style="color:#66d9ef">extends</span> WebSecurityConfigurerAdapter <span style="color:#f92672">{</span>
+ <span style="color:#a6e22e">@Bean</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> UserDetailsService <span style="color:#a6e22e">userDetailsService</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        UserDetails user <span style="color:#f92672">=</span>
+                User<span style="color:#f92672">.</span><span style="color:#a6e22e">withDefaultPasswordEncoder</span><span style="color:#f92672">()</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">username</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">)</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">password</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">)</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">roles</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;USER&#34;</span><span style="color:#f92672">)</span>
+                        <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> InMemoryUserDetailsManager<span style="color:#f92672">(</span>user<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>
+<ul>
+<li><code> User.withDefaultPasswordEncoder()</code>存在不安全的情况，只能在简单示例里使用</li>
+</ul>
+</li>
+</ul>
+<h2 id="java对象bean">Java对象（Bean）</h2>
+<ul>
+<li>private</li>
+<li>
+<ul>
+<li>用<code>@Lombok</code>的<code>@Data</code>可以代替 getter 和 setter；<code>@Lombok</code>里面也有全参数构造器和无参数构造器提供哟</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Result</span> <span style="color:#f92672">{</span>
+        String status<span style="color:#f92672">;</span>
+        String msg<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">boolean</span> isLogin<span style="color:#f92672">;</span>
+        Object Data<span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getStatus</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> status<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getMsg</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> msg<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isLogin</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> isLogin<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+</code></pre></div><h4 id="jason-显示">Jason 显示</h4>
+<ul>
+<li>
+<p>如果一个Bean有一个<code>getStatus()</code>，就会认为这个Bean有一个<code>Status</code>属性</p>
+</li>
+<li>
+<p>网页jason显示出的内容，取决于getter和setter，而非<code>String status</code>、<code>boolean isLogin</code>等字段</p>
+</li>
+</ul>
+<h2 id="虚拟用户鉴权">虚拟用户鉴权</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#a6e22e">@PostMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/auth/login&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#a6e22e">@ResponseBody</span>
+        <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">login</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@RequestBody</span> Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Object<span style="color:#f92672">&gt;</span> usernameAndPassword<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        String username <span style="color:#f92672">=</span> usernameAndPassword<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+        String password <span style="color:#f92672">=</span> usernameAndPassword<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+
+        UserDetails userDetails <span style="color:#f92672">=</span> userDetailIsService<span style="color:#f92672">.</span><span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
+        UsernamePasswordAuthenticationToken token <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UsernamePasswordAuthenticationToken
+                <span style="color:#f92672">(</span>userDetails<span style="color:#f92672">,</span> password<span style="color:#f92672">,</span> userDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">getAuthorities</span><span style="color:#f92672">());</span>  <span style="color:#75715e">//鉴权，检验密码是否匹配该用户
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            authenticationManager<span style="color:#f92672">.</span><span style="color:#a6e22e">authenticate</span><span style="color:#f92672">(</span>token<span style="color:#f92672">);</span> <span style="color:#75715e">//完成鉴权的管理
+</span><span style="color:#75715e"></span>            SecurityContextHolder<span style="color:#f92672">.</span><span style="color:#a6e22e">getContext</span><span style="color:#f92672">().</span><span style="color:#a6e22e">setAuthentication</span><span style="color:#f92672">(</span>token<span style="color:#f92672">);</span> <span style="color:#75715e">//鉴别完成后，进行数据处理
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//登录成功后
+</span><span style="color:#75715e"></span>            User loggedInUser <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Gigi&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Result<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ok&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;登录成功&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> loggedInUser<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>BadCredentialsException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Result<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;密码不正确&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>
+<ul>
+<li>验权：Authozation 证明自己是不是管理员</li>
+</ul>
+</li>
+</ul>
+<h2 id="虚拟用户注册">虚拟用户注册</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">        User user <span style="color:#f92672">=</span> userService<span style="color:#f92672">.</span><span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span> 
+         <span style="color:#75715e">//这里在并发的过程中，如果有人同时申请两个同样的用户名字，就会出现数据库重复的情况，可以通过数据库约束完成事务
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>user <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            userService<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> password<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Result<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ok&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;success!&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+            <span style="color:#75715e">//查看用户是否在数据库
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Result<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;user already exists&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+</code></pre></div><h2 id="用户数据">用户数据</h2>
+<ul>
+<li>userMapper 代替了userDetailServical的功能，同样是给一个username就获得用户的信息</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">implements</span> UserDetailsService <span style="color:#f92672">{</span>
+   <span style="color:#66d9ef">private</span> UserMapper userMapper<span style="color:#f92672">;</span>
+    <span style="color:#a6e22e">@Inject</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">UserService</span><span style="color:#f92672">(</span>BCryptPasswordEncoder bCryptPasswordEncoder<span style="color:#f92672">,</span>UserMapper userMapper<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bCryptPasswordEncoder</span> <span style="color:#f92672">=</span> bCryptPasswordEncoder<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userMapper</span> <span style="color:#f92672">=</span> userMapper<span style="color:#f92672">;</span>
+          save<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Gigi&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;111&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">,</span> String password<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span>bCryptPasswordEncoder<span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span><span style="color:#f92672">(</span>password<span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> User <span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> userMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">findUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> UserDetails <span style="color:#a6e22e">loadUserByUsername</span><span style="color:#f92672">(</span>String username<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> UsernameNotFoundException <span style="color:#f92672">{</span>
+        User user <span style="color:#f92672">=</span> getUserByUsername<span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>user <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> UsernameNotFoundException<span style="color:#f92672">(</span>username <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;不存在&#34;</span><span style="color:#f92672">);</span>
+
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">security</span><span style="color:#f92672">.</span><span style="color:#a6e22e">core</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userdetails</span><span style="color:#f92672">.</span><span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> user<span style="color:#f92672">.</span><span style="color:#a6e22e">getEncryptedPassword</span><span style="color:#f92672">(),</span> Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">emptyList</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="q">Q</h2>
+<ol>
+<li>UsernamePasswordAuthenticationToken serialVersionUID  序列化号的作用</li>
+</ol>
+
             </div>
         </article>
 
@@ -1757,7 +2013,7 @@ r=4，w=2，x=1
 
         <div class="post-info">
   				<p>
-  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://procarihana.github.io/public/tags/springboot">SpringBoot</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/tomcat">Tomcat</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/filter">Filter</a></span>
+  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://procarihana.github.io/public/tags/springboot">SpringBoot</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/tomcat">Tomcat</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/filter">Filter</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/springsecurity">SpringSecurity</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/cookie">cookie</a></span>
   				</p>
   		</div>
     </main>
