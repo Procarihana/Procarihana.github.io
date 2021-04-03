@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HashMap on FAFA Blog</title>
+    <link>https://procarihana.github.io/public/tags/hashmap/</link>
+    <description>Recent content in HashMap on FAFA Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 07 Oct 2020 19:49:58 +0800</lastBuildDate>
+    
+	<atom:link href="https://procarihana.github.io/public/tags/hashmap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HashMap</title>
+      <link>https://procarihana.github.io/public/posts/hashmap/</link>
+      <pubDate>Wed, 07 Oct 2020 19:49:58 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/hashmap/</guid>
+      <description>Hash 数据结构
+ 核心是哈希值数组和值链表 Hash 桶 底层是数组，查找、插入、删除平均速度是O(1) 哈希碰撞 多个元素的hash值相同，解决的方法是通过链表解决哈希值相同的状况   HashMap
+ 对于hash 基于map接口的实现 默认是初始容量必须是2的幂   最大的容量是-2^31~2^31-1 42亿左右     构造函数
+ 默认初始容量 16 默认负载 0.75f   负载因子高就会减少的浪费，增加查找的消耗   初始容量和负载因数 都可以改变的   但是没有初始化的时候是空的，扩展容量会根据有制定的初始容量向上膨胀到2的幂     put
+ 找到相同的话就覆盖并返回 没有的话就addEntry   如果add 过程中超过12就开始扩容       resize 把所有的哈希都重新进行计算，新的容量是旧的容量的两倍        旧表的哈希桶就会通过transfer，遍历一遍并计算在新的表的位置，并放进去（Java 7）    get   为什么数组的大小一定时2的幂   计算哈希桶的时候是 2^n-1按位与&amp;amp;   2的N次方-1 才会拿到全部是1的值，使用按位与才能快速拿到数组下标，且分布还是均匀的    Java 7 hash 死锁   HashMap 不是线程安全的！ 存在安全隐患   通过精心构造的恶意请求引发Dos 链表性能退化      Tomcat 通过设置设置参数的限制来避免大量相同的恶意哈希值 Orcal put方法里面 initHashSeedAdNeeded 提供一个种子，在出现这种状况是会自动使用另外一种计算方式 通过精心设计HashMap 会退化成链表。因为Hash算法是公开的 Aa BB #C 哈希算法就是相同的   Java 8 HashMap 改进   数组+链表 / 红黑树的改进   当桶里面的值超过8 的时候就会变成树 通过里面的算法得知超过8的可能性非常小     红黑树通过计算能够保证数是平衡的     插入的时候，如果超过八就会执行变树的方法   扩容是插入顺序的改进   transfer 保持插入的顺序，而java7 没有     但是这种方法只能让线程出现死锁的概率变低，并没有解决      高位 低位 扩容后新的索引值和旧的索引值在低位的部分是相同的，高位部分要么是相等，要么是最高位+1 &amp;ndash;&amp;gt; 原先的列表有的会在原来的位置，也有可能在新列表的高位，    函数方法   forEach     compute 系列   Map 的新API   merge     replace    resize 效率很低     HashSet  HashSet 的实现就是输入的value 为 hashMap 的key，然后自己new 一个 object 作为value，从而能够复用HashMap的代码  </description>
+    </item>
+    
+  </channel>
+</rss>

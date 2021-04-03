@@ -51,5 +51,18 @@ Socket 插座 套接字  使用java自带的java.net.ServerSocket 双向的可�
 项目结构和模型转换  external 用于存放外部团队的接口和服务，然后再Manager里面放。在接口处写注析。 exception 异常处理 config 存放MybatisBean等等的Bean Controller 存放SpringBoot对外接口（API接口）   不要有过多的处理逻辑 参数校验越早做越好  manager 组合各个业务的逻辑 先写接口后写实现 Dao Converter 用于转换 Moudle的common向service等等的转换但是不能够用于Http、数据库、IO等操作 Service 部分是给前段展示的内容，不能直接返回密码（加密后的还是可以的）等内容  添加Maven  通过Maven getting start  SpringBoot Spring boot 开发四大步  添加相应依赖   SpringBoot 引入       基础Maven引入：、spring-boot-starter-web、plugin     添加相应注解   添加Appliation类作为SpringBoot入口，并添加注解@SpringBootApplication     添加Controller类，并添加注解@RestController      @RestController == @Controller + @ResponseBodymapping    编写代码 添加相应配置   在resources里添加application.</description>
     </item>
     
+    <item>
+      <title>爬虫项目</title>
+      <link>https://procarihana.github.io/public/projects/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Wed, 06 May 2020 17:07:22 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/projects/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</guid>
+      <description>原则  使用GitHub+主干/分支模型进行开发 禁止直接push master 所有的变更通过PR进行 自动化代码质量检查+测试 Checkstyle/SpotBugs 最基本的自动化测试覆盖 一切工作自动化 规范化提交流程   创建仓库流程   Github -new
+  建立新项目 newBranch 的时候选Apache License 2.0
+   Mvn archetype 项目骨架     IDEA - new     copy （cp -r ../* .）    .gitigonre
+  git commit &amp;ndash;amend 就可以把这一次的commit和上一次的合并起来
+   记得要把.iml 放进（vi .gitignore）： *.iml和target/(放在最后一行就好) 更改pom 里面的groundId，artifactId cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到.</description>
+    </item>
+    
   </channel>
 </rss>

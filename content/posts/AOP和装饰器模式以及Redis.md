@@ -42,6 +42,7 @@ tags: [AOP,装饰器模式,Redis]
 
 动态代理只能对接口产生代理，不能对类产生代理
 # AOP
+## AOP
 - Aspect-Oriented Programming 面向切面编程
 - 相当于OOP（面向对象编程）
 - AOP是面向切面变成，关注一个统一的切面
@@ -102,6 +103,7 @@ tags: [AOP,装饰器模式,Redis]
 - - 接口而不是通过继承父类的方式
 >- 接口实现没有什么成员变量，不需要实现真实的方法，而继承需要继承父类的成员变量，就会出现浪费的现象
 #### 直接的实现login的方法
+#### 直接的实现log的方法
 - - 先写接口
 ```java
 public interface DataService {
@@ -239,6 +241,8 @@ public class DataServiceMain {
 - - 拦截的是一个实例
 >- 对 InvocationHandler 看做一个中介类，中介类持有一个被代理对象，被Proxy类回调。在invoke方法中调用了被代理对象的相应方法。通过聚合方式持有被代理对象的引用，把客户端对invoke的调用最终都转为对被代理对象的调用。
 > - 客户端代码通过代理类引用调用接口方法时，通过代理类关联的中介类对象引用来调用中介类对象的invoke方法，从而达到代理执行被代理对象的方法。也就是说，动态代理Proxy类提供了模板实现，对外提供扩展点，外部通过实现InvocationHandler接口将被代理类纳入JDK代理类Proxy。
+- - 代理的实例为Object，所以要通过强制转换来完成业实例对象的生成
+- - 拦截的是一个实例
 ```java
    @CallerSensitive
     public static Object newProxyInstance(ClassLoader loader,Class<?>[] interfaces,InvocationHandler h){
@@ -561,3 +565,4 @@ reconnecting, last destination was localhost/127.0.0.1:6379
 - - 避免添加功能的时候需要不断地进行继承添加接口来完成
 # 装饰器模式
 -   
+

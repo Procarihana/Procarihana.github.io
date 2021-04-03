@@ -60,7 +60,7 @@ A.Java系统提供3种类加载器：启动类加载器（Bootstrap ClassLoader�
 1、ThreadLocal的类声明： public class ThreadLocal可以看出ThreadLocal并没有继承自Thread，也没有实现Runnable接口。所以AB都不对。 2、ThreadLocal类为每一个线程都维护了自己独有的变量拷贝。每个线程都拥有了自己独立的一个变量。 所以ThreadLocal重要作用并不在于多线程间的数据共享，而是数据的独立，C选项错。 由于每个线程在访问该变量时，读取和修改的，都是自己独有的那一份变量拷贝，不会被其他线程访问， 变量被彻底封闭在每个访问的线程中。所以E对。 3、ThreadLocal中定义了一个哈希表用于为每个线程都提供一个变量的副本： static class ThreadLocalMap {">
 <meta itemprop="datePublished" content="2020-09-14T20:44:10&#43;08:00" />
 <meta itemprop="dateModified" content="2020-09-14T20:44:10&#43;08:00" />
-<meta itemprop="wordCount" content="628">
+<meta itemprop="wordCount" content="632">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -453,7 +453,9 @@ Statement是标准的Statement类，通过字符串对sql语句进行拼接，�
 PreparedStatement对sql语句进行了预编译，可以防止SQL注入
 CallableStatement用来调用存储过程的
 BatchedStatement用于批量操作数据库，BatchedStatement不是标准的Statement类</p>
-<p>File类的一下常用方法和说明
+<p>&laquo;&laquo;&laquo;&lt; HEAD</p>
+<p>=======
+File类的一下常用方法和说明
 1.访问文件名相关方法：</p>
 <p>String getName(); 返回此File对象所表示的文件名和路径名（如果是路径，则返回最后一级子路径名）。
 String getPath(); 返回此File对象所对应的路径名。
@@ -484,8 +486,9 @@ static File[] listRoots(); 列出系统所有的根路径。这是一个静态�
 <a href="http://blog.csdn.net/nightcurtis/article/details/51385934">http://blog.csdn.net/nightcurtis/article/details/51385934</a></p>
 <p>JVM
 【https://www.nowcoder.com/test/question/done?tid=37669076&amp;qid=14765#summary】</p>
-<p>Java 锁
-【http://ifeve.com/java_lock_see1/】</p>
+<p>Java 锁</p>
+<p>【http://ifeve.com/java_lock_see1/】</p>
+<p>【http://ifeve.com/java_lock_see1/】</p>
 
             </div>
         </article>
@@ -505,7 +508,7 @@ static File[] listRoots(); 列出系统所有的根路径。这是一个静态�
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2020</span>
+            <span>&copy; 2021</span>
             
                 <span><a href="https://procarihana.github.io/public/">Hana</a></span>
             

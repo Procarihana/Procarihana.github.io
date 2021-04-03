@@ -5,46 +5,6 @@ draft: false
 tags: ["MYSQL","InnDB","MyISAM","Mysql事务"]
 ---
 
-## 增删改查
-- insert into tablename ()values(),()--> 最后不能有`,`
-## 其他字段
-- isnull
->- 1.isnull(exper) 判断exper是否为空，是则返回1，否则返回0
-
->- 2.ifnull(exper1,exper2)判断exper1是否为空，是则用exper2代替
-
->- 3.nullif(exper1,exper2)如果expr1= expr2 成立，那么返回值为NULL，否则返回值为   expr1。
-
-```
-select student .*, a.score,b.score from student 
-left join sc a on student.s_id=a.s_id and a.c_id=01
-left join sc b on student.s_id=b.s_id and b.c_id=02
-where isnull(a.score)<b.score
-
-```
-- having
-- - 如果查询的范围是自定义不在表格范围里面的话，就不能够用where 完成 而需要用having
-
-```
-select student.s_id, student.s_name, cast(avg(sc.score)as decimal(18,2))avg_score from student,sc where student.s_id = sc.s_id group by student.s_id , student.s_name having cast(avg(sc.score) as decimal(18,2))>=60 order by student.s_id
-```
-
-- group by 
->- GROUP BY对表中的数据进行分组时，
->- GROUP BY X意思是将所有具有相同X字段值的记录放到一个分组里，
->- GROUP BY X, Y意思是将所有具有相同X字段值和Y字段值的记录放到一个分组里。
-- - group by聚合操作,如果在select中的列没有在group by中出现,那么这个SQL是不合法的,因为列不在group by从句中,所以设置了sql_mode=only_full_group_by 的数据库,在使用group by时就会报错
-
-- 外键
-- 外键建立的前提是外键所关联的表必须先建立
-- 表里添加的数据如果外键对应的对象不存在的话就添加失败
-- 外键关联的对象要是primary key
->- ① 两个表必须是InnoDB表，MyISAM表暂时不支持外键
-
->- ② 外键列必须建立了索引，MySQL 4.1.2以后的版本在建立外键时会自动创建索引，但如果在较早的版本则需要显式建立；
-
->- ③ 外键关系的两个表的列必须是数据类型相似，也就是可以相互转换类型的列，比如int和tinyint可以，而int和char则不可以；
->- 外键的好处：可以使得两张表关联，保证数据的一致性和实现一些级联操作。
 ## 数据库主键
 - UUID是无序的，所以不能用UUID进行数据库主键查找
 

@@ -46,7 +46,7 @@ JDK 动态代理  InvocationHandler接口被Proxy类回调处理，一般实现 
 4、通过构造函数实例创建代理类实例，此时需将调用处理器对象作为参数被传入 Interface Proxy = (Interface)constructor.newInstance(new Object[] (handler)); 为了简化对象创建过程，Proxy类中的newInstance工具方法封装了2~4，只需两步即可完成代理对象的创建。">
 <meta itemprop="datePublished" content="2020-09-04T16:40:35&#43;08:00" />
 <meta itemprop="dateModified" content="2020-09-04T16:40:35&#43;08:00" />
-<meta itemprop="wordCount" content="1217">
+<meta itemprop="wordCount" content="1227">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -187,6 +187,7 @@ JDK 动态代理  InvocationHandler接口被Proxy类回调处理，一般实现 
 </ul>
 <p>动态代理只能对接口产生代理，不能对类产生代理</p>
 <h1 id="aop">AOP</h1>
+<h2 id="aop-1">AOP</h2>
 <ul>
 <li>Aspect-Oriented Programming 面向切面编程</li>
 <li>相当于OOP（面向对象编程）</li>
@@ -359,6 +360,7 @@ JDK 动态代理  InvocationHandler接口被Proxy类回调处理，一般实现 
 </ul>
 </blockquote>
 <h4 id="直接的实现login的方法">直接的实现login的方法</h4>
+<h4 id="直接的实现log的方法">直接的实现log的方法</h4>
 <ul>
 <li>
 <ul>
@@ -569,6 +571,18 @@ JDK 动态代理  InvocationHandler接口被Proxy类回调处理，一般实现 
 <li>客户端代码通过代理类引用调用接口方法时，通过代理类关联的中介类对象引用来调用中介类对象的invoke方法，从而达到代理执行被代理对象的方法。也就是说，动态代理Proxy类提供了模板实现，对外提供扩展点，外部通过实现InvocationHandler接口将被代理类纳入JDK代理类Proxy。</li>
 </ul>
 </blockquote>
+<ul>
+<li>
+<ul>
+<li>代理的实例为Object，所以要通过强制转换来完成业实例对象的生成</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>拦截的是一个实例</li>
+</ul>
+</li>
+</ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">   <span style="color:#a6e22e">@CallerSensitive</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">newProxyInstance</span><span style="color:#f92672">(</span>ClassLoader loader<span style="color:#f92672">,</span>Class<span style="color:#f92672">&lt;?&gt;[]</span> interfaces<span style="color:#f92672">,</span>InvocationHandler h<span style="color:#f92672">){</span>
         Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">requireNonNull</span><span style="color:#f92672">(</span>h<span style="color:#f92672">);</span><span style="color:#66d9ef">final</span> Class<span style="color:#f92672">&lt;?&gt;</span> caller <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">getSecurityManager</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">?</span> <span style="color:#66d9ef">null</span>
@@ -933,7 +947,27 @@ spring.redis.port=6379
 </ol>
 <pre><code>reconnecting, last destination was localhost/127.0.0.1:6379
 </code></pre><ul>
-<li>可以先看一下正在运行的容器里面的redis有没有出现port 输入错误的问题……</li>
+<li>
+<p>可以先看一下正在运行的容器里面的redis有没有出现port 输入错误的问题……</p>
+</li>
+<li>
+<p>设计模式 应对变化的部分</p>
+</li>
+<li>
+<p>面向接口</p>
+</li>
+<li>
+<p>组合比继承好</p>
+</li>
+<li>
+<ul>
+<li>避免添加功能的时候需要不断地进行继承添加接口来完成</li>
+</ul>
+</li>
+</ul>
+<h1 id="装饰器模式-1">装饰器模式</h1>
+<ul>
+<li></li>
 </ul>
 
       </div>
@@ -957,7 +991,7 @@ spring.redis.port=6379
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        1217 Words
+        1227 Words
       </p>
 
       <p>
@@ -1011,7 +1045,7 @@ spring.redis.port=6379
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2020</span>
+            <span>&copy; 2021</span>
             
                 <span><a href="https://procarihana.github.io/public/">Hana</a></span>
             

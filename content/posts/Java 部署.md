@@ -272,6 +272,49 @@ http {
 https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/
 - docker 启动 nginx 
 - - 增加`--restart=always`防止 NGINX 挂掉（重启速度很快，所以不用担心）
+
+WORKDIR /dockerworkdir
+
+COPY  target/spring-boot-0.0.1-SNAPSHOT.jar /dockerworkdir
+
+EXPOSE 8080
+
+CMD ["java","-jar","spring-boot-0.0.1-SNAPSHOT.jar"]
+```
+- `docker build .`
+- - 如何修改已经bulid 的镜像
+- - 可以把需要更改的配置文件映射给docker 容器
+- docker run
+
+## NGINX 分布式部署
+- 本地nginx.conf 配置分布式
+- 流量的配置取决于nginx，默认的是轮流分配
+- nginx 能够自动检测没有启动到的服务器，并停止给这个没有启动的服务器分配流量
+- - nginx 监听 80 端口， 所有流量都转发`proxy_pass`
+- - 但是docker 和 宿主机是完全隔离的，所以流量直接在docker 里面转是无效的。所以nginx 需要通过局域网来访问（服务器IP地址）
+- - ifconfig 可以获得本机局域网IP地址 -> 本机：192.168.1.7 
+>- server  192.168.1.7:port;
+- 更改过nginx 后需要重启生效
+```
+events{}
+http {
+    upstream backend {
+        server backend1.example.com;
+        server backend2.example.com;
+        server 192.0.0.1 backup;
+    }
+    
+    server {
+      listen 80;
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+}
+```
+https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/
+- docker 启动 nginx 
+- - 增加`--restart=always`防止 NGINX 挂掉（重启速度很快，所以不用担心）
 ```
 events{ }
 http {

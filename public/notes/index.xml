@@ -230,7 +230,9 @@ Session 和 cookie  会话（Session）跟踪是Web程序中常用的技术，�
       <pubDate>Tue, 08 Sep 2020 19:44:00 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/notes/%E7%AE%80%E5%8E%86/</guid>
-      <description>项目一  描述：多人在线博客平台   基于SpringBoot搭建框架     利用Mybatis完成连接数据库     通过Spring Security完成认证和授权     通过UIDD和迭代完成密码的加密     使用Java Mockito 完成集成测试     通过Docker 使用Mysql、Jenkins完成数据库和自动化部署     在阿里云里发布    项目二  描述：   基于SpringBoot框架搭建框架     使用Mybatis链接数据库     通过Shiro完成 认证、授权和web集成     使用CheckStyle、Jacoco和Spotbugs完成代码检查     使用Swagger 生成API文档     通过Docker 使用Mysql、Redis完成数据库的建立和数据缓存    </description>
+      <description>技能    =======
+项目一   描述：多人在线博客平台
+   基于SpringBoot搭建框架     利用Mybatis完成连接数据库     通过Spring Security完成用户认证和授权     通过UIDD和迭代完成密码的加密     使用Java Mockito 完成集成测试     通过Docker 使用Mysql、Jenkins完成数据库和自动化部署；使用NGINX进行分布式部署    项目二  描述：记账系统 =======   通过Spring Security完成认证和授权     通过UIDD和迭代完成密码的加密     使用Java Mockito 完成集成测试     通过Docker 使用Mysql、Jenkins完成数据库和自动化部署     在阿里云里发布    项目二  描述：   基于SpringBoot框架搭建框架     使用Mybatis链接数据库     通过Shiro完成 认证、授权和web集成     使用CheckStyle、Jacoco和Spotbugs完成代码检查     使用Swagger 生成API文档     通过Docker 使用Mysql、Redis完成数据库的建立和数据缓存    </description>
     </item>
     
     <item>

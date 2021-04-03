@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="POSIX 标准 可移植的操作系统接口    ECS 虚拟机 镜像选择 ubuntu 版本号 xx.xx 年份.版本 公网IP    Kernel 内核 &amp;ndash;&amp;gt; 控制操作系统和调度的代码 Shell 用于控制kernel 的方式 ,访问内核的交互式命令行    通过一个终端连接Linux主机，可以再任何地方使用     镜像   相当于光盘使用后能够安装处光盘里面的东西      SSH (Secure Shell)   加密访问，保证安全   $ ssh root@公IP 登录后默认在/home    Linux 用户 登录后就拥有一个用户名 $ whoami &amp;ndash;&amp;gt; 当前登录的权限 Eg：root……user   root 拥有所有权限，日常工作尽量不使用，但是安装系统等需要root/非常高权限的用户完成   sudo切换成root 用户完成命令   sudo username xxx 生成新的用户       生成用户后并没有同时生成目录等，需要额外配置     $ exist 退出   su xxx切换成该用户   pwd 工作目录 usergroup 用户组 用于权限管理，用户组能够共享权限    $ list (ls)列出清单   -l -h 详情     -a  查看包括隐藏的文件       d 目录 时间后面就是文件夹的名字 文件夹的大小是固定的        目录能够区分权限 dxxx xxx xxx &amp;ndash;&amp;gt;d所有者权限 用户组权限 其他人 r read w write x execute        l 快捷方式 -&amp;gt; 实际的地址 是一个软链接，执行能够通过软连接实际执行程序        创造快捷方式   ln -s 目标地址 软连接       软连接必须在PATH 环境变量里面     alias 程序快捷名=实际地址        - 文件 可读可写可执行       cat 查看文本文件内容" />
+<meta name="keywords" content=", , " />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/linux/" />
+
+
+    <title>
+        
+            Linux :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Linux">
+<meta itemprop="description" content="POSIX 标准 可移植的操作系统接口    ECS 虚拟机 镜像选择 ubuntu 版本号 xx.xx 年份.版本 公网IP    Kernel 内核 &ndash;&gt; 控制操作系统和调度的代码 Shell 用于控制kernel 的方式 ,访问内核的交互式命令行    通过一个终端连接Linux主机，可以再任何地方使用     镜像   相当于光盘使用后能够安装处光盘里面的东西      SSH (Secure Shell)   加密访问，保证安全   $ ssh root@公IP 登录后默认在/home    Linux 用户 登录后就拥有一个用户名 $ whoami &ndash;&gt; 当前登录的权限 Eg：root……user   root 拥有所有权限，日常工作尽量不使用，但是安装系统等需要root/非常高权限的用户完成   sudo切换成root 用户完成命令   sudo username xxx 生成新的用户       生成用户后并没有同时生成目录等，需要额外配置     $ exist 退出   su xxx切换成该用户   pwd 工作目录 usergroup 用户组 用于权限管理，用户组能够共享权限    $ list (ls)列出清单   -l -h 详情     -a  查看包括隐藏的文件       d 目录 时间后面就是文件夹的名字 文件夹的大小是固定的        目录能够区分权限 dxxx xxx xxx &ndash;&gt;d所有者权限 用户组权限 其他人 r read w write x execute        l 快捷方式 -&gt; 实际的地址 是一个软链接，执行能够通过软连接实际执行程序        创造快捷方式   ln -s 目标地址 软连接       软连接必须在PATH 环境变量里面     alias 程序快捷名=实际地址        - 文件 可读可写可执行       cat 查看文本文件内容">
+<meta itemprop="datePublished" content="2020-10-06T16:33:07&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-06T16:33:07&#43;08:00" />
+<meta itemprop="wordCount" content="305">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content=",," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="Linux"/>
+<meta name="twitter:description" content="POSIX 标准 可移植的操作系统接口    ECS 虚拟机 镜像选择 ubuntu 版本号 xx.xx 年份.版本 公网IP    Kernel 内核 &ndash;&gt; 控制操作系统和调度的代码 Shell 用于控制kernel 的方式 ,访问内核的交互式命令行    通过一个终端连接Linux主机，可以再任何地方使用     镜像   相当于光盘使用后能够安装处光盘里面的东西      SSH (Secure Shell)   加密访问，保证安全   $ ssh root@公IP 登录后默认在/home    Linux 用户 登录后就拥有一个用户名 $ whoami &ndash;&gt; 当前登录的权限 Eg：root……user   root 拥有所有权限，日常工作尽量不使用，但是安装系统等需要root/非常高权限的用户完成   sudo切换成root 用户完成命令   sudo username xxx 生成新的用户       生成用户后并没有同时生成目录等，需要额外配置     $ exist 退出   su xxx切换成该用户   pwd 工作目录 usergroup 用户组 用于权限管理，用户组能够共享权限    $ list (ls)列出清单   -l -h 详情     -a  查看包括隐藏的文件       d 目录 时间后面就是文件夹的名字 文件夹的大小是固定的        目录能够区分权限 dxxx xxx xxx &ndash;&gt;d所有者权限 用户组权限 其他人 r read w write x execute        l 快捷方式 -&gt; 实际的地址 是一个软链接，执行能够通过软连接实际执行程序        创造快捷方式   ln -s 目标地址 软连接       软连接必须在PATH 环境变量里面     alias 程序快捷名=实际地址        - 文件 可读可写可执行       cat 查看文本文件内容"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-10-06 16:33:07 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        2 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/linux/">Linux</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <ul>
+<li>POSIX 标准</li>
+<li>可移植的操作系统接口</li>
+</ul>
+<hr>
+<ul>
+<li>ECS 虚拟机</li>
+<li>镜像选择 ubuntu</li>
+<li>版本号 xx.xx 年份.版本</li>
+<li>公网IP</li>
+</ul>
+<hr>
+<ul>
+<li>Kernel 内核 &ndash;&gt; 控制操作系统和调度的代码</li>
+<li>Shell 用于控制kernel 的方式 ,访问内核的交互式命令行</li>
+</ul>
+<hr>
+<ul>
+<li>通过一个终端连接Linux主机，可以再任何地方使用</li>
+<li></li>
+</ul>
+<hr>
+<ul>
+<li>镜像</li>
+<li>
+<ul>
+<li>相当于光盘使用后能够安装处光盘里面的东西</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>SSH (Secure Shell)</li>
+<li>
+<ul>
+<li>加密访问，保证安全</li>
+</ul>
+</li>
+<li><code>$ ssh  root@公IP</code></li>
+<li>登录后默认在/home</li>
+</ul>
+<hr>
+<ul>
+<li>Linux 用户</li>
+<li>登录后就拥有一个用户名</li>
+<li><code>$ whoami</code> &ndash;&gt; 当前登录的权限 Eg：root……user</li>
+<li>
+<ul>
+<li>root 拥有所有权限，日常工作尽量不使用，但是安装系统等需要root/非常高权限的用户完成</li>
+</ul>
+</li>
+<li><code>sudo</code>切换成root 用户完成命令</li>
+<li>
+<ul>
+<li><code>sudo username xxx</code> 生成新的用户</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>生成用户后并没有同时生成目录等，需要额外配置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>$ exist</code> 退出</li>
+<li>
+<ul>
+<li><code>su xxx</code>切换成该用户</li>
+</ul>
+</li>
+<li><code>pwd</code> 工作目录</li>
+<li>usergroup 用户组 用于权限管理，用户组能够共享权限</li>
+</ul>
+<hr>
+<ul>
+<li><code>$ list (ls)</code>列出清单</li>
+<li>
+<ul>
+<li><code>-l -h</code> 详情</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>-a </code> 查看包括隐藏的文件</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>d 目录 时间后面就是文件夹的名字 文件夹的大小是固定的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>目录能够区分权限</li>
+<li>dxxx xxx xxx &ndash;&gt;d所有者权限 用户组权限 其他人</li>
+<li>r  read</li>
+<li>w write</li>
+<li>x execute</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>l 快捷方式 -&gt; 实际的地址 是一个软链接，执行能够通过软连接实际执行程序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>创造快捷方式</li>
+<li>
+<ul>
+<li><code>ln -s 目标地址 软连接</code></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>软连接必须在PATH 环境变量里面</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>alias 程序快捷名=实际地址</code></li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><code>-</code> 文件 可读可写可执行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>cat 查看文本文件内容</p>
+<ul>
+<li><code>cat xxx.txt |less</code> <code>| more</code> 能够一页一页地查看</li>
+</ul>
+<hr>
+<p>chmod 调整可执行的权限</p>
+<ul>
+<li>r = 4</li>
+<li>w = 2</li>
+<li>x = 1</li>
+<li>
+<ul>
+<li><code>chmod 774 xxxfile</code> 就能够对文件修改权限</li>
+</ul>
+</li>
+<li>这样会模糊程序和文件的界限，因为只要有x权限就能够执行</li>
+<li>查看目录需要 <code>x</code> 权限</li>
+</ul>
+<hr>
+<p>环境变量</p>
+<ul>
+<li>运行程序在环境变量里面执行，而不是当前目录</li>
+<li>如果运行程序找不到的话，就需要添加<code>./</code>表示在当前目录运行，再执行程序</li>
+</ul>
+<hr>
+<p>ssh 登录</p>
+<ul>
+<li>私钥 rw&mdash;&mdash;-</li>
+<li>
+<ul>
+<li>ssh-keygen -t rsa 生成私钥 需要输入密码或者留空 每次使用都需要加入密码</li>
+</ul>
+</li>
+<li>公钥 rw-r&ndash;r&ndash;</li>
+<li>如果通过chmod 改变私钥的权限，就会被警告</li>
+</ul>
+<hr>
+<p>~#
+命令行四要素</p>
+<ol>
+<li>环境变量</li>
+</ol>
+<ul>
+<li><code>export</code> 能够查看当前的环境变量</li>
+<li>
+<ul>
+<li><code>HOME = /root </code> &ndash;&gt; <code>cd $HOME</code> == <code>cd /root</code></li>
+</ul>
+</li>
+<li>把目录添加到环境变量</li>
+<li>
+<ul>
+<li>export 导出旧的变量，然后在后面添加<code>:需要的目录</code></li>
+</ul>
+</li>
+<li>
+<ul>
+<li>export PATH=$PATH<code>:/root</code>  直接在后面添加新的目录</li>
+</ul>
+</li>
+<li>定义环境变量</li>
+<li>
+<ul>
+<li><code>export AAA=hello </code> &ndash;&gt; <code>echo AAA</code> ==&gt; <code>hello</code></li>
+</ul>
+</li>
+<li>删除环境变量</li>
+<li>
+<ul>
+<li><code>unset</code> &ndash;&gt; <code>unset AAA</code></li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>可执行程序</li>
+</ol>
+<ul>
+<li>内置 &ndash;&gt; 命令行不会直接解释这个程序，会直接解析成一条指令，</li>
+<li>可执行程序是默认在path 环境变量里面找的，如果一个程序找不到，就是不存在path环境变量里面，或者环境变量里面的PATH被更改了导致找不到</li>
+</ul>
+<ol start="3">
+<li>参数</li>
+<li>工作目录</li>
+</ol>
+<ul>
+<li>用来计算相对路径</li>
+</ul>
+<hr>
+<p><code>*</code> 能够匹配一个或多个字符，命令行会把这个字符展开进行匹配</p>
+<ul>
+<li>如果要真正地使用* 就要添加单引号，需要原封不动地把参数传给程序都需要用单引号完成，这样程序才能够加载* 这个匹配符号</li>
+<li>
+<ul>
+<li>双引号会执行展开</li>
+</ul>
+</li>
+<li>命令行展开就不用程序执行的时候再展开，避免执行程序需要都需要展开</li>
+</ul>
+<hr>
+<p>安装</p>
+<ul>
+<li>软件</li>
+<li>
+<ul>
+<li>绿色版</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>bin 存放程序</li>
+<li>lib 存放包</li>
+</ul>
+<hr>
+<p>cp 拷贝</p>
+<ul>
+<li>scp 远程拷贝</li>
+<li>
+<ul>
+<li>scp ~/目标文件 user@Ip</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>tar xf 解压</p>
+<hr>
+<p>maven 运行需要在java里面完成，所以运行maven的前提是<code>JAVA_HOME</code>的环境变量配置好</p>
+<hr>
+<p>sshd 接受到链接请求后就会运行程序，返回一个ssh会话</p>
+<ul>
+<li>ssh 就会从sshd 里面获得一个窗口，ssh 里面对环境变量进行的修改就只是对当前窗口有用，关闭后配置就会失去，重新获取窗口也不会有变更</li>
+<li>要把变更记录下来就要把变更记录在一个文件里面，保存在服务器里面，之后每个窗口都会有这个新的变更</li>
+</ul>
+<hr>
+<p>永久环境配置</p>
+<blockquote>
+<ul>
+<li><code>/etc/</code> 全局</li>
+<li><code>~/</code> 下的配置只是当前用户</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>vi ~/.bash_profile</code> 把需要的命令记录到里面</li>
+<li>
+<ul>
+<li>但只是记录到里面，并没有生效，只有新开的ssh才会生效</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>立刻生效 需要<code>source ~/.bash_profile</code> 或者<code>. ~/bash_profile</code>，因为[<code>.</code> == source]</li>
+</ul>
+</li>
+<li>很多的txt都可以的</li>
+</ul>
+<hr>
+<p>Vi / Vim</p>
+<ul>
+<li>如果新建编辑一个文件没有保存会呈现<code>.xxx.txt</code>,是一个临时文件</li>
+</ul>
+<hr>
+<p>pstree</p>
+<ul>
+<li>显示当前程序中的所有进程</li>
+</ul>
+<hr>
+<ul>
+<li>通过<code>java -cp . classmainname </code>是通过交互式命令行启动的，一旦退出或者关闭进程就会退出</li>
+<li>需要长久运行就需要<code>nohup</code> + java 运行 这样就能够后台运行</li>
+<li>tmux （terminal multiplexer） 新的终端。常驻后台程序，所以不能是bash 的子进程，不然已退出就没有了</li>
+<li>Service</li>
+<li>
+<ul>
+<li>先建立一个service文件来存储配置</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>Aftre 在某个服务启动后就启动</li>
+<li>user 最好不要使用root</li>
+<li>exeStart 最好使用绝对路径</li>
+</ul>
+</blockquote>
+<ul>
+<li>docker run -d</li>
+</ul>
+<hr>
+<p>杀 进程 kill -9 进程</p>
+<hr>
+<p>进程的输入输出</p>
+<ul>
+<li>进程输出的重定向</li>
+<li>stdout</li>
+<li>
+<ul>
+<li>java -cp . mainname 1&gt;out.txt 2&gt;err.txt</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>0 标准输入 1 标准输出 2 标准错误输出</li>
+<li><code>&gt;</code> 覆盖 <code>&gt;&gt;</code>追加</li>
+</ul>
+</blockquote>
+<ul>
+<li>标准输出重定向</li>
+</ul>
+<hr>
+<p>grep</p>
+<ul>
+<li>xxx关键字 等待从 stdin 里面输出数据， 再从stdout输出</li>
+</ul>
+<hr>
+<p>pipe 管道</p>
+<ul>
+<li>ps aux 把输入的命令传给grep java 里面，让java 运行</li>
+</ul>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        305 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-10-06 16:33 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/hashmap/">
+                <span class="button__icon">←</span>
+                <span class="button__text">HashMap</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/servlet/">
+                <span class="button__text">Servlet</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

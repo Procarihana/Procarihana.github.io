@@ -58,7 +58,7 @@ for（String s :Iterable）{ …… }
 List&lt;String&gt; list = Arrays.asList(&quot;1&quot;,&quot;2&quot;); //遍历列表，把元素拿出来 for (int i = ;i&lt;list.size(); i&#43;&#43;){ System.out.println(list.get(i)); } == for(String element : list){ System.">
 <meta itemprop="datePublished" content="2020-05-06T21:05:25&#43;08:00" />
 <meta itemprop="dateModified" content="2020-05-06T21:05:25&#43;08:00" />
-<meta itemprop="wordCount" content="654">
+<meta itemprop="wordCount" content="655">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -236,78 +236,73 @@ public static void main(String[] args) {
 <p>}</p>
 <h2 id="改变循环的流程breakcontinue">改变循环的流程：break/continue</h2>
 <ul>
-<li>
-<p>braek;立即结束包裹当前braek的第一层循环</p>
-</li>
-<li>
-<p>找到结果后，打破当前循环，结束循环。</p>
-<pre><code>  public static boolean find(List&lt;Integer&gt; list,int value){
-  boolean exist = false;
-  for (Integer element :list){
-      if(element == value){
-          exist = true;
-          break;     //break 包裹这 for 的循环 --&gt; 结束的是for循环
-      }
-  }
-  return exist;
-  }
-    
-  public static void main(String[] args) throws IOException {
-  List&lt;Integer&gt; list1 = Arrays.asList(1,2,3);
-  find(list1,2);
-  find(list1,2);
+<li>braek;立即结束包裹当前braek第一层循环</li>
+<li>找到结果后，打破当前循环，结束循环。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list<span style="color:#f92672">,</span><span style="color:#66d9ef">int</span> value<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">boolean</span> exist <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Integer element <span style="color:#f92672">:</span>list<span style="color:#f92672">){</span>
+            <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>element <span style="color:#f92672">==</span> value<span style="color:#f92672">){</span>
+                exist <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>    
+                 <span style="color:#75715e">//break 包裹这 if 的循环 --&gt; 结束的是if循环
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> exist<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+        
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list1 <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">);</span>
+        find<span style="color:#f92672">(</span>list1<span style="color:#f92672">,</span>2<span style="color:#f92672">);</span>
+        find<span style="color:#f92672">(</span>list1<span style="color:#f92672">,</span>2<span style="color:#f92672">);</span>
 
- }
-</code></pre>
-</li>
-<li>
-<p>continue;跳过包裹当前continue的第一层循环中的其余语句，继续下一次循环</p>
-</li>
-<li>
-<p>如果if里面的语句满足，则跳过for剩下的未执行的语句，直接调回for的循环条件执行循环</p>
-<pre><code>//只打印list重的奇数元素
-public static void printOdd(List&lt;Integer&gt; list){
-  for (int i= 0; i&lt; list.size();i++){
-       if (list.get(i) % 2 ==0 ){
-           continue;//continue包裹的第一层循环是for --&gt; 执行完第一次循环之后，就进入if
-       } System.out.println(list.get(i));
-  }
-   }
-  public static void main(String[] args) throws IOException {
-  printOdd(Arrays.asList(1,4,2,56,-1,3,12));
-    
-    
-   public static void printOddNumbersBetween(int start, int end) {
+       <span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>continue;跳过包裹当前continue第一层循环中的其余语句，继续下一次循环</li>
+<li>如果if里面的语句满足，则跳过for剩下的未执行的语句，直接调回for的循环条件执行循环</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">      <span style="color:#75715e">//只打印list重的奇数元素
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printOdd</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i<span style="color:#f92672">&lt;</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>i<span style="color:#f92672">++){</span>
+             <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">)</span> <span style="color:#f92672">%</span> 2 <span style="color:#f92672">==</span>0 <span style="color:#f92672">){</span>
+                 <span style="color:#66d9ef">continue</span><span style="color:#f92672">;</span>
+                 <span style="color:#75715e">//continue包裹的第一层循环是for --&gt; 执行完第一次循环之后，就进入if
+</span><span style="color:#75715e"></span>             <span style="color:#f92672">}</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">));</span>
+        <span style="color:#f92672">}</span>
+         <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        printOdd<span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span>4<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>56<span style="color:#f92672">,-</span>1<span style="color:#f92672">,</span>3<span style="color:#f92672">,</span>12<span style="color:#f92672">));</span>
+        
+        
+         <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printOddNumbersBetween</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> start<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> end<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 
 
-    for (int i = start; i &lt;= end; i++) {
-      if (i % 2 != 0) {
-          System.out.print(i + &quot;,&quot;);
-     }
- 
-  List&lt;Integer&gt; list = new  ArrayList&lt;&gt;();
-  List&lt;Integer&gt; list1 = new  ArrayList&lt;&gt;();
-  for (int i = start; i &lt;= end; i++) {
-      list.add(i);
-  }
-  for (int i = 0; i &lt;list.size();i++) {
-      if (list.get(i) % 2 != 0) {
-          list1.add(list.get(i));
-          continue;
-      }
+          <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> start<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> end<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">%</span> 2 <span style="color:#f92672">!=</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;,&#34;</span><span style="color:#f92672">);</span>
+           <span style="color:#f92672">}</span>
+     
+        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span>  ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span>  ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> start<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> end<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">)</span> <span style="color:#f92672">%</span> 2 <span style="color:#f92672">!=</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                list1<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">));</span>
+                <span style="color:#66d9ef">continue</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
 
-  }System.out.println(list1);
-}
-  public static void main(String[] args) {
-  printOddNumbersBetween(1, 5);
-  printOddNumbersBetween(-2, 2);
-  }
- }
-</code></pre>
-</li>
-<li>
-<p>break label</p>
-</li>
+        <span style="color:#f92672">}</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list1<span style="color:#f92672">);</span>
+      <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        printOddNumbersBetween<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 5<span style="color:#f92672">);</span>
+        printOddNumbersBetween<span style="color:#f92672">(-</span>2<span style="color:#f92672">,</span> 2<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+       <span style="color:#f92672">}</span>
+
+</code></pre></div><ul>
+<li>break label</li>
 </ul>
 <p>label：标签，在程序的某得地方设置标签，然后跳转到标签处，实现程序控制流程转移</p>
 <ul>
@@ -488,7 +483,7 @@ public static boolean isPrimeNumber(int n1) {
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        654 Words
+        655 Words
       </p>
 
       <p>
@@ -542,7 +537,7 @@ public static boolean isPrimeNumber(int n1) {
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2020</span>
+            <span>&copy; 2021</span>
             
                 <span><a href="https://procarihana.github.io/public/">Hana</a></span>
             

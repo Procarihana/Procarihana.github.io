@@ -38,7 +38,7 @@
  就是一个Spring生态中关于安全方面的框架,是一个基于Spring AOP和Servlet过滤器的安全框架,充分利用了依赖注入（DI，Dependency Injection）和面向切面技术 SecurityContextHolder用于存储安全上下文（security context）的信息。当前操作的用户是谁，该用户是否已经被认证，他拥有哪些角色权限…这些都被保存在SecurityContextHolder中。SecurityContextHolder默认使用ThreadLocal 策略来存储认证信息。看到ThreadLocal 也就意味着，这是一种与线程绑定的策略。Spring Security在用户登录时自动绑定认证信息到当前线程，在用户退出时，自动清除当前线程的认证信息。 通过 @EnableWebSecurity注解开启Spring Security的功能 Authentication是spring security包中的接口，直接继承自Principal类，而Principal是位于java.security包中的。   Authentication在spring security中是最高级别的身份/认证的抽象。     由这个顶级接口，我们可以得到用户拥有的权限信息列表，密码，用户细节信息，用户身份信息，认证信息。 一个简单的使用Spring Security来进行验证用户名字密码的登录   Maven  ## Servlet #### HTTP 超文本传输协议 - 能够给任何人传送任何类型的文件 #### Tomcat - servlet容器 - catalina #### Filter 过滤器 - 是一个执行过滤任务的对象， - doFilter 请求响应，也能够通过FilterChain传给下一个filter，实现过滤的功能 #### listerner - Tomcat 容器启动是需要时间的，必须等待Tomcat容器启动之后，Servlet才能够启动 - 用于启动和关闭Spring容器的本体 #### Docker - 用统一的环境处理软件交互，运行速度比虚拟机要快 - Docker一个进程就是一个虚拟机，监听一个端口，和宿主机没有任何的交互关系 - docker的端口和本机的端口没有关系，除非绑定 #### index.html ##### 渲染 - 后端渲染:根据用户请求的内容的不同，决定返回的内容 - 前端渲染：把后端返回的内容填充到页面上面 - 渲染模板：渲染的过程发生的地方是由在前端还是后端的进行渲染决定的 ##### 浏览器 - 浏览器栏发出的请求都是GET - 要调试post请求需要用到其他工具，例如postman - HTTP请求是无状态的，每一次的请求对于服务器和浏览器来说都是一样的 #### JVM - Java 10编译器 能不能运行Java 8编译出来的文件，取决于Java 10 生成出来的文件版本，如果编译出来的.">
 <meta itemprop="datePublished" content="2020-09-01T08:01:27&#43;08:00" />
 <meta itemprop="dateModified" content="2020-09-01T08:01:27&#43;08:00" />
-<meta itemprop="wordCount" content="2698">
+<meta itemprop="wordCount" content="2739">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -949,6 +949,16 @@ MVC框架，它解决WEB开发中常见的问题(参数接收、文件上传、�
             e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
             <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">failure</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;错误原因:用户已存在&#34;</span><span style="color:#f92672">);</span>
         <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            userService<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> password<span style="color:#f92672">);</span>
+            <span style="color:#75715e">//这里在并发的过程中，如果有人同时申请两个同样的用户名字，就会出现数据库重复的情况，可以通过数据库约束完成事务
+</span><span style="color:#75715e"></span>            User loggedInUser <span style="color:#f92672">=</span> userService<span style="color:#f92672">.</span><span style="color:#a6e22e">getUserByUsername</span><span style="color:#f92672">(</span>username<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">success</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;注册成功&#34;</span><span style="color:#f92672">,</span> loggedInUser<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>DuplicateKeyException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+            <span style="color:#66d9ef">return</span> LoginResult<span style="color:#f92672">.</span><span style="color:#a6e22e">failure</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fail&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;错误原因:用户已存在&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
     <span style="color:#f92672">}</span>
 </code></pre></div><h2 id="用户登录与信息储存-mybatismapper">用户登录与信息储存 (Mybatis+Mapper)</h2>
 <h4 id="database">Database</h4>
@@ -1117,7 +1127,7 @@ mybatis.configuration.mapUnderscoreToCamelCase <span style="color:#f92672">=</sp
 <li>单元测试</li>
 </ul>
 <pre><code>&lt;plugin&gt;
-           &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+           &lt;artifactId&gt;maven-çplugin&lt;/artifactId&gt;
            &lt;version&gt;2.22.2&lt;/version&gt;
        &lt;/plugin&gt;
 </code></pre><ul>
@@ -1127,7 +1137,8 @@ mybatis.configuration.mapUnderscoreToCamelCase <span style="color:#f92672">=</sp
             &lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
             &lt;version&gt;2.22.2&lt;/version&gt;
         &lt;/plugin&gt;
-</code></pre><h2 id="单独运行单元测试">单独运行单元测试</h2>
+</code></pre><h2 id="单独运行集成测试">单独运行集成测试</h2>
+<h2 id="单独运行单元测试">单独运行单元测试</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">            <span style="color:#f92672">&lt;</span>plugin<span style="color:#f92672">&gt;</span>
                 <span style="color:#f92672">&lt;</span>artifactId<span style="color:#f92672">&gt;</span>maven<span style="color:#f92672">-</span>surefire<span style="color:#f92672">-</span>plugin<span style="color:#f92672">&lt;/</span>artifactId<span style="color:#f92672">&gt;</span>
                 <span style="color:#f92672">&lt;</span>version<span style="color:#f92672">&gt;</span>2<span style="color:#f92672">.</span><span style="color:#a6e22e">22</span><span style="color:#f92672">.</span><span style="color:#a6e22e">2</span><span style="color:#f92672">&lt;/</span>version<span style="color:#f92672">&gt;</span>
@@ -1779,10 +1790,8 @@ r=4，w=2，x=1
 <pre><code>{
  &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;]
 }
-</code></pre><ul>
-<li>
-<p>安装docker jenkins (weweave)</p>
-</li>
+</code></pre><h4 id="安装docker-jenkins-weweave">安装docker jenkins (weweave)</h4>
+<ul>
 <li>
 <ul>
 <li><code>mkdir jenkins-data</code> 存放data</li>
@@ -1824,6 +1833,10 @@ r=4，w=2，x=1
 <p>指定的url为https的时候会被认为是不安全的，最简单的解决方法就是在docker的配置里面添加相应的url（服务器的ip地址），才可以在本地docker中push。同样的，也需要在部署的jenkins里的docker中修改<code>insecure-registried</code></p>
 </li>
 </ul>
+<h4 id="mysql-修改">Mysql 修改</h4>
+<ul>
+<li>mysql 的配置需要从localhost 改为 公网IP</li>
+</ul>
 <h4 id="问题">问题</h4>
 <ol>
 <li><a href="mailto:root@47.107.252.72">root@47.107.252.72</a>: Permission denied (publickey).<br>
@@ -1834,6 +1847,7 @@ r=4，w=2，x=1
 <ul>
 <li>阿里云更改过系统之后，需要把know_hosts 对应地址的部分删掉</li>
 </ul>
+<hr>
 <h2 id="先放在这里">先放在这里</h2>
 <ul>
 <li>getmapper 非必传的参数设置</li>
@@ -1933,6 +1947,7 @@ r=4，w=2，x=1
 <p>网页jason显示出的内容，取决于getter和setter，而非<code>String status</code>、<code>boolean isLogin</code>等字段</p>
 </li>
 </ul>
+<hr>
 <h2 id="虚拟用户鉴权">虚拟用户鉴权</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#a6e22e">@PostMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/auth/login&#34;</span><span style="color:#f92672">)</span>
     <span style="color:#a6e22e">@ResponseBody</span>
@@ -2001,7 +2016,18 @@ r=4，w=2，x=1
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">security</span><span style="color:#f92672">.</span><span style="color:#a6e22e">core</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userdetails</span><span style="color:#f92672">.</span><span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> user<span style="color:#f92672">.</span><span style="color:#a6e22e">getEncryptedPassword</span><span style="color:#f92672">(),</span> Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">emptyList</span><span style="color:#f92672">());</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><h2 id="q">Q</h2>
+</code></pre></div><h2 id="maven-集成测试">Maven 集成测试</h2>
+<ul>
+<li>使用</li>
+<li>自动化测试里面需要用到dependency的时候同样也是需要在插件里面添加的，否则会运行不到</li>
+<li>单独运行集成测试 <code>mvn clean install</code></li>
+</ul>
+<h4 id="mysql-1">mysql</h4>
+<ul>
+<li>url 链接不上时候，需要添加：<code>reateDatabaseIfNotExist=true</code>在url后面就可</li>
+<li></li>
+</ul>
+<h2 id="q">Q</h2>
 <ol>
 <li>UsernamePasswordAuthenticationToken serialVersionUID  序列化号的作用</li>
 </ol>
@@ -2024,7 +2050,7 @@ r=4，w=2，x=1
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2020</span>
+            <span>&copy; 2021</span>
             
                 <span><a href="https://procarihana.github.io/public/">Hana</a></span>
             

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 04 Oct 2020 14:18:34 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2020 19:49:58 +0800</lastBuildDate>
     
 	<atom:link href="https://procarihana.github.io/public/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HashMap</title>
+      <link>https://procarihana.github.io/public/tags/hashmap/</link>
+      <pubDate>Wed, 07 Oct 2020 19:49:58 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/tags/hashmap/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Servlet</title>

@@ -7,10 +7,91 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 04 Oct 2020 14:18:34 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 09:45:43 +0800</lastBuildDate>
     
 	<atom:link href="https://procarihana.github.io/public/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HTTP</title>
+      <link>https://procarihana.github.io/public/posts/http/</link>
+      <pubDate>Wed, 21 Oct 2020 09:45:43 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/http/</guid>
+      <description>HTTP metood 第一个单词表明请求的方法
+GET 请求 拿一个网页 请求的数据全部都放在HTTP request header中
+Host 网络主机名的别称
+DNS 把网络名编程IP地址 通过sudo 来改变本地 网络的DNS对应的IP地址 所有访问都要通过IP地址才能访问
+local host == 127.0.1
+反爬虫
+  status 401/403
+  在返回的数据中投毒
+  POST 请求登陆
+发送一个header，真正的数据保存在body里面
+PUT DELETE HTTP status 状态码
+2xx 200OK 表示请求成功
+3xx 重定向 永久移动 并且会发送一个新的地址给你
+4xx 客户端的错误，无法完成请求
+用GET方法发送请求登陆获得405，客户端用错误的方法发出请求
+5xx 服务器有问题
+Joke:6xx HTTP 请求header 重要的header   Accept*
+   Accept-Language    Cookie
+  User-Agent 显示发出请求的客户端</description>
+    </item>
+    
+    <item>
+      <title>Java Security</title>
+      <link>https://procarihana.github.io/public/posts/java-security/</link>
+      <pubDate>Tue, 13 Oct 2020 20:39:19 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/java-security/</guid>
+      <description>[start.spring.io]
+ Lombok 要编译就必须大家都用idea 有lombok ，且包含私有的java代码  </description>
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>https://procarihana.github.io/public/posts/redis/</link>
+      <pubDate>Sat, 10 Oct 2020 13:32:57 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/redis/</guid>
+      <description>分布式要防止单点故障  缓存基础  cache 位于速度相差较大的两种较大的两种硬件之间，用于协调两者数据输速度差异的结构 缓存是一个高速数据存储层，其中存储了数据子集，且通常是短暂性存储，这样日后再次请求该数据是，速度要比访问数据的主存储位置快。通过缓存，可以高效地重用之前检索或计算的数据 本质就是空间换时间，性能成本Tradeoff 减少对底层速度较慢的存储层的访问需求以此来提高数据检索性能，在容量换取速度方面，缓存通常是完整且持久地存储数据 缓存必要性   提升访问性能 降低网络拥堵 消除数据库热点   某个资源被大量访问，就需要对这个热点数据和相应的数据进行配置，通过预测性能来提前放在缓存里面  可预测的性能 减少后端负载 增加系统可扩展性  缓存特征指标  命中率   命中率 = 返回正确结果数、请求缓存次数     缓存率越高，缓存使用效率越高   最大空间   缓存中可以存放的最大元素数量   缓存生存时间 TTL   缓存可以存活的时间，超过时间就失效   缓存清空策略   缓存可使用的存储空间有限，占满后就需要清除一些缓存，清空策略就决定了要清空哪些缓存      FIFO : 先进先出 ，最先进入缓存的数据会被优先清除掉，比缓存元素的创建时间，优先保障最新数据可用 LFU (less frequently used): 最少使用，根据元素的使用次数判断，使用次数较少的数据将被删除 LRU(less recently used）: 最近最少使用，假设最近最少使用的这些信息，将来被使用的概率也不大，根据数据最后一次被使用的时间戳来决定，把最老的诗句删掉 定时过期：每个设置过时间的key都需要创建一个定时器，到过期时间就会立即清除 惰性过期：只有当访问一个key时，才会判断该key是否已经过期，过期则清除 最长过期： 根据过期时间，清理最长时间没用的 随机过期清理：根据过期时间，任意清理一个 随机清理：无论是否过期，随机清理   缓存常见问题详解  缓存内数据同时失效   导致所有的请求都被传到数据库里，使得数据库请求突然增加   解决：让缓存添加一个随机事件，使得同一批的请求不会同一时间失效    缓存穿透   用户使用非法请求，请求的数据不是数据库和缓存里面存在的，使得请求每次都传到数据库，造成数据库瘫痪 如果是合理的范围里面，但是数据库仍是不存在的，也会导致请求直接发送到数据库里面。   解决：      要在最外层进行基本的数据校验，遇到非法请求直接 BlomFilter 过滤器 &amp;ndash;&amp;gt; 存储所有的数据id，直接通过判断请求的数据id是否存在来判断请求数据是否合法   分配一个内存空间全部存0，加入元素，用k个互相独立的哈希函数计算，然后将元素哈希映射的K个位置全部设置为1，检测key，仍然按     但是只是大概率，还是有误差的     缓存雪崩   存在缓存数据里面的节点崩坏，节点内的数据全部都会失效，倒是请求都直接发送到数据库里面   数据支持    数据源统一   不要自己单独另外进行缓存，会导致和原本的数据源出现不同  ReadAfterWrite   写完后立即能够读，就会造成 DB和Catch里面不一样。需要对数据库和缓存一致性问题先解决。   缓存尽快失效，能够尽可能保证数据一致    缓存和  缓存和数据库的更新  先删除缓存后更新DB？   并发的时候就会出现问题。当线程A需要更新数据一时，把cache 删除 。然后线程B发现数据一没有了，就从数据库里面读取数据一，这时数据库是新的数据，cache 会继续沿用线程B缓存进cache 的旧数据。   先更新后缓存？   当线程A 更新数据库后再删除cache时，还没有来得及删除，线程B就过来向数据库写入新的数据，此时缓存里是线程A的更新的数据，而数据库里面的是线程B更新的数据。在线程B还没有把新的数据写入缓存时间里，就会出现缓存和数据库不一致的情况。     但是这种情况很少，因为更新数据库的速度比更新缓存的速度要慢。    Spring缓存抽象与相关源码分析   CachingProvider 可以控制多个CacheManager(Guava等等的cache实现)，从而实现分级的缓存</description>
+    </item>
+    
+    <item>
+      <title>JVM</title>
+      <link>https://procarihana.github.io/public/posts/jvm/</link>
+      <pubDate>Thu, 08 Oct 2020 11:12:52 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/jvm/</guid>
+      <description>HotSport JVM 堆
+ 所有对象都在里面 只能操纵对象的引用或者地址 只能够操纵产生，但无法控制死亡    常量池 String.intern() 直接从常量池里面获取这个对象的引用    栈  递归调用 阶乘   每次方法调用都会产生一个新的栈针，返回之后就会销毁   栈里面的内存分配   局部变量都是在栈里面的，因为每一次方法调用所用到的变量都是复制得到的，所以在调用改变的过程中是不会改变局部变量的     对象的地址根据虚拟机是32位（4个字节）还是64位（8个字节）   栈针   方法调用开始的时候，变量就会放在每个方法栈里面的操作数栈里面，     方法区
+ 被整个虚拟机共享的共享的class信息（创建对象的说明书）   永久代放在堆里面，很容易就会超出内存 元空间 和 natice 共享内存 平台无关性
+ 基于栈的模型   查看字节码
+ javap target.xxx.classname 只能够查看public 的方法   -private 能够查看所有的方法     -v 常量的等等     字节码的加载和执行</description>
+    </item>
+    
+    <item>
+      <title>HashMap</title>
+      <link>https://procarihana.github.io/public/posts/hashmap/</link>
+      <pubDate>Wed, 07 Oct 2020 19:49:58 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/hashmap/</guid>
+      <description>Hash 数据结构
+ 核心是哈希值数组和值链表 Hash 桶 底层是数组，查找、插入、删除平均速度是O(1) 哈希碰撞 多个元素的hash值相同，解决的方法是通过链表解决哈希值相同的状况   HashMap
+ 对于hash 基于map接口的实现 默认是初始容量必须是2的幂   最大的容量是-2^31~2^31-1 42亿左右     构造函数
+ 默认初始容量 16 默认负载 0.75f   负载因子高就会减少的浪费，增加查找的消耗   初始容量和负载因数 都可以改变的   但是没有初始化的时候是空的，扩展容量会根据有制定的初始容量向上膨胀到2的幂     put
+ 找到相同的话就覆盖并返回 没有的话就addEntry   如果add 过程中超过12就开始扩容       resize 把所有的哈希都重新进行计算，新的容量是旧的容量的两倍        旧表的哈希桶就会通过transfer，遍历一遍并计算在新的表的位置，并放进去（Java 7）    get   为什么数组的大小一定时2的幂   计算哈希桶的时候是 2^n-1按位与&amp;amp;   2的N次方-1 才会拿到全部是1的值，使用按位与才能快速拿到数组下标，且分布还是均匀的    Java 7 hash 死锁   HashMap 不是线程安全的！ 存在安全隐患   通过精心构造的恶意请求引发Dos 链表性能退化      Tomcat 通过设置设置参数的限制来避免大量相同的恶意哈希值 Orcal put方法里面 initHashSeedAdNeeded 提供一个种子，在出现这种状况是会自动使用另外一种计算方式 通过精心设计HashMap 会退化成链表。因为Hash算法是公开的 Aa BB #C 哈希算法就是相同的   Java 8 HashMap 改进   数组+链表 / 红黑树的改进   当桶里面的值超过8 的时候就会变成树 通过里面的算法得知超过8的可能性非常小     红黑树通过计算能够保证数是平衡的     插入的时候，如果超过八就会执行变树的方法   扩容是插入顺序的改进   transfer 保持插入的顺序，而java7 没有     但是这种方法只能让线程出现死锁的概率变低，并没有解决      高位 低位 扩容后新的索引值和旧的索引值在低位的部分是相同的，高位部分要么是相等，要么是最高位+1 &amp;ndash;&amp;gt; 原先的列表有的会在原来的位置，也有可能在新列表的高位，    函数方法   forEach     compute 系列   Map 的新API   merge     replace    resize 效率很低     HashSet  HashSet 的实现就是输入的value 为 hashMap 的key，然后自己new 一个 object 作为value，从而能够复用HashMap的代码  </description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://procarihana.github.io/public/posts/linux/</link>
+      <pubDate>Tue, 06 Oct 2020 16:33:07 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/linux/</guid>
+      <description>POSIX 标准 可移植的操作系统接口    ECS 虚拟机 镜像选择 ubuntu 版本号 xx.xx 年份.版本 公网IP    Kernel 内核 &amp;ndash;&amp;gt; 控制操作系统和调度的代码 Shell 用于控制kernel 的方式 ,访问内核的交互式命令行    通过一个终端连接Linux主机，可以再任何地方使用     镜像   相当于光盘使用后能够安装处光盘里面的东西      SSH (Secure Shell)   加密访问，保证安全   $ ssh root@公IP 登录后默认在/home    Linux 用户 登录后就拥有一个用户名 $ whoami &amp;ndash;&amp;gt; 当前登录的权限 Eg：root……user   root 拥有所有权限，日常工作尽量不使用，但是安装系统等需要root/非常高权限的用户完成   sudo切换成root 用户完成命令   sudo username xxx 生成新的用户       生成用户后并没有同时生成目录等，需要额外配置     $ exist 退出   su xxx切换成该用户   pwd 工作目录 usergroup 用户组 用于权限管理，用户组能够共享权限    $ list (ls)列出清单   -l -h 详情     -a  查看包括隐藏的文件       d 目录 时间后面就是文件夹的名字 文件夹的大小是固定的        目录能够区分权限 dxxx xxx xxx &amp;ndash;&amp;gt;d所有者权限 用户组权限 其他人 r read w write x execute        l 快捷方式 -&amp;gt; 实际的地址 是一个软链接，执行能够通过软连接实际执行程序        创造快捷方式   ln -s 目标地址 软连接       软连接必须在PATH 环境变量里面     alias 程序快捷名=实际地址        - 文件 可读可写可执行       cat 查看文本文件内容</description>
+    </item>
     
     <item>
       <title>Servlet</title>
@@ -359,7 +440,9 @@ Session 和 cookie  会话（Session）跟踪是Web程序中常用的技术，�
       <pubDate>Tue, 08 Sep 2020 19:44:00 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/notes/%E7%AE%80%E5%8E%86/</guid>
-      <description>项目一  描述：多人在线博客平台   基于SpringBoot搭建框架     利用Mybatis完成连接数据库     通过Spring Security完成认证和授权     通过UIDD和迭代完成密码的加密     使用Java Mockito 完成集成测试     通过Docker 使用Mysql、Jenkins完成数据库和自动化部署     在阿里云里发布    项目二  描述：   基于SpringBoot框架搭建框架     使用Mybatis链接数据库     通过Shiro完成 认证、授权和web集成     使用CheckStyle、Jacoco和Spotbugs完成代码检查     使用Swagger 生成API文档     通过Docker 使用Mysql、Redis完成数据库的建立和数据缓存    </description>
+      <description>技能    =======
+项目一   描述：多人在线博客平台
+   基于SpringBoot搭建框架     利用Mybatis完成连接数据库     通过Spring Security完成用户认证和授权     通过UIDD和迭代完成密码的加密     使用Java Mockito 完成集成测试     通过Docker 使用Mysql、Jenkins完成数据库和自动化部署；使用NGINX进行分布式部署    项目二  描述：记账系统 =======   通过Spring Security完成认证和授权     通过UIDD和迭代完成密码的加密     使用Java Mockito 完成集成测试     通过Docker 使用Mysql、Jenkins完成数据库和自动化部署     在阿里云里发布    项目二  描述：   基于SpringBoot框架搭建框架     使用Mybatis链接数据库     通过Shiro完成 认证、授权和web集成     使用CheckStyle、Jacoco和Spotbugs完成代码检查     使用Swagger 生成API文档     通过Docker 使用Mysql、Redis完成数据库的建立和数据缓存    </description>
     </item>
     
     <item>
@@ -377,7 +460,7 @@ Session 和 cookie  会话（Session）跟踪是Web程序中常用的技术，�
       <pubDate>Mon, 07 Sep 2020 14:59:13 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/posts/web%E9%A1%B5%E9%9D%A2-%E5%89%8D%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93/</guid>
-      <description>前端渲染：前端发送静态的html，浏览器下载html里面的JS、CSS文件，等待下载完后就加载并初始化JS代码，可运行后就想后端请求数据，等待后端完成数据返回。客户端从无到完整，把数据渲染为响应页面 后端渲染：服务器端请求数据（内网请求快），服务器初始渲染（服务端性能较快），服务端返回已经有正确内容的HTML，客户端请求JS/CSS文件，等待下载完成且加载并初始化完成  渲染模板  index.html -&amp;gt; 静态模板  &amp;lt;!DOCTYPE heml&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;商品排行榜&amp;lt;/h2&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;1&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;西瓜&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;400&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;2&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;香蕉&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;200&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;3&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  动态模板引擎 -&amp;gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &amp;lt;!-- spring-boot-starter-freemarker --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt;  文件结构 (View) resources/templaes/~.ftl -&amp;gt; 存放动态模板   其中list 为结果集 name-&amp;gt;items    &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;#list items as item&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;${item.</description>
+      <description>前端渲染：前端发送静态的html，浏览器下载html里面的JS、CSS文件，等待下载完后就加载并初始化JS代码，可运行后就想后端请求数据，等待后端完成数据返回。客户端从无到完整，把数据渲染为响应页面 后端渲染：服务器端请求数据（内网请求快），服务器初始渲染（服务端性能较快），服务端返回已经有正确内容的HTML，客户端请求JS/CSS文件，等待下载完成且加载并初始化完成 前端渲染：前端发送静态的html数据 后端渲染：后端发送htlm数据  渲染模板  index.html -&amp;gt; 静态模板  &amp;lt;!DOCTYPE heml&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;商品排行榜&amp;lt;/h2&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;1&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;西瓜&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;400&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;2&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;香蕉&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;200&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;3&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  动态模板引擎 -&amp;gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &amp;lt;!-- spring-boot-starter-freemarker --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt;  文件结构 (View) resources/templaes/~.ftl -&amp;gt; 存放动态模板   其中list 为结果集 name-&amp;gt;items    &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;#list items as item&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;${item.</description>
     </item>
     
     <item>
@@ -432,7 +515,7 @@ JDK 动态代理  InvocationHandler接口被Proxy类回调处理，一般实现 
       <pubDate>Tue, 01 Sep 2020 18:41:11 +0800</pubDate>
       
       <guid>https://procarihana.github.io/public/posts/docker%E7%9A%84%E5%8E%9F%E7%90%86%E5%92%8C%E5%BA%94%E7%94%A8/</guid>
-      <description>虚拟机有一套完整独立的操作系统，非常占内存和资源,虚拟机内即使有空闲的资源也不能够集中利用，只能够浪费 docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存 阿里云的镜像加速所向无敌  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &amp;lt;镜像名&amp;gt;&amp;lt;镜像中要运行的命令和参数&amp;gt;   交互式命令行模式，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &amp;ndash; name 为容器指定一个名字 &amp;ndash; restart=always 遇到错误马上重启 -&amp;gt; 用于NGINX等    docker run &amp;ndash;name springboot-nginx &amp;ndash;restart=always -v pwd/nginx/nginx.</description>
+      <description>虚拟机有一套完整独立的操作系统，非常占内存和资源,虚拟机内即使有空闲的资源也不能够集中利用，只能够浪费 docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存 阿里云的镜像加速所向无敌  { &amp;#34;registry-mirrors&amp;#34;: [ &amp;#34;https://t8svkgrf.mirror.aliyuncs.com&amp;#34; ], &amp;#34;debug&amp;#34;: true, &amp;#34;experimental&amp;#34;: false } Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &amp;lt;镜像名&amp;gt;&amp;lt;镜像中要运行的命令和参数&amp;gt;   交互式命令行模式，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &amp;ndash; name 为容器指定一个名字 &amp;ndash; restart=always 遇到错误马上重启 -&amp;gt; 用于NGINX等    docker run &amp;ndash;name springboot-nginx &amp;ndash;restart=always -v pwd/nginx/nginx.</description>
     </item>
     
     <item>
@@ -494,7 +577,7 @@ class=java.com.service.OrderService&amp;ndash;&amp;gt;class=com.service.OrderSer
       
       <guid>https://procarihana.github.io/public/posts/%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
       <description>空接口:只是说明有这个功能，使用这个框架，但是不提供实现
-例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）       Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  时间复杂度算法  O(1)=O(2)=O(3)/常数 - 哈希桶/数组随机寻址（常数）   O(n) - 遍历（线性）     O(lg(n)) - 二分查找，二叉树（对数）     O(n*lg(n))- 基于比较的排序算法下限     O(n^2) - 冒泡排序（平方）     O(n^3) 普通的没有优化过的二维矩阵的乘法   时间复杂度的计算是忽略常数的   O(n)=O(2n)   时间复杂度的计算中，高阶复杂度会吞并低阶复杂度   O(n^2)+O(n)=O(n^2)    时间复杂度的合并与乘方  基于比较的排序时间复杂度的上限是O(Nlg(n))[所有基于比较算法最好的时间复杂度都是nlg(n)]  线性时间复杂度与链表  求问题解的时间和问题的规模成正比 示例   求数组、链表的最大值     寻找数组中的重复元素     判断链表是否存在环（快慢指针）      快指针每次移动2步，慢指针每次移动1步 快慢指针相遇的时候就能够测出有闭环      求阶乘     合并两个链表     翻转链表 解决：   先把数据遍历一遍 排序（O(n*log(n))）比遍历慢  对数时间复杂度  二叉树、N叉数（B树、B+树）   在二叉树中查找某个值      二叉树： node left， node right      二叉树遍历（深度优先遍历）Depth first Search      深度优先会在最底层的节点返回 前序遍历 123 根-&amp;gt;子 中（根）序 213 子-&amp;gt;根-&amp;gt;子 后序 231 子-&amp;gt;子-&amp;gt;根      广度优先遍历 （ 队列 -&amp;gt; 先进先出）Broadth first Search      123456 1—&amp;gt;queue queue-&amp;gt;1;2,3-&amp;gt;queue queue-&amp;gt;2;4,5-&amp;gt;queue /queue:3、4、5 queue-&amp;gt;3;6-&amp;gt;queue /queue:4、5、6 直到队列为空，循环结束 queue.</description>
+例如：RandomAccess…… 随机访问  时间复杂度与常数时间的哈希表  时间复杂度   最好时间复杂度     最坏时间复杂度     平均时间复杂度     O(1) - 哈希桶/数组随机寻址（常数时间复杂度）     哈希表的时间复杂度指的是品均时间复杂度      无论问题的规模多大，都可以在常数时间范围内求得解 解决的题的时间和问题的规模没有关系 O(1) = O(2) =O(3) = …… 因为只要是常数都是等价的   内存寻址：内存寻址的时间和内存的大小、内存存放的位置无关，和硬件电路有关     数组：array、arrayList（继承object）   哈希桶、哈希表   把对象映射成整数，然后这个整数放进哈希表里（数组）       数组的容量是有限的，但是对象的变化是无限的，造成在有限中存放无限，就会产生碰撞，而碰撞就通过链表来解决。（但是在java8发生了改变）       Hashmap 如何扩容……  indexFor 当hashmap 被恶意放进大量相同的value，就会出现hashmap退化成列表，查询时间就会变成O(n),所以为了防止这种情况，就在Java7 的时候把算法改成列表加红黑树  时间复杂度算法  O(1)=O(2)=O(3)/常数 - 哈希桶/数组随机寻址（常数）   O(n) - 遍历（线性）     O(log(n)) - 二分查找，二叉树（对数）     O(n*log(n))- 基于比较的排序算法下限     O(lg(n)) - 二分查找，二叉树（对数）     O(n*lg(n))- 基于比较的排序算法下限     O(n^2) - 冒泡排序（平方）     O(n^3) 普通的没有优化过的二维矩阵的乘法   时间复杂度的计算是忽略常数的   O(n)=O(2n)   时间复杂度的计算中，高阶复杂度会吞并低阶复杂度   O(n^2)+O(n)=O(n^2)    时间复杂度的合并与乘方  基于比较的排序时间复杂度的上限是O(Nlg(n))[所有基于比较算法最好的时间复杂度都是nlg(n)]  线性时间复杂度与链表  求问题解的时间和问题的规模成正比 示例   求数组、链表的最大值     寻找数组中的重复元素     判断链表是否存在环（快慢指针）      快指针每次移动2步，慢指针每次移动1步 快慢指针相遇的时候就能够测出有闭环      求阶乘     合并两个链表     翻转链表 解决：   先把数据遍历一遍 排序（O(n*log(n))）比遍历慢  对数时间复杂度  二叉树、N叉数（B树、B+树）   在二叉树中查找某个值      二叉树： node left， node right      二叉树遍历（深度优先遍历）Depth first Search      深度优先会在最底层的节点返回 前序遍历 123 根-&amp;gt;子 中（根）序 213 子-&amp;gt;根-&amp;gt;子 后序 231 子-&amp;gt;子-&amp;gt;根      广度优先遍历 （ 队列 -&amp;gt; 先进先出）Broadth first Search      123456 1—&amp;gt;queue queue-&amp;gt;1;2,3-&amp;gt;queue queue-&amp;gt;2;4,5-&amp;gt;queue /queue:3、4、5 queue-&amp;gt;3;6-&amp;gt;queue /queue:4、5、6 直到队列为空，循环结束 queue.</description>
     </item>
     
     <item>
@@ -667,6 +750,19 @@ List&amp;lt;String&amp;gt; list = Arrays.asList(&amp;quot;1&amp;quot;,&amp;quot;
     </item>
     
     <item>
+      <title>爬虫项目</title>
+      <link>https://procarihana.github.io/public/projects/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Wed, 06 May 2020 17:07:22 +0800</pubDate>
+      
+      <guid>https://procarihana.github.io/public/projects/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/</guid>
+      <description>原则  使用GitHub+主干/分支模型进行开发 禁止直接push master 所有的变更通过PR进行 自动化代码质量检查+测试 Checkstyle/SpotBugs 最基本的自动化测试覆盖 一切工作自动化 规范化提交流程   创建仓库流程   Github -new
+  建立新项目 newBranch 的时候选Apache License 2.0
+   Mvn archetype 项目骨架     IDEA - new     copy （cp -r ../* .）    .gitigonre
+  git commit &amp;ndash;amend 就可以把这一次的commit和上一次的合并起来
+   记得要把.iml 放进（vi .gitignore）： *.iml和target/(放在最后一行就好) 更改pom 里面的groundId，artifactId cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到.</description>
+    </item>
+    
+    <item>
       <title>IDEAMaven调试器的基本使用</title>
       <link>https://procarihana.github.io/public/posts/ideamaven%E8%B0%83%E8%AF%95%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Wed, 06 May 2020 17:06:17 +0800</pubDate>
@@ -720,6 +816,15 @@ Eg：a+=2 | a = a+2
       
       <guid>https://procarihana.github.io/public/posts/the-second-test/</guid>
       <description>Test Second </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://procarihana.github.io/public/posts/%E9%81%87%E5%88%B0%E7%9A%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://procarihana.github.io/public/posts/%E9%81%87%E5%88%B0%E7%9A%84/</guid>
+      <description></description>
     </item>
     
   </channel>

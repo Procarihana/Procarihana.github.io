@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="原则  使用GitHub&#43;主干/分支模型进行开发 禁止直接push master 所有的变更通过PR进行 自动化代码质量检查&#43;测试 Checkstyle/SpotBugs 最基本的自动化测试覆盖 一切工作自动化 规范化提交流程   创建仓库流程   Github -new
+  建立新项目 newBranch 的时候选Apache License 2.0
+   Mvn archetype 项目骨架     IDEA - new     copy （cp -r ../* .）    .gitigonre
+  git commit &amp;ndash;amend 就可以把这一次的commit和上一次的合并起来
+   记得要把.iml 放进（vi .gitignore）： *.iml和target/(放在最后一行就好) 更改pom 里面的groundId，artifactId cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到." />
+<meta name="keywords" content=", 爬虫, flyway" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/projects/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/" />
+
+
+    <title>
+        
+            爬虫项目 :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="爬虫项目">
+<meta itemprop="description" content="原则  使用GitHub&#43;主干/分支模型进行开发 禁止直接push master 所有的变更通过PR进行 自动化代码质量检查&#43;测试 Checkstyle/SpotBugs 最基本的自动化测试覆盖 一切工作自动化 规范化提交流程   创建仓库流程   Github -new
+  建立新项目 newBranch 的时候选Apache License 2.0
+   Mvn archetype 项目骨架     IDEA - new     copy （cp -r ../* .）    .gitigonre
+  git commit &ndash;amend 就可以把这一次的commit和上一次的合并起来
+   记得要把.iml 放进（vi .gitignore）： *.iml和target/(放在最后一行就好) 更改pom 里面的groundId，artifactId cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到.">
+<meta itemprop="datePublished" content="2020-05-06T17:07:22&#43;08:00" />
+<meta itemprop="dateModified" content="2020-05-06T17:07:22&#43;08:00" />
+<meta itemprop="wordCount" content="1139">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content="爬虫,flyway," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="爬虫项目"/>
+<meta name="twitter:description" content="原则  使用GitHub&#43;主干/分支模型进行开发 禁止直接push master 所有的变更通过PR进行 自动化代码质量检查&#43;测试 Checkstyle/SpotBugs 最基本的自动化测试覆盖 一切工作自动化 规范化提交流程   创建仓库流程   Github -new
+  建立新项目 newBranch 的时候选Apache License 2.0
+   Mvn archetype 项目骨架     IDEA - new     copy （cp -r ../* .）    .gitigonre
+  git commit &ndash;amend 就可以把这一次的commit和上一次的合并起来
+   记得要把.iml 放进（vi .gitignore）： *.iml和target/(放在最后一行就好) 更改pom 里面的groundId，artifactId cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到."/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-06 17:07:22 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://procarihana.github.io/public/projects/%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE/">爬虫项目</a></h2>
+
+            
+
+            <div class="post-content">
+                <h4 id="原则">原则</h4>
+<ul>
+<li>使用GitHub+主干/分支模型进行开发</li>
+<li>禁止直接push master</li>
+<li>所有的变更通过PR进行</li>
+<li>自动化代码质量检查+测试</li>
+<li>Checkstyle/SpotBugs</li>
+<li>最基本的自动化测试覆盖</li>
+<li>一切工作自动化</li>
+<li>规范化提交流程</li>
+</ul>
+<hr>
+<h4 id="创建仓库流程">创建仓库流程</h4>
+<ul>
+<li>
+<p>Github -new</p>
+</li>
+<li>
+<p>建立新项目
+newBranch 的时候选Apache License 2.0</p>
+</li>
+<li>
+<ul>
+<li>Mvn archetype 项目骨架</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>IDEA - new</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>copy （cp -r ../* .）</li>
+</ul>
+</li>
+<li>
+<p>.gitigonre</p>
+</li>
+<li>
+<p>git commit &ndash;amend 就可以把这一次的commit和上一次的合并起来</p>
+</li>
+</ul>
+<ol>
+<li><strong>记得要把<code>.iml</code> 放进（vi .gitignore）： <code>*.iml</code>和<code>target/</code>(放在最后一行就好)</strong></li>
+<li>更改pom 里面的groundId，artifactId</li>
+<li>cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到<code>.~</code>的文件)，保留checkstyle.xml以及congif.yml[自动化测试]</li>
+<li><code>.idea/</code> 不能够提交（在最后完成项目提交时）</li>
+</ol>
+<ul>
+<li>README<br>
+MD语法</li>
+<li>checkstyle 检查代码风格</li>
+<li>
+<ul>
+<li>RegexpSingleline 每一行代码后面不能有空格</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="项目的设计流程-自顶向下">项目的设计流程-自顶向下</h4>
+<ul>
+<li>多人协作<br>
+使用分支可以同时进行不同的功能，且互不影响</li>
+<li>模块化</li>
+<li>
+<ul>
+<li>各模块间职责明确，界限清晰</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>基本的文档</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>基本的接口</li>
+</ul>
+</li>
+<li>小步提交</li>
+<li>
+<ul>
+<li>大的变更更难以review</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>大的变更冲突更加棘手</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="项目的设计流程---自底向上">项目的设计流程 - 自底向上</h4>
+<ul>
+<li>一个人</li>
+<li>
+<ul>
+<li>先实现功能</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>在实现的过程中不停地抽取公用部分</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>每当写很长的代码的时候，就要重构了</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>DRY:每当你复制、粘贴的时候，就要重构了</li>
+</ul>
+</li>
+<li>通过重构实现模块化、接口化</li>
+</ul>
+<h2 id="模块化优点">模块化优点</h2>
+<h4 id="项目的演进可扩展行">项目的演进：可扩展行</h4>
+<ul>
+<li>单线程-&gt;多线程</li>
+<li>console -&gt; H2 database</li>
+<li>H2 database -&gt;Elasticsearch</li>
+</ul>
+<h4 id="爬虫">爬虫</h4>
+<ul>
+<li>新闻网站反爬比较少</li>
+<li>手机网页更容易爬</li>
+<li>思路</li>
+</ul>
+<ol>
+<li>建立两个链接池，一个放满足条件的链接，另一个放已经爬过的链接</li>
+<li>通过HttpCline 来登录网站和获得数据</li>
+<li>通过Jsoup 来解析数据</li>
+<li>httpGet.addHeader 添加登录的名字和cookie
+5.筛选需要链接，通过doc.select查找链接href和链接下需要的元素a标签、article 等</li>
+<li></li>
+</ol>
+<h4 id="冒烟测试">冒烟测试</h4>
+<ul>
+<li>test 设置一个冒烟测试，每写一小部分就进行测试</li>
+<li>测试需要用到的是junit 5</li>
+</ul>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter-api&lt;/artifactId&gt;
+    &lt;version&gt;5.6.0&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter-engine&lt;/artifactId&gt;
+    &lt;version&gt;5.6.0&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre><h4 id="git-push-错误的文件">git push 错误的文件</h4>
+<ul>
+<li>在分支上操作</li>
+</ul>
+<ol>
+<li>git reset HEAD~1  把提交回滚到前1/2……各</li>
+<li>把不想提交的放进 vi .gitignore 里（.idea/）</li>
+<li>git add .</li>
+<li>git commit 后就会出现分支</li>
+</ol>
+<ul>
+<li>以master的身份提交</li>
+</ul>
+<ol>
+<li>通过git log 查看刚才提交的提交的ID</li>
+<li>git revert 撤销刚才的提交（但是刚才的提交就会消除）</li>
+<li>重新把不需要提交的文件放进gitignore里面，然后再次提交</li>
+<li>因为重新提交后和原本的master分支出现了分差，所以需要用git push -f （force push）强行提交</li>
+</ol>
+<ul>
+<li>在主干上直接把多余的文件删掉</li>
+<li>git add 错误的文件</li>
+<li>
+<ul>
+<li>git reset HEAD 不想要提交的文件</li>
+</ul>
+</li>
+</ul>
+<pre><code>git reset HEAD .idea 
+</code></pre><ul>
+<li>只要没有push，所有行为都只有自己能够看到</li>
+</ul>
+<h4 id="commit-massage">commit massage</h4>
+<ul>
+<li>先写一行简短的总结</li>
+<li>详细总结每行不要超过72word</li>
+</ul>
+<h4 id="本地库commit的时候后想要和前一个commit合并">本地库commit的时候后想要和前一个commit合并</h4>
+<p>git commit &ndash;amend</p>
+<h4 id="github-合并commit">github 合并commit</h4>
+<ul>
+<li>git rebase</li>
+<li>merge pull request</li>
+</ul>
+<h4 id="maven-自动化的检查">Maven 自动化的检查</h4>
+<ul>
+<li>spotbugs</li>
+<li>在Dependens前面加↓可以控制plugin的运行周期</li>
+</ul>
+<pre><code>        &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;verify&lt;/id&gt;
+                        &lt;phase&gt;verify&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;check&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+</code></pre><ul>
+<li>
+<ul>
+<li><a href="https://spotbugs.github.io/spotbugs-maven-plugin/usage.html">https://spotbugs.github.io/spotbugs-maven-plugin/usage.html</a>
+根据不同的需要配置插件</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>gui [  mvn spotbugs:gui  ]</li>
+</ul>
+</li>
+</ul>
+<h4 id="docker-mysal-迁移h2-的数据库">Docker mysal 迁移h2 的数据库</h4>
+<ul>
+<li>建立一个储存数据库的目录（datadir）  mkdir</li>
+</ul>
+<pre><code>    mkdir mysql-data
+</code></pre><ul>
+<li>在docker 上面开设mysql的数据库</li>
+</ul>
+<pre><code>    docker run --name mockNews-mysql -v `pwd`/mysql-mockNewsData:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=hana -e MYSQL_DATABSE=databasename -p 3306:3306 -d mysql
+</code></pre><ul>
+<li>
+<ul>
+<li><code>pwd</code>只要MAC能够，Windows要用全路径名</li>
+</ul>
+</li>
+<li>更改有flyway的连接（用户名为root，密码为docker run 上面设置的密码）和Mybatis的config.xml里面的url，</li>
+<li>
+<ul>
+<li>
+<p>config</p>
+<!-- raw HTML omitted -->
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="flyway-数据库自动化管理">flyway 数据库自动化管理</h3>
+<ul>
+<li>每次启动项目都自动运行
+<strong>pom.xml</strong></li>
+</ul>
+<pre><code>     &lt;build&gt;
+        &lt;plugins&gt;
+
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;
+                &lt;artifactId&gt;flyway-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;5.2.4&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;url&gt;jdbc:mysql://localhost:3306/NEWS&lt;/url&gt;
+                    &lt;user&gt;root&lt;/user&gt;
+                    &lt;password&gt;hana&lt;/password&gt;
+                &lt;/configuration&gt;
+</code></pre><h4 id="or">or</h4>
+<pre><code>    &lt;configuration&gt;
+                &lt;url&gt;jdbc:mysql://localhost:3306/news&lt;/url&gt;
+                &lt;user&gt;root&lt;/user&gt;
+                &lt;password&gt;hana&lt;/password&gt;
+     &lt;property name=&quot;url&quot;value=&quot;jdbc:mysql://localhost:3306/news?characterEncoding=utf-8&quot;/&gt;
+</code></pre><p><strong>在<code>src/main/resources/db/migration</code>添加数据库需要重置的内容</strong></p>
+<ol>
+<li>添加 等等储存数据库需要的变更还原……</li>
+</ol>
+<pre><code>V1__Initial_version.sql
+</code></pre><pre><code>V2__Add a new table.sql
+</code></pre><ul>
+<li>添加mysql connect java 的maven</li>
+<li>需要去到小松鼠用</li>
+</ul>
+<pre><code>url=jdbc:mysql://localhost/databasename   
+user = root   
+password = docker设置的登录mysql  
+</code></pre><p>（docker的mysql要在运行的状态，没有的话就要去docker -d（当前）或者-it（后台））</p>
+<pre><code>    docker run mysqlname -it mysql
+</code></pre><p>运行</p>
+<pre><code>mvn flyway:migrate
+</code></pre><h4 id="通过索引让数据更新">通过索引，让数据更新</h4>
+<p><strong>问题：</strong></p>
+<ol>
+<li>flyway tablename - -   -</li>
+</ol>
+<ul>
+<li>SQL分大小写，有小写tablename在创建后出现不存在的反馈</li>
+<li>Found non-empty schema(s) <code>user</code> without schema history table! Use baseline() or set baselineOnMigrate to true to initialize the schema history table.</li>
+</ul>
+<h4 id="多线程">多线程</h4>
+<ul>
+<li>继承多线程的情况下，方法是不能直接 throw Excetion，要使用try和catch方法，异常要及时反馈，不能吞掉。</li>
+<li>爬虫方法实例化后，所有线程就能够共用一个方法，不需要每一个线程都新开一个方法，出现重复爬取数据的现象</li>
+<li>delete 语句要特别注意，需要使用synchronized</li>
+</ul>
+<ol start="2">
+<li>
+<p>mysql 的数据表新建都要带<br>
+DEFAULT CHARSET=utf8mb4，不然就有可能出现乱码</p>
+<p>create table NEWS(
+id bigint primary key auto_increment,
+title text,
+content text,
+url varchar(1000),
+created_at timestamp,
+modified_at timestamp)DEFAULT CHARSET=utf8mb4;</p>
+</li>
+</ol>
+<hr>
+<h3 id="项目">项目</h3>
+<ul>
+<li>爬去新浪新闻页，做一个真正的爬虫</li>
+<li>使用数据库储存进行数据分析</li>
+<li>随着数据量的增长，前一到ES</li>
+<li>做一个简单的“新闻搜索引擎”</li>
+</ul>
+<h5 id="算法">算法</h5>
+<ul>
+<li>从一个节点遍历所有节点</li>
+<li>广度优先 BFS 从上到下，从左到右，1层-&gt;2层-&gt;3……<br>
+队列数据结构、JDK的队列实现</li>
+<li>深度优先 1-&gt;2-&gt;4…… 从左到右</li>
+</ul>
+<h4 id="广度优先">广度优先</h4>
+<h4 id="jdk的队列实现">JDK的队列实现</h4>
+<h4 id="流程">流程</h4>
+<ol>
+<li>从链接池里拿一个链接</li>
+<li>从池子里删除处理过的链接</li>
+<li>判断链接是否处理</li>
+<li>判断链接是否需要</li>
+<li>处理</li>
+</ol>
+<ul>
+<li>通过Jsoup获得HTML里面的内容</li>
+<li>爬取新闻页面里面的链接放入链接库里</li>
+<li>把内容放进新闻数据库里</li>
+<li>把新闻链接放入新闻链接数据库里</li>
+</ul>
+<ol start="7">
+<li>进入下一个循环</li>
+<li>用DAO分离数据库和爬虫代码</li>
+<li>用ORM把数据库里面的项目变成对象，使得数据库的操作变得更加简便</li>
+</ol>
+<h2 id="建立数据库">建立数据库</h2>
+<h4 id="建立h2数据库">建立H2数据库</h4>
+<ol>
+<li>添加H2依赖</li>
+<li>URL “”+/文件路径/数据库的文件名</li>
+<li>create table LINKS_TO_BE_PROCESSED(link varchar (100));</li>
+<li>create table LINKS_ALREADY_PROCESSED (link varchar (100))</li>
+<li>create table News(id bigint primary key auto_increment,
+title text,
+content text,
+url varchar(100),
+created_at timestamp,
+modified_at timestamp)</li>
+<li>insert into links_to_be_processed(link)values(&lsquo;LINK&rsquo;) //向数据库设置起始的Link</li>
+</ol>
+<h4 id="sql数据类型">sql数据类型</h4>
+<ul>
+<li>varchar（n）可变长度字符串，最多为8,000字符</li>
+<li>varchar（max）可变长度字符串，最多为1,073,741,824</li>
+<li>text 可变长度的字符串，最多2GB文本数据(适合储存新闻)</li>
+<li>nchar 固定长度的Unicode字符串。最多4，000个字符</li>
+</ul>
+<h4 id="flyaway">flyaway</h4>
+<ul>
+<li>
+<p>数据库在使用的时候会不断变更，有不同的版本，flyaway可以储存数据库不同的版本，从而可以变更不同版本的<strong>结构</strong></p>
+</li>
+<li>
+<p>flyaway需要在插件的地方修改URL，添加Username和password</p>
+</li>
+<li>
+<p>即使数据库删掉也可以快速回复结构</p>
+</li>
+<li>
+<p>flyWay 数据库结构管理的自动化</p>
+<pre><code>   &lt;plugin&gt;
+          &lt;groupId&gt;org.flywaydb&lt;/groupId&gt;
+          &lt;artifactId&gt;flyway-maven-plugin&lt;/artifactId&gt;
+          &lt;version&gt;5.2.4&lt;/version&gt;
+          &lt;configuration&gt;
+              &lt;url&gt;&lt;/url&gt;
+              &lt;user&gt;&lt;/user&gt;
+              &lt;password&gt;&lt;/password&gt;
+          &lt;/configuration&gt;
+
+      &lt;/plugin&gt;
+</code></pre>
+</li>
+<li>
+<p>flyaway:baseline()</p>
+</li>
+<li>
+<p>flyaway:migrate</p>
+</li>
+</ul>
+<h4 id="orm-object-relation-mapping">ORM Object Relation Mapping</h4>
+<p>对象关系数据库</p>
+<ul>
+<li>通过select 语句把表格里面的项目变成对象，</li>
+<li></li>
+</ul>
+<h4 id="dao-data-accessbase-object">DAO Data Accessbase Object</h4>
+<ul>
+<li>数据库操作 和其他业务逻辑的分离</li>
+<li>static 方法无法被覆用就无法使用接口，所以需要把方法变成实例方法，通过new一个实例来让static的main可以使用。且static方法是不能访问非static成员的。</li>
+</ul>
+<h4 id="mybatics">MyBatics</h4>
+<ul>
+<li>driver 驱动器 ：H2、MySQL…… 可以在小松鼠对应的driver里的className找到,需要添加相应的maven来驱动</li>
+<li>mappers resource 地址的起始位resource</li>
+<li>Select</li>
+<li>
+<ul>
+<li>Blog blog = session.selectOne(
+&ldquo;org.mybatis.example.BlogMapper.selectBlog&rdquo;, 101); //Mapper.xml</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>地址+SQL语句的名字</li>
+</ul>
+</li>
+<li>Insert</li>
+<li>
+<ul>
+<li>try (SqlSession session = sqlSessionFactory.openSession()) {
+session.insert(&ldquo;com.github.Hana.MyMapper.insertNews&rdquo;,new News(title,content,url));</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>地址+需要添加的对象的实例</li>
+</ul>
+</li>
+<li>Setting 驼峰名映射</li>
+<li>
+<ul>
+<li>Mybatis 是无法自动识别大小写的，通过需要大写的字母前添加&rdquo;-&ldquo;来判断大小写：created_at。</li>
+</ul>
+</li>
+<li>-mapUnderscoreToCamelCase	是否开启驼峰命名自动映射，即从经典数据库列名 A_COLUMN 映射到经典 Java 属性名 aColumn。</li>
+</ul>
+<h5 id="动态sql">动态SQL</h5>
+<ul>
+<li>
+<p>SQL语句不支持直接传入参数，所以choose语句里面必须是sql，而不能直接传入参数</p>
+</li>
+<li>
+<p>判断条件是记得要加单引号，因为不适用会认为是一个参数</p>
+<!-- raw HTML omitted -->
+</li>
+<li>
+<p>执行语句是，记得要加上传给SQL的参数</p>
+<p>session.delete(&ldquo;com.github.Hana.MyMapper.deleteNextAvailableLink&rdquo;,link);</p>
+</li>
+</ul>
+<h4 id="tips">Tips</h4>
+<ol>
+<li>Arraylist 从尾部删除更有效率（sive-1）。因为删除第一个元素之后，后面所有的元素都要向前移动一位。</li>
+<li>linkPool.remove 删除指定位置的链接后返回被删除的链接</li>
+<li>线程卡住的时候可以通过<code>jps</code>查看当前正在运行的线程</li>
+<li>链接显示为&rdquo;//……&rdquo; 的话，为当前的链接，需要手动添加&quot;https&quot;+link 进行识别</li>
+<li>数据库的用户名和密码最好是使用final常量去声明</li>
+<li>想要关闭代码检查findbugs的错误可以通过引入包解决。在相应的地方通过注释SuppressFBWarnings（&ldquo;DMI_CONSTANT_DB_PASSWORD&rdquo;）</li>
+<li>如果存在无法关闭的情况，可以通过final强行关闭</li>
+<li>try with resoure会自动设置关闭。try（需要声明能close的变量）</li>
+<li>HTML是没有换行符的，所以爬虫的时候是爬每一各P元素，加一个换行来分隔</li>
+<li>static 方法是不能够访问非static 成员的，static main 才可以运行， 非static 的main 只是一个普通的方法，不能够被运行</li>
+</ol>
+<h2 id="httpclines-apache">Httpclines Apache</h2>
+<ol>
+<li>EntityUtils.toString(entity)&ndash;&gt;Attempted read from closed stream</li>
+</ol>
+<ul>
+<li>这句导致了后面的写入文件错误.entity所得到的流是不可重复读取的也就是说所得的到实体只能一次消耗完,
+不能多次读取</li>
+<li>EntityUtils.toString(entity)后,流就关闭了,就导致后面的读和写显示错误.</li>
+</ul>
+<ol start="2">
+<li>EntityUtils.consume &ndash;&gt; 释放持有的所有资源, 基本上意味着释放任何基础流，并给予Connection对象返回到其池，使它可以处理下一个请求。</li>
+<li></li>
+</ol>
+<p>不推荐使用EntityUtils的toString方法，因为toString方法默认最大的长度是Integer.MAX_VALUE，这个有点危险，会导致缓冲区溢出。
+4. 关闭Stream和response</p>
+<pre><code>CloseableHttpClient httpclient = HttpClients.createDefault();
+HttpGet httpget = new HttpGet(&quot;http://localhost/&quot;);
+CloseableHttpResponse response = httpclient.execute(httpget);
+try {
+    HttpEntity entity = response.getEntity();
+    if (entity != null) {
+    InputStream instream = entity.getContent();
+    try {
+        // do something useful
+        } finally {
+        instream.close();
+        }
+    }
+} finally {
+    response.close();
+}
+</code></pre>
+<ul>
+<li>关闭InputStream和关闭response的区别在于：关闭InputStream会通过消费实体内容与底层保持连接，而关闭response则会立即停止和丢弃连接。</li>
+</ul>
+<ol start="5">
+<li>代码中发送http请求， java.lang.IllegalArgumentException: Illegal character in query at index&hellip;非法字符错误解决办法</li>
+</ol>
+<ul>
+<li>点开链接，查找到不能识别的字符，通过替代的方法手动识别</li>
+</ul>
+<ol start="6">
+<li>Httpclient发送请求org.apache.http.client.ClientProtocolException</li>
+</ol>
+<ul>
+<li>链接里面可能为&rdquo;//&ldquo;开头，需要手动添加&quot;https:&rdquo;</li>
+<li>需要手动添加USER_AGRENT来模拟浏览器访问</li>
+</ul>
+<h2 id="jsoup">Jsoup</h2>
+<ol>
+<li>Element.attr();</li>
+</ol>
+<ul>
+<li>
+<p>attr()函数的设计目标是用于设置或获取指定DOM元素所对应的文档节点上的属性(attribute)。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+</li>
+</ul>
+<p><a href="https://segmentfault.com/a/1190000002680303">https://segmentfault.com/a/1190000002680303</a></p>
+<h2 id="linkpool通过list或者set元素不重复实现">linkpool【通过List或者Set（元素不重复）实现】</h2>
+<ul>
+<li>
+<p>Arraylist.get() &ndash;&gt; 从线程池中获取元素</p>
+<p>String link = linkPool.get(0);</p>
+</li>
+<li>
+<p>remove &ndash;&gt; 从线程池中删除某个元素，并返回被删除的元素(ArrayList从第一个元素开始删除效率更低)</p>
+<p>linkPool.remove(linkPool.size()-1);</p>
+</li>
+<li>
+<p>链接池使用完后不需要的链接需要及时删除</p>
+</li>
+</ul>
+<h2 id="document">Document</h2>
+<ul>
+<li>document.select</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">描述</th>
+<th align="center">测试的HTML代码</th>
+<th align="center">select写法</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">通过 标签名 查找</td>
+<td align="center"><code>&lt;span&gt; 33 &lt;/span&gt;``&lt;span&gt;25&lt;/span&gt;</code></td>
+<td align="center">Elements elements = doc.select(&ldquo;span&rdquo;);注 ：通过标签来查找，直接写 &ldquo;标签名&rdquo; 就好， 不需要尖括号</td>
+<td align="center"><code>33</code> <code>25</code></td>
+</tr>
+<tr>
+<td align="center">通过 id 查找</td>
+<td align="center"><code>&lt;span id=&quot;mySpan&quot;&gt;36&lt;/span&gt;&lt;span&gt;20&lt;/span&gt;</code></td>
+<td align="center">Elements elements = doc.select(&quot;#mySpan&rdquo;);注 ：通过id来查找，用 #</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">通过 class查找</td>
+<td align="center"><code>&lt;span class=&quot;myClass&quot;&gt;36&lt;/span&gt;&lt;span&gt;20&lt;/span&gt;</code></td>
+<td align="center">Elements elements = doc.select(&quot;.myClass&rdquo;);注 ：通过class来查找，用 .</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">通过 属性名 查找</td>
+<td align="center"><code>&lt;span class=&quot;class1&quot; id=&quot;id1&quot;&gt;36&lt;/span&gt;&lt;span class=&quot;class2&quot; id=&quot;id2&quot;&gt;36&lt;/span&gt;</code></td>
+<td align="center">Elements elements = doc.select(&ldquo;span[class=class1]span[id=id1]&quot;);注 ：查询规则为 标签名[属性名=属性值]，标签名可写可不写，多个属性即多个[]，如上</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">通过 属性名前缀  查找</td>
+<td align="center"><code>&lt;span class=&quot;class1&quot;&gt;36&lt;/span&gt;&lt;span class=&quot;class2&quot;&gt;22&lt;/span&gt;</code></td>
+<td align="center">Elements elements = doc.select(&ldquo;span[^cl]&quot;);注 ：查询规则为 标签名[^属性名前缀] ，标签名可写可不写， 多个属性即多个[]</td>
+<td align="center">36 22</td>
+</tr>
+<tr>
+<td align="center">通过 属性名+正则表达式 查找</td>
+<td align="center"><code>|&lt;span class=&quot;ABC&quot;&gt;36&lt;/span&gt;&lt;span class=&quot;ADE&quot;&gt;22&lt;/span&gt;</code></td>
+<td align="center">Elements elements = doc.select(&ldquo;span[class~=^AB]&quot;);注 ：查询规则为 标签名[属性名~=正则表达式]，标签名可写可不写，多个属性即多个</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">通过 文本内容 查找</td>
+<td align="center"><code>&lt;span&gt;36&lt;/span&gt;&lt;span&gt;22&lt;/span&gt;</code></td>
+<td align="center">Elements elements = doc.select(&ldquo;span:contains(3)&quot;);注 ：查询规则为 标签名:contains(文本值)</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">通过 文本内容+正则表达式 查找</td>
+<td align="center"><code>&lt;span&gt;36&lt;/span&gt;&lt;span&gt;22&lt;/span&gt;</code></td>
+<td align="center">Elements elements = doc.select(&ldquo;span:matchesOwn(^3)&quot;);注 ：查询规则为  标签名:matchesOwn(正则表达式)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://blog.csdn.net/wangjunjun2008/article/details/50513528">https://blog.csdn.net/wangjunjun2008/article/details/50513528</a></p>
+<h2 id="resultset">Resultset</h2>
+<ol>
+<li>结果集(ResultSet)是数据中查询结果返回的一种对象，可以说结果集是一个存储查询结果的对象，但是结果集并不仅仅具有存储的功能，他同时还具有操纵数据的功能，可能完成对数据的更新等。</li>
+<li>结果集读取数据的方法主要是getXXX()，他的参数可以使整型表示第几列（是从1开始的），还可以是列名。</li>
+</ol>
+<ul>
+<li>返回的是对应的XXX类型的值。如果对应那列时空值，XXX是对象的话返回XXX型的空值，如果XXX是数字类型，如Float等则返回0，boolean返回false。</li>
+<li>使用getString()可以返回所有的列的值，不过返回的都是字符串类型的。</li>
+</ul>
+<ol start="3">
+<li>
+<p>Connection物件是代表Java与资料库的连线，要执行SQL的话，必须取得 Statement物件，它执行SQL叙述并取得执行之后的结果。</p>
+<p>Connection conn = DriverManager.getConnection(url, user, password);
+Statement stmt = conn.createStatement();</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>prepareStatement</p>
+<p>/**</p>
+<ul>
+<li>Creates a <!-- raw HTML omitted -->PreparedStatement<!-- raw HTML omitted --> object for sending</li>
+<li>parameterized SQL statements to the database.</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>A SQL statement with or without IN parameters can be</li>
+<li>pre-compiled and stored in a <!-- raw HTML omitted -->PreparedStatement<!-- raw HTML omitted --> object. This</li>
+<li>object can then be used to efficiently execute this statement</li>
+<li>multiple times.</li>
+<li></li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>parametric SQL statements that benefit from precompilation. If</li>
+<li>the driver supports precompilation,</li>
+<li>the method <!-- raw HTML omitted -->prepareStatement<!-- raw HTML omitted --> will send</li>
+<li>the statement to the database for precompilation. Some drivers</li>
+<li>may not support precompilation. In this case, the statement may</li>
+<li>not be sent to the database until the <!-- raw HTML omitted -->PreparedStatement<!-- raw HTML omitted --></li>
+<li>object is executed.  This has no direct effect on users; however, it does</li>
+<li>affect which methods throw certain <!-- raw HTML omitted -->SQLException<!-- raw HTML omitted --> objects.</li>
+<li>
+<!-- raw HTML omitted -->
+</li>
+<li>Result sets created using the returned <!-- raw HTML omitted -->PreparedStatement<!-- raw HTML omitted --></li>
+<li>object will by default be type <!-- raw HTML omitted -->TYPE_FORWARD_ONLY<!-- raw HTML omitted --></li>
+<li>and have a concurrency level of <!-- raw HTML omitted -->CONCUR_READ_ONLY<!-- raw HTML omitted -->.</li>
+<li>The holdability of the created result sets can be determined by</li>
+<li>calling {@link #getHoldability}.</li>
+<li></li>
+<li>@param sql an SQL statement that may contain one or more &lsquo;?&rsquo; IN</li>
+<li>parameter placeholders</li>
+<li>@return a new default <!-- raw HTML omitted -->PreparedStatement<!-- raw HTML omitted --> object containing the</li>
+<li>pre-compiled SQL statement</li>
+<li>@exception SQLException if a database access error occurs</li>
+<li>or this method is called on a closed connection
+*/
+PreparedStatement prepareStatement(String sql)
+throws SQLException;</li>
+</ul>
+</li>
+</ul>
+<p>a. 能创造一个用于发送sql语句到数据库的对象<br>
+b. 能多次执行sql</p>
+<ol start="4">
+<li>取得Statement物件之后，可以使用executeUpdate()、executeQuery()等方法来执行 SQL。</li>
+</ol>
+<ul>
+<li>executeUpdate()主要是用来执行CREATE TABLE、INSERT、DROP TABLE、ALTER TABLE等会改变资料库内容的SQL。</li>
+<li>executeQuery()方法则是用于SELECT等查询资料库的SQL。</li>
+<li>如果事先无法得知是进行查询或是更新，就可以使用execute()。</li>
+</ul>
+<ol start="5">
+<li>executeUpdate()与 executeQuery()都会传回ResultSet物件，代表变更或查询的结果，查询的结果会是一笔一笔的资料，使用next()来移动至下一笔资料。</li>
+</ol>
+<ul>
+<li>传回 true 或 false表示是否有下一笔资料，接着可以使用getXXX()来取得资料，例如getString()、getFloat()、getDouble()等方法，分别取得相对应的栏位型态资料，getXXX()方法都提供有依栏位名称取得资料，或是依栏位顺序取得资料的方法。</li>
+</ul>
+<ol start="6">
+<li>Statement的execute()可以用来执行SQL，并可以测试所执行的SQL是执行查询或是更新，传回 true的话表示SQL执行将传回ResultSet表示查询结果，此时可以使用getResultSet()取得ResultSet物件，如果 execute()传回false，表示SQL执行会传回更新笔数或没有结果，此时可以使用getUpdateCount()取得更新笔数。如果事先无法得知是进行查询或是更新，就可以使用execute()。</li>
+</ol>
+<h2 id="mysql">MYSQL</h2>
+<ul>
+<li>在Java 时间戳的类 Instant</li>
+<li>MYSQl 大小写的区分用下划线creat_at，Java的creatAt是识别不出来的，所以需要在mybatis 的设置里面添加</li>
+</ul>
+<h4 id="原则-1">原则</h4>
+<ul>
+<li>使用GitHub+主干/分支模型进行开发</li>
+<li>禁止直接push master</li>
+<li>所有的变更通过PR进行</li>
+<li>自动化代码质量检查+测试</li>
+<li>Checkstyle/SpotBugs</li>
+<li>最基本的自动化测试覆盖</li>
+<li>一切工作自动化</li>
+<li>规范化提交流程</li>
+</ul>
+<hr>
+<h4 id="创建仓库流程-1">创建仓库流程</h4>
+<ul>
+<li>
+<p>Github -new</p>
+</li>
+<li>
+<p>建立新项目
+newBranch 的时候选Apache License 2.0</p>
+</li>
+<li>
+<ul>
+<li>Mvn archetype</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>IDEA - new</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>copy （cp -r ～/* .）</li>
+</ul>
+</li>
+<li>
+<p>.gitigonre</p>
+</li>
+<li>
+<p>git commit &ndash;amend 就可以把这一次的commit和上一次的合并起来</p>
+</li>
+</ul>
+<ol>
+<li><strong>记得要把<code>.iml</code> 放进（vi .gitignore）： <code>*.iml</code>和<code>target/</code>(放在最后一行就好)</strong></li>
+<li>更改pom 里面的groundId，artifactId</li>
+<li>cp -r ～/.circleci . (因为之前cp ～* 的时候并不会cp到<code>.~</code>的文件)，保留checkstyle.xml以及congif.yml[自动化测试]</li>
+<li><code>.idea/</code> 不能够提交（在最后完成项目提交时）</li>
+</ol>
+<ul>
+<li>README</li>
+</ul>
+<hr>
+<h4 id="项目的设计流程-自顶向下-1">项目的设计流程-自顶向下</h4>
+<ul>
+<li>多人协作<br>
+使用分支可以同时进行不同的功能，且互不影响</li>
+<li>模块化</li>
+<li>
+<ul>
+<li>各模块间职责明确，界限清晰</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>基本的文档</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>基本的接口</li>
+</ul>
+</li>
+<li>小步提交</li>
+<li>
+<ul>
+<li>大的变更更难以review</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>大的变更冲突更加棘手</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="项目的演进可扩展行-1">项目的演进：可扩展行</h4>
+<ul>
+<li>单线程-&gt;多线程</li>
+<li>console -&gt; H2 database</li>
+<li>H2 database -&gt;Elasticsearch</li>
+</ul>
+<h4 id="爬虫-1">爬虫</h4>
+<ul>
+<li>新闻网站反爬比较少</li>
+<li>手机网页更容易爬</li>
+</ul>
+<h4 id="git-push-错误的文件-1">git push 错误的文件</h4>
+<ul>
+<li>在分支上操作</li>
+</ul>
+<ol>
+<li>git reset HEAD~1  把提交回滚到前1/2……各</li>
+<li>把不想提交的放进 vi .gitignore 里（.idea/）</li>
+<li>git add .</li>
+<li>git commit 后就会出现分支</li>
+</ol>
+<ul>
+<li>以master的身份提交</li>
+</ul>
+<ol>
+<li>通过git log 查看刚才提交的提交的ID</li>
+<li>git revert 撤销刚才的提交（但是刚才的提交就会消除）</li>
+</ol>
+<ul>
+<li>在主干上直接把多余的文件删掉</li>
+<li>只要没有push，所有行为都只有自己能够看到</li>
+</ul>
+<h4 id="commit-massage-1">commit massage</h4>
+<ul>
+<li>先写一行简短的总结</li>
+<li>详细总结每行不要超过72word</li>
+</ul>
+<hr>
+<h3 id="项目-1">项目</h3>
+<ul>
+<li>爬去新浪新闻页，做一个真正的爬虫</li>
+<li>使用数据库储存进行数据分析</li>
+<li>随着数据量的增长，前一到ES</li>
+<li>做一个简单的“新闻搜索引擎”</li>
+</ul>
+<h5 id="算法-1">算法</h5>
+<ul>
+<li>从一个节点遍历所有节点</li>
+<li>广度优先 BFS 从上到下，从左到右，1层-&gt;2层-&gt;3……<br>
+队列数据结构、JDK的队列实现</li>
+<li>深度优先 1-&gt;2-&gt;4…… 从左到右</li>
+</ul>
+<h4 id="流程-1">流程</h4>
+<ol>
+<li>从链接池里拿一个链接</li>
+<li>判断链接是否处理</li>
+<li>判断链接是否需要</li>
+<li>处理</li>
+</ol>
+<ul>
+<li>通过Jsoup获得HTML里面的内容</li>
+<li>从池子里删除处理过的链接</li>
+</ul>
+<ol start="5">
+<li>把新得到的链接放入链接池</li>
+<li>如果是新闻页面的话储存</li>
+<li>进入下一个循环</li>
+<li>建立H2数据库</li>
+</ol>
+<ul>
+<li>
+<p>LINKS_TO_BE_PROCESSED</p>
+</li>
+<li>
+<p>LINKS_ALREADY_PROCESSED</p>
+</li>
+<li>
+<p>NEWS</p>
+</li>
+<li>
+<p>ID</p>
+</li>
+<li>
+<p>TITLE</p>
+</li>
+<li>
+<p>CONTENT</p>
+</li>
+<li>
+<p>URL</p>
+</li>
+<li>
+<p>CREATED_AT</p>
+</li>
+<li>
+<p>MODIFIED_AT</p>
+</li>
+</ul>
+<h4 id="建立h2数据库-1">建立H2数据库</h4>
+<ol>
+<li>添加H2依赖</li>
+<li>URL “”+/文件路径/数据库的文件名</li>
+<li>creat table LINKS_TO_BE_PROCESSED{link varchar (100);}</li>
+<li>creat table nws(id bigint primary_key auto_increment,title text,content text,url varchar(100),creat_at timestamp,modified_at timestamp)</li>
+<li>insert into links_to_be_processed(link)values(&lsquo;LINK&rsquo;) //设置起始的Link</li>
+</ol>
+<h4 id="sql数据类型-1">sql数据类型</h4>
+<ul>
+<li>varchar（n）可变长度字符串，最多为8,000字符</li>
+<li>varchar（max）可变长度字符串，最多为1,073,741,824</li>
+<li>text 可变长度的字符串，最多2GB文本数据(适合储存新闻)</li>
+<li>nchar 固定长度的Unicode字符串。最多4，000个字符</li>
+</ul>
+<h4 id="flyway">flyway</h4>
+<ul>
+<li>数据库在使用的时候会不断变更，有不同的版本，flyaway可以储存数据库不同的版本，从而可以变更不同版本的<strong>结构</strong></li>
+<li>flyway需要在插件的地方修改URL，添加Username和password</li>
+<li>即使数据库删掉也可以快速回复结构</li>
+</ul>
+<h4 id="orm-object-relation-mapping-对象关系数据库">ORM Object Relation Mapping 对象关系数据库</h4>
+<ul>
+<li>通过select 语句把表格里面的项目变成对象，</li>
+<li></li>
+</ul>
+<h4 id="tips-1">Tips</h4>
+<ol>
+<li>Arraylist 从尾部删除更有效率（sive-1）。因为删除第一个元素之后，后面所有的元素都要向前移动一位。</li>
+<li>linkPool.remove 删除指定位置的链接后返回被删除的链接</li>
+<li>线程卡住的时候可以通过<code>jps</code>查看当前正在运行的线程</li>
+<li>链接显示为&rdquo;//……&rdquo; 的话，为当前的链接，需要手动添加&quot;https&quot;+link 进行识别</li>
+<li>数据库的用户名和密码最好是使用final常量去声明</li>
+<li>想要关闭代码检查findbugs的错误可以通过引入包解决。在相应的地方通过注释SuppressFBWarnings（&ldquo;DMI_CONSTANT_DB_PASSWORD&rdquo;）</li>
+<li>如果存在无法关闭的情况，可以通过final强行关闭</li>
+<li>try with resoure会自动设置关闭。try（需要声明能close的变量）</li>
+<li>HTML是没有换行符的，所以爬虫的时候是爬每一各P元素，加一个换行来分隔</li>
+<li>static 方法是不能够访问非static 成员的，static main 才可以运行， 非static 的main 只是一个普通的方法，不能够被运行</li>
+</ol>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  				<p>
+  					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://procarihana.github.io/public/tags/%E7%88%AC%E8%99%AB">爬虫</a></span><span class="tag"><a href="https://procarihana.github.io/public/tags/flyway">flyway</a></span>
+  				</p>
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

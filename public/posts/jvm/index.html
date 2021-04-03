@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Hana ">
+<meta name="description" content="HotSport JVM 堆
+ 所有对象都在里面 只能操纵对象的引用或者地址 只能够操纵产生，但无法控制死亡    常量池 String.intern() 直接从常量池里面获取这个对象的引用    栈  递归调用 阶乘   每次方法调用都会产生一个新的栈针，返回之后就会销毁   栈里面的内存分配   局部变量都是在栈里面的，因为每一次方法调用所用到的变量都是复制得到的，所以在调用改变的过程中是不会改变局部变量的     对象的地址根据虚拟机是32位（4个字节）还是64位（8个字节）   栈针   方法调用开始的时候，变量就会放在每个方法栈里面的操作数栈里面，     方法区
+ 被整个虚拟机共享的共享的class信息（创建对象的说明书）   永久代放在堆里面，很容易就会超出内存 元空间 和 natice 共享内存 平台无关性
+ 基于栈的模型   查看字节码
+ javap target.xxx.classname 只能够查看public 的方法   -private 能够查看所有的方法     -v 常量的等等     字节码的加载和执行" />
+<meta name="keywords" content=", , " />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://procarihana.github.io/public/posts/jvm/" />
+
+
+    <title>
+        
+            JVM :: FAFA Blog  — Just for fun
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://procarihana.github.io/public/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="JVM">
+<meta itemprop="description" content="HotSport JVM 堆
+ 所有对象都在里面 只能操纵对象的引用或者地址 只能够操纵产生，但无法控制死亡    常量池 String.intern() 直接从常量池里面获取这个对象的引用    栈  递归调用 阶乘   每次方法调用都会产生一个新的栈针，返回之后就会销毁   栈里面的内存分配   局部变量都是在栈里面的，因为每一次方法调用所用到的变量都是复制得到的，所以在调用改变的过程中是不会改变局部变量的     对象的地址根据虚拟机是32位（4个字节）还是64位（8个字节）   栈针   方法调用开始的时候，变量就会放在每个方法栈里面的操作数栈里面，     方法区
+ 被整个虚拟机共享的共享的class信息（创建对象的说明书）   永久代放在堆里面，很容易就会超出内存 元空间 和 natice 共享内存 平台无关性
+ 基于栈的模型   查看字节码
+ javap target.xxx.classname 只能够查看public 的方法   -private 能够查看所有的方法     -v 常量的等等     字节码的加载和执行">
+<meta itemprop="datePublished" content="2020-10-08T11:12:52&#43;08:00" />
+<meta itemprop="dateModified" content="2020-10-08T11:12:52&#43;08:00" />
+<meta itemprop="wordCount" content="75">
+<meta itemprop="image" content="https://procarihana.github.io/public/"/>
+
+
+
+<meta itemprop="keywords" content=",," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://procarihana.github.io/public/"/>
+
+<meta name="twitter:title" content="JVM"/>
+<meta name="twitter:description" content="HotSport JVM 堆
+ 所有对象都在里面 只能操纵对象的引用或者地址 只能够操纵产生，但无法控制死亡    常量池 String.intern() 直接从常量池里面获取这个对象的引用    栈  递归调用 阶乘   每次方法调用都会产生一个新的栈针，返回之后就会销毁   栈里面的内存分配   局部变量都是在栈里面的，因为每一次方法调用所用到的变量都是复制得到的，所以在调用改变的过程中是不会改变局部变量的     对象的地址根据虚拟机是32位（4个字节）还是64位（8个字节）   栈针   方法调用开始的时候，变量就会放在每个方法栈里面的操作数栈里面，     方法区
+ 被整个虚拟机共享的共享的class信息（创建对象的说明书）   永久代放在堆里面，很容易就会超出内存 元空间 和 natice 共享内存 平台无关性
+ 基于栈的模型   查看字节码
+ javap target.xxx.classname 只能够查看public 的方法   -private 能够查看所有的方法     -v 常量的等等     字节码的加载和执行"/>
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-10-08 11:12:52 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://procarihana.github.io/public/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">知っているでしょう。</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://procarihana.github.io/public/posts">CNotes</a></li><li><a href="https://procarihana.github.io/public/tags">Tags</a></li><li><a href="https://procarihana.github.io/public/notes">PNotes</a></li><li><a href="https://procarihana.github.io/public/projects">Projects</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://procarihana.github.io/public/posts/jvm/">JVM</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h2 id="hotsport-jvm">HotSport JVM</h2>
+<p>堆</p>
+<ul>
+<li>所有对象都在里面</li>
+<li>只能操纵对象的引用或者地址</li>
+<li>只能够操纵产生，但无法控制死亡</li>
+</ul>
+<blockquote>
+<ul>
+<li>常量池</li>
+<li>String.intern() 直接从常量池里面获取这个对象的引用</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="栈">栈</h2>
+<ul>
+<li>递归调用</li>
+<li>阶乘</li>
+<li>
+<ul>
+<li>每次方法调用都会产生一个新的栈针，返回之后就会销毁</li>
+</ul>
+</li>
+<li>栈里面的内存分配</li>
+<li>
+<ul>
+<li>局部变量都是在栈里面的，因为每一次方法调用所用到的变量都是复制得到的，所以在调用改变的过程中是不会改变局部变量的</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>对象的地址根据虚拟机是32位（4个字节）还是64位（8个字节）</li>
+</ul>
+</li>
+<li>栈针</li>
+<li>
+<ul>
+<li>方法调用开始的时候，变量就会放在每个方法栈里面的操作数栈里面，</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>方法区</p>
+<ul>
+<li>被整个虚拟机共享的共享的class信息（创建对象的说明书）</li>
+</ul>
+<hr>
+<h2 id="元空间-和-natice-共享内存">永久代放在堆里面，很容易就会超出内存
+元空间 和 natice 共享内存</h2>
+<p>平台无关性</p>
+<ul>
+<li>基于栈的模型</li>
+</ul>
+<hr>
+<p>查看字节码</p>
+<ul>
+<li>javap target.xxx.classname 只能够查看public 的方法</li>
+<li>
+<ul>
+<li><code>-private</code> 能够查看所有的方法</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><code>-v</code> 常量的等等</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>字节码的加载和执行</p>
+<ul>
+<li>JVM只关心class file</li>
+<li>类加载器</li>
+<li>
+<ul>
+<li>打通了代码和数据之间的障碍</li>
+</ul>
+</li>
+<li>mock mokito 通过动态字节码增强的方式</li>
+<li>热部署、热替换 动态地把某个jar包替换等等</li>
+</ul>
+<hr>
+<p>双亲委派加载模型（并非强制的加载标准 ）</p>
+<ul>
+<li>安全性</li>
+<li>
+<ul>
+<li>恶意java.lang.object等等的类</li>
+</ul>
+</li>
+<li>由父类加载 loadClass</li>
+<li>
+<ul>
+<li>先查看类是否被加载，如果被加载就直接返回</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>如果没有找到就尝试查找parent 是否存在</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>如果没有就用启动类加载</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>否则就尝试自己加载</li>
+</ul>
+</li>
+<li>正确性</li>
+<li>
+<ul>
+<li>类加载也被instanceof所检查</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>自定义加载的话，会出现类不是这个类的异常</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>因为两个类是由不同的类加载器加载的，所以会认为两个类不是同一个类</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>classloader</p>
+<hr>
+<p>HotSport</p>
+<ul>
+<li>通过收集运行的数据，能够获得运行频率高的类</li>
+</ul>
+<hr>
+<p>Just-In-Time  Complier</p>
+<ul>
+<li>两种执行方式</li>
+<li>
+<ul>
+<li>解释执行</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>方便、跨平台</li>
+<li>慢</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<ul>
+<li>编译执行</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>麻烦 不灵活 编译后的代码臃肿 快</li>
+</ul>
+</blockquote>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+        <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7" y2="7"></line>
+          </svg><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span><span class="tag"><a href="https://procarihana.github.io/public/tags//"></a></span>
+        </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        75 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        2020-10-08 11:12 &#43;0800
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="https://procarihana.github.io/public/posts/redis/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Redis</span>
+              </a>
+            </span>
+          
+
+          
+            <span class="button next">
+              <a href="https://procarihana.github.io/public/posts/hashmap/">
+                <span class="button__text">HashMap</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+                <span><a href="https://procarihana.github.io/public/">Hana</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://procarihana.github.io/public/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://procarihana.github.io/public/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

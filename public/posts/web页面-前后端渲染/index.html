@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Hana ">
-<meta name="description" content="前端渲染：前端发送静态的html，浏览器下载html里面的JS、CSS文件，等待下载完后就加载并初始化JS代码，可运行后就想后端请求数据，等待后端完成数据返回。客户端从无到完整，把数据渲染为响应页面 后端渲染：服务器端请求数据（内网请求快），服务器初始渲染（服务端性能较快），服务端返回已经有正确内容的HTML，客户端请求JS/CSS文件，等待下载完成且加载并初始化完成  渲染模板  index.html -&amp;gt; 静态模板  &amp;lt;!DOCTYPE heml&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;商品排行榜&amp;lt;/h2&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;1&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;西瓜&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;400&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;2&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;香蕉&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;200&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;3&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  动态模板引擎 -&amp;gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &amp;lt;!-- spring-boot-starter-freemarker --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt;  文件结构 (View) resources/templaes/~.ftl -&amp;gt; 存放动态模板   其中list 为结果集 name-&amp;gt;items    &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;#list items as item&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;${item." />
+<meta name="description" content="前端渲染：前端发送静态的html，浏览器下载html里面的JS、CSS文件，等待下载完后就加载并初始化JS代码，可运行后就想后端请求数据，等待后端完成数据返回。客户端从无到完整，把数据渲染为响应页面 后端渲染：服务器端请求数据（内网请求快），服务器初始渲染（服务端性能较快），服务端返回已经有正确内容的HTML，客户端请求JS/CSS文件，等待下载完成且加载并初始化完成 前端渲染：前端发送静态的html数据 后端渲染：后端发送htlm数据  渲染模板  index.html -&amp;gt; 静态模板  &amp;lt;!DOCTYPE heml&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;商品排行榜&amp;lt;/h2&amp;gt; &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;1&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;西瓜&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;400&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;2&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;香蕉&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;200&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;3&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;...&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  动态模板引擎 -&amp;gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &amp;lt;!-- spring-boot-starter-freemarker --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt;  文件结构 (View) resources/templaes/~.ftl -&amp;gt; 存放动态模板   其中list 为结果集 name-&amp;gt;items    &amp;lt;table&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;排名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品名&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;成交金额&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;#list items as item&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt;${item." />
 <meta name="keywords" content=", Web, 渲染" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -33,10 +33,10 @@
 
 
 <meta itemprop="name" content="Web页面  前后端渲染">
-<meta itemprop="description" content="前端渲染：前端发送静态的html，浏览器下载html里面的JS、CSS文件，等待下载完后就加载并初始化JS代码，可运行后就想后端请求数据，等待后端完成数据返回。客户端从无到完整，把数据渲染为响应页面 后端渲染：服务器端请求数据（内网请求快），服务器初始渲染（服务端性能较快），服务端返回已经有正确内容的HTML，客户端请求JS/CSS文件，等待下载完成且加载并初始化完成  渲染模板  index.html -&gt; 静态模板  &lt;!DOCTYPE heml&gt; &lt;/head&gt; &lt;body&gt; &lt;h2&gt;商品排行榜&lt;/h2&gt; &lt;table&gt; &lt;tr&gt; &lt;th&gt;排名&lt;/th&gt; &lt;th&gt;商品名&lt;/th&gt; &lt;th&gt;成交金额&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;西瓜&lt;/td&gt; &lt;td&gt;400&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;香蕉&lt;/td&gt; &lt;td&gt;200&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;3&lt;/td&gt; &lt;td&gt;...&lt;/td&gt; &lt;td&gt;...&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;/body&gt; &lt;/html&gt;  动态模板引擎 -&gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &lt;!-- spring-boot-starter-freemarker --&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-freemarker&lt;/artifactId&gt; &lt;/dependency&gt;  文件结构 (View) resources/templaes/~.ftl -&gt; 存放动态模板   其中list 为结果集 name-&gt;items    &lt;table&gt; &lt;tr&gt; &lt;th&gt;排名&lt;/th&gt; &lt;th&gt;商品名&lt;/th&gt; &lt;th&gt;成交金额&lt;/th&gt; &lt;/tr&gt; &lt;#list items as item&gt; &lt;tr&gt; &lt;td&gt;${item.">
+<meta itemprop="description" content="前端渲染：前端发送静态的html，浏览器下载html里面的JS、CSS文件，等待下载完后就加载并初始化JS代码，可运行后就想后端请求数据，等待后端完成数据返回。客户端从无到完整，把数据渲染为响应页面 后端渲染：服务器端请求数据（内网请求快），服务器初始渲染（服务端性能较快），服务端返回已经有正确内容的HTML，客户端请求JS/CSS文件，等待下载完成且加载并初始化完成 前端渲染：前端发送静态的html数据 后端渲染：后端发送htlm数据  渲染模板  index.html -&gt; 静态模板  &lt;!DOCTYPE heml&gt; &lt;/head&gt; &lt;body&gt; &lt;h2&gt;商品排行榜&lt;/h2&gt; &lt;table&gt; &lt;tr&gt; &lt;th&gt;排名&lt;/th&gt; &lt;th&gt;商品名&lt;/th&gt; &lt;th&gt;成交金额&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;西瓜&lt;/td&gt; &lt;td&gt;400&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;香蕉&lt;/td&gt; &lt;td&gt;200&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;3&lt;/td&gt; &lt;td&gt;...&lt;/td&gt; &lt;td&gt;...&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;/body&gt; &lt;/html&gt;  动态模板引擎 -&gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &lt;!-- spring-boot-starter-freemarker --&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-freemarker&lt;/artifactId&gt; &lt;/dependency&gt;  文件结构 (View) resources/templaes/~.ftl -&gt; 存放动态模板   其中list 为结果集 name-&gt;items    &lt;table&gt; &lt;tr&gt; &lt;th&gt;排名&lt;/th&gt; &lt;th&gt;商品名&lt;/th&gt; &lt;th&gt;成交金额&lt;/th&gt; &lt;/tr&gt; &lt;#list items as item&gt; &lt;tr&gt; &lt;td&gt;${item.">
 <meta itemprop="datePublished" content="2020-09-07T14:59:13&#43;08:00" />
 <meta itemprop="dateModified" content="2020-09-07T14:59:13&#43;08:00" />
-<meta itemprop="wordCount" content="123">
+<meta itemprop="wordCount" content="125">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -46,7 +46,7 @@
 <meta name="twitter:image" content="https://procarihana.github.io/public/"/>
 
 <meta name="twitter:title" content="Web页面  前后端渲染"/>
-<meta name="twitter:description" content="前端渲染：前端发送静态的html，浏览器下载html里面的JS、CSS文件，等待下载完后就加载并初始化JS代码，可运行后就想后端请求数据，等待后端完成数据返回。客户端从无到完整，把数据渲染为响应页面 后端渲染：服务器端请求数据（内网请求快），服务器初始渲染（服务端性能较快），服务端返回已经有正确内容的HTML，客户端请求JS/CSS文件，等待下载完成且加载并初始化完成  渲染模板  index.html -&gt; 静态模板  &lt;!DOCTYPE heml&gt; &lt;/head&gt; &lt;body&gt; &lt;h2&gt;商品排行榜&lt;/h2&gt; &lt;table&gt; &lt;tr&gt; &lt;th&gt;排名&lt;/th&gt; &lt;th&gt;商品名&lt;/th&gt; &lt;th&gt;成交金额&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;西瓜&lt;/td&gt; &lt;td&gt;400&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;香蕉&lt;/td&gt; &lt;td&gt;200&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;3&lt;/td&gt; &lt;td&gt;...&lt;/td&gt; &lt;td&gt;...&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;/body&gt; &lt;/html&gt;  动态模板引擎 -&gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &lt;!-- spring-boot-starter-freemarker --&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-freemarker&lt;/artifactId&gt; &lt;/dependency&gt;  文件结构 (View) resources/templaes/~.ftl -&gt; 存放动态模板   其中list 为结果集 name-&gt;items    &lt;table&gt; &lt;tr&gt; &lt;th&gt;排名&lt;/th&gt; &lt;th&gt;商品名&lt;/th&gt; &lt;th&gt;成交金额&lt;/th&gt; &lt;/tr&gt; &lt;#list items as item&gt; &lt;tr&gt; &lt;td&gt;${item."/>
+<meta name="twitter:description" content="前端渲染：前端发送静态的html，浏览器下载html里面的JS、CSS文件，等待下载完后就加载并初始化JS代码，可运行后就想后端请求数据，等待后端完成数据返回。客户端从无到完整，把数据渲染为响应页面 后端渲染：服务器端请求数据（内网请求快），服务器初始渲染（服务端性能较快），服务端返回已经有正确内容的HTML，客户端请求JS/CSS文件，等待下载完成且加载并初始化完成 前端渲染：前端发送静态的html数据 后端渲染：后端发送htlm数据  渲染模板  index.html -&gt; 静态模板  &lt;!DOCTYPE heml&gt; &lt;/head&gt; &lt;body&gt; &lt;h2&gt;商品排行榜&lt;/h2&gt; &lt;table&gt; &lt;tr&gt; &lt;th&gt;排名&lt;/th&gt; &lt;th&gt;商品名&lt;/th&gt; &lt;th&gt;成交金额&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;1&lt;/td&gt; &lt;td&gt;西瓜&lt;/td&gt; &lt;td&gt;400&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;2&lt;/td&gt; &lt;td&gt;香蕉&lt;/td&gt; &lt;td&gt;200&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;3&lt;/td&gt; &lt;td&gt;...&lt;/td&gt; &lt;td&gt;...&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; &lt;/body&gt; &lt;/html&gt;  动态模板引擎 -&gt; spring-freemarker   模板引擎就是能够然数据替换   maven  &lt;!-- spring-boot-starter-freemarker --&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-freemarker&lt;/artifactId&gt; &lt;/dependency&gt;  文件结构 (View) resources/templaes/~.ftl -&gt; 存放动态模板   其中list 为结果集 name-&gt;items    &lt;table&gt; &lt;tr&gt; &lt;th&gt;排名&lt;/th&gt; &lt;th&gt;商品名&lt;/th&gt; &lt;th&gt;成交金额&lt;/th&gt; &lt;/tr&gt; &lt;#list items as item&gt; &lt;tr&gt; &lt;td&gt;${item."/>
 
 
 
@@ -137,6 +137,8 @@
         <ul>
 <li>前端渲染：前端发送静态的html，浏览器下载html里面的JS、CSS文件，等待下载完后就加载并初始化JS代码，可运行后就想后端请求数据，等待后端完成数据返回。客户端从无到完整，把数据渲染为响应页面</li>
 <li>后端渲染：服务器端请求数据（内网请求快），服务器初始渲染（服务端性能较快），服务端返回已经有正确内容的HTML，客户端请求JS/CSS文件，等待下载完成且加载并初始化完成</li>
+<li>前端渲染：前端发送静态的html数据</li>
+<li>后端渲染：后端发送htlm数据</li>
 </ul>
 <h2 id="渲染模板">渲染模板</h2>
 <ul>
@@ -266,7 +268,7 @@ spring.freemarker.suffix=.ftl
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        123 Words
+        125 Words
       </p>
 
       <p>
@@ -320,7 +322,7 @@ spring.freemarker.suffix=.ftl
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2020</span>
+            <span>&copy; 2021</span>
             
                 <span><a href="https://procarihana.github.io/public/">Hana</a></span>
             

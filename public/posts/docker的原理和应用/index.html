@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Hana ">
-<meta name="description" content="虚拟机有一套完整独立的操作系统，非常占内存和资源,虚拟机内即使有空闲的资源也不能够集中利用，只能够浪费 docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存 阿里云的镜像加速所向无敌  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &amp;lt;镜像名&amp;gt;&amp;lt;镜像中要运行的命令和参数&amp;gt;   交互式命令行模式，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &amp;ndash; name 为容器指定一个名字 &amp;ndash; restart=always 遇到错误马上重启 -&amp;gt; 用于NGINX等    docker run &amp;ndash;name springboot-nginx &amp;ndash;restart=always -v pwd/nginx/nginx." />
+<meta name="description" content="虚拟机有一套完整独立的操作系统，非常占内存和资源,虚拟机内即使有空闲的资源也不能够集中利用，只能够浪费 docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存 阿里云的镜像加速所向无敌  { &amp;#34;registry-mirrors&amp;#34;: [ &amp;#34;https://t8svkgrf.mirror.aliyuncs.com&amp;#34; ], &amp;#34;debug&amp;#34;: true, &amp;#34;experimental&amp;#34;: false } Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &amp;lt;镜像名&amp;gt;&amp;lt;镜像中要运行的命令和参数&amp;gt;   交互式命令行模式，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &amp;ndash; name 为容器指定一个名字 &amp;ndash; restart=always 遇到错误马上重启 -&amp;gt; 用于NGINX等    docker run &amp;ndash;name springboot-nginx &amp;ndash;restart=always -v pwd/nginx/nginx." />
 <meta name="keywords" content=", docker, redis" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -33,10 +33,10 @@
 
 
 <meta itemprop="name" content="Docker的原理和应用">
-<meta itemprop="description" content="虚拟机有一套完整独立的操作系统，非常占内存和资源,虚拟机内即使有空闲的资源也不能够集中利用，只能够浪费 docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存 阿里云的镜像加速所向无敌  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &lt;镜像名&gt;&lt;镜像中要运行的命令和参数&gt;   交互式命令行模式，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &ndash; name 为容器指定一个名字 &ndash; restart=always 遇到错误马上重启 -&gt; 用于NGINX等    docker run &ndash;name springboot-nginx &ndash;restart=always -v pwd/nginx/nginx.">
+<meta itemprop="description" content="虚拟机有一套完整独立的操作系统，非常占内存和资源,虚拟机内即使有空闲的资源也不能够集中利用，只能够浪费 docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存 阿里云的镜像加速所向无敌  { &#34;registry-mirrors&#34;: [ &#34;https://t8svkgrf.mirror.aliyuncs.com&#34; ], &#34;debug&#34;: true, &#34;experimental&#34;: false } Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &lt;镜像名&gt;&lt;镜像中要运行的命令和参数&gt;   交互式命令行模式，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &ndash; name 为容器指定一个名字 &ndash; restart=always 遇到错误马上重启 -&gt; 用于NGINX等    docker run &ndash;name springboot-nginx &ndash;restart=always -v pwd/nginx/nginx.">
 <meta itemprop="datePublished" content="2020-09-01T18:41:11&#43;08:00" />
 <meta itemprop="dateModified" content="2020-09-01T18:41:11&#43;08:00" />
-<meta itemprop="wordCount" content="253">
+<meta itemprop="wordCount" content="286">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -46,7 +46,7 @@
 <meta name="twitter:image" content="https://procarihana.github.io/public/"/>
 
 <meta name="twitter:title" content="Docker的原理和应用"/>
-<meta name="twitter:description" content="虚拟机有一套完整独立的操作系统，非常占内存和资源,虚拟机内即使有空闲的资源也不能够集中利用，只能够浪费 docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存 阿里云的镜像加速所向无敌  Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &lt;镜像名&gt;&lt;镜像中要运行的命令和参数&gt;   交互式命令行模式，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &ndash; name 为容器指定一个名字 &ndash; restart=always 遇到错误马上重启 -&gt; 用于NGINX等    docker run &ndash;name springboot-nginx &ndash;restart=always -v pwd/nginx/nginx."/>
+<meta name="twitter:description" content="虚拟机有一套完整独立的操作系统，非常占内存和资源,虚拟机内即使有空闲的资源也不能够集中利用，只能够浪费 docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存 阿里云的镜像加速所向无敌  { &#34;registry-mirrors&#34;: [ &#34;https://t8svkgrf.mirror.aliyuncs.com&#34; ], &#34;debug&#34;: true, &#34;experimental&#34;: false } Docker  保证开发、测试、交付、部署的环境完全一致 保证资源的隔离   通过fastjson 任意代码执行漏洞，通过java进程获得来操控别的进程从而过得Linux的控制权限。而Docker 资源隔离只能够获得Docker内的权限，对宿主机没有任何影响   启动临时的、用完即弃的环境，例如测试 迅速（秒级）超大规模部署和扩容   可以迅速扩容大量的容器，且环境是一模一样的    Docker 的基本概念  镜像 image   一个预定好的模板文件，Docker 引擎可以按照这个模板文件启动无数个一模一样，互不干扰的容器     像是一份清单一样，每次启动这个镜像就按照这份清单来启动   容器 container   一台虚拟的计算机，拥有独立的：      网络 文件系统 进程      默认和宿主机不发生任何交互      意味着数据是没有持久化的   Docker 指令 docker run : 启动一个全新的控制资源隔离的docker容器  一台独立的计算机 每个容器都有一个ID，支持缩写 docker run -it &lt;镜像名&gt;&lt;镜像中要运行的命令和参数&gt;   交互式命令行模式，当前shell中运行。Ctrl-c退出（启动一个容器，并立刻进入内部进行操作）   docker run -d   daemon模式，在后台运行   &ndash; name 为容器指定一个名字 &ndash; restart=always 遇到错误马上重启 -&gt; 用于NGINX等    docker run &ndash;name springboot-nginx &ndash;restart=always -v pwd/nginx/nginx."/>
 
 
 
@@ -139,7 +139,14 @@
 <li>docker 启动的容器用于运行程序，剩余的内存能够继续用于新的容器，从而节省内存</li>
 <li>阿里云的镜像加速所向无敌</li>
 </ul>
-<h2 id="docker">Docker</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;registry-mirrors&#34;</span>: [
+    <span style="color:#e6db74">&#34;https://t8svkgrf.mirror.aliyuncs.com&#34;</span>
+  ],
+  <span style="color:#f92672">&#34;debug&#34;</span>: <span style="color:#66d9ef">true</span>,
+  <span style="color:#f92672">&#34;experimental&#34;</span>: <span style="color:#66d9ef">false</span>
+}
+</code></pre></div><h2 id="docker">Docker</h2>
 <ul>
 <li>保证开发、测试、交付、部署的环境完全一致</li>
 <li>保证资源的隔离</li>
@@ -269,6 +276,16 @@
 <ul>
 <li>调试、解决问题必备命令</li>
 </ul>
+<blockquote>
+<ul>
+<li>通常修改文件时会提示：read-only file system 或者 Permission denied挂载配置文件在运行docker容器时，可以将该配置文件复制一份到宿主机，然后run的时候，加载-v参数，将宿主机的配置文件挂载到docker中即可。</li>
+<li>以root权限进入docker容器
+命令：
+docker exec -it -u root &lt;container_id&gt; /bin/bash
+注意：
+执行上述命令的前提是，run 容器的时候，加上了这个参数：&ndash;privileged=true 否则进入到容器中还是提示没有权限修改</li>
+</ul>
+</blockquote>
 <h4 id="docker-logs">docker logs</h4>
 <ul>
 <li>docker logs imageId或imageID</li>
@@ -434,6 +451,23 @@ docker run -it -e HCSP_ENV=DEF -v <code>pwd</code>/app/config.txt:/app/config.tx
 <ul>
 <li>ECHO 内容&raquo;文本文件 新建本文写包含某些内容</li>
 </ul>
+<p>&laquo;&laquo;&laquo;&lt; HEAD</p>
+<p>=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>2e3f18c906f1b2f3387e59ac7ebd57b35882004e</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 
       </div>
     </article>
@@ -456,7 +490,7 @@ docker run -it -e HCSP_ENV=DEF -v <code>pwd</code>/app/config.txt:/app/config.tx
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        253 Words
+        286 Words
       </p>
 
       <p>
@@ -510,7 +544,7 @@ docker run -it -e HCSP_ENV=DEF -v <code>pwd</code>/app/config.txt:/app/config.tx
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2020</span>
+            <span>&copy; 2021</span>
             
                 <span><a href="https://procarihana.github.io/public/">Hana</a></span>
             

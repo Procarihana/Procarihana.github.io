@@ -720,6 +720,16 @@ public class AutoController {
             e.printStackTrace();
             return LoginResult.failure("fail", "错误原因:用户已存在");
         }
+        }
+        try {
+            userService.save(username, password);
+            //这里在并发的过程中，如果有人同时申请两个同样的用户名字，就会出现数据库重复的情况，可以通过数据库约束完成事务
+            User loggedInUser = userService.getUserByUsername(username);
+            return LoginResult.success("注册成功", loggedInUser);
+        } catch (DuplicateKeyException e) {
+            e.printStackTrace();
+            return LoginResult.failure("fail", "错误原因:用户已存在");
+        }
     }
 ```
 ## 用户登录与信息储存 (Mybatis+Mapper)
@@ -870,6 +880,7 @@ public class SmokeTest {
         </plugin>
 ```
 ## 单独运行集成测试
+## 单独运行单元测试
 
 ```java       
             <plugin>
@@ -1523,5 +1534,6 @@ public class UserService implements UserDetailsService {
 #### mysql
 - url 链接不上时候，需要添加：`reateDatabaseIfNotExist=true`在url后面就可
 - 
+
 ## Q
 1. UsernamePasswordAuthenticationToken serialVersionUID  序列化号的作用

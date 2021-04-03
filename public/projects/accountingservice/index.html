@@ -38,7 +38,7 @@
 项目结构和模型转换  external 用于存放外部团队的接口和服务，然后再Manager里面放。在接口处写注析。 exception 异常处理 config 存放MybatisBean等等的Bean Controller 存放SpringBoot对外接口（API接口）   不要有过多的处理逻辑 参数校验越早做越好  manager 组合各个业务的逻辑 先写接口后写实现 Dao Converter 用于转换 Moudle的common向service等等的转换但是不能够用于Http、数据库、IO等操作 Service 部分是给前段展示的内容，不能直接返回密码（加密后的还是可以的）等内容  添加Maven  通过Maven getting start  SpringBoot Spring boot 开发四大步  添加相应依赖   SpringBoot 引入       基础Maven引入：、spring-boot-starter-web、plugin     添加相应注解   添加Appliation类作为SpringBoot入口，并添加注解@SpringBootApplication     添加Controller类，并添加注解@RestController      @RestController == @Controller &#43; @ResponseBodymapping    编写代码 添加相应配置   在resources里添加application.">
 <meta itemprop="datePublished" content="2020-08-10T20:48:22&#43;08:00" />
 <meta itemprop="dateModified" content="2020-08-10T20:48:22&#43;08:00" />
-<meta itemprop="wordCount" content="3599">
+<meta itemprop="wordCount" content="3643">
 <meta itemprop="image" content="https://procarihana.github.io/public/"/>
 
 
@@ -1501,8 +1501,34 @@ public class UserController{
 <li>配置 SpringFoxConfig</li>
 </ul>
 </li>
+<li>
+<ul>
+<li>
+<ul>
+<li>注意的是configuration 和 swagger</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
+<span style="color:#a6e22e">@EnableSwagger2</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringFoxConfig</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * The bean for Docket.
+</span><span style="color:#75715e">     *
+</span><span style="color:#75715e">     * @return Docket bean instance.
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#a6e22e">@Bean</span>
+    <span style="color:#66d9ef">public</span> Docket <span style="color:#a6e22e">api</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Docket<span style="color:#f92672">(</span>DocumentationType<span style="color:#f92672">.</span><span style="color:#a6e22e">SWAGGER_2</span><span style="color:#f92672">)</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">select</span><span style="color:#f92672">()</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">apis</span><span style="color:#f92672">(</span>RequestHandlerSelectors<span style="color:#f92672">.</span><span style="color:#a6e22e">any</span><span style="color:#f92672">())</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">paths</span><span style="color:#f92672">(</span>PathSelectors<span style="color:#f92672">.</span><span style="color:#a6e22e">any</span><span style="color:#f92672">())</span>
+            <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
 </code></pre></div><ul>
 <li>
 <ul>
@@ -1528,6 +1554,7 @@ public class UserController{
 <li><code>@Api</code>  value:对整个Controller进行描述</li>
 <li><code>@ApiOperation</code> 对Controller 下的 接口进行描述（get、post、put……）<code>value</code>:写API描述，<code>resource</code>:写返回的类型</li>
 <li><code>@ApiResponses</code>允许放status、message等，表现每个status表示什么问题</li>
+<li>只需要在controller 上面完成就可以了</li>
 </ul>
 </blockquote>
 <h2 id="shiro">shiro</h2>
@@ -2760,7 +2787,12 @@ ured chain under the name/key [/v1.0/session]</li>
         <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;LEFT JOIN accounting_record_tag_mapping artm &#34;</span>
         <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;ON artm.tag_id = tag.id &#34;</span>
         <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;WHERE artm.record_id = #{recordId}&#34;</span><span style="color:#f92672">)</span>
-</code></pre></div>
+</code></pre></div><h2 id="springboot添加事务">SpringBoot添加事务</h2>
+<ol>
+<li>在 Application 处添加 <code>@EnableTranscationManagerment</code></li>
+<li>在对应想开启事务管理的类或者方法上添加<code>@Transcation</code>注解</li>
+</ol>
+
             </div>
         </article>
 
@@ -2779,7 +2811,7 @@ ured chain under the name/key [/v1.0/session]</li>
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2020</span>
+            <span>&copy; 2021</span>
             
                 <span><a href="https://procarihana.github.io/public/">Hana</a></span>
             
